@@ -18,7 +18,7 @@ _config_file = ""
 if path.exists(_user_config_file):
     _config_file = _user_config_file
 # User hasn't configured the program yet
-else:
+elif system() != "Linux":
     _config_file = _user_config_file
     _sys_config_example = path.join(sys.prefix, _example_file)
 
@@ -153,6 +153,7 @@ class Config:
 
     def _set_default_values(self):
         """Set default values for variables"""
+        self.chrome_driver = "/usr/bin/chromedriver"
         self.dir = "."
 
     def _get_optional_variables(self):
