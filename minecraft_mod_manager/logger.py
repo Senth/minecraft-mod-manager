@@ -26,6 +26,19 @@ class Logger:
 
     @staticmethod
     def info(message: str, color: str = LogColors.no_color):
+        """Print an information message that always is shown
+
+        Args:
+            message (str): The message to log
+            color (LogColors): Optional color of the message
+        """
+        if color == LogColors.no_color:
+            print(message)
+        else:
+            print(f"{color}{message}{LogColors.no_color}")
+
+    @staticmethod
+    def verbose(message: str, color: str = LogColors.no_color):
         """Log message if verbose has been set to true
 
         Args:
