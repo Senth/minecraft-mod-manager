@@ -26,7 +26,7 @@ setup(
     data_files=[(f"config/{package}", ["config/config.example.py"])],
     install_requires=["selenium", "requests"],
     classifiers=[
-        "Development Status :: 3 - Pre-Alpha",
+        "Development Status :: 2 - Pre-Alpha",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
