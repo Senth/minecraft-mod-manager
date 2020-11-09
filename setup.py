@@ -4,9 +4,9 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="minecraft-mod-updater",
+    name="minecraft-mod-manager",
     version="0.0.1",
-    url="https://github.com/Senth/minecraft-mod-updater",
+    url="https://github.com/Senth/minecraft-mod-manager",
     license="MIT",
     author="Matteus Magnusson",
     author_email="senth.wallace@gmail.com",
@@ -21,8 +21,9 @@ setup(
     },
     include_package_data=True,
     data_files=[("config/minecraft-mod-updater", ["config/config.example.py"])],
-    install_requires=["selenium"],
+    install_requires=["selenium", "requests"],
     classifiers=[
+        "Development Status :: 3 - Pre-Alpha",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
