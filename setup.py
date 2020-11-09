@@ -3,8 +3,11 @@ from setuptools import setup
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+module = "minecraft_mod_manager"
+package = module.replace("_", "-")
+
 setup(
-    name="minecraft-mod-manager",
+    name=package,
     version="0.0.1",
     url="https://github.com/Senth/minecraft-mod-manager",
     license="MIT",
@@ -13,14 +16,14 @@ setup(
     description="Download and update Minecraft mods from CurseForge and possibly other places in the future.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=["minecraft_mod_updater"],
+    packages=[f"{module}"],
     entry_points={
         "console_scripts": [
-            "minecraft-mod-updater=minecraft_mod_updater.__main__:main",
+            f"{package}={module}.__main__:main",
         ],
     },
     include_package_data=True,
-    data_files=[("config/minecraft-mod-updater", ["config/config.example.py"])],
+    data_files=[(f"config/{package}", ["config/config.example.py"])],
     install_requires=["selenium", "requests"],
     classifiers=[
         "Development Status :: 3 - Pre-Alpha",
