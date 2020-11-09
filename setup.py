@@ -16,7 +16,7 @@ setup(
     packages=["minecraft_mod_updater"],
     entry_points={
         "console_scripts": [
-            "minecraft-mod-updater=minecraft_mod_updater:__main__:main",
+            "minecraft-mod-updater=minecraft_mod_updater.__main__:main",
         ],
     },
     include_package_data=True,
