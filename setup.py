@@ -23,6 +23,7 @@ setup(
     data_files=[("config/minecraft-mod-updater", ["config/config.example.py"])],
     install_requires=["selenium", "requests"],
     classifiers=[
+        "Development Status :: 3 - Pre-Alpha",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
