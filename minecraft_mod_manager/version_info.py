@@ -1,7 +1,17 @@
+from enum import Enum
+
+
+class ReleaseTypes(Enum):
+    stable = "stable"
+    beta = "beta"
+    alpha = "alpha"
+    invalid = "invalid"
+
+
 class VersionInfo:
     def __init__(
         self,
-        release_type: str,
+        release_type: ReleaseTypes,
         name: str,
         upload_time: int,
         minecraft_version: str,

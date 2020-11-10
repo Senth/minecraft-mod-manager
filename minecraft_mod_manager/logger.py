@@ -1,4 +1,5 @@
 import minecraft_mod_manager.config
+import sys
 
 
 class LogColors:
@@ -16,16 +17,32 @@ class LogColors:
 
 class Logger:
     @staticmethod
-    def error(message: str):
+    def error(message: str, exit: bool = False):
         """Logs a message and prints is at red
 
         Args:
             message (str): The message to log
+            exit (bool): If the program should exit after printing the error
         """
         print(f"{LogColors.red}{message}{LogColors.no_color}")
+        if exit:
+            sys.exit(1)
 
     @staticmethod
     def info(message: str, color: str = LogColors.no_color):
+        """Print an information message that always is shown
+
+        Args:
+            message (str): The message to log
+            color (LogColors): Optional color of the message
+        """
+        if color == LogColors.no_color:
+            print(message)
+        else:
+            print(f"{color}{message}{LogColors.no_color}")
+
+    @staticmethod
+    def verbose(message: str, color: str = LogColors.no_color):
         """Log message if verbose has been set to true
 
         Args:

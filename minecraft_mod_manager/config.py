@@ -5,7 +5,7 @@ import site
 import importlib.util
 import argparse
 from platform import system
-from .logger import Logger
+import minecraft_mod_manager.logger
 
 _app_name = __package__.replace("_", "-")
 _config_dir = path.join("config", _app_name)
@@ -18,7 +18,7 @@ _config_file = ""
 if path.exists(_user_config_file):
     _config_file = _user_config_file
 # User hasn't configured the program yet
-else:
+elif system() != "Linux":
     _config_file = _user_config_file
     _sys_config_example = path.join(sys.prefix, _example_file)
 
@@ -40,7 +40,9 @@ _spec.loader.exec_module(_user_config)
 
 
 def _print_missing(variable_name):
-    Logger.error(f"Missing {variable_name} variable in config file: {_config_file}")
+    minecraft_mod_manager.logger.Logger.error(
+        f"Missing {variable_name} variable in config file: {_config_file}"
+    )
     print("Please add it to you config.py again to continue")
     sys.exit(1)
 
@@ -153,6 +155,7 @@ class Config:
 
     def _set_default_values(self):
         """Set default values for variables"""
+        self.chrome_driver = "/usr/bin/chromedriver"
         self.dir = "."
 
     def _get_optional_variables(self):
@@ -174,7 +177,9 @@ class Config:
     def _check_chrome_driver(self):
         """Checks the location of the chromedriver"""
         if not path.exists(self.chrome_driver):
-            Logger.error(f"Couldn't find chromedriver in {self.chrome_driver}.")
+            minecraft_mod_manager.logger.Logger.error(
+                f"Couldn't find chromedriver in {self.chrome_driver}."
+            )
             exit(1)
 
 
