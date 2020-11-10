@@ -3,9 +3,9 @@ import requests
 from selenium.webdriver.chrome.webdriver import WebDriver
 from .mod import Mod, RepoTypes
 from .config import config
-from .logger import Logger
+from .logger import LogColors, Logger
 from .mod_not_found_exception import ModNotFoundException
-from .version_info import VersionInfo
+from .version_info import ReleaseTypes, VersionInfo
 from . import web_driver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.common.exceptions import NoSuchElementException
@@ -24,9 +24,40 @@ class CurseApi:
             VersionInfo or None: Latest version or None if none was found
 
         Raises:
+            ModNotFoundException: When no mod is found
 
         """
-        self._driver.get(mod.get_parse_url())
+
+        # Get mod info
+        if mod.repo_type == RepoTypes.curse:
+            Logger.verbose(
+                f"Checking update for {mod.repo_name_alias} mod on CurseForge"
+            )
+            self._driver.get(CurseApi._get_files_url(mod.repo_name_alias))
+        # Try various different names and see if there's a match
+        else:
+            possible_names = mod.get_possible_repo_names()
+            found_name = None
+
+            for possible_name in possible_names:
+                Logger.verbose(
+                    f"Searching for mod {mod.id} with name {possible_name} on CurseForge..."
+                )
+                self._driver.get(CurseApi._get_files_url(possible_name))
+
+                if not self._driver.title.startswith("Not found"):
+                    Logger.debug(f"Found!")
+                    found_name = possible_name
+
+                    # Update the mod info
+                    mod.repo_type = RepoTypes.curse
+                    mod.repo_name_alias = possible_name
+                    break
+
+            if not found_name:
+                Logger.debug(f"Mod not found on CurseForge")
+                raise ModNotFoundException(mod)
+
         try:
             version_elements: List[WebElement] = self._driver.find_elements_by_xpath(
                 './/table[contains(@class, "listing")]/tbody/tr'
@@ -38,6 +69,7 @@ class CurseApi:
                     "td[1]/div/span"
                 )
                 release = release_element.get_attribute("innerText")
+                release_type = CurseApi._convert_to_release_type(release)
 
                 # Get name
                 name_element: WebElement = version_element.find_element_by_xpath(
@@ -72,7 +104,7 @@ class CurseApi:
                 project_id = int(project_id_container.get_attribute("innerText"))
 
                 # All version are older than the installed, no need to continue
-                if upload_time < mod.upload_time:
+                if upload_time <= mod.upload_time:
                     return None
 
                 # Checks release type, minecraft version, etc
@@ -80,7 +112,7 @@ class CurseApi:
                     download_url = CurseApi._get_download_url(project_id, file_id)
                     filename = CurseApi._get_filename(download_url)
                     version_info = VersionInfo(
-                        release_type=release,
+                        release_type=release_type,
                         name=name,
                         upload_time=upload_time,
                         minecraft_version=minecraft_version,
@@ -88,12 +120,31 @@ class CurseApi:
                         filename=filename,
                     )
 
-                    Logger.debug(f"Found CurseForge version {version_info}")
+                    Logger.verbose(f"Found update! {version_info.name}")
                     return version_info
         except NoSuchElementException:
-            raise ModNotFoundException(mod)
+            Logger.error(
+                "Could not find element on Curse page. They might have updated the site.\n"
+                + f"Check if there is a newer version of {config.app_name} available.",
+                exit=True,
+            )
 
         return None
+
+    @staticmethod
+    def _convert_to_release_type(release: str) -> ReleaseTypes:
+        if release == "R":
+            return ReleaseTypes.stable
+        if release == "B":
+            return ReleaseTypes.beta
+        if release == "A":
+            return ReleaseTypes.alpha
+
+        return ReleaseTypes.invalid
+
+    @staticmethod
+    def _get_files_url(repo_name_alias: str) -> str:
+        return f"https://www.curseforge.com/minecraft/mc-mods/{repo_name_alias}/files"
 
     @staticmethod
     def _get_filename(download_url: str) -> str:

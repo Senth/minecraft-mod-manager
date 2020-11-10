@@ -1,7 +1,7 @@
 from pathlib import Path
 from zipfile import ZipFile
 from .config import config
-from .logger import Logger
+from .logger import LogColors, Logger
 from .mod import Mod
 from typing import List
 import json
@@ -21,8 +21,16 @@ class DirParser:
 
     def _get_mod_info(self, file: Path) -> Mod:
         with ZipFile(file, "r") as zip:
+            # As a fabric mod
             with zip.open("fabric.mod.json") as json_file:
                 object = json.load(json_file)
-                mod = Mod(object["id"], object["name"], object["version"], file.name)
-                Logger.info(f"Found mod: {mod}")
+                mod = Mod(
+                    id=object["id"],
+                    name=object["name"],
+                    version=object["version"],
+                    file=file.name,
+                )
+                Logger.verbose(f"Found mod: {mod}", LogColors.found)
                 return mod
+
+            # LATER get mod info from filename

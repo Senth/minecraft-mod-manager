@@ -3,6 +3,7 @@ from requests.models import Response
 from selenium.webdriver.chrome.webdriver import WebDriver
 from .version_info import VersionInfo
 from .config import config
+from .logger import Logger
 from .mod import Mod
 from . import web_driver
 from os import path
@@ -21,6 +22,7 @@ class Downloader:
         Returns:
             Filename of the downloaded and saved file
         """
+        Logger.verbose(f"Downloading...")
         response = requests.get(
             latest_version.download_url,
             headers={
@@ -43,6 +45,8 @@ class Downloader:
         # Save file
         with open(filename, "wb") as file:
             file.write(response.content)
+
+        Logger.verbose("Download finished")
 
         return filename
 

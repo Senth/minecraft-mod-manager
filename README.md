@@ -8,7 +8,10 @@ Currently works best with fabric mods.
 
 ## Features
 
-TODO
+- Searches on CurseForge for installed mods to see if there are any updates.
+- Filter updates
+  - Stable (default), beta `--beta`, or alpha `--alpha` releases.
+  - Minecraft version `-v 1.16.4`
 
 ## Usage
 
