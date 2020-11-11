@@ -15,7 +15,7 @@ import logging
 
 
 def main():
-    webdriver = web_driver.get()
+    webdriver = None
     LOGGER.setLevel(logging.WARNING)
     db = Db()
     try:
@@ -26,9 +26,11 @@ def main():
 
         # ACTION: Update
         if config.action == "update":
+            webdriver = web_driver.get()
             _update(webdriver, db, installed_mods)
 
         elif config.action == "install":
+            webdriver = web_driver.get()
             # TODO install
             pass
 
@@ -37,8 +39,10 @@ def main():
             pass
 
     finally:
-        webdriver.close()
         db.close()
+
+        if webdriver:
+            webdriver.close()
 
 
 def _update(webdriver: WebDriver, db: Db, installed_mods: List[Mod]):
