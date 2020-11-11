@@ -8,7 +8,7 @@ package = module.replace("_", "-")
 
 setup(
     name=package,
-    version="0.0.2",
+    version="0.1.0",
     url="https://github.com/Senth/minecraft-mod-manager",
     license="MIT",
     author="Matteus Magnusson",
