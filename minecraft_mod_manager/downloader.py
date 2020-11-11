@@ -56,8 +56,8 @@ class Downloader:
         if not content_disposition:
             return ""
 
-        filename = re.findall(r"filename=(.+)", content_disposition)
-        if len(filename) == 0:
+        filename = re.search(r"filename=(.+)", content_disposition)
+        if not filename:
             return ""
 
-        return filename
+        return filename.group(0)

@@ -1,11 +1,11 @@
 from os import path
-from typing import List
+import re
+from typing import Any, List, Literal, Tuple
 import sys
 import site
 import importlib.util
 import argparse
 from platform import system
-import minecraft_mod_manager.logger
 
 _app_name = __package__.replace("_", "-")
 _config_dir = path.join("config", _app_name)
@@ -35,13 +35,15 @@ elif system() != "Linux":
     sys.exit(1)
 
 _spec = importlib.util.spec_from_file_location("config", _user_config_file)
-_user_config = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(_user_config)
+_user_config: Any = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_user_config)  # type: ignore
+_red_color = "\033[91m"
+_no_color = "\033[0m"
 
 
-def _print_missing(variable_name):
-    minecraft_mod_manager.logger.Logger.error(
-        f"Missing {variable_name} variable in config file: {_config_file}"
+def _print_missing(variable_name: str):
+    print(
+        f"{_red_color}Missing {variable_name} variable in config file: {_config_file}{_no_color}"
     )
     print("Please add it to you config.py again to continue")
     sys.exit(1)
@@ -55,7 +57,7 @@ def _is_dir(dir: str) -> str:
 
 
 class Config:
-    def __init__(self, user_config):
+    def __init__(self, user_config: Any):
         self._os = system()
         self._user_config = user_config
         self._set_default_values()
@@ -71,8 +73,8 @@ class Config:
         self.minecraft_version: str or None
         self.beta: bool
         self.alpha: bool
-        self.action: "install" or "update"
-        self.mods: List[str]
+        self.action: Literal["install", "update"]
+        self.mods: List[Tuple[str, str, str]]
 
     def _parse_args(self):
         # Get arguments first to get verbosity before we get everything else
@@ -82,8 +84,8 @@ class Config:
 
         parser.add_argument(
             "action",
-            choices=["install", "update", "configure"],
-            help="Install, update or configure mods",
+            choices=["install", "update", "configure", "list"],
+            help="Install, update, configure, or list mods",
         )
         parser.add_argument(
             "mods",
@@ -119,14 +121,13 @@ class Config:
         _args = parser.parse_args()
         self._add_args_settings(_args)
 
-    def _add_args_settings(self, args):
+    def _add_args_settings(self, args: Any):
         """Set additional configuration from script arguments
 
         Args:
             args (list): All the parsed arguments
         """
         self.action = args.action
-        self.mods = args.mods
         self.debug = args.debug
 
         if args.debug:
@@ -141,6 +142,19 @@ class Config:
 
         if args.allow_alpha:
             self.beta = True
+
+        # Process mods
+        self.mods: List[Tuple[str, str, str]] = []
+
+        for mod_arg in args.mods:
+            match = re.match(r"(?:(.+):)?([\w-]+)(?:=(.+))?", mod_arg)
+
+            if not match:
+                print(f"{_red_color}Invalid mod syntax: {mod_arg}{_no_color}")
+                exit(1)
+
+            repo_type, mod_id, repo_alias = match.groups()
+            self.mods.append((repo_type, mod_id, repo_alias))
 
     def _set_default_values(self):
         """Set default values for variables"""
@@ -167,10 +181,9 @@ class Config:
     def _check_chrome_driver(self):
         """Checks the location of the chromedriver"""
         if not path.exists(self.chrome_driver):
-            minecraft_mod_manager.logger.Logger.error(
-                f"Couldn't find chromedriver in {self.chrome_driver}."
+            print(
+                f"{_red_color}Couldn't find chromedriver in {self.chrome_driver}.{_no_color}"
             )
-            exit(1)
 
 
 global config

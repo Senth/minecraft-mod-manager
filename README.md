@@ -19,8 +19,8 @@ Currently works best with fabric mods.
 Install or update Minecraft mods from Curseforge.
 
 positional arguments:
-  {install,update,configure}
-                        Install (NOT IMPLEMENTED YET), update or configure mods
+  {install,update,configure,list}
+                        Install (NOT IMPLEMENTED YET), update, configure, or list mods
   mods
                         The mods to install, update, or configure.
                         If no mods are specified during an update, all mods will be updated.

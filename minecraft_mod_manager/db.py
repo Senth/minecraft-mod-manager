@@ -11,6 +11,7 @@ class _Column:
     repo_type = "repo_type"
     repo_name = "repo_name"
     upload_time = "upload_time"
+    active = "active"
 
 
 class Db:
@@ -23,7 +24,7 @@ class Db:
 
     def _create_db(self):
         self._connection.execute(
-            f"CREATE TABLE IF NOT EXISTS mod ({_Column.id} TEXT, {_Column.repo_type} TEXT, {_Column.repo_name}, {_Column.upload_time} INTEGER)"
+            f"CREATE TABLE IF NOT EXISTS mod ({_Column.id} TEXT, {_Column.repo_type} TEXT, {_Column.repo_name}, {_Column.upload_time} INTEGER, {_Column.active} INTEGER)"
         )
         self._connection.commit()
 
@@ -44,12 +45,11 @@ class Db:
         """
         mods = mods.copy()
         mods_to_add = mods.copy()
-        mods_to_remove: List[str] = []
         mod_infos = {}
 
         # Go through all existing mods in the DB and see which should be added and removed
         self._cursor.execute(
-            f"SELECT {_Column.id}, {_Column.repo_type}, {_Column.repo_name}, {_Column.upload_time} FROM mod"
+            f"SELECT {_Column.id}, {_Column.repo_type}, {_Column.repo_name}, {_Column.upload_time}, {_Column.active} FROM mod"
         )
         rows = self._cursor.fetchall()
         for row in rows:
@@ -57,10 +57,12 @@ class Db:
             repo_type = str(row[1])
             repo_name = str(row[2])
             upload_time = int(row[3])
+            active = bool(row[4])
             mod_infos[id] = {
                 _Column.repo_type: repo_type,
                 _Column.repo_name: repo_name,
                 _Column.upload_time: upload_time,
+                _Column.active: active,
             }
 
             # Search for existing info
@@ -70,24 +72,23 @@ class Db:
                     found = True
                     mods_to_add.remove(mod)
                     Logger.debug(f"Found mod {mod.id} in DB", LogColors.found)
+
+                    # Reactivate mod
+                    if not active:
+                        self._activate_mod(mod.id)
                     break
 
+            # Inactivate mod
             if not found:
-                Logger.debug(f"Removing mod {id} from DB", LogColors.remove)
-                mods_to_remove.append(id)
+                self._inactivate_mod(id)
 
         # Add mods
         for mod in mods_to_add:
             Logger.debug(f"Adding mod {mod.id} to DB", LogColors.add)
             self._connection.execute(
-                f"INSERT INTO mod ({_Column.id}, {_Column.repo_type}, {_Column.repo_name}, {_Column.upload_time}) VALUES (?, ?, ?, ?)",
+                f"INSERT INTO mod ({_Column.id}, {_Column.repo_type}, {_Column.repo_name}, {_Column.upload_time}, {_Column.active}) VALUES (?, ?, ?, ?, 1)",
                 [mod.id, mod.repo_type.value, mod.repo_name_alias, mod.upload_time],
             )
-
-        # Remove mods
-        for id in mods_to_remove:
-            self._connection.execute(f"DELETE FROM mod WHERE {_Column.id}=?", [id])
-        self._connection.commit()
 
         # Update mod info
         for mod in mods:
@@ -103,5 +104,19 @@ class Db:
         self._connection.execute(
             f"UPDATE mod SET {_Column.repo_type}=?, {_Column.repo_name}=?, {_Column.upload_time}=? WHERE {_Column.id}=?",
             [mod.repo_type.value, mod.repo_name_alias, mod.upload_time, mod.id],
+        )
+        self._connection.commit()
+
+    def _activate_mod(self, id: str):
+        Logger.debug(f"Reactivate mod {id} in DB", LogColors.add)
+        self._connection.execute(
+            f"UPDATE mod SET {_Column.active}=1 WHERE {_Column.id}=?", [id]
+        )
+        self._connection.commit()
+
+    def _inactivate_mod(self, id: str):
+        Logger.debug(f"Inactivate mod {id} in DB", LogColors.remove)
+        self._connection.execute(
+            f"UPDATE mod SET {_Column.active}=0 WHERE {_Column.id}=?", [id]
         )
         self._connection.commit()

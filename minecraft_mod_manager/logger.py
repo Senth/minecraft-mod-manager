@@ -9,10 +9,12 @@ class LogColors:
     cyan = "\033[96m"
     blue = "\033[94m"
     yellow = "\033[33m"
+    bold = "\u001b[1m"
 
     add = green
     remove = red
     found = cyan
+    command = blue
 
 
 class Logger:
