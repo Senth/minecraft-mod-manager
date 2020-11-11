@@ -47,12 +47,11 @@ logging & help:
 
 1. Install with `$ pip install --user minecraft-mod-manager`
 1. Install `chromedriver`
-
-- Linux: Install it through your distribution's package manager
-- Windows/OSX:
-  - Install Google Chrome if you haven't already
-  - Check your [Chrome version](chrome://settings/help)
-  - Goto https://chromedriver.chromium.org/downloads
+   - Linux: Install it through your distribution's package manager
+   - Windows/OSX:
+     - Install Google Chrome if you haven't already
+     - Check your [Chrome version](chrome://settings/help)
+     - Goto https://chromedriver.chromium.org/downloads
 
 ## Authors
 
