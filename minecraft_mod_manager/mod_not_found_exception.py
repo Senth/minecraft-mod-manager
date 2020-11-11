@@ -19,5 +19,5 @@ class ModNotFoundException(Exception):
         return (
             f"Mod {mod_name} not found on {mod_repo}.\n"
             + "Check so that it's name is correct. Or you can set the name by running:\n"
-            + f"{LogColors.blue}{config.app_name} configure {self.mod.id}=NEW_NAME"
+            + f"{LogColors.command}{config.app_name} configure {self.mod.id}=NEW_NAME{LogColors.no_color}"
         )

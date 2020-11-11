@@ -3,13 +3,13 @@ import requests
 from selenium.webdriver.chrome.webdriver import WebDriver
 from .mod import Mod, RepoTypes
 from .config import config
-from .logger import LogColors, Logger
+from .logger import Logger
 from .mod_not_found_exception import ModNotFoundException
 from .version_info import ReleaseTypes, VersionInfo
 from . import web_driver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.common.exceptions import NoSuchElementException
-from typing import List
+from typing import List, Union
 import re
 
 
@@ -17,11 +17,11 @@ class CurseApi:
     def __init__(self, driver: WebDriver) -> None:
         self._driver = driver
 
-    def get_latest_version(self, mod: Mod) -> VersionInfo:
+    def get_latest_version(self, mod: Mod) -> Union[VersionInfo, None]:
         """Get latest version Filtering out alpha and beta releases if necessary.
 
         Returns:
-            VersionInfo or None: Latest version or None if none was found
+            None | VersionInfo: Latest version or None if none was found
 
         Raises:
             ModNotFoundException: When no mod is found
