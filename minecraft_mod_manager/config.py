@@ -89,39 +89,31 @@ class Config:
             "mods",
             nargs="*",
             help="The mods to install, update, or configure. If no mods are specified during an update, all mods will be updated. "
-            + "To select repository type for a mod you can put curse: before the mod e.g. 'curse:litematica'. "
-            + "The default repository is curse.",
-        )
-        parser.add_argument(
-            "--verbose", action="store_true", help="Prints out helpful messages."
-        )
-        parser.add_argument(
-            "-p",
-            "--pretend",
-            action="store_true",
-            help="Only pretend to download and update mods.",
-        )
-        parser.add_argument(
-            "--debug",
-            action="store_true",
-            help="Turn on debug messages. This automatically turns on --verbose as well.",
+            + "\nTo specify the download site for the mod you can put 'site:' before the mod. E.g. 'curse:litematica' "
+            + "By default it searches all sites for the mod.\nTo configure an alias for the mod, use 'mod_name=ALIAS_NAME'."
+            + "E.g. 'dynmap=dynmapforge'",
         )
         parser.add_argument(
             "-d",
             "--dir",
             type=_is_dir,
-            help="Location of the mods folder. By default it's the current directory.",
+            help="Location of the mods folder. By default it's the current directory",
         )
         parser.add_argument(
             "-v",
             "--minecraft-version",
-            help="Only update mods to this Minecraft version.",
+            help="Only update mods to this Minecraft version",
         )
         parser.add_argument(
-            "--allow-beta", action="store_true", help="Allow beta releases."
+            "--allow-beta", action="store_true", help="Allow beta releases"
         )
         parser.add_argument(
-            "--allow-alpha", action="store_true", help="Allow alpha and beta releases."
+            "--allow-alpha", action="store_true", help="Allow alpha and beta releases"
+        )
+        parser.add_argument(
+            "--debug",
+            action="store_true",
+            help="Turn on debug messages. This automatically turns on --verbose as well",
         )
 
         _args = parser.parse_args()
@@ -135,10 +127,7 @@ class Config:
         """
         self.action = args.action
         self.mods = args.mods
-
-        self.verbose = args.verbose
         self.debug = args.debug
-        self.pretend = args.pretend
 
         if args.debug:
             self.verbose = True
@@ -155,6 +144,7 @@ class Config:
 
     def _set_default_values(self):
         """Set default values for variables"""
+        self.verbose = False
         self.chrome_driver = "/usr/bin/chromedriver"
         self.dir = "."
 
