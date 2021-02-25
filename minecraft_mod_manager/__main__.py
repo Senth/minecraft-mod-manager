@@ -35,7 +35,7 @@ def main():
         elif config.action == "list":
             _list_mods(installed_mods)
             pass
-    except:
+    finally:
         if db:
             db.close()
 

@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2021-02-25
+
+### Added
+
+- `--pretend` option to not save any changes/updates
+- `--verbose` for slightly more information
+
+### Changed
+
+- Chromedriver is now installed automatically. No need to download and install it manually every time 🙂
+- Made it easier to see which mods are updated and which are not, especially together with --pretend.
+
+### Removed
+
+- User configuration file `config.py`. Was only used for chromedriver location.
+
 ## [0.1.0] - 2020-11-11
 
 ### Added

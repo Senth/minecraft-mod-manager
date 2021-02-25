@@ -1,4 +1,3 @@
-from os import stat
 import requests
 from selenium.webdriver.chrome.webdriver import WebDriver
 from .mod import Mod, RepoTypes
@@ -29,7 +28,7 @@ class CurseApi:
         """
 
         # Get mod info
-        if mod.repo_type == RepoTypes.curse:
+        if mod.repo_type == RepoTypes.curse or len(mod.repo_name_alias) > 0:
             Logger.verbose(
                 f"Checking update for {mod.repo_name_alias} mod on CurseForge"
             )
@@ -40,7 +39,7 @@ class CurseApi:
             found_name = None
 
             for possible_name in possible_names:
-                Logger.verbose(
+                Logger.info(
                     f"Searching for mod {mod.id} with name {possible_name} on CurseForge..."
                 )
                 self._driver.get(CurseApi._get_files_url(possible_name))

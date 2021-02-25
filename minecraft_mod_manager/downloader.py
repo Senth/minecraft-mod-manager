@@ -23,6 +23,10 @@ class Downloader:
             Filename of the downloaded and saved file
         """
         Logger.verbose(f"Downloading...")
+
+        if config.pretend:
+            return latest_version.filename
+
         response = requests.get(
             latest_version.download_url,
             headers={
