@@ -86,7 +86,7 @@ class Config:
         parser.add_argument(
             "--pretend",
             action="store_true",
-            help="Only pretend to install/update/configure. Does not change anything",
+            help="Only pretend to update/configure. Does not change anything",
         )
 
         _args = parser.parse_args()

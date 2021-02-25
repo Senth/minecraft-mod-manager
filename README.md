@@ -40,7 +40,9 @@ minecraft:
 
 logging & help:
   -h, --help            show this help message and exit
+  --verbose             Print more massages
   --debug               Turn on debug messages
+  --pretend             Only pretend to update/configure. Does not change anything
 ```
 
 ## Installation
