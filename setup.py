@@ -24,7 +24,11 @@ setup(
     },
     include_package_data=True,
     data_files=[(f"config/{package}", ["config/config.example.py"])],
-    install_requires=["selenium", "requests"],
+    install_requires=[
+        "selenium",
+        "requests",
+        "webdriver-manager",
+    ],
     classifiers=[
         "Development Status :: 4 - Beta",
         "License :: OSI Approved :: MIT License",
