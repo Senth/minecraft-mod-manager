@@ -2,7 +2,7 @@
 
 [![Latest PyPI version](https://img.shields.io/pypi/v/minecraft-mod-manager.svg)](https://pypi.python.org/pypi/minecraft-mod-manager)
 
-Install and update mods from CurseForge (and possibly other places in the future) through a simple command.
+Update mods from CurseForge (and possibly other places in the future) through a simple command.
 
 Currently works best with fabric mods.
 
@@ -19,10 +19,10 @@ Currently works best with fabric mods.
 Install or update Minecraft mods from Curseforge.
 
 positional arguments:
-  {install,update,configure,list}
-                        Install (NOT IMPLEMENTED YET), update, configure, or list mods
+  {update,configure,list}
+                        Update, configure, or list mods
   mods
-                        The mods to install, update, or configure.
+                        The mods to update or configure.
                         If no mods are specified during an update, all mods will be updated.
                         To specify the download site for the mod, put 'curse:' before the mod.
                         E.g. 'curse:litematica'
@@ -46,12 +46,10 @@ logging & help:
 ## Installation
 
 1. Install with `$ pip install --user minecraft-mod-manager`
-1. Install `chromedriver`
-   - Linux: Install it through your distribution's package manager
-   - Windows/OSX:
-     - Install Google Chrome if you haven't already
-     - Check your [Chrome version](chrome://settings/help)
-     - Goto https://chromedriver.chromium.org/downloads
+
+## Planned Features
+
+- installing directly from `minecraft-mod-manager`
 
 ## Authors
 

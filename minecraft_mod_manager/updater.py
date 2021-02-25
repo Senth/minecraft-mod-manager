@@ -20,6 +20,12 @@ class Updater:
     def update(self, installed_mods: List[Mod]) -> None:
         mods_to_update = Updater._filter_by_args(installed_mods)
 
+        max_width = 0
+        for mod in mods_to_update:
+            name = f"{mod.repo_name_alias} {mod.version}"
+            if len(name) > max_width:
+                max_width = len(name)
+
         for mod in mods_to_update:
             latest_version = None
             was_unknown = mod.repo_type == RepoTypes.unknown
@@ -38,6 +44,8 @@ class Updater:
             if was_unknown and mod.repo_type != RepoTypes.unknown:
                 self._db.update_mod(mod)
 
+            updated = False
+
             if latest_version:
                 # Only download if not same
                 if mod.file != latest_version.filename:
@@ -48,16 +56,27 @@ class Updater:
                 if downloaded_file:
                     # Remove old file
                     if downloaded_file != "skip":
+                        updated = True
+                        current = f"{mod.repo_name_alias} {mod.version}".ljust(
+                            max_width
+                        )
                         Logger.info(
-                            f"Updated {mod.repo_name_alias} ——> {latest_version.name}",
+                            f"{current} ——> {latest_version.name}",
                             LogColors.green,
                         )
-                        remove(path.join(config.dir, mod.file))
+                        if not config.pretend:
+                            remove(path.join(config.dir, mod.file))
                         mod.file = downloaded_file
 
                     # Update DB
                     mod.upload_time = latest_version.upload_time
                     self._db.update_mod(mod)
+
+            if not updated:
+                self._write_no_update(mod)
+
+    def _write_no_update(self, mod: Mod) -> None:
+        Logger.info(f"No update for {mod.repo_name_alias}", LogColors.yellow)
 
     def close(self) -> None:
         if self._driver:
