@@ -1,4 +1,5 @@
 from setuptools import setup
+import os
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -8,7 +9,7 @@ package = module.replace("_", "-")
 
 setup(
     name=package,
-    version="0.2.0",
+    use_scm_version=True,
     url="https://github.com/Senth/minecraft-mod-manager",
     license="MIT",
     author="Matteus Magnusson",
@@ -34,5 +35,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
+    setup_reqires=["setuptools_scm"],
     python_requires=">=3.8",
 )
