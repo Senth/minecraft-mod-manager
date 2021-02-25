@@ -1,6 +1,5 @@
-from .config import config
 from selenium import webdriver
-
+from webdriver_manager.chrome import ChromeDriverManager
 
 user_agent = "user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"
 
@@ -15,5 +14,8 @@ def get():
     chrome_options.add_argument(user_agent)
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option("useAutomationExtension", False)
-    driver = webdriver.Chrome(config.chrome_driver, chrome_options=chrome_options)
+    driver = webdriver.Chrome(
+        ChromeDriverManager().install(),
+        chrome_options=chrome_options,
+    )
     return driver
