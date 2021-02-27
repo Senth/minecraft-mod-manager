@@ -1,10 +1,10 @@
 from minecraft_mod_manager.logger import LogColors
-from .mod import Mod, RepoTypes
+from .mod import ModArg, RepoTypes
 from .config import config
 
 
 class ModNotFoundException(Exception):
-    def __init__(self, mod: Mod) -> None:
+    def __init__(self, mod: ModArg) -> None:
         super()
         self.mod = mod
 
@@ -13,7 +13,7 @@ class ModNotFoundException(Exception):
         mod_repo = "any site"
 
         if self.mod.repo_type != RepoTypes.unknown:
-            mod_name = self.mod.repo_name_alias
+            mod_name = self.mod.name_in_repo
             mod_repo = self.mod.repo_type.value
 
         return (

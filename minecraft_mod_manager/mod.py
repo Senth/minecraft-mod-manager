@@ -1,5 +1,6 @@
+from __future__ import annotations
 from enum import Enum
-from typing import List, Set
+from typing import Set, Union
 import re
 
 
@@ -8,23 +9,41 @@ class RepoTypes(Enum):
     curse = "curse"
 
 
-class Mod:
+class ModArg:
+    """Mod argument from the CLI"""
+
+    def __init__(self, repo_type: RepoTypes, mod_name: str, name_in_repo: str) -> None:
+        self.repo_type = repo_type
+        """Where the mod is downloaded from"""
+        self.id = mod_name
+        """String identifier of the mod, often case the same as mod name"""
+        self.name_in_repo = name_in_repo
+        """Mod name id on the repository"""
+
+    def __str__(self) -> str:
+        return f"{self.repo_type.value}:{self.id}={self.name_in_repo}"
+
+    def get_possible_repo_names(self) -> Set[str]:
+        """Get possible repo names when the repo name hasn't been set
+
+        Returns:
+            Set[str]: Possible repo name aliases
+        """
+        return set(self.id)
+
+
+class Mod(ModArg):
     def __init__(
         self,
         id: str,
         name: str,
         repo_type: RepoTypes = RepoTypes.unknown,
-        repo_name_alias: str = "",
+        name_in_repo: str = "",
         version: str = "",
         file: str = "",
         upload_time=0,
     ):
-        self.id = id
-        """String identifier of the mod, often case the same as mod name"""
-        self.repo_type = repo_type
-        """Where the mod is downloaded from"""
-        self.repo_name_alias = repo_name_alias
-        """Mod name id on the repository"""
+        super().__init__(repo_type, id, name_in_repo)
         self.name = name
         self.version = version
         """Version of the mod"""
@@ -36,11 +55,6 @@ class Mod:
         return f"{self.name}-{self.version} ({self.id})"
 
     def get_possible_repo_names(self) -> Set[str]:
-        """Get possible repo names when the repo name hasn't been set
-
-        Returns:
-            List[str]: Possible repo name aliases
-        """
         possible_names: Set[str] = set()
 
         # Add from id

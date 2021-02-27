@@ -83,14 +83,14 @@ class Db:
         # Add mods
         for mod in mods_to_add:
             Logger.debug(f"Adding mod {mod.id} to DB", LogColors.add)
-            self._insert_mod(mod)
+            self.insert_mod(mod)
 
         # Update mod info
         for mod in mods:
             if mod.id in db_mods:
                 db_mod = db_mods[mod.id]
                 mod.repo_type = RepoTypes[db_mod.repo_type]
-                mod.repo_name_alias = db_mod.repo_name
+                mod.name_in_repo = db_mod.repo_name
                 mod.upload_time = db_mod.upload_time
 
         return mods
@@ -122,17 +122,17 @@ class Db:
 
         self._connection.execute(
             f"UPDATE mod SET {_Column.repo_type}=?, {_Column.repo_name}=?, {_Column.upload_time}=? WHERE {_Column.id}=?",
-            [mod.repo_type.value, mod.repo_name_alias, mod.upload_time, mod.id],
+            [mod.repo_type.value, mod.name_in_repo, mod.upload_time, mod.id],
         )
         self._connection.commit()
 
-    def _insert_mod(self, mod: Mod):
+    def insert_mod(self, mod: Mod):
         if config.pretend:
             return
 
         self._connection.execute(
             f"INSERT INTO mod ({_Column.id}, {_Column.repo_type}, {_Column.repo_name}, {_Column.upload_time}, {_Column.active}) VALUES (?, ?, ?, ?, 1)",
-            [mod.id, mod.repo_type.value, mod.repo_name_alias, mod.upload_time],
+            [mod.id, mod.repo_type.value, mod.name_in_repo, mod.upload_time],
         )
 
     def _activate_mod(self, id: str):

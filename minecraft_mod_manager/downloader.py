@@ -1,10 +1,7 @@
-from urllib.parse import uses_fragment
 from requests.models import Response
-from selenium.webdriver.chrome.webdriver import WebDriver
 from .version_info import VersionInfo
 from .config import config
 from .logger import Logger
-from .mod import Mod
 from . import web_driver
 from os import path
 import requests
@@ -12,11 +9,11 @@ import re
 
 
 class Downloader:
-    def download(self, mod: Mod, latest_version: VersionInfo) -> str:
+    @staticmethod
+    def download(latest_version: VersionInfo) -> str:
         """Download the specified mod
 
         Args:
-            mod (Mod): The mod to download
             latest_version (VersionInfo): latest version information of the mod
 
         Returns:

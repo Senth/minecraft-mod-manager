@@ -1,3 +1,4 @@
+from .installer import Installer
 from typing import List
 from .mod import Mod, RepoTypes
 from .dir_parser import DirParser
@@ -12,8 +13,7 @@ def main():
     db = Db()
     try:
         # Get mods in dir and sync with DB
-        dirParser = DirParser()
-        installed_mods = dirParser.get_mods()
+        installed_mods = DirParser.get_mods()
         installed_mods = db.sync_with_dir(installed_mods)
 
         # ACTION: Update
@@ -25,8 +25,11 @@ def main():
                 updater.close()
 
         elif config.action == "install":
-            # TODO install
-            pass
+            installer = Installer(db, installed_mods)
+            try:
+                installer.install(config.mods)
+            finally:
+                installer.close()
 
         elif config.action == "configure":
             configurer = Configurer(db)
@@ -47,8 +50,8 @@ def _list_mods(installed_mods: List[Mod]):
     for mod in installed_mods:
         if len(mod.id) > mod_id_max_length:
             mod_id_max_length = len(mod.id)
-        if len(mod.repo_name_alias) > mod_repo_name_max_length:
-            mod_repo_name_max_length = len(mod.repo_name_alias)
+        if len(mod.name_in_repo) > mod_repo_name_max_length:
+            mod_repo_name_max_length = len(mod.name_in_repo)
 
     padding = 4
     mod_id_width = mod_id_max_length + padding
@@ -58,7 +61,7 @@ def _list_mods(installed_mods: List[Mod]):
     message += f"Mod".ljust(mod_id_width) + "Alias".ljust(mod_repo_alias_width) + "Site"
     for mod in installed_mods:
         message += "\n" + f"{mod.id}".ljust(mod_id_width)
-        message += f"{mod.repo_name_alias}".ljust(mod_repo_alias_width)
+        message += f"{mod.name_in_repo}".ljust(mod_repo_alias_width)
 
         if mod.repo_type != RepoTypes.unknown:
             message += f"{mod.repo_type.value}"

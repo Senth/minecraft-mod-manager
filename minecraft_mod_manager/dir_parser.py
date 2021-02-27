@@ -8,18 +8,20 @@ import json
 
 
 class DirParser:
-    def get_mods(self) -> List[Mod]:
+    @staticmethod
+    def get_mods() -> List[Mod]:
         mods = []
 
         # Iterate through all files
         for file in Path(config.dir).glob("*.jar"):
             Logger.debug(f"Found file {file}")
-            mod = self._get_mod_info(file)
+            mod = DirParser.get_mod_info(file)
             mods.append(mod)
 
         return mods
 
-    def _get_mod_info(self, file: Path) -> Mod:
+    @staticmethod
+    def get_mod_info(file: Path) -> Mod:
         with ZipFile(file, "r") as zip:
             # As a fabric mod
             with zip.open("fabric.mod.json") as json_file:
