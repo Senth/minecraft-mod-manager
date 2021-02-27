@@ -11,7 +11,7 @@ class Configurer:
 
     def configure(self, installed_mods: List[Mod]) -> None:
         for mod_arg in config.mods:
-            mod_id_lower = mod_arg.name.lower()
+            mod_id_lower = mod_arg.id.lower()
             # Find mod
             found_mod = None
             for mod in installed_mods:
@@ -21,7 +21,7 @@ class Configurer:
 
             if not found_mod:
                 Logger.error(
-                    f"Mod {mod_arg.name} not found in installed mods. Did you misspell the name?\nList installed mods by running: "
+                    f"Mod {mod_arg.id} not found in installed mods. Did you misspell the name?\nList installed mods by running: "
                     + f"{LogColors.command}{config.app_name} list",
                     exit=True,
                 )

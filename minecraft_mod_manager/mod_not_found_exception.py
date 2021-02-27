@@ -1,10 +1,10 @@
 from minecraft_mod_manager.logger import LogColors
-from .mod import Mod, RepoTypes
+from .mod import ModArg, RepoTypes
 from .config import config
 
 
 class ModNotFoundException(Exception):
-    def __init__(self, mod: Mod) -> None:
+    def __init__(self, mod: ModArg) -> None:
         super()
         self.mod = mod
 

@@ -91,9 +91,9 @@ class Updater:
         for mod_arg in config.mods:
             for mod in installed_mods:
                 if (
-                    mod.id == mod_arg.name
+                    mod.id == mod_arg.id
                     or mod.id == mod_arg.name_in_repo
-                    or mod.name_in_repo == mod_arg.name
+                    or mod.name_in_repo == mod_arg.id
                     or mod.name_in_repo == mod_arg.name_in_repo
                 ):
                     mods_to_update.append(mod)

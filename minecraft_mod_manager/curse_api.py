@@ -1,6 +1,6 @@
 import requests
 from selenium.webdriver.chrome.webdriver import WebDriver
-from .mod import Mod, RepoTypes
+from .mod import ModArg, Mod, RepoTypes
 from .config import config
 from .logger import Logger
 from .mod_not_found_exception import ModNotFoundException
@@ -16,7 +16,7 @@ class CurseApi:
     def __init__(self, driver: WebDriver) -> None:
         self._driver = driver
 
-    def get_latest_version(self, mod: Mod) -> Union[VersionInfo, None]:
+    def get_latest_version(self, mod: ModArg) -> Union[VersionInfo, None]:
         """Get latest version Filtering out alpha and beta releases if necessary.
 
         Returns:
@@ -26,6 +26,9 @@ class CurseApi:
             ModNotFoundException: When no mod is found
 
         """
+        installed_mod: Union[Mod, None] = None
+        if isinstance(mod, Mod):
+            installed_mod = mod
 
         # Get mod info
         if mod.repo_type == RepoTypes.curse or len(mod.name_in_repo) > 0:
@@ -101,8 +104,9 @@ class CurseApi:
                 project_id = int(project_id_container.get_attribute("innerText"))
 
                 # All version are older than the installed, no need to continue
-                if upload_time <= mod.upload_time:
-                    return None
+                if installed_mod:
+                    if upload_time <= installed_mod.upload_time:
+                        return None
 
                 # Checks release type, minecraft version, etc
                 if CurseApi._passed_filters(release, minecraft_version):

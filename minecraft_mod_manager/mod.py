@@ -14,14 +14,25 @@ class ModArg:
 
     def __init__(self, repo_type: RepoTypes, mod_name: str, name_in_repo: str) -> None:
         self.repo_type = repo_type
-        self.name = mod_name
+        """Where the mod is downloaded from"""
+        self.id = mod_name
+        """String identifier of the mod, often case the same as mod name"""
         self.name_in_repo = name_in_repo
+        """Mod name id on the repository"""
 
     def __str__(self) -> str:
-        return f"{self.repo_type.value}:{self.name}={self.name_in_repo}"
+        return f"{self.repo_type.value}:{self.id}={self.name_in_repo}"
+
+    def get_possible_repo_names(self) -> Set[str]:
+        """Get possible repo names when the repo name hasn't been set
+
+        Returns:
+            Set[str]: Possible repo name aliases
+        """
+        return set(self.id)
 
 
-class Mod:
+class Mod(ModArg):
     def __init__(
         self,
         id: str,
@@ -32,12 +43,7 @@ class Mod:
         file: str = "",
         upload_time=0,
     ):
-        self.id = id
-        """String identifier of the mod, often case the same as mod name"""
-        self.repo_type = repo_type
-        """Where the mod is downloaded from"""
-        self.name_in_repo = name_in_repo
-        """Mod name id on the repository"""
+        super().__init__(repo_type, id, name_in_repo)
         self.name = name
         self.version = version
         """Version of the mod"""
@@ -49,11 +55,6 @@ class Mod:
         return f"{self.name}-{self.version} ({self.id})"
 
     def get_possible_repo_names(self) -> Set[str]:
-        """Get possible repo names when the repo name hasn't been set
-
-        Returns:
-            List[str]: Possible repo name aliases
-        """
         possible_names: Set[str] = set()
 
         # Add from id
