@@ -15,6 +15,8 @@ class LogColors:
     remove = red
     found = cyan
     command = blue
+    warning = yellow
+    skip = yellow
 
 
 class Logger:

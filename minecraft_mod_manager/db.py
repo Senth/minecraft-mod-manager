@@ -83,7 +83,7 @@ class Db:
         # Add mods
         for mod in mods_to_add:
             Logger.debug(f"Adding mod {mod.id} to DB", LogColors.add)
-            self._insert_mod(mod)
+            self.insert_mod(mod)
 
         # Update mod info
         for mod in mods:
@@ -126,7 +126,7 @@ class Db:
         )
         self._connection.commit()
 
-    def _insert_mod(self, mod: Mod):
+    def insert_mod(self, mod: Mod):
         if config.pretend:
             return
 

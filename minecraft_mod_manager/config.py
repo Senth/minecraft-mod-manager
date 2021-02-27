@@ -40,8 +40,8 @@ class Config:
 
         parser.add_argument(
             "action",
-            choices=["update", "configure", "list"],
-            help="Update, configure, or list mods",
+            choices=["install", "update", "configure", "list"],
+            help="Install, update, configure, or list mods",
         )
         parser.add_argument(
             "mods",
@@ -125,7 +125,7 @@ class Config:
                 exit(1)
 
             repo_type_name, mod_id, repo_alias = match.groups()
-            if len(repo_type_name) > 0:
+            if repo_type_name and len(repo_type_name) > 0:
                 try:
                     repo_type = RepoTypes[repo_type_name.lower()]
                 except KeyError:
@@ -137,6 +137,9 @@ class Config:
                     exit(1)
             else:
                 repo_type = RepoTypes.unknown
+
+            if not repo_alias:
+                repo_alias = mod_id
 
             self.mods.append(ModArg(repo_type, mod_id, repo_alias))
 

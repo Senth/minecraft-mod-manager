@@ -1,3 +1,4 @@
+from minecraft_mod_manager.installer import Installer
 from typing import List
 from .mod import Mod, RepoTypes
 from .dir_parser import DirParser
@@ -12,8 +13,7 @@ def main():
     db = Db()
     try:
         # Get mods in dir and sync with DB
-        dirParser = DirParser()
-        installed_mods = dirParser.get_mods()
+        installed_mods = DirParser.get_mods()
         installed_mods = db.sync_with_dir(installed_mods)
 
         # ACTION: Update
@@ -25,8 +25,11 @@ def main():
                 updater.close()
 
         elif config.action == "install":
-            # TODO install
-            pass
+            installer = Installer(db, installed_mods)
+            try:
+                installer.install(config.mods)
+            finally:
+                installer.close()
 
         elif config.action == "configure":
             configurer = Configurer(db)

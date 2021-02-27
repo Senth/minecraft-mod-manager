@@ -8,9 +8,10 @@ Currently works best with fabric mods.
 
 ## Features
 
-- Searches on CurseForge for installed mods to see if there are any updates.
+- Install mods with `minecraft-mod-manager install mod_name`
+- Searches on CurseForge for updates on installed mods
 - Filter updates
-  - Stable (default), beta `--beta`, or alpha `--alpha` releases.
+  - Stable (default), beta `--beta`, or alpha `--alpha` releases
   - Minecraft version `-v 1.16.4`
 
 ## Usage
@@ -19,8 +20,8 @@ Currently works best with fabric mods.
 Install or update Minecraft mods from Curseforge.
 
 positional arguments:
-  {update,configure,list}
-                        Update, configure, or list mods
+  {install,update,configure,list}
+                        Install, update, configure, or list mods
   mods
                         The mods to update or configure.
                         If no mods are specified during an update, all mods will be updated.
@@ -48,10 +49,6 @@ logging & help:
 ## Installation
 
 1. Install with `$ pip install --user minecraft-mod-manager`
-
-## Planned Features
-
-- installing directly from `minecraft-mod-manager`
 
 ## Authors
 
