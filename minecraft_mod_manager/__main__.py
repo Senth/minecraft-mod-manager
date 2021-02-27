@@ -1,4 +1,4 @@
-from minecraft_mod_manager.installer import Installer
+from .installer import Installer
 from typing import List
 from .mod import Mod, RepoTypes
 from .dir_parser import DirParser
