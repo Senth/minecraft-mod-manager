@@ -1,5 +1,6 @@
+from __future__ import annotations
 from enum import Enum
-from typing import List, Set
+from typing import Set, Union
 import re
 
 
@@ -8,13 +9,25 @@ class RepoTypes(Enum):
     curse = "curse"
 
 
+class ModArg:
+    """Mod argument from the CLI"""
+
+    def __init__(self, repo_type: RepoTypes, mod_name: str, name_in_repo: str) -> None:
+        self.repo_type = repo_type
+        self.name = mod_name
+        self.name_in_repo = name_in_repo
+
+    def __str__(self) -> str:
+        return f"{self.repo_type.value}:{self.name}={self.name_in_repo}"
+
+
 class Mod:
     def __init__(
         self,
         id: str,
         name: str,
         repo_type: RepoTypes = RepoTypes.unknown,
-        repo_name_alias: str = "",
+        name_in_repo: str = "",
         version: str = "",
         file: str = "",
         upload_time=0,
@@ -23,7 +36,7 @@ class Mod:
         """String identifier of the mod, often case the same as mod name"""
         self.repo_type = repo_type
         """Where the mod is downloaded from"""
-        self.repo_name_alias = repo_name_alias
+        self.name_in_repo = name_in_repo
         """Mod name id on the repository"""
         self.name = name
         self.version = version

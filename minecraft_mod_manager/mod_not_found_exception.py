@@ -13,7 +13,7 @@ class ModNotFoundException(Exception):
         mod_repo = "any site"
 
         if self.mod.repo_type != RepoTypes.unknown:
-            mod_name = self.mod.repo_name_alias
+            mod_name = self.mod.name_in_repo
             mod_repo = self.mod.repo_type.value
 
         return (

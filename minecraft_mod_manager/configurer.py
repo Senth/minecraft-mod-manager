@@ -10,8 +10,8 @@ class Configurer:
         self._db = db
 
     def configure(self, installed_mods: List[Mod]) -> None:
-        for repo_type, mod_id, repo_name_alias in config.mods:
-            mod_id_lower = mod_id.lower()
+        for mod_arg in config.mods:
+            mod_id_lower = mod_arg.name.lower()
             # Find mod
             found_mod = None
             for mod in installed_mods:
@@ -21,7 +21,7 @@ class Configurer:
 
             if not found_mod:
                 Logger.error(
-                    f"Mod {mod_id} not found in installed mods. Did you misspell the name?\nList installed mods by running:\n"
+                    f"Mod {mod_arg.name} not found in installed mods. Did you misspell the name?\nList installed mods by running: "
                     + f"{LogColors.command}{config.app_name} list",
                     exit=True,
                 )
@@ -29,23 +29,12 @@ class Configurer:
 
             # Check valid repo type
             repo_type_changed = False
-            if repo_type:
-                try:
-                    found_mod.repo_type = RepoTypes[repo_type.lower()]
-                    repo_type_changed = True
-                except KeyError:
-                    valid_types = ""
-                    for valid_repo in RepoTypes:
-                        valid_types += f"\n  {valid_repo.value}"
-
-                    Logger.error(
-                        f"'{repo_type}' isn't a valid site name. Valid names include:{valid_types}",
-                        exit=True,
-                    )
+            if not mod_arg.repo_type.unknown:
+                repo_type_changed = True
 
             repo_name_changed = False
-            if repo_name_alias:
-                found_mod.repo_name_alias = repo_name_alias
+            if mod_arg.name_in_repo:
+                found_mod.name_in_repo = mod_arg.name_in_repo
                 repo_name_changed = True
 
             # Updating mod
@@ -59,6 +48,6 @@ class Configurer:
                 if repo_name_changed:
                     if len(info) > 0:
                         info += ", "
-                    info += f"alias: {found_mod.repo_name_alias}"
+                    info += f"alias: {found_mod.name_in_repo}"
 
                 Logger.info(f"Configured {found_mod.id}, {info}", LogColors.add)

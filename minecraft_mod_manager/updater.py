@@ -22,7 +22,7 @@ class Updater:
 
         max_width = 0
         for mod in mods_to_update:
-            name = f"{mod.repo_name_alias} {mod.version}"
+            name = f"{mod.name_in_repo} {mod.version}"
             if len(name) > max_width:
                 max_width = len(name)
 
@@ -57,9 +57,7 @@ class Updater:
                     # Remove old file
                     if downloaded_file != "skip":
                         updated = True
-                        current = f"{mod.repo_name_alias} {mod.version}".ljust(
-                            max_width
-                        )
+                        current = f"{mod.name_in_repo} {mod.version}".ljust(max_width)
                         Logger.info(
                             f"{current} ——> {latest_version.name}",
                             LogColors.green,
@@ -76,7 +74,7 @@ class Updater:
                 self._write_no_update(mod)
 
     def _write_no_update(self, mod: Mod) -> None:
-        Logger.info(f"No update for {mod.repo_name_alias}", LogColors.yellow)
+        Logger.info(f"No update for {mod.name_in_repo}", LogColors.yellow)
 
     def close(self) -> None:
         if self._driver:
@@ -90,13 +88,13 @@ class Updater:
         mods_to_update: List[Mod] = []
 
         # Only add if supplied mods
-        for repo_type, mod_id, repo_name_alias in config.mods:
+        for mod_arg in config.mods:
             for mod in installed_mods:
                 if (
-                    mod.id == mod_id
-                    or mod.id == repo_name_alias
-                    or mod.repo_name_alias == mod_id
-                    or mod.repo_name_alias == repo_name_alias
+                    mod.id == mod_arg.name
+                    or mod.id == mod_arg.name_in_repo
+                    or mod.name_in_repo == mod_arg.name
+                    or mod.name_in_repo == mod_arg.name_in_repo
                 ):
                     mods_to_update.append(mod)
                     break

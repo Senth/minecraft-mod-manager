@@ -28,11 +28,9 @@ class CurseApi:
         """
 
         # Get mod info
-        if mod.repo_type == RepoTypes.curse or len(mod.repo_name_alias) > 0:
-            Logger.verbose(
-                f"Checking update for {mod.repo_name_alias} mod on CurseForge"
-            )
-            self._driver.get(CurseApi._get_files_url(mod.repo_name_alias))
+        if mod.repo_type == RepoTypes.curse or len(mod.name_in_repo) > 0:
+            Logger.verbose(f"Checking update for {mod.name_in_repo} mod on CurseForge")
+            self._driver.get(CurseApi._get_files_url(mod.name_in_repo))
         # Try various different names and see if there's a match
         else:
             possible_names = mod.get_possible_repo_names()
@@ -50,7 +48,7 @@ class CurseApi:
 
                     # Update the mod info
                     mod.repo_type = RepoTypes.curse
-                    mod.repo_name_alias = possible_name
+                    mod.name_in_repo = possible_name
                     break
 
             if not found_name:

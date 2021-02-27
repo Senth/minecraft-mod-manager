@@ -2,7 +2,7 @@ from os import path
 import re
 from typing import Any, List, Literal, Tuple
 import argparse
-from platform import system
+from .mod import ModArg, RepoTypes
 
 _app_name = __package__.replace("_", "-")
 
@@ -19,7 +19,6 @@ def _is_dir(dir: str) -> str:
 
 class Config:
     def __init__(self):
-        self._os = system()
         self._set_default_values()
         self._parse_args()
         self.app_name: str = _app_name
@@ -31,7 +30,7 @@ class Config:
         self.beta: bool
         self.alpha: bool
         self.action: Literal["install", "update"]
-        self.mods: List[Tuple[str, str, str]]
+        self.mods: List[ModArg]
 
     def _parse_args(self):
         # Get arguments first to get verbosity before we get everything else
@@ -116,7 +115,7 @@ class Config:
             self.beta = True
 
         # Process mods
-        self.mods: List[Tuple[str, str, str]] = []
+        self.mods = []
 
         for mod_arg in args.mods:
             match = re.match(r"(?:(.+):)?([\w-]+)(?:=(.+))?", mod_arg)
@@ -125,8 +124,21 @@ class Config:
                 print(f"{_red_color}Invalid mod syntax: {mod_arg}{_no_color}")
                 exit(1)
 
-            repo_type, mod_id, repo_alias = match.groups()
-            self.mods.append((repo_type, mod_id, repo_alias))
+            repo_type_name, mod_id, repo_alias = match.groups()
+            if len(repo_type_name) > 0:
+                try:
+                    repo_type = RepoTypes[repo_type_name.lower()]
+                except KeyError:
+                    print(f"{_red_color}No site named {repo_type_name}{_no_color}")
+                    print(f"Valid names are:")
+                    for enum in RepoTypes:
+                        print(f"{enum.value}")
+
+                    exit(1)
+            else:
+                repo_type = RepoTypes.unknown
+
+            self.mods.append(ModArg(repo_type, mod_id, repo_alias))
 
     def _set_default_values(self):
         """Set default values for variables"""
