@@ -14,6 +14,10 @@ Currently works best with fabric mods.
   - Stable (default), beta `--beta`, or alpha `--alpha` releases
   - Minecraft version `-v 1.16.4`
 
+## Installation
+
+1. Install with `$ pip install --user minecraft-mod-manager`
+
 ## Usage
 
 ```
@@ -43,12 +47,8 @@ logging & help:
   -h, --help            show this help message and exit
   --verbose             Print more massages
   --debug               Turn on debug messages
-  --pretend             Only pretend to update/configure. Does not change anything
+  --pretend             Only pretend to install/update/configure. Does not change anything
 ```
-
-## Installation
-
-1. Install with `$ pip install --user minecraft-mod-manager`
 
 ## Authors
 
