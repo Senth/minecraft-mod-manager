@@ -1,12 +1,7 @@
 from __future__ import annotations
-from enum import Enum
-from typing import Set, Union
+from typing import Set
+from .repo_types import RepoTypes
 import re
-
-
-class RepoTypes(Enum):
-    unknown = "unknown"
-    curse = "curse"
 
 
 class ModArg:
@@ -104,7 +99,6 @@ class Mod(ModArg):
     def __eq__(self, other) -> bool:
         if type(other) is type(self):
             return self.__members() == other.__members()
-
         return False
 
     def __hash__(self):
