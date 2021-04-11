@@ -1,7 +1,7 @@
 from pathlib import Path
 from ...core.entities.version_info import ReleaseTypes, VersionInfo
 import pytest
-from mockito import mock, expect, when, verifyNoUnwantedInteractions
+from mockito import mock, when
 from .install_repo import InstallRepo
 from .install import Install
 from ...core.entities.mod import ModArg
