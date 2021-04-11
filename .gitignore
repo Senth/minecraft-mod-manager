@@ -1,4 +1,4 @@
 .vscode
-*/__pycache__
+**/__pycache__
 debug.log
 mods
