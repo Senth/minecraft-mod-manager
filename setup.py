@@ -1,5 +1,4 @@
 from setuptools import setup
-import os
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -23,8 +22,6 @@ setup(
             f"{package}={module}.__main__:main",
         ],
     },
-    include_package_data=True,
-    data_files=[(f"config/{package}", ["config/config.example.py"])],
     install_requires=[
         "selenium",
         "requests",
@@ -35,6 +32,14 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
-    setup_reqires=["setuptools_scm"],
+    setup_reqires=[
+        "setuptools_scm",
+        "pytest-runner",
+    ],
+    tests_require=[
+        "pytest",
+        "pytest-mockito",
+        "mockito",
+    ],
     python_requires=">=3.8",
 )
