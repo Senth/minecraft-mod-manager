@@ -4,7 +4,7 @@ from ...core.entities.mod import Mod, ModArg
 from ...core.entities.repo_types import RepoTypes
 from .configure_repo import ConfigureRepo
 from .configure import Configure
-from mockito import when, mock, expect, verifyNoUnwantedInteractions
+from mockito import when, mock
 
 
 @pytest.fixture
@@ -26,7 +26,6 @@ def test_abort_when_mod_not_found(mock_repo):
 def test_abort_before_updating_when_later_mod_not_found(mock_repo):
     when(mock_repo).find_mod("found").thenReturn(Mod("", ""))
     when(mock_repo).find_mod("not-found").thenReturn(None)
-    expect(mock_repo, times=0).update_mod(...).thenReturn(None)
 
     configure = Configure(mock_repo)
     input = [
@@ -38,7 +37,6 @@ def test_abort_before_updating_when_later_mod_not_found(mock_repo):
         configure.execute(input)
 
     assert e.type == SystemExit
-    verifyNoUnwantedInteractions()
 
 
 def test_mod_repo_changed(mock_repo):
