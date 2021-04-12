@@ -49,11 +49,10 @@ def test_not_downloaded_when_later_mod_not_found(mock_repo):
         minecraft_version="",
         download_url="",
     )
+    when(mock_repo).get_mod(...)
     when(mock_repo).is_installed(...).thenReturn(False)
     when(mock_repo).get_latest_version(input[0]).thenReturn(version_info)
-    when(mock_repo).get_latest_version(input[1]).thenRaise(
-        ModNotFoundException(input[0])
-    )
+    when(mock_repo).get_latest_version(input[1]).thenRaise(ModNotFoundException(input[0]))
 
     install = Install(mock_repo)
     with pytest.raises(SystemExit) as e:
@@ -72,10 +71,11 @@ def test_download_and_install_when_found(mock_repo):
         minecraft_version="",
         download_url="",
     )
+    when(mock_repo).get_mod(...)
     when(mock_repo).is_installed(...).thenReturn(False)
     when(mock_repo).get_latest_version(...).thenReturn(version_info)
     when(mock_repo).download(...).thenReturn(Path("mod.jar"))
-    when(mock_repo).insert_mod(...)
+    when(mock_repo).update_mod(...)
 
     install = Install(mock_repo)
     install.execute(input)

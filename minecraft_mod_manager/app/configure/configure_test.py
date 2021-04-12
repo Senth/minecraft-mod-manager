@@ -15,7 +15,7 @@ def mock_repo():
 
 
 def test_abort_when_mod_not_found(mock_repo):
-    when(mock_repo).find_mod(...).thenReturn(None)
+    when(mock_repo).get_mod(...).thenReturn(None)
     configure = Configure(mock_repo)
     input = [ModArg(repo_type=RepoTypes.unknown, mod_name="not-found", alias="")]
 
@@ -26,8 +26,8 @@ def test_abort_when_mod_not_found(mock_repo):
 
 
 def test_abort_before_updating_when_later_mod_not_found(mock_repo):
-    when(mock_repo).find_mod("found").thenReturn(Mod("", ""))
-    when(mock_repo).find_mod("not-found").thenReturn(None)
+    when(mock_repo).get_mod("found").thenReturn(Mod("", ""))
+    when(mock_repo).get_mod("not-found").thenReturn(None)
 
     configure = Configure(mock_repo)
     input = [
@@ -44,7 +44,7 @@ def test_abort_before_updating_when_later_mod_not_found(mock_repo):
 def test_mod_repo_changed(mock_repo):
     expected_update = Mod("carpet", "", repo_type=RepoTypes.curse)
 
-    when(mock_repo).find_mod("carpet").thenReturn(Mod("carpet", ""))
+    when(mock_repo).get_mod("carpet").thenReturn(Mod("carpet", ""))
     when(mock_repo).update_mod(expected_update)
 
     configure = Configure(mock_repo)
@@ -58,7 +58,7 @@ def test_mod_repo_changed(mock_repo):
 def test_mod_alias_changed(mock_repo):
     expected_update = Mod("carpet", "", alias="carpet_alias")
 
-    when(mock_repo).find_mod("carpet").thenReturn(Mod("carpet", ""))
+    when(mock_repo).get_mod("carpet").thenReturn(Mod("carpet", ""))
     when(mock_repo).update_mod(expected_update)
 
     configure = Configure(mock_repo)
