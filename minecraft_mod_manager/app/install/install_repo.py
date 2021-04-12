@@ -1,5 +1,6 @@
-from typing import Union
 from pathlib import Path
+from typing import Union
+
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
 

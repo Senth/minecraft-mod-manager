@@ -1,5 +1,6 @@
+from typing import Union
+
 from ...core.entities.mod import Mod
-from typing import List, Union
 
 
 class ConfigureRepo:

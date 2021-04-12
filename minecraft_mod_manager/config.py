@@ -1,8 +1,9 @@
-from os import path
-import re
-from typing import Any, List, Literal, Tuple
 import argparse
-from .mod import ModArg, RepoTypes
+import re
+from os import path
+from typing import Any, List, Literal
+
+from .core.entities.mod import ModArg, RepoTypes
 
 _app_name = __package__.replace("_", "-")
 
@@ -20,7 +21,7 @@ def _is_dir(dir: str) -> str:
 class Config:
     def __init__(self):
         self._set_default_values()
-        self._parse_args()
+        # self._parse_args()
         self.app_name: str = _app_name
         self.verbose: bool
         self.debug: bool

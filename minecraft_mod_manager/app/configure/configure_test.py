@@ -1,10 +1,12 @@
 from __future__ import unicode_literals
+
 import pytest
+from mockito import mock, when
+
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.repo_types import RepoTypes
-from .configure_repo import ConfigureRepo
 from .configure import Configure
-from mockito import when, mock
+from .configure_repo import ConfigureRepo
 
 
 @pytest.fixture

@@ -1,6 +1,6 @@
+from ...config import config
 from ...utils.logger import LogColors
 from ..entities.mod import ModArg, RepoTypes
-from ...config import config
 
 
 class ModNotFoundException(Exception):

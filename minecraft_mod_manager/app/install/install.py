@@ -1,9 +1,10 @@
-from .install_repo import InstallRepo
 from typing import List, Tuple
-from ...utils.logger import Logger, LogColors
-from ...core.errors.mod_not_found_exception import ModNotFoundException
-from ...core.entities.mod import ModArg, Mod
+
+from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
+from ...core.errors.mod_not_found_exception import ModNotFoundException
+from ...utils.logger import LogColors, Logger
+from .install_repo import InstallRepo
 
 
 class Install:
@@ -18,9 +19,7 @@ class Install:
         # Find latest version of mod
         for mod in mods:
             if self._repo.is_installed(mod):
-                Logger.info(
-                    f"{mod.id} has already been installed, skipping...", LogColors.skip
-                )
+                Logger.info(f"{mod.id} has already been installed, skipping...", LogColors.skip)
                 continue
 
             try:
@@ -52,9 +51,7 @@ class Install:
             )
 
     def _download(self, mod: ModArg, latest_version: VersionInfo) -> Mod:
-        downloaded_file = self._repo.download(
-            latest_version.download_url, latest_version.filename
-        )
+        downloaded_file = self._repo.download(latest_version.download_url, latest_version.filename)
 
         add_mod = Mod(
             id=mod.id,
