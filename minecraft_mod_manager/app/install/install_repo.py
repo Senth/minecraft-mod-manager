@@ -1,19 +1,7 @@
-from pathlib import Path
-from typing import Union
-
-from ...core.entities.mod import Mod, ModArg
-from ...core.entities.version_info import VersionInfo
+from ...core.entities.mod import ModArg
+from ..download.download_repo import DownloadRepo
 
 
-class InstallRepo:
+class InstallRepo(DownloadRepo):
     def is_installed(self, mod: ModArg) -> bool:
-        raise NotImplementedError()
-
-    def get_latest_version(self, mod: ModArg) -> Union[VersionInfo]:
-        raise NotImplementedError()
-
-    def download(self, url: str, filename: str = "") -> Path:
-        raise NotImplementedError()
-
-    def insert_mod(self, mod: Mod) -> None:
         raise NotImplementedError()
