@@ -1,8 +1,9 @@
-from minecraft_mod_manager.app.configure.configure_repo import ConfigureRepo
-from ...core.entities.mod import Mod, ModArg, RepoTypes
 from typing import List
+
 from ...config import config
+from ...core.entities.mod import Mod, ModArg, RepoTypes
 from ...utils.logger import LogColors, Logger
+from ..configure.configure_repo import ConfigureRepo
 
 
 class Configure:

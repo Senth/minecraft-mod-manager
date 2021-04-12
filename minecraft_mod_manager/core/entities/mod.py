@@ -1,7 +1,9 @@
 from __future__ import annotations
-from typing import Set
-from .repo_types import RepoTypes
+
 import re
+from typing import Set
+
+from .repo_types import RepoTypes
 
 
 class ModArg:

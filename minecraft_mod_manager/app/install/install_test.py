@@ -1,12 +1,14 @@
 from pathlib import Path
-from ...core.entities.version_info import ReleaseTypes, VersionInfo
+
 import pytest
 from mockito import mock, when
-from .install_repo import InstallRepo
-from .install import Install
+
 from ...core.entities.mod import ModArg
 from ...core.entities.repo_types import RepoTypes
+from ...core.entities.version_info import ReleaseTypes, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
+from .install import Install
+from .install_repo import InstallRepo
 
 
 @pytest.fixture

@@ -1,5 +1,6 @@
-import minecraft_mod_manager.config
 import sys
+
+import minecraft_mod_manager.config
 
 
 class LogColors:
