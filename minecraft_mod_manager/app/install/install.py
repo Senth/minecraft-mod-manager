@@ -13,8 +13,7 @@ class Install(Download):
 
     def execute(self, mods: Sequence[ModArg]) -> None:
         mods = self._filter_installed_mods(mods)
-        downloads = self._find_latest_versions(mods)
-        self._download_and_install(downloads)
+        self.find_download_and_install(mods)
 
     def _filter_installed_mods(self, mods: Sequence[ModArg]) -> Sequence[ModArg]:
         mods_to_install: List[ModArg] = []

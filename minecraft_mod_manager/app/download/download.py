@@ -33,6 +33,10 @@ class Download:
         self._success_prefix = success_prefix
         self._name_width_max = 0
 
+    def find_download_and_install(self, mods: Sequence[ModArg]) -> None:
+        mods_to_install = self._find_latest_versions(mods)
+        self._download_and_install(mods_to_install)
+
     def _find_latest_versions(self, mods: Sequence[ModArg]) -> Sequence[DownloadInfo]:
         mods_to_install: List[DownloadInfo] = []
         mods_not_found: List[ModNotFoundException] = []
@@ -48,6 +52,7 @@ class Download:
                     installed_mod = self._repo.get_mod(download_info.mod)
                     if installed_mod:
                         download_info.mod = installed_mod
+                mods_to_install.append(download_info)
 
             except ModNotFoundException as exception:
                 mods_not_found.append(exception)

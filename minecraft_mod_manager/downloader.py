@@ -1,11 +1,13 @@
+import re
+from os import path
+
+import requests
 from requests.models import Response
-from .version_info import VersionInfo
+
+from . import web_driver
 from .config import config
 from .logger import Logger
-from . import web_driver
-from os import path
-import requests
-import re
+from .version_info import VersionInfo
 
 
 class Downloader:
