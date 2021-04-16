@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 import pytest
-from mockito import mock, when
+from mockito import mock, verify, when
 
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.repo_types import RepoTypes
@@ -54,6 +54,9 @@ def test_mod_repo_changed(mock_repo):
 
     configure.execute(input)
 
+    verify(mock_repo).get_mod(...)
+    verify(mock_repo).update_mod(...)
+
 
 def test_mod_alias_changed(mock_repo):
     expected_update = Mod("carpet", "", alias="carpet_alias")
@@ -67,3 +70,6 @@ def test_mod_alias_changed(mock_repo):
     ]
 
     configure.execute(input)
+
+    verify(mock_repo).get_mod(...)
+    verify(mock_repo).update_mod(...)

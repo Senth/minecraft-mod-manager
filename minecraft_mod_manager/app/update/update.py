@@ -15,5 +15,4 @@ class Update(Download):
         if len(mods) == 0:
             mods = self._repo.get_all_mods()
 
-        downloads = self._find_latest_versions(mods)
-        self._download_and_install(downloads)
+        self.find_download_and_install(mods)

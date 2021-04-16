@@ -1,10 +1,9 @@
-import pytest
-from mockito import mock, when
+from typing import List
 
-from ...core.entities.mod import ModArg
-from ...core.entities.repo_types import RepoTypes
-from ...core.entities.version_info import ReleaseTypes, VersionInfo
-from ...core.errors.mod_not_found_exception import ModNotFoundException
+import pytest
+from mockito import mock, verify, when
+
+from ...core.entities.mod import Mod
 from .update import Update
 from .update_repo import UpdateRepo
 
@@ -14,12 +13,22 @@ def mock_repo():
     return mock(UpdateRepo)
 
 
-def test_exit_when_mod_not_found(mock_repo):
-    input = [ModArg(RepoTypes.unknown, "", "")]
-    when(mock_repo).get_latest_version(...).thenRaise(ModNotFoundException(input[0]))
+def test_use_all_installed_mods_when_no_mods_are_specified(mock_repo):
+    mods: List[Mod] = [Mod("1", "one"), Mod("2", "two")]
+    update = Update(mock_repo)
+    when(mock_repo).get_all_mods().thenReturn(mods)
+    when(update).find_download_and_install(...)
 
-    install = Update(mock_repo)
-    with pytest.raises(SystemExit) as e:
-        install.execute(input)
+    update.execute([])
 
-    assert e.type == SystemExit
+    verify(mock_repo).get_all_mods(...)
+
+
+def test_call_find_download_and_install(mock_repo):
+    when(mock_repo).get_all_mods().thenReturn([])
+    update = Update(mock_repo)
+    when(update).find_download_and_install(...)
+
+    update.execute([])
+
+    verify(update).find_download_and_install(...)
