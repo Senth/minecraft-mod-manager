@@ -1,17 +1,19 @@
-from .mod import Mod, RepoTypes
-from .config import config
-from .logger import LogColors, Logger
-from typing import Any, Dict, List
-from os import path
 import sqlite3
+from os import path
+from typing import Dict, List
+
+from ..config import config
+from ..core.entities.mod import Mod
+from ..core.entities.repo_types import RepoTypes
+from ..utils.logger import LogColors, Logger
 
 
 class _Column:
-    id = "id"
-    repo_type = "repo_type"
-    repo_name = "repo_name"
-    upload_time = "upload_time"
-    active = "active"
+    c_id = "id"
+    c_repo_type = "repo_type"
+    c_repo_name = "repo_name"
+    c_upload_time = "upload_time"
+    c_active = "active"
 
     def __init__(
         self,
@@ -28,7 +30,7 @@ class _Column:
         self.active = active
 
 
-class Db:
+class Sqlite:
     def __init__(self) -> None:
         file_path = path.join(config.dir, f".{config.app_name}.db")
         Logger.debug(f"DB location: {file_path}")
@@ -38,7 +40,12 @@ class Db:
 
     def _create_db(self):
         self._connection.execute(
-            f"CREATE TABLE IF NOT EXISTS mod ({_Column.id} TEXT, {_Column.repo_type} TEXT, {_Column.repo_name}, {_Column.upload_time} INTEGER, {_Column.active} INTEGER)"
+            "CREATE TABLE IF NOT EXISTS mod ("
+            + f"{_Column.c_id} TEXT, "
+            + f"{_Column.c_repo_type} TEXT, "
+            + f"{_Column.c_repo_name} TEXT, "
+            + f"{_Column.c_upload_time} INTEGER, "
+            + f"{_Column.c_active} INTEGER)"
         )
         self._connection.commit()
 
@@ -90,14 +97,20 @@ class Db:
             if mod.id in db_mods:
                 db_mod = db_mods[mod.id]
                 mod.repo_type = RepoTypes[db_mod.repo_type]
-                mod.name_in_repo = db_mod.repo_name
+                mod.alias = db_mod.repo_name
                 mod.upload_time = db_mod.upload_time
 
         return mods
 
     def _get_mods(self) -> Dict[str, _Column]:
         self._cursor.execute(
-            f"SELECT {_Column.id}, {_Column.repo_type}, {_Column.repo_name}, {_Column.upload_time}, {_Column.active} FROM mod"
+            "SELECT "
+            + f"{_Column.c_id}, "
+            + f"{_Column.c_repo_type}, "
+            + f"{_Column.c_repo_name}, "
+            + f"{_Column.c_upload_time}, "
+            + f"{_Column.c_active} "
+            + "FROM mod"
         )
         mods: Dict[str, _Column] = {}
         rows = self._cursor.fetchall()
@@ -121,8 +134,13 @@ class Db:
             return
 
         self._connection.execute(
-            f"UPDATE mod SET {_Column.repo_type}=?, {_Column.repo_name}=?, {_Column.upload_time}=? WHERE {_Column.id}=?",
-            [mod.repo_type.value, mod.name_in_repo, mod.upload_time, mod.id],
+            "UPDATE mod SET "
+            + f"{_Column.c_repo_type}=?, "
+            + f"{_Column.c_repo_name}=?, "
+            + f"{_Column.c_upload_time}=? "
+            + "WHERE "
+            + f"{_Column.c_id}=?",
+            [mod.repo_type.value, mod.alias, mod.upload_time, mod.id],
         )
         self._connection.commit()
 
@@ -131,8 +149,14 @@ class Db:
             return
 
         self._connection.execute(
-            f"INSERT INTO mod ({_Column.id}, {_Column.repo_type}, {_Column.repo_name}, {_Column.upload_time}, {_Column.active}) VALUES (?, ?, ?, ?, 1)",
-            [mod.id, mod.repo_type.value, mod.name_in_repo, mod.upload_time],
+            "INSERT INTO mod ("
+            + f"{_Column.c_id}, "
+            + f"{_Column.c_repo_type}, "
+            + f"{_Column.c_repo_name}, "
+            + f"{_Column.c_upload_time}, "
+            + f"{_Column.c_active}) "
+            + "VALUES (?, ?, ?, ?, 1)",
+            [mod.id, mod.repo_type.value, mod.alias, mod.upload_time],
         )
 
     def _activate_mod(self, id: str):
@@ -140,9 +164,7 @@ class Db:
             return
 
         Logger.debug(f"Reactivate mod {id} in DB", LogColors.add)
-        self._connection.execute(
-            f"UPDATE mod SET {_Column.active}=1 WHERE {_Column.id}=?", [id]
-        )
+        self._connection.execute(f"UPDATE mod SET {_Column.c_active}=1 WHERE {_Column.c_id}=?", [id])
         self._connection.commit()
 
     def _inactivate_mod(self, id: str):
@@ -150,7 +172,5 @@ class Db:
             return
 
         Logger.debug(f"Inactivate mod {id} in DB", LogColors.remove)
-        self._connection.execute(
-            f"UPDATE mod SET {_Column.active}=0 WHERE {_Column.id}=?", [id]
-        )
+        self._connection.execute(f"UPDATE mod SET {_Column.c_active}=0 WHERE {_Column.c_id}=?", [id])
         self._connection.commit()

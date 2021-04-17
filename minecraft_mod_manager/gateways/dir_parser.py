@@ -1,10 +1,11 @@
-from pathlib import Path
-from zipfile import ZipFile
-from .config import config
-from .logger import LogColors, Logger
-from .mod import Mod
-from typing import List
 import json
+from pathlib import Path
+from typing import List
+from zipfile import ZipFile
+
+from ..config import config
+from ..core.entities.mod import Mod
+from ..utils.logger import LogColors, Logger
 
 
 class DirParser:
