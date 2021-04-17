@@ -1,7 +1,7 @@
 from typing import List
 
 import pytest
-from mockito import mock, verify, when
+from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod
 from .update import Update
@@ -21,7 +21,8 @@ def test_use_all_installed_mods_when_no_mods_are_specified(mock_repo):
 
     update.execute([])
 
-    verify(mock_repo).get_all_mods(...)
+    verifyStubbedInvocationsAreUsed()
+    unstub()
 
 
 def test_call_find_download_and_install(mock_repo):
@@ -31,4 +32,5 @@ def test_call_find_download_and_install(mock_repo):
 
     update.execute([])
 
-    verify(update).find_download_and_install(...)
+    verifyStubbedInvocationsAreUsed()
+    unstub()
