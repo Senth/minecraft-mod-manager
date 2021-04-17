@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import pytest
-from mockito import mock, verify, when
+from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import ModArg
 from ...core.entities.repo_types import RepoTypes
@@ -25,7 +25,8 @@ def test_exit_when_mod_not_found(mock_repo):
         download.find_download_and_install(input)
 
     assert e.type == SystemExit
-    verify(mock_repo).get_latest_version(...)
+    verifyStubbedInvocationsAreUsed()
+    unstub()
 
 
 def test_exit_when_later_mod_not_found(mock_repo):
@@ -50,8 +51,8 @@ def test_exit_when_later_mod_not_found(mock_repo):
         download.find_download_and_install(input)
 
     assert e.type == SystemExit
-    verify(mock_repo).get_mod(...)
-    verify(mock_repo, times=2).get_latest_version(...)
+    verifyStubbedInvocationsAreUsed()
+    unstub()
 
 
 def test_download_and_install_when_found(mock_repo):
@@ -72,7 +73,5 @@ def test_download_and_install_when_found(mock_repo):
     download = Download(mock_repo, "")
     download.find_download_and_install(input)
 
-    verify(mock_repo).get_mod(...)
-    verify(mock_repo).get_latest_version(...)
-    verify(mock_repo).update_mod(...)
-    verify(mock_repo).download(...)
+    verifyStubbedInvocationsAreUsed()
+    unstub()

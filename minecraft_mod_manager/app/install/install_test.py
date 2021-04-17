@@ -1,5 +1,5 @@
 import pytest
-from mockito import mock, verify, when
+from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import ModArg
 from ...core.entities.repo_types import RepoTypes
@@ -19,11 +19,14 @@ def test_mod_not_installed_when_already_installed(mock_repo):
     install = Install(mock_repo)
     install.execute(input)
 
-    verify(mock_repo).is_installed(...)
+    verifyStubbedInvocationsAreUsed()
+    unstub()
 
 
 def test_call_find_download_and_install(mock_repo):
     install = Install(mock_repo)
     when(install).find_download_and_install(...)
     install.execute([])
-    verify(install).find_download_and_install(...)
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
