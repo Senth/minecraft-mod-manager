@@ -47,8 +47,6 @@ def test_use_version_info_filename_when_it_exists(mock_file):
 
     when(requests).get(...).thenReturn(Response())
     when(builtins).open(...).thenReturn(mock_file)
-    config.verbose = False
-    config.pretend = False
 
     result = Downloader.download(input)
 
@@ -69,8 +67,6 @@ def test_use_name_as_filename_when_no_filename_is_found(mock_file):
 
     when(requests).get(...).thenReturn(Response())
     when(builtins).open(...).thenReturn(mock_file)
-    config.verbose = False
-    config.pretend = False
 
     result = Downloader.download(input)
 
@@ -95,8 +91,6 @@ def test_use_downloaded_filename_when_no_filename_in_version_info(mock_response,
     when(mock_headers).get(...).thenReturn(f"filename={filename}")
     when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
-    config.verbose = False
-    config.pretend = False
 
     result = Downloader.download(input)
 
@@ -121,8 +115,6 @@ def test_use_downloaded_filename_add_jar_when_no_filename_in_version_info(mock_r
     when(mock_headers).get(...).thenReturn(f"filename={filename}")
     when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
-    config.verbose = False
-    config.pretend = False
 
     result = Downloader.download(input)
 
@@ -141,7 +133,6 @@ def test_no_mock_interactions_when_pretending():
         filename="file.jar",
     )
     expected = input.filename
-    config.verbose = False
     config.pretend = True
     when(requests).get(...).thenRaise(NotImplementedError())
     when(builtins).open(...).thenRaise(NotImplementedError())
@@ -152,4 +143,5 @@ def test_no_mock_interactions_when_pretending():
     except Exception as e:
         assert e is None
     finally:
+        config.pretend = False
         unstub()

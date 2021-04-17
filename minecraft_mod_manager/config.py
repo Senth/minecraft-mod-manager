@@ -20,18 +20,16 @@ def _is_dir(dir: str) -> str:
 
 class Config:
     def __init__(self):
-        self._set_default_values()
-        # self._parse_args()
         self.app_name: str = _app_name
-        self.verbose: bool
-        self.debug: bool
-        self.pretend: bool
-        self.dir: str
+        self.verbose: bool = False
+        self.debug: bool = False
+        self.pretend: bool = False
+        self.dir: str = "."
         self.minecraft_version: str or None
-        self.beta: bool
-        self.alpha: bool
+        self.beta: bool = False
+        self.alpha: bool = False
         self.action: Literal["install", "update"]
-        self.mods: List[ModArg]
+        self.mods: List[ModArg] = []
 
     def _parse_args(self):
         # Get arguments first to get verbosity before we get everything else
@@ -142,10 +140,6 @@ class Config:
                 repo_alias = mod_id
 
             self.mods.append(ModArg(repo_type, mod_id, repo_alias))
-
-    def _set_default_values(self):
-        """Set default values for variables"""
-        self.dir = "."
 
 
 global config
