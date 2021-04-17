@@ -5,6 +5,7 @@ from typing import Dict, List
 from ..config import config
 from ..core.entities.mod import Mod
 from ..core.entities.repo_types import RepoTypes
+from ..core.errors.mod_already_exists import ModAlreadyExists
 from ..utils.logger import LogColors, Logger
 
 
@@ -41,7 +42,7 @@ class Sqlite:
     def _create_db(self):
         self._connection.execute(
             "CREATE TABLE IF NOT EXISTS mod ("
-            + f"{_Column.c_id} TEXT, "
+            + f"{_Column.c_id} TEXT UNIQUE, "
             + f"{_Column.c_repo_type} TEXT, "
             + f"{_Column.c_repo_name} TEXT, "
             + f"{_Column.c_upload_time} INTEGER, "
@@ -129,35 +130,46 @@ class Sqlite:
             )
         return mods
 
+    def exists(self, id: str) -> bool:
+        self._cursor.execute(f"SELECT 1 FROM mod WHERE {_Column.c_id}=?", [id])
+        return bool(self._cursor.fetchone())
+
     def update_mod(self, mod: Mod):
         if config.pretend:
             return
 
-        self._connection.execute(
-            "UPDATE mod SET "
-            + f"{_Column.c_repo_type}=?, "
-            + f"{_Column.c_repo_name}=?, "
-            + f"{_Column.c_upload_time}=? "
-            + "WHERE "
-            + f"{_Column.c_id}=?",
-            [mod.repo_type.value, mod.alias, mod.upload_time, mod.id],
-        )
-        self._connection.commit()
+        if self.exists(mod.id):
+            self._connection.execute(
+                "UPDATE mod SET "
+                + f"{_Column.c_repo_type}=?, "
+                + f"{_Column.c_repo_name}=?, "
+                + f"{_Column.c_upload_time}=? "
+                + "WHERE "
+                + f"{_Column.c_id}=?",
+                [mod.repo_type.value, mod.alias, mod.upload_time, mod.id],
+            )
+            self._connection.commit()
+        else:
+            self.insert_mod(mod)
 
     def insert_mod(self, mod: Mod):
         if config.pretend:
             return
 
-        self._connection.execute(
-            "INSERT INTO mod ("
-            + f"{_Column.c_id}, "
-            + f"{_Column.c_repo_type}, "
-            + f"{_Column.c_repo_name}, "
-            + f"{_Column.c_upload_time}, "
-            + f"{_Column.c_active}) "
-            + "VALUES (?, ?, ?, ?, 1)",
-            [mod.id, mod.repo_type.value, mod.alias, mod.upload_time],
-        )
+        try:
+            self._connection.execute(
+                "INSERT INTO mod ("
+                + f"{_Column.c_id}, "
+                + f"{_Column.c_repo_type}, "
+                + f"{_Column.c_repo_name}, "
+                + f"{_Column.c_upload_time}, "
+                + f"{_Column.c_active}) "
+                + "VALUES (?, ?, ?, ?, 1)",
+                [mod.id, mod.repo_type.value, mod.alias, mod.upload_time],
+            )
+            self._connection.commit()
+        except sqlite3.IntegrityError:
+            raise ModAlreadyExists(mod)
 
     def _activate_mod(self, id: str):
         if config.pretend:
