@@ -26,6 +26,7 @@ setup(
         "selenium",
         "requests",
         "webdriver-manager",
+        "toml",
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
