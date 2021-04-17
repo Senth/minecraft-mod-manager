@@ -38,7 +38,6 @@ setup(
     ],
     tests_require=[
         "pytest",
-        "pytest-mockito",
         "mockito",
     ],
     python_requires=">=3.8",
