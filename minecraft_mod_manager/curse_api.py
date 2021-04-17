@@ -1,15 +1,17 @@
+import re
+from typing import List, Union
+
 import requests
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.webdriver import WebDriver
-from .mod import ModArg, Mod, RepoTypes
+from selenium.webdriver.remote.webelement import WebElement
+
+from . import web_driver
 from .config import config
 from .logger import Logger
+from .mod import Mod, ModArg, RepoTypes
 from .mod_not_found_exception import ModNotFoundException
 from .version_info import ReleaseTypes, VersionInfo
-from . import web_driver
-from selenium.webdriver.remote.webelement import WebElement
-from selenium.common.exceptions import NoSuchElementException
-from typing import List, Union
-import re
 
 
 class CurseApi:

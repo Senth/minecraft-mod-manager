@@ -1,12 +1,13 @@
-from .installer import Installer
 from typing import List
-from .mod import Mod, RepoTypes
-from .dir_parser import DirParser
+
 from .config import config
+from .configurer import Configure
 from .db import Db
+from .dir_parser import DirParser
+from .installer import Installer
+from .logger import LogColors, Logger
+from .mod import Mod, RepoTypes
 from .updater import Updater
-from .configurer import Configurer
-from .logger import Logger, LogColors
 
 
 def main():
@@ -32,8 +33,8 @@ def main():
                 installer.close()
 
         elif config.action == "configure":
-            configurer = Configurer(db)
-            configurer.configure(installed_mods)
+            configurer = Configure(db)
+            configurer.execute(installed_mods)
 
         elif config.action == "list":
             _list_mods(installed_mods)

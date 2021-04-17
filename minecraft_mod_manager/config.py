@@ -35,9 +35,7 @@ class Config:
 
     def _parse_args(self):
         # Get arguments first to get verbosity before we get everything else
-        parser = argparse.ArgumentParser(
-            description="Install or update Minecraft mods from Curseforge"
-        )
+        parser = argparse.ArgumentParser(description="Install or update Minecraft mods from Curseforge")
 
         parser.add_argument(
             "action",
@@ -47,10 +45,11 @@ class Config:
         parser.add_argument(
             "mods",
             nargs="*",
-            help="The mods to install, update, or configure. If no mods are specified during an update, all mods will be updated. "
-            + "\nTo specify the download site for the mod you can put 'site:' before the mod. E.g. 'curse:litematica' "
-            + "By default it searches all sites for the mod.\nTo configure an alias for the mod, use 'mod_name=ALIAS_NAME'."
-            + "E.g. 'dynmap=dynmapforge'",
+            help="The mods to install, update, or configure. "
+            + "If no mods are specified during an update, all mods will be updated. "
+            + "\nTo specify the download site for the mod you can put 'site:' before the mod. "
+            + "E.g. 'curse:litematica' By default it searches all sites for the mod.\n"
+            + "To configure an alias for the mod, use 'mod_name=ALIAS_NAME'. E.g. 'dynmap=dynmapforge'",
         )
         parser.add_argument(
             "-d",
@@ -131,7 +130,7 @@ class Config:
                     repo_type = RepoTypes[repo_type_name.lower()]
                 except KeyError:
                     print(f"{_red_color}No site named {repo_type_name}{_no_color}")
-                    print(f"Valid names are:")
+                    print("Valid names are:")
                     for enum in RepoTypes:
                         print(f"{enum.value}")
 
