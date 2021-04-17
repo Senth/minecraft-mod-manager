@@ -24,9 +24,9 @@ def test_exit_when_mod_not_found(mock_repo):
     with pytest.raises(SystemExit) as e:
         download.find_download_and_install(input)
 
-    assert e.type == SystemExit
     verifyStubbedInvocationsAreUsed()
     unstub()
+    assert e.type == SystemExit
 
 
 def test_exit_when_later_mod_not_found(mock_repo):
@@ -50,9 +50,9 @@ def test_exit_when_later_mod_not_found(mock_repo):
     with pytest.raises(SystemExit) as e:
         download.find_download_and_install(input)
 
-    assert e.type == SystemExit
     verifyStubbedInvocationsAreUsed()
     unstub()
+    assert e.type == SystemExit
 
 
 def test_download_and_install_when_found(mock_repo):

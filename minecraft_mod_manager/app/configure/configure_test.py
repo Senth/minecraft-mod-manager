@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 import pytest
-from mockito import mock, verify, when
+from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.repo_types import RepoTypes
@@ -22,6 +22,7 @@ def test_abort_when_mod_not_found(mock_repo):
     with pytest.raises(SystemExit) as e:
         configure.execute(input)
 
+    unstub()
     assert e.type == SystemExit
 
 
@@ -38,6 +39,7 @@ def test_abort_before_updating_when_later_mod_not_found(mock_repo):
     with pytest.raises(SystemExit) as e:
         configure.execute(input)
 
+    unstub()
     assert e.type == SystemExit
 
 
@@ -54,8 +56,8 @@ def test_mod_repo_changed(mock_repo):
 
     configure.execute(input)
 
-    verify(mock_repo).get_mod(...)
-    verify(mock_repo).update_mod(...)
+    verifyStubbedInvocationsAreUsed()
+    unstub()
 
 
 def test_mod_alias_changed(mock_repo):
@@ -71,5 +73,5 @@ def test_mod_alias_changed(mock_repo):
 
     configure.execute(input)
 
-    verify(mock_repo).get_mod(...)
-    verify(mock_repo).update_mod(...)
+    verifyStubbedInvocationsAreUsed()
+    unstub()
