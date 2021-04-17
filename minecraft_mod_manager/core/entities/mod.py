@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from typing import Set
 
+from .mod_loaders import ModLoaders
 from .repo_types import RepoTypes
 
 
@@ -55,17 +56,18 @@ class Mod(ModArg):
         version: str = "",
         file: str = "",
         upload_time: int = 0,
+        mod_loader: ModLoaders = ModLoaders.unknown,
     ):
         super().__init__(repo_type, id, alias)
         self.name = name
         self.version = version
-        """Version of the mod"""
         self.file = file
+        self.mod_loader = mod_loader
         self.upload_time = upload_time
         """When this version of the mod was uploaded to the repository"""
 
     def __str__(self) -> str:
-        return f"{self.name}-{self.version} ({self.id})"
+        return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader}]"
 
     def get_possible_repo_names(self) -> Set[str]:
         possible_names: Set[str] = set()
@@ -96,6 +98,7 @@ class Mod(ModArg):
             self.version,
             self.file,
             self.upload_time,
+            self.mod_loader,
         )
 
     def __eq__(self, other) -> bool:

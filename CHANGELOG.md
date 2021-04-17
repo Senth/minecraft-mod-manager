@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Can parse Forge mods
+
 ### Changed
 
 - Restructured the whole project and added lots of test.
@@ -16,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Mods weren't saved correctly to the DB sometimes.
+- Crash when mod isn't fabric ([#17](https://github.com/Senth/minecraft-mod-manager/issues/17))
 
 ## [0.3.1] - 2021-03-02
 
