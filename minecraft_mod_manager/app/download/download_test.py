@@ -65,7 +65,7 @@ def test_download_and_install_when_found(mock_repo):
         minecraft_version="",
         download_url="",
     )
-    when(mock_repo).get_mod(input[0])
+    when(mock_repo).get_mod(input[0].id)
     when(mock_repo).get_latest_version(...).thenReturn(version_info)
     when(mock_repo).download(...).thenReturn(Path("mod.jar"))
     when(mock_repo).update_mod(...)

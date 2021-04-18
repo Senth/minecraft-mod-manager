@@ -49,7 +49,7 @@ class Download:
 
                 # Update mod with latest mod info
                 if not download_info.installed_mod:
-                    installed_mod = self._repo.get_mod(download_info.mod)
+                    installed_mod = self._repo.get_mod(mod.id)
                     if installed_mod:
                         download_info.mod = installed_mod
                 mods_to_install.append(download_info)

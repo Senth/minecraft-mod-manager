@@ -11,6 +11,3 @@ class UpdateRepo(DownloadRepo):
 
     def get_all_mods(self) -> Sequence[Mod]:
         raise NotImplementedError()
-
-    def update_mod(self, mod: Mod) -> None:
-        raise NotImplementedError()
