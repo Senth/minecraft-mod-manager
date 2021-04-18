@@ -61,7 +61,7 @@ def test_mod_repo_changed(mock_repo):
 
 
 def test_mod_alias_changed(mock_repo):
-    expected_update = Mod("carpet", "", alias="carpet_alias")
+    expected_update = Mod("carpet", "", repo_alias="carpet_alias")
 
     when(mock_repo).get_mod("carpet").thenReturn(Mod("carpet", ""))
     when(mock_repo).update_mod(expected_update)

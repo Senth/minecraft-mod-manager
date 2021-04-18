@@ -15,11 +15,11 @@ class ModArg:
         """Where the mod is downloaded from"""
         self.id = mod_name
         """String identifier of the mod, often case the same as mod name"""
-        self.alias = alias
+        self.repo_alias = alias
         """Mod name id on the repository"""
 
     def __str__(self) -> str:
-        return f"{self.repo_type.value}:{self.id}={self.alias}"
+        return f"{self.repo_type.value}:{self.id}={self.repo_alias}"
 
     def get_possible_repo_names(self) -> Set[str]:
         """Get possible repo names when the repo name hasn't been set
@@ -33,7 +33,7 @@ class ModArg:
         return (
             self.id,
             self.repo_type,
-            self.alias,
+            self.repo_alias,
         )
 
     def __eq__(self, other) -> bool:
@@ -51,14 +51,16 @@ class Mod(ModArg):
         self,
         id: str,
         name: str,
+        repo_id: str = "",
         repo_type: RepoTypes = RepoTypes.unknown,
-        alias: str = "",
+        repo_alias: str = "",
         version: str = "",
         file: str = "",
         upload_time: int = 0,
         mod_loader: ModLoaders = ModLoaders.unknown,
     ):
-        super().__init__(repo_type, id, alias)
+        super().__init__(repo_type, id, repo_alias)
+        self.repo_id = repo_id
         self.name = name
         self.version = version
         self.file = file
@@ -93,8 +95,9 @@ class Mod(ModArg):
         return (
             self.id,
             self.name,
+            self.repo_id,
             self.repo_type,
-            self.alias,
+            self.repo_alias,
             self.version,
             self.file,
             self.upload_time,
