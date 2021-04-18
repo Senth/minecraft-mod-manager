@@ -12,7 +12,7 @@ class DownloadRepo:
     def download(self, url: str, filename: str = "") -> Path:
         raise NotImplementedError()
 
-    def get_mod(self, mod: ModArg) -> Union[Mod, None]:
+    def get_mod(self, id: str) -> Union[Mod, None]:
         raise NotImplementedError()
 
     def update_mod(self, mod: Mod) -> None:

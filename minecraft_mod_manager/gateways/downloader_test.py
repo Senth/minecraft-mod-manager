@@ -9,8 +9,6 @@ from requests.models import Response
 from requests.structures import CaseInsensitiveDict
 
 from ..config import config
-from ..core.entities.repo_types import RepoTypes
-from ..core.entities.version_info import ReleaseTypes, VersionInfo
 from ..gateways.downloader import Downloader
 
 
@@ -32,59 +30,22 @@ def mock_file():
     return mock_file
 
 
-def test_use_version_info_filename_when_it_exists(mock_file):
-
-    input = VersionInfo(
-        release_type=ReleaseTypes.stable,
-        repo_type=RepoTypes.curse,
-        name="Test-mod",
-        upload_time=1337,
-        minecraft_version="1.16.5",
-        download_url="https://test-file",
-        filename="some-file.jar",
-    )
-    expected = path.join(config.dir, input.filename)
+def test_use_filename_when_it_exists(mock_file):
+    filename = "some-file.jar"
+    expected = path.join(config.dir, filename)
 
     when(requests).get(...).thenReturn(Response())
     when(builtins).open(...).thenReturn(mock_file)
 
-    result = Downloader.download(input)
+    result = Downloader.download("", filename)
 
     unstub()
     assert expected == result
 
 
-def test_use_name_as_filename_when_no_filename_is_found(mock_file):
-    input = VersionInfo(
-        release_type=ReleaseTypes.stable,
-        repo_type=RepoTypes.curse,
-        name="Test-mod",
-        upload_time=1337,
-        minecraft_version="1.16.5",
-        download_url="https://test-file",
-    )
-    expected = path.join(config.dir, input.name + ".jar")
-
-    when(requests).get(...).thenReturn(Response())
-    when(builtins).open(...).thenReturn(mock_file)
-
-    result = Downloader.download(input)
-
-    unstub()
-    assert expected == result
-
-
-def test_use_downloaded_filename_when_no_filename_in_version_info(mock_response, mock_file):
+def test_use_downloaded_filename_when_no_filename_specified(mock_response, mock_file):
     mock_headers = mock(CaseInsensitiveDict)
     mock_response.headers = mock_headers
-    input = VersionInfo(
-        release_type=ReleaseTypes.stable,
-        repo_type=RepoTypes.curse,
-        name="Test-mod",
-        upload_time=1337,
-        minecraft_version="1.16.5",
-        download_url="https://test-file",
-    )
     filename = "downloaded.jar"
     expected = path.join(config.dir, filename)
 
@@ -92,23 +53,15 @@ def test_use_downloaded_filename_when_no_filename_in_version_info(mock_response,
     when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
 
-    result = Downloader.download(input)
+    result = Downloader.download("", "")
 
     unstub()
     assert expected == result
 
 
-def test_use_downloaded_filename_add_jar_when_no_filename_in_version_info(mock_response, mock_file):
+def test_use_downloaded_filename_add_jar_when_no_filename_specified(mock_response, mock_file):
     mock_headers = mock(CaseInsensitiveDict)
     mock_response.headers = mock_headers
-    input = VersionInfo(
-        release_type=ReleaseTypes.stable,
-        repo_type=RepoTypes.curse,
-        name="Test-mod",
-        upload_time=1337,
-        minecraft_version="1.16.5",
-        download_url="https://test-file",
-    )
     filename = "downloaded"
     expected = path.join(config.dir, filename + ".jar")
 
@@ -116,29 +69,21 @@ def test_use_downloaded_filename_add_jar_when_no_filename_in_version_info(mock_r
     when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
 
-    result = Downloader.download(input)
+    result = Downloader.download("", "")
 
     unstub()
     assert expected == result
 
 
 def test_no_mock_interactions_when_pretending():
-    input = VersionInfo(
-        release_type=ReleaseTypes.stable,
-        repo_type=RepoTypes.curse,
-        name="Test-mod",
-        upload_time=1337,
-        minecraft_version="1.16.5",
-        download_url="https://test-file",
-        filename="file.jar",
-    )
-    expected = input.filename
+    filename = "file.jar"
+    expected = filename
     config.pretend = True
     when(requests).get(...).thenRaise(NotImplementedError())
     when(builtins).open(...).thenRaise(NotImplementedError())
 
     try:
-        result = Downloader.download(input)
+        result = Downloader.download("", filename)
         assert expected == result
     except Exception as e:
         assert e is None

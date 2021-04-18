@@ -1,12 +1,10 @@
 import re
 from os import path
-
 import requests
 from requests.models import Response
 
 # from .. import web_driver
 from ..config import config
-from ..core.entities.version_info import VersionInfo
 from ..utils.logger import Logger
 
 _user_agent = (
@@ -17,30 +15,22 @@ _user_agent = (
 
 class Downloader:
     @staticmethod
-    def download(latest_version: VersionInfo) -> str:
+    def download(url: str, filename: str) -> str:
         """Download the specified mod
-
-        Args:
-            latest_version (VersionInfo): latest version information of the mod
-
         Returns:
             Filename of the downloaded and saved file
         """
         Logger.verbose("Downloading...")
 
         if config.pretend:
-            return latest_version.filename
+            return filename
 
         headers = {"User-Agent": _user_agent}
 
-        with requests.get(latest_version.download_url, headers=headers) as response:
-            filename = latest_version.filename
+        with requests.get(url, headers=headers) as response:
 
             if len(filename) == 0:
                 filename = Downloader._get_filename(response)
-
-            if len(filename) == 0:
-                filename = latest_version.name
 
             if not filename.endswith(".jar"):
                 filename += ".jar"
