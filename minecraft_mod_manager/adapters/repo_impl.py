@@ -29,8 +29,8 @@ class InstalledRepo(ConfigureRepo, UpdateRepo, InstallRepo):
     def update_mod(self, mod: Mod) -> None:
         self.db.update_mod(mod)
 
-    def is_installed(self, mod: ModArg) -> bool:
-        return self.db.exists(mod.id)
+    def is_installed(self, id: str) -> bool:
+        return self.db.exists(id)
 
     def get_all_mods(self) -> Sequence[Mod]:
         return self.mods

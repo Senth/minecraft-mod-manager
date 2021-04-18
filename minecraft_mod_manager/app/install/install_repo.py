@@ -1,7 +1,6 @@
-from ...core.entities.mod import ModArg
 from ..download.download_repo import DownloadRepo
 
 
 class InstallRepo(DownloadRepo):
-    def is_installed(self, mod: ModArg) -> bool:
+    def is_installed(self, id: str) -> bool:
         raise NotImplementedError()

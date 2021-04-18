@@ -68,6 +68,10 @@ class Mod(ModArg):
         self.upload_time = upload_time
         """When this version of the mod was uploaded to the repository"""
 
+    @staticmethod
+    def fromModArg(mod_arg: ModArg) -> Mod:
+        return Mod(mod_arg.id, mod_arg.id, repo_type=mod_arg.repo_type, repo_alias=mod_arg.repo_alias)
+
     def __str__(self) -> str:
         return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader}]"
 
