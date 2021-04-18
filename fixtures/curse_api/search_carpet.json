@@ -1,0 +1,3070 @@
+[
+  {
+    "id": 349239,
+    "name": "Carpet",
+    "authors": [
+      {
+        "name": "gnembon",
+        "url": "https://www.curseforge.com/members/100600533-gnembon?username=gnembon",
+        "projectId": 349239,
+        "id": 253694,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 100600533,
+        "twitchId": 92067066
+      }
+    ],
+    "attachments": [
+      {
+        "id": 233983,
+        "projectId": 349239,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/233/983/256/256/637075723026900986.png",
+        "title": "637075723026900986.png",
+        "url": "https://media.forgecdn.net/avatars/233/983/637075723026900986.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/carpet",
+    "gameId": 432,
+    "summary": "Take full control over your vanilla game.",
+    "defaultFileId": 3276130,
+    "downloadCount": 134102.0,
+    "latestFiles": [
+      {
+        "id": 3276130,
+        "displayName": "Carpet Mod v1.4.32 for 1.17",
+        "fileName": "fabric-carpet-21w15a-1.4.32+v210414.jar",
+        "fileDate": "2021-04-14T18:34:39.417Z",
+        "fileLength": 1263266,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/3276/130/fabric-carpet-21w15a-1.4.32+v210414.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "LICENSE_fabric-carpet",
+            "fingerprint": 1543082860,
+            "type": 3
+          },
+          {
+            "foldername": "carpet.accesswidener",
+            "fingerprint": 768960206,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 918338356,
+            "type": 3
+          },
+          {
+            "foldername": "carpet.mixins.json",
+            "fingerprint": 3695126439,
+            "type": 3
+          },
+          {
+            "foldername": "fabric.mod.json",
+            "fingerprint": 3493234223,
+            "type": 3
+          },
+          {
+            "foldername": "fabric-carpet-refmap.json",
+            "fingerprint": 4043310502,
+            "type": 3
+          },
+          {
+            "foldername": "META-INF",
+            "fingerprint": 2464251221,
+            "type": 3
+          },
+          {
+            "foldername": "carpet",
+            "fingerprint": 900466927,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 2014246976,
+        "gameVersion": ["1.17", "Fabric"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0000000001.0000000017",
+            "gameVersion": "1.17",
+            "gameVersionReleaseDate": "2020-11-12T00:00:00Z",
+            "gameVersionName": "1.17"
+          },
+          {
+            "gameVersionPadded": "0",
+            "gameVersion": "",
+            "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+            "gameVersionName": "Fabric"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 2265673,
+        "fileLegacyMappingId": null,
+        "projectId": 349239,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 644144467,
+        "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+        "gameVersionMappingId": 2865842,
+        "gameVersionId": 4458,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 421,
+        "name": "API and Library",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/library-api",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/36/635351496947765531.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 6036,
+        "gameId": 432
+      },
+      {
+        "categoryId": 421,
+        "name": "API and Library",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/library-api",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/36/635351496947765531.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 6036,
+        "gameId": 432
+      },
+      {
+        "categoryId": 421,
+        "name": "API and Library",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/library-api",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/36/635351496947765531.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 6036,
+        "gameId": 432
+      },
+      {
+        "categoryId": 425,
+        "name": "Miscellaneous",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/mc-miscellaneous",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/40/635351497693711265.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 6040,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4780,
+        "name": "Fabric",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/fabric",
+        "avatarUrl": "https://media.forgecdn.net/avatars/182/502/636808438426582276.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 182502,
+        "gameId": 432
+      },
+      {
+        "categoryId": 421,
+        "name": "API and Library",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/library-api",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/36/635351496947765531.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 6036,
+        "gameId": 432
+      },
+      {
+        "categoryId": 435,
+        "name": "Server Utility",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/server-utility",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/48/635351498950580836.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 6048,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4558,
+        "name": "Redstone",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/redstone",
+        "avatarUrl": "https://media.forgecdn.net/avatars/32/937/635888173116238506.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 32937,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4558,
+        "name": "Redstone",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/redstone",
+        "avatarUrl": "https://media.forgecdn.net/avatars/32/937/635888173116238506.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 32937,
+        "gameId": 432
+      },
+      {
+        "categoryId": 435,
+        "name": "Server Utility",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/server-utility",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/48/635351498950580836.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349239,
+        "avatarId": 6048,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 425,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "carpet",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.17",
+        "projectFileId": 3276130,
+        "projectFileName": "fabric-carpet-21w15a-1.4.32+v210414.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.5",
+        "projectFileId": 3276129,
+        "projectFileName": "fabric-carpet-1.16.5-1.4.32+v210414.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.4",
+        "projectFileId": 3276129,
+        "projectFileName": "fabric-carpet-1.16.5-1.4.32+v210414.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.3",
+        "projectFileId": 3069670,
+        "projectFileName": "fabric-carpet-1.16.3-1.4.12+v201001.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.2",
+        "projectFileId": 3030942,
+        "projectFileName": "fabric-carpet-1.16.2-1.4.8+v200811.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.2",
+        "projectFileId": 3030941,
+        "projectFileName": "fabric-carpet-1.15.2-1.4.8+v200811.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16",
+        "projectFileId": 2986869,
+        "projectFileName": "fabric-carpet-1.16-1.4.0+v200623.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.14.4",
+        "projectFileId": 2870184,
+        "projectFileName": "fabric-carpet-1.14.4-1.3.6+v200121.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.1",
+        "projectFileId": 2861159,
+        "projectFileName": "fabric-carpet-1.15.2-pre1-1.3.5+v200114.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15",
+        "projectFileId": 2841965,
+        "projectFileName": "fabric-carpet-1.15-1.3.1+v191212.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 3436.247802734375,
+    "gamePopularityRank": 2893,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2021-04-14T18:35:50.357Z",
+    "dateCreated": "2019-10-25T03:51:42.66Z",
+    "dateReleased": "2021-04-14T18:34:39.417Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 361689,
+    "name": "Carpet Stairs Mod",
+    "authors": [
+      {
+        "name": "EndlesNights",
+        "url": "https://www.curseforge.com/members/100659913-endlesnights?username=endlesnights",
+        "projectId": 361689,
+        "id": 267228,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 100659913,
+        "twitchId": 171062845
+      }
+    ],
+    "attachments": [
+      {
+        "id": 248034,
+        "projectId": 361689,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/248/34/256/256/637166531876915754.png",
+        "title": "637166531876915754.png",
+        "url": "https://media.forgecdn.net/avatars/248/34/637166531876915754.png",
+        "status": 1
+      },
+      {
+        "id": 248083,
+        "projectId": 361689,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/248/83/256/256/637166925012361120.png",
+        "title": "637166925012361120.png",
+        "url": "https://media.forgecdn.net/avatars/248/83/637166925012361120.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/carpet-stairs-mod",
+    "gameId": 432,
+    "summary": "Allows for carpets to be placed onto stairs and slabs. Allows for crafting of wood carpets called Floor Blocks.",
+    "defaultFileId": 3186923,
+    "downloadCount": 283034.0,
+    "latestFiles": [
+      {
+        "id": 2917546,
+        "displayName": "Carpet Stairs Mod mc1.15 v1.4",
+        "fileName": "carpetstairsmod-1.4.0.jar",
+        "fileDate": "2020-03-31T17:00:51.873Z",
+        "fileLength": 173590,
+        "releaseType": 2,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/2917/546/carpetstairsmod-1.4.0.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "META-INF",
+            "fingerprint": 4076070658,
+            "type": 3
+          },
+          {
+            "foldername": "com",
+            "fingerprint": 1604790221,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 3090065719,
+            "type": 3
+          },
+          {
+            "foldername": "data",
+            "fingerprint": 2023058000,
+            "type": 3
+          },
+          {
+            "foldername": "pack.mcmeta",
+            "fingerprint": 281765271,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 2433165743,
+        "gameVersion": ["Forge", "1.15.2"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0",
+            "gameVersion": "",
+            "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+            "gameVersionName": "Forge"
+          },
+          {
+            "gameVersionPadded": "0000000001.0000000015.0000000002",
+            "gameVersion": "1.15.2",
+            "gameVersionReleaseDate": "2020-01-22T00:00:00Z",
+            "gameVersionName": "1.15.2"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 1812553,
+        "fileLegacyMappingId": null,
+        "projectId": 361689,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 432543899,
+        "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+        "gameVersionMappingId": 2156566,
+        "gameVersionId": 7498,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      },
+      {
+        "id": 3186923,
+        "displayName": "Carpet Stairs Mod mc1.16.4 v1.4.7",
+        "fileName": "carpetstairsmod-1.16.4_v1.4.7.jar",
+        "fileDate": "2021-01-30T19:23:48.597Z",
+        "fileLength": 215522,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/3186/923/carpetstairsmod-1.16.4_v1.4.7.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "META-INF",
+            "fingerprint": 2312549898,
+            "type": 3
+          },
+          {
+            "foldername": "com",
+            "fingerprint": 4293489343,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 3742139982,
+            "type": 3
+          },
+          {
+            "foldername": "data",
+            "fingerprint": 2803532415,
+            "type": 3
+          },
+          {
+            "foldername": "pack.mcmeta",
+            "fingerprint": 281765271,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 3009979102,
+        "gameVersion": ["1.16.3", "Forge", "1.16.4"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0000000001.0000000016.0000000003",
+            "gameVersion": "1.16.3",
+            "gameVersionReleaseDate": "2020-09-10T14:44:20.443Z",
+            "gameVersionName": "1.16.3"
+          },
+          {
+            "gameVersionPadded": "0",
+            "gameVersion": "",
+            "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+            "gameVersionName": "Forge"
+          },
+          {
+            "gameVersionPadded": "0000000001.0000000016.0000000004",
+            "gameVersion": "1.16.4",
+            "gameVersionReleaseDate": "2020-11-02T18:40:51.49Z",
+            "gameVersionName": "1.16.4"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 2150091,
+        "fileLegacyMappingId": null,
+        "projectId": 361689,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 596370444,
+        "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+        "gameVersionMappingId": 2685887,
+        "gameVersionId": 7498,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 424,
+        "name": "Cosmetic",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/cosmetic",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/39/635351497555976928.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 361689,
+        "avatarId": 6039,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 424,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "carpet-stairs-mod",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.16.3",
+        "projectFileId": 3186923,
+        "projectFileName": "carpetstairsmod-1.16.4_v1.4.7.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.4",
+        "projectFileId": 3186923,
+        "projectFileName": "carpetstairsmod-1.16.4_v1.4.7.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.2",
+        "projectFileId": 3002195,
+        "projectFileName": "carpetstairsmod-1.15.2_v1.4.7.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.1",
+        "projectFileId": 2993123,
+        "projectFileName": "carpetstairsmod-1.16.1_v1.4.6.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.14.4",
+        "projectFileId": 2950661,
+        "projectFileName": "carpetstairsmod-mc1.14.4_v1.4.4.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.2",
+        "projectFileId": 2917546,
+        "projectFileName": "carpetstairsmod-1.4.0.jar",
+        "fileType": 2,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.14.4",
+        "projectFileId": 2883806,
+        "projectFileName": "carpetstairsmod-mc1.14-v1.3.jar",
+        "fileType": 2,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.1",
+        "projectFileId": 2883805,
+        "projectFileName": "carpetstairsmod-mc1.15-v1.3.jar",
+        "fileType": 2,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.14",
+        "projectFileId": 2879343,
+        "projectFileName": "carpetstairsmod-mc1.4-v1.1.jar",
+        "fileType": 2,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15",
+        "projectFileId": 2879341,
+        "projectFileName": "carpetstairsmod-mc1.5-v1.1.jar",
+        "fileType": 2,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 1110.6641845703125,
+    "gamePopularityRank": 3117,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2021-01-30T19:26:05.287Z",
+    "dateCreated": "2020-02-07T06:19:47.653Z",
+    "dateReleased": "2021-01-30T19:23:48.597Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 349240,
+    "name": "Carpet Extra",
+    "authors": [
+      {
+        "name": "gnembon",
+        "url": "https://www.curseforge.com/members/100600533-gnembon?username=gnembon",
+        "projectId": 349240,
+        "id": 253695,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 100600533,
+        "twitchId": 92067066
+      }
+    ],
+    "attachments": [
+      {
+        "id": 233984,
+        "projectId": 349240,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/233/984/256/256/637075729860317546.png",
+        "title": "637075729860317546.png",
+        "url": "https://media.forgecdn.net/avatars/233/984/637075729860317546.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/carpet-extra",
+    "gameId": 432,
+    "summary": "Additional features for the carpet mod",
+    "defaultFileId": 3260208,
+    "downloadCount": 26684.0,
+    "latestFiles": [
+      {
+        "id": 3260208,
+        "displayName": "Carpet Extra v1.4.30 for 1.17",
+        "fileName": "carpet-extra-21w13a-1.4.30.jar",
+        "fileDate": "2021-04-02T22:06:23.493Z",
+        "fileLength": 163429,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/3260/208/carpet-extra-21w13a-1.4.30.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [
+          {
+            "id": 60424899,
+            "addonId": 349239,
+            "type": 3,
+            "fileId": 3260208
+          }
+        ],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "LICENSE",
+            "fingerprint": 1136524626,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 635258187,
+            "type": 3
+          },
+          {
+            "foldername": "carpet-extra.mixins.json",
+            "fingerprint": 855588222,
+            "type": 3
+          },
+          {
+            "foldername": "fabric.mod.json",
+            "fingerprint": 1468705687,
+            "type": 3
+          },
+          {
+            "foldername": "carpet-extra-refmap.json",
+            "fingerprint": 761456443,
+            "type": 3
+          },
+          {
+            "foldername": "META-INF",
+            "fingerprint": 2464251221,
+            "type": 3
+          },
+          {
+            "foldername": "carpetextra",
+            "fingerprint": 3387804109,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 3159930648,
+        "gameVersion": ["1.17", "Fabric"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0000000001.0000000017",
+            "gameVersion": "1.17",
+            "gameVersionReleaseDate": "2020-11-12T00:00:00Z",
+            "gameVersionName": "1.17"
+          },
+          {
+            "gameVersionPadded": "0",
+            "gameVersion": "",
+            "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+            "gameVersionName": "Fabric"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 2245802,
+        "fileLegacyMappingId": null,
+        "projectId": 349240,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 636739616,
+        "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+        "gameVersionMappingId": 2836240,
+        "gameVersionId": 4458,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 4780,
+        "name": "Fabric",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/fabric",
+        "avatarUrl": "https://media.forgecdn.net/avatars/182/502/636808438426582276.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349240,
+        "avatarId": 182502,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4558,
+        "name": "Redstone",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/redstone",
+        "avatarUrl": "https://media.forgecdn.net/avatars/32/937/635888173116238506.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349240,
+        "avatarId": 32937,
+        "gameId": 432
+      },
+      {
+        "categoryId": 419,
+        "name": "Magic",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/magic",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/34/635351496247862494.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349240,
+        "avatarId": 6034,
+        "gameId": 432
+      },
+      {
+        "categoryId": 425,
+        "name": "Miscellaneous",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/mc-miscellaneous",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/40/635351497693711265.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 349240,
+        "avatarId": 6040,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 425,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "carpet-extra",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.17",
+        "projectFileId": 3260208,
+        "projectFileName": "carpet-extra-21w13a-1.4.30.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.5",
+        "projectFileId": 3260207,
+        "projectFileName": "carpet-extra-1.16.5-1.4.30.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.4",
+        "projectFileId": 3260207,
+        "projectFileName": "carpet-extra-1.16.5-1.4.30.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.2",
+        "projectFileId": 3030944,
+        "projectFileName": "carpet-extra-1.16.2-1.4.8.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16",
+        "projectFileId": 2986669,
+        "projectFileName": "carpet-extra-1.16-1.4.0.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.2",
+        "projectFileId": 2986667,
+        "projectFileName": "carpet-extra-1.15.2-1.4.0.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.14.4",
+        "projectFileId": 2861160,
+        "projectFileName": "carpet-extra-1.14.4-1.3.5.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.1",
+        "projectFileId": 2855368,
+        "projectFileName": "carpet-extra-1.15.1-1.3.0.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 948.06219482421875,
+    "gamePopularityRank": 5045,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2021-04-02T22:08:14.98Z",
+    "dateCreated": "2019-10-25T04:03:06Z",
+    "dateReleased": "2021-04-02T22:06:23.493Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 409947,
+    "name": "Ceiling Carpets",
+    "authors": [
+      {
+        "name": "mc_Grimmauld",
+        "url": "https://www.curseforge.com/members/34372248-mc_grimmauld?username=mc_grimmauld",
+        "projectId": 409947,
+        "id": 319440,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 34372248,
+        "twitchId": 161649778
+      }
+    ],
+    "attachments": [
+      {
+        "id": 302335,
+        "projectId": 409947,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/302/335/256/256/637367095284005908.png",
+        "title": "637367095284005908.png",
+        "url": "https://media.forgecdn.net/avatars/302/335/637367095284005908.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/ceiling-carpets",
+    "gameId": 432,
+    "summary": "Put any carpet on your ceiling",
+    "defaultFileId": 3066082,
+    "downloadCount": 5598.0,
+    "latestFiles": [
+      {
+        "id": 3066082,
+        "displayName": "ceiling_carpets-mc1.16.1_v0.0.1.jar",
+        "fileName": "ceiling_carpets-mc1.16.1_v0.0.1.jar",
+        "fileDate": "2020-09-26T10:42:12.403Z",
+        "fileLength": 18480,
+        "releaseType": 2,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/3066/82/ceiling_carpets-mc1.16.1_v0.0.1.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "META-INF",
+            "fingerprint": 178634186,
+            "type": 3
+          },
+          {
+            "foldername": "mod",
+            "fingerprint": 4026922627,
+            "type": 3
+          },
+          {
+            "foldername": "pack.mcmeta",
+            "fingerprint": 470692222,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 2756681557,
+        "gameVersion": ["1.16.3", "1.16.1", "Forge", "1.16.2"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0000000001.0000000016.0000000003",
+            "gameVersion": "1.16.3",
+            "gameVersionReleaseDate": "2020-09-10T14:44:20.443Z",
+            "gameVersionName": "1.16.3"
+          },
+          {
+            "gameVersionPadded": "0000000001.0000000016.0000000001",
+            "gameVersion": "1.16.1",
+            "gameVersionReleaseDate": "2020-06-24T12:41:11.823Z",
+            "gameVersionName": "1.16.1"
+          },
+          {
+            "gameVersionPadded": "0",
+            "gameVersion": "",
+            "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+            "gameVersionName": "Forge"
+          },
+          {
+            "gameVersionPadded": "0000000001.0000000016.0000000002",
+            "gameVersion": "1.16.2",
+            "gameVersionReleaseDate": "2020-08-11T16:42:21.863Z",
+            "gameVersionName": "1.16.2"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 1998632,
+        "fileLegacyMappingId": null,
+        "projectId": 409947,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 526584085,
+        "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+        "gameVersionMappingId": 2447476,
+        "gameVersionId": 4458,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 424,
+        "name": "Cosmetic",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/cosmetic",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/39/635351497555976928.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 409947,
+        "avatarId": 6039,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 424,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "ceiling-carpets",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.16.3",
+        "projectFileId": 3066082,
+        "projectFileName": "ceiling_carpets-mc1.16.1_v0.0.1.jar",
+        "fileType": 2,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.1",
+        "projectFileId": 3066082,
+        "projectFileName": "ceiling_carpets-mc1.16.1_v0.0.1.jar",
+        "fileType": 2,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.2",
+        "projectFileId": 3066082,
+        "projectFileName": "ceiling_carpets-mc1.16.1_v0.0.1.jar",
+        "fileType": 2,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.2",
+        "projectFileId": 3066058,
+        "projectFileName": "ceiling_carpets-mc1.15.2_v0.0.1.jar",
+        "fileType": 2,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 358.07049560546875,
+    "gamePopularityRank": 5064,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2020-09-27T06:11:21.507Z",
+    "dateCreated": "2020-09-26T09:32:08.36Z",
+    "dateReleased": "2020-09-26T10:42:12.403Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 397510,
+    "name": "Carpet TIS Addition",
+    "authors": [
+      {
+        "name": "Fallen_Breath",
+        "url": "https://www.curseforge.com/members/101275287-fallen_breath?username=fallen_breath",
+        "projectId": 397510,
+        "id": 305948,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 101275287,
+        "twitchId": 280437403
+      }
+    ],
+    "attachments": [
+      {
+        "id": 288264,
+        "projectId": 397510,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/288/264/256/256/637311038502294807.png",
+        "title": "637311038502294807.png",
+        "url": "https://media.forgecdn.net/avatars/288/264/637311038502294807.png",
+        "status": 1
+      },
+      {
+        "id": 321845,
+        "projectId": 397510,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/321/845/310/172/snipaste_2020-11-09_23-38-55.png",
+        "title": "microTiming logger",
+        "url": "https://media.forgecdn.net/attachments/321/845/snipaste_2020-11-09_23-38-55.png",
+        "status": 1
+      },
+      {
+        "id": 325916,
+        "projectId": 397510,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media-cdn.overwolf.wtf/attachments/thumbnails/325/916/310/172/snipaste_2020-12-02_23-22-23.png",
+        "title": "LifeTime Tracker",
+        "url": "https://media-cdn.overwolf.wtf/attachments/325/916/snipaste_2020-12-02_23-22-23.png",
+        "status": 1
+      },
+      {
+        "id": 322272,
+        "projectId": 397510,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/322/272/310/172/snipaste_2020-11-11_23-19-14.png",
+        "title": "chunkTickSpeed rule",
+        "url": "https://media.forgecdn.net/attachments/322/272/snipaste_2020-11-11_23-19-14.png",
+        "status": 1
+      },
+      {
+        "id": 321846,
+        "projectId": 397510,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/321/846/310/172/snipaste_2020-11-09_23-38-41.png",
+        "title": "damage logger",
+        "url": "https://media.forgecdn.net/attachments/321/846/snipaste_2020-11-09_23-38-41.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/carpet-tis-addition",
+    "gameId": 432,
+    "summary": "A carpet mod extension with more features",
+    "defaultFileId": 3278754,
+    "downloadCount": 10059.0,
+    "latestFiles": [
+      {
+        "id": 3278754,
+        "displayName": "carpet-tis-addition-mc21w15a-1.16.1+build.551.jar",
+        "fileName": "carpet-tis-addition-mc21w15a-1.16.1+build.551.jar",
+        "fileDate": "2021-04-16T07:51:40.587Z",
+        "fileLength": 513445,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/3278/754/carpet-tis-addition-mc21w15a-1.16.1+build.551.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "LICENSE",
+            "fingerprint": 1136524626,
+            "type": 3
+          },
+          {
+            "foldername": "carpet-tis-addition.mixins.json",
+            "fingerprint": 1642965218,
+            "type": 3
+          },
+          {
+            "foldername": "carpet-tis-addition.accesswidener",
+            "fingerprint": 3592965587,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 2060811914,
+            "type": 3
+          },
+          {
+            "foldername": "fabric.mod.json",
+            "fingerprint": 2863106640,
+            "type": 3
+          },
+          {
+            "foldername": "carpet-tis-addition-refmap.json",
+            "fingerprint": 2996233172,
+            "type": 3
+          },
+          {
+            "foldername": "META-INF",
+            "fingerprint": 2464251221,
+            "type": 3
+          },
+          {
+            "foldername": "carpettisaddition",
+            "fingerprint": 910433054,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 2300692315,
+        "gameVersion": ["Fabric", "1.17-Snapshot"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0",
+            "gameVersion": "",
+            "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+            "gameVersionName": "Fabric"
+          },
+          {
+            "gameVersionPadded": "0000000001.0000000017",
+            "gameVersion": "1.17",
+            "gameVersionReleaseDate": "2021-03-18T00:00:00Z",
+            "gameVersionName": "1.17-Snapshot"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 2268792,
+        "fileLegacyMappingId": null,
+        "projectId": 397510,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 644927962,
+        "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+        "gameVersionMappingId": 2870327,
+        "gameVersionId": 7499,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 435,
+        "name": "Server Utility",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/server-utility",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/48/635351498950580836.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 397510,
+        "avatarId": 6048,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4558,
+        "name": "Redstone",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/redstone",
+        "avatarUrl": "https://media.forgecdn.net/avatars/32/937/635888173116238506.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 397510,
+        "avatarId": 32937,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4780,
+        "name": "Fabric",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/fabric",
+        "avatarUrl": "https://media.forgecdn.net/avatars/182/502/636808438426582276.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 397510,
+        "avatarId": 182502,
+        "gameId": 432
+      },
+      {
+        "categoryId": 425,
+        "name": "Miscellaneous",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/mc-miscellaneous",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/40/635351497693711265.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 397510,
+        "avatarId": 6040,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 425,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "carpet-tis-addition",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.16.4",
+        "projectFileId": 3278753,
+        "projectFileName": "carpet-tis-addition-mc1.16.5-1.16.1+build.550.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.5",
+        "projectFileId": 3278753,
+        "projectFileName": "carpet-tis-addition-mc1.16.5-1.16.1+build.550.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.2",
+        "projectFileId": 3278752,
+        "projectFileName": "carpet-tis-addition-mc1.15.2-1.16.1+build.548.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.14.4",
+        "projectFileId": 3278751,
+        "projectFileName": "carpet-tis-addition-mc1.14.4-1.16.1+build.549.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.17",
+        "projectFileId": 3216332,
+        "projectFileName": "carpet-tis-addition-mc21w08a-1.14.1+build.471.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.3",
+        "projectFileId": 3178385,
+        "projectFileName": "carpet-tis-addition-mc1.16.5-1.12.1+build.390.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.2",
+        "projectFileId": 3178385,
+        "projectFileName": "carpet-tis-addition-mc1.16.5-1.12.1+build.390.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.1",
+        "projectFileId": 3050009,
+        "projectFileName": "carpet-tis-addition-1.16-1.0.14+build.24.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16",
+        "projectFileId": 3050009,
+        "projectFileName": "carpet-tis-addition-1.16-1.0.14+build.24.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 466.52099609375,
+    "gamePopularityRank": 6100,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2021-04-16T07:52:50.277Z",
+    "dateCreated": "2020-07-23T12:24:10.167Z",
+    "dateReleased": "2021-04-16T07:51:40.587Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 315944,
+    "name": "Forged Carpet",
+    "authors": [
+      {
+        "name": "DeadlyMC_",
+        "url": "https://www.curseforge.com/members/49437049-deadlymc_?username=deadlymc_",
+        "projectId": 315944,
+        "id": 217905,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 49437049,
+        "twitchId": 209504436
+      }
+    ],
+    "attachments": [
+      {
+        "id": 193361,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/193/361/256/256/636867951299464388.png",
+        "title": "636867951299464388.png",
+        "url": "https://media.forgecdn.net/avatars/193/361/636867951299464388.png",
+        "status": 1
+      },
+      {
+        "id": 333575,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/333/575/256/256/637466549024938560.png",
+        "title": "637466549024938560.png",
+        "url": "https://media.forgecdn.net/avatars/333/575/637466549024938560.png",
+        "status": 1
+      },
+      {
+        "id": 335516,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/335/516/310/172/direwolf.png",
+        "title": "Forged carpet with Direwolf20",
+        "url": "https://media.forgecdn.net/attachments/335/516/direwolf.png",
+        "status": 1
+      },
+      {
+        "id": 335514,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/335/514/310/172/carpetlist.png",
+        "title": "/carpet list",
+        "url": "https://media.forgecdn.net/attachments/335/514/carpetlist.png",
+        "status": 1
+      },
+      {
+        "id": 335518,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/335/518/310/172/sevtech2.png",
+        "title": "Forged carpet with SevTechAges",
+        "url": "https://media.forgecdn.net/attachments/335/518/sevtech2.png",
+        "status": 1
+      },
+      {
+        "id": 335519,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/335/519/310/172/sevtech3.png",
+        "title": "Forged carpet with SevTechAges",
+        "url": "https://media.forgecdn.net/attachments/335/519/sevtech3.png",
+        "status": 1
+      },
+      {
+        "id": 335517,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/335/517/310/172/sevtech1.png",
+        "title": "Forged carpet with SevTechAges",
+        "url": "https://media.forgecdn.net/attachments/335/517/sevtech1.png",
+        "status": 1
+      },
+      {
+        "id": 335511,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/335/511/310/172/fakeplayers.png",
+        "title": "Fake players spawned with the /player command.",
+        "url": "https://media.forgecdn.net/attachments/335/511/fakeplayers.png",
+        "status": 1
+      },
+      {
+        "id": 335515,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/335/515/310/172/notchbrine.png",
+        "title": "More fake players.",
+        "url": "https://media.forgecdn.net/attachments/335/515/notchbrine.png",
+        "status": 1
+      },
+      {
+        "id": 335513,
+        "projectId": 315944,
+        "description": "",
+        "isDefault": false,
+        "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/335/513/310/172/carpet.png",
+        "title": "/carpet",
+        "url": "https://media.forgecdn.net/attachments/335/513/carpet.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/forgedcarpet",
+    "gameId": 432,
+    "summary": "Powerful toolbox with ultimate control for technical mc!",
+    "defaultFileId": 3186389,
+    "downloadCount": 2806.0,
+    "latestFiles": [
+      {
+        "id": 2680606,
+        "displayName": "Forged Carpet Alpha2 for 1.12.2",
+        "fileName": "ForgedCarpet-Alpha2.jar",
+        "fileDate": "2019-02-26T16:46:08.34Z",
+        "fileLength": 1299749,
+        "releaseType": 3,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/2680/606/ForgedCarpet-Alpha2.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "META-INF",
+            "fingerprint": 2750427395,
+            "type": 3
+          },
+          {
+            "foldername": "carpet",
+            "fingerprint": 4062883781,
+            "type": 3
+          },
+          {
+            "foldername": "mcmod.info",
+            "fingerprint": 903372403,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.bbFix.json",
+            "fingerprint": 3755158541,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.despawn.json",
+            "fingerprint": 91968811,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.llamafix.json",
+            "fingerprint": 1375846976,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.logging.json",
+            "fingerprint": 3086207833,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.miningghostblock.json",
+            "fingerprint": 4284268895,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.newlight.json",
+            "fingerprint": 1011909775,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.observertweak.json",
+            "fingerprint": 3656687403,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.permanant.json",
+            "fingerprint": 1095256070,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.pistonghostblock.json",
+            "fingerprint": 1817209413,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.refmap.json",
+            "fingerprint": 3618310284,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.rsturbo.json",
+            "fingerprint": 845976613,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.carpet.tnt.json",
+            "fingerprint": 4253158885,
+            "type": 3
+          },
+          {
+            "foldername": "org",
+            "fingerprint": 469879977,
+            "type": 3
+          },
+          {
+            "foldername": "pack.mcmeta",
+            "fingerprint": 3273911401,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 2367692998,
+        "gameVersion": ["Forge", "1.12.2"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0",
+            "gameVersion": "",
+            "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+            "gameVersionName": "Forge"
+          },
+          {
+            "gameVersionPadded": "0000000001.0000000012.0000000002",
+            "gameVersion": "1.12.2",
+            "gameVersionReleaseDate": "2017-09-18T05:00:00Z",
+            "gameVersionName": "1.12.2"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 1523514,
+        "fileLegacyMappingId": null,
+        "projectId": 315944,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 296960737,
+        "gameVersionDateReleased": "2017-09-18T05:00:00Z",
+        "gameVersionMappingId": 1762762,
+        "gameVersionId": 6756,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      },
+      {
+        "id": 3186389,
+        "displayName": "Forged Carpet v1.3.2 for 1.12.2",
+        "fileName": "forged-carpet-1.12.2-1.3.2.jar",
+        "fileDate": "2021-01-30T05:53:53.023Z",
+        "fileLength": 1323659,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/3186/389/forged-carpet-1.12.2-1.3.2.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "META-INF",
+            "fingerprint": 3268150916,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 1062121905,
+            "type": 3
+          },
+          {
+            "foldername": "carpet",
+            "fingerprint": 1736902754,
+            "type": 3
+          },
+          {
+            "foldername": "mcmod.info",
+            "fingerprint": 4214215251,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.forgedcarpet.json",
+            "fingerprint": 777063667,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.forgedcarpet.liteloader.json",
+            "fingerprint": 3584115460,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.forgedcarpet.logging.json",
+            "fingerprint": 2178088787,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.forgedcarpet.optifine.json",
+            "fingerprint": 2395890703,
+            "type": 3
+          },
+          {
+            "foldername": "mixins.forgedcarpet.refmap.json",
+            "fingerprint": 3998158548,
+            "type": 3
+          },
+          {
+            "foldername": "org",
+            "fingerprint": 1243905060,
+            "type": 3
+          },
+          {
+            "foldername": "pack.mcmeta",
+            "fingerprint": 612366480,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 2319482040,
+        "gameVersion": ["Forge", "1.12.2"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0",
+            "gameVersion": "",
+            "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+            "gameVersionName": "Forge"
+          },
+          {
+            "gameVersionPadded": "0000000001.0000000012.0000000002",
+            "gameVersion": "1.12.2",
+            "gameVersionReleaseDate": "2017-09-18T05:00:00Z",
+            "gameVersionName": "1.12.2"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 2149400,
+        "fileLegacyMappingId": null,
+        "projectId": 315944,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 596109723,
+        "gameVersionDateReleased": "2017-09-18T05:00:00Z",
+        "gameVersionMappingId": 2684430,
+        "gameVersionId": 6756,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 419,
+        "name": "Magic",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/magic",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/34/635351496247862494.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 315944,
+        "avatarId": 6034,
+        "gameId": 432
+      },
+      {
+        "categoryId": 425,
+        "name": "Miscellaneous",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/mc-miscellaneous",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/40/635351497693711265.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 315944,
+        "avatarId": 6040,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4558,
+        "name": "Redstone",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/redstone",
+        "avatarUrl": "https://media.forgecdn.net/avatars/32/937/635888173116238506.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 315944,
+        "avatarId": 32937,
+        "gameId": 432
+      },
+      {
+        "categoryId": 435,
+        "name": "Server Utility",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/server-utility",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/48/635351498950580836.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 315944,
+        "avatarId": 6048,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 425,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "forgedcarpet",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.12.2",
+        "projectFileId": 3186389,
+        "projectFileName": "forged-carpet-1.12.2-1.3.2.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.12.2",
+        "projectFileId": 2680606,
+        "projectFileName": "ForgedCarpet-Alpha2.jar",
+        "fileType": 3,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 138.25660705566406,
+    "gamePopularityRank": 11974,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2021-01-30T05:59:46.397Z",
+    "dateCreated": "2019-02-26T16:25:29.917Z",
+    "dateReleased": "2021-01-30T05:53:53.023Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 441529,
+    "name": "Ivan Carpet Addition",
+    "authors": [
+      {
+        "name": "Ivan_YFw",
+        "url": "https://www.curseforge.com/members/101223205-ivan_yfw?username=ivan_yfw",
+        "projectId": 441529,
+        "id": 353442,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 101223205,
+        "twitchId": 453686997
+      }
+    ],
+    "attachments": [
+      {
+        "id": 337815,
+        "projectId": 441529,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/337/815/256/256/637475888648177409.png",
+        "title": "637475888648177409.png",
+        "url": "https://media.forgecdn.net/avatars/337/815/637475888648177409.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/ivan-carpet-addition",
+    "gameId": 432,
+    "summary": "Add more useful tools and interesting features",
+    "defaultFileId": 3217799,
+    "downloadCount": 298.0,
+    "latestFiles": [
+      {
+        "id": 3217799,
+        "displayName": "ivan-carpet-addition-mc1.16.4-1.4.0+build.101.jar",
+        "fileName": "ivan-carpet-addition-mc1.16.4-1.4.0+build.101.jar",
+        "fileDate": "2021-02-26T11:38:39.807Z",
+        "fileLength": 66780,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/3217/799/ivan-carpet-addition-mc1.16.4-1.4.0+build.101.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "LICENSE_ivan-carpet-addition",
+            "fingerprint": 1136524626,
+            "type": 3
+          },
+          {
+            "foldername": "fabric.mod.json",
+            "fingerprint": 765672987,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 2321129924,
+            "type": 3
+          },
+          {
+            "foldername": "ivan-carpet-addition.mixins.json",
+            "fingerprint": 1733212360,
+            "type": 3
+          },
+          {
+            "foldername": "ivan-carpet-addition-refmap.json",
+            "fingerprint": 799276471,
+            "type": 3
+          },
+          {
+            "foldername": "META-INF",
+            "fingerprint": 2464251221,
+            "type": 3
+          },
+          {
+            "foldername": "me",
+            "fingerprint": 2782565977,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 3878849635,
+        "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0",
+            "gameVersion": "",
+            "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+            "gameVersionName": "Fabric"
+          },
+          {
+            "gameVersionPadded": "0000000001.0000000016.0000000005",
+            "gameVersion": "1.16.5",
+            "gameVersionReleaseDate": "2021-01-15T14:14:48.91Z",
+            "gameVersionName": "1.16.5"
+          },
+          {
+            "gameVersionPadded": "0000000001.0000000016.0000000004",
+            "gameVersion": "1.16.4",
+            "gameVersionReleaseDate": "2020-11-02T18:40:51.49Z",
+            "gameVersionName": "1.16.4"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 2190277,
+        "fileLegacyMappingId": null,
+        "projectId": 441529,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 613151559,
+        "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+        "gameVersionMappingId": 2751770,
+        "gameVersionId": 4458,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 4780,
+        "name": "Fabric",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/fabric",
+        "avatarUrl": "https://media.forgecdn.net/avatars/182/502/636808438426582276.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 441529,
+        "avatarId": 182502,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4558,
+        "name": "Redstone",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/redstone",
+        "avatarUrl": "https://media.forgecdn.net/avatars/32/937/635888173116238506.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 441529,
+        "avatarId": 32937,
+        "gameId": 432
+      },
+      {
+        "categoryId": 435,
+        "name": "Server Utility",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/server-utility",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/48/635351498950580836.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 441529,
+        "avatarId": 6048,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 4558,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "ivan-carpet-addition",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.16.5",
+        "projectFileId": 3217799,
+        "projectFileName": "ivan-carpet-addition-mc1.16.4-1.4.0+build.101.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.4",
+        "projectFileId": 3217799,
+        "projectFileName": "ivan-carpet-addition-mc1.16.4-1.4.0+build.101.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.15.2",
+        "projectFileId": 3217798,
+        "projectFileName": "ivan-carpet-addition-mc1.15.2-1.4.0+build.103.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.14.4",
+        "projectFileId": 3217797,
+        "projectFileName": "ivan-carpet-addition-mc1.14.4-1.4.0+build.105.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.17",
+        "projectFileId": 3207151,
+        "projectFileName": "ivan-carpet-addition-mc21w06a-1.2.0+build.53.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 70.811698913574219,
+    "gamePopularityRank": 14400,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2021-02-26T11:39:28.08Z",
+    "dateCreated": "2021-01-30T07:34:24.787Z",
+    "dateReleased": "2021-02-26T11:38:39.807Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 229429,
+    "name": "Weather Carpets Mod",
+    "authors": [
+      {
+        "name": "Mitchellbrine",
+        "url": "https://www.curseforge.com/members/9148645-mitchellbrine?username=mitchellbrine",
+        "projectId": 229429,
+        "id": 21716,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 9148645,
+        "twitchId": 46558867
+      }
+    ],
+    "attachments": [
+      {
+        "id": 16200,
+        "projectId": 229429,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/16/200/256/256/635642989430601323.png",
+        "title": "635642989430601323.png",
+        "url": "https://media.forgecdn.net/avatars/16/200/635642989430601323.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/weather-carpets-mod",
+    "gameId": 432,
+    "summary": "In a world, where upholstery can manage to change the world around you... ",
+    "defaultFileId": 2233679,
+    "downloadCount": 2370.0,
+    "latestFiles": [
+      {
+        "id": 2233679,
+        "displayName": "Weather Carpets Mod-1.2.5.jar",
+        "fileName": "Weather Carpets Mod-1.2.5.jar",
+        "fileDate": "2015-04-11T02:40:25.43Z",
+        "fileLength": 1387575,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/2233/679/Weather Carpets Mod-1.2.5.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "meta-inf",
+            "fingerprint": 2464251221,
+            "type": 3
+          },
+          {
+            "foldername": "mc",
+            "fingerprint": 1632997207,
+            "type": 3
+          },
+          {
+            "foldername": "logo.png",
+            "fingerprint": 887352011,
+            "type": 3
+          },
+          {
+            "foldername": "mcmod.info",
+            "fingerprint": 1565494293,
+            "type": 3
+          },
+          {
+            "foldername": "thumbs.db",
+            "fingerprint": 3682849097,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 2692804681,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 3942261964,
+        "gameVersion": ["1.7.10"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0000000001.0000000007.0000000010",
+            "gameVersion": "1.7.10",
+            "gameVersionReleaseDate": "2014-06-16T00:00:00Z",
+            "gameVersionName": "1.7.10"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": true,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 3253,
+        "fileLegacyMappingId": null,
+        "projectId": 229429,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 17997854,
+        "gameVersionDateReleased": "2014-06-16T00:00:00Z",
+        "gameVersionMappingId": 81280,
+        "gameVersionId": 4449,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 423,
+        "name": "Map and Information",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/map-information",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/38/635351497437388438.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 229429,
+        "avatarId": 6038,
+        "gameId": 432
+      },
+      {
+        "categoryId": 419,
+        "name": "Magic",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/magic",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/34/635351496247862494.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 229429,
+        "avatarId": 6034,
+        "gameId": 432
+      },
+      {
+        "categoryId": 424,
+        "name": "Cosmetic",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/cosmetic",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/39/635351497555976928.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 229429,
+        "avatarId": 6039,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 419,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "weather-carpets-mod",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.7.10",
+        "projectFileId": 2233679,
+        "projectFileName": "Weather Carpets Mod-1.2.5.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 17.772600173950195,
+    "gamePopularityRank": 18204,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2015-04-11T02:43:46.963Z",
+    "dateCreated": "2015-04-11T02:39:15.48Z",
+    "dateReleased": "2015-04-11T02:40:25.43Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 443142,
+    "name": "Carpet-Mod without /player",
+    "authors": [
+      {
+        "name": "MineAndDine96",
+        "url": "https://www.curseforge.com/members/101905494-mineanddine96?username=mineanddine96",
+        "projectId": 443142,
+        "id": 355173,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 101905494,
+        "twitchId": 645728497
+      },
+      {
+        "name": "DillonB07",
+        "url": "https://www.curseforge.com/members/101635165-dillonb07?username=dillonb07",
+        "projectId": 443142,
+        "id": 355576,
+        "projectTitleId": 2,
+        "projectTitleTitle": "Author",
+        "userId": 101635165,
+        "twitchId": 518600363
+      }
+    ],
+    "attachments": [
+      {
+        "id": 339628,
+        "projectId": 443142,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/339/628/256/256/637480207075002054.png",
+        "title": "637480207075002054.png",
+        "url": "https://media.forgecdn.net/avatars/339/628/637480207075002054.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/carpet-without-player",
+    "gameId": 432,
+    "summary": "A carpet mod version without the /player command.",
+    "defaultFileId": 3199016,
+    "downloadCount": 925.0,
+    "latestFiles": [
+      {
+        "id": 3199016,
+        "displayName": "fabric-carpet-1.15.2-1.4.8+v200811.jar",
+        "fileName": "fabric-carpet-1.15.2-1.4.8+v200811.jar",
+        "fileDate": "2021-02-10T10:37:57.77Z",
+        "fileLength": 1013862,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/3199/16/fabric-carpet-1.15.2-1.4.8+v200811.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "LICENSE",
+            "fingerprint": 1543082860,
+            "type": 3
+          },
+          {
+            "foldername": "carpet.accesswidener",
+            "fingerprint": 768960206,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 848336770,
+            "type": 3
+          },
+          {
+            "foldername": "carpet.mixins.json",
+            "fingerprint": 3312009109,
+            "type": 3
+          },
+          {
+            "foldername": "fabric.mod.json",
+            "fingerprint": 3044326567,
+            "type": 3
+          },
+          {
+            "foldername": "fabric-carpet-refmap.json",
+            "fingerprint": 3278154808,
+            "type": 3
+          },
+          {
+            "foldername": "META-INF",
+            "fingerprint": 2464251221,
+            "type": 3
+          },
+          {
+            "foldername": "carpet",
+            "fingerprint": 1236070606,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 3802414445,
+        "gameVersion": ["1.15.2"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0000000001.0000000015.0000000002",
+            "gameVersion": "1.15.2",
+            "gameVersionReleaseDate": "2020-01-22T00:00:00Z",
+            "gameVersionName": "1.15.2"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 2165754,
+        "fileLegacyMappingId": null,
+        "projectId": 443142,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 602992652,
+        "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+        "gameVersionMappingId": 2712081,
+        "gameVersionId": 4458,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 421,
+        "name": "API and Library",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/library-api",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/36/635351496947765531.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 443142,
+        "avatarId": 6036,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4780,
+        "name": "Fabric",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/fabric",
+        "avatarUrl": "https://media.forgecdn.net/avatars/182/502/636808438426582276.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 443142,
+        "avatarId": 182502,
+        "gameId": 432
+      },
+      {
+        "categoryId": 435,
+        "name": "Server Utility",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/server-utility",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/48/635351498950580836.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 443142,
+        "avatarId": 6048,
+        "gameId": 432
+      },
+      {
+        "categoryId": 4558,
+        "name": "Redstone",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/redstone",
+        "avatarUrl": "https://media.forgecdn.net/avatars/32/937/635888173116238506.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 443142,
+        "avatarId": 32937,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 435,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "carpet-without-player",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.15.2",
+        "projectFileId": 3199016,
+        "projectFileName": "fabric-carpet-1.15.2-1.4.8+v200811.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.5",
+        "projectFileId": 3196885,
+        "projectFileName": "fabric-carpet-1.16.5-1.4.25+v210208.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      },
+      {
+        "gameVersion": "1.16.4",
+        "projectFileId": 3196885,
+        "projectFileName": "fabric-carpet-1.16.5-1.4.25+v210208.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 35.113498687744141,
+    "gamePopularityRank": 21446,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2021-02-10T10:38:27.527Z",
+    "dateCreated": "2021-02-04T07:31:47.48Z",
+    "dateReleased": "2021-02-10T10:37:57.77Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 417744,
+    "name": "Carpet Wood",
+    "authors": [
+      {
+        "name": "s4ncho0",
+        "url": "https://www.curseforge.com/members/27830339-s4ncho0?username=s4ncho0",
+        "projectId": 417744,
+        "id": 327852,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 27830339,
+        "twitchId": 138734461
+      }
+    ],
+    "attachments": [
+      {
+        "id": 311195,
+        "projectId": 417744,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/311/195/256/256/637401687513472260.jpeg",
+        "title": "637401687513472260.jpeg",
+        "url": "https://media.forgecdn.net/avatars/311/195/637401687513472260.jpeg",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/carpet-wood",
+    "gameId": 432,
+    "summary": "This Mod adds wooden Carpets",
+    "defaultFileId": 3102779,
+    "downloadCount": 151.0,
+    "latestFiles": [
+      {
+        "id": 3102779,
+        "displayName": "Carpet Wood v1.0",
+        "fileName": "Carpet Wood.jar",
+        "fileDate": "2020-11-05T10:27:15.06Z",
+        "fileLength": 53161,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/3102/779/Carpet Wood.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "META-INF",
+            "fingerprint": 1539500814,
+            "type": 3
+          },
+          {
+            "foldername": "net",
+            "fingerprint": 832751466,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 80860017,
+            "type": 3
+          },
+          {
+            "foldername": "mcmod.info",
+            "fingerprint": 3045757713,
+            "type": 3
+          },
+          {
+            "foldername": "pack.mcmeta",
+            "fingerprint": 294018690,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 4139456368,
+        "gameVersion": ["1.12.2"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0000000001.0000000012.0000000002",
+            "gameVersion": "1.12.2",
+            "gameVersionReleaseDate": "2017-09-18T05:00:00Z",
+            "gameVersionName": "1.12.2"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": false,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 4,
+        "renderCacheId": 2043060,
+        "fileLegacyMappingId": null,
+        "projectId": 417744,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 548548473,
+        "gameVersionDateReleased": "2017-09-18T05:00:00Z",
+        "gameVersionMappingId": 2515572,
+        "gameVersionId": 6756,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 422,
+        "name": "Adventure and RPG",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/adventure-rpg",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/37/635351497295252123.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 417744,
+        "avatarId": 6037,
+        "gameId": 432
+      },
+      {
+        "categoryId": 424,
+        "name": "Cosmetic",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/cosmetic",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/39/635351497555976928.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 417744,
+        "avatarId": 6039,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 424,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "carpet-wood",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.12.2",
+        "projectFileId": 3102779,
+        "projectFileName": "Carpet Wood.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 31.17919921875,
+    "gamePopularityRank": 21685,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2020-11-05T22:46:27.91Z",
+    "dateCreated": "2020-11-05T10:25:51.313Z",
+    "dateReleased": "2020-11-05T10:27:15.06Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 264320,
+    "name": "No Collide Carpets",
+    "authors": [
+      {
+        "name": "Forge_User_80550287",
+        "url": "https://www.curseforge.com/members/27367196-forge_user_80550287?username=Forge_User_80550287",
+        "projectId": 264320,
+        "id": 160659,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 27367196,
+        "twitchId": 162838163
+      }
+    ],
+    "attachments": [
+      {
+        "id": 94090,
+        "projectId": 264320,
+        "description": "",
+        "isDefault": true,
+        "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/94/90/256/256/636267550842077660.png",
+        "title": "636267550842077660.png",
+        "url": "https://media.forgecdn.net/avatars/94/90/636267550842077660.png",
+        "status": 1
+      }
+    ],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/no-collide-carpets",
+    "gameId": 432,
+    "summary": "Stops those carpets from being so annoying!",
+    "defaultFileId": 2405872,
+    "downloadCount": 767.0,
+    "latestFiles": [
+      {
+        "id": 2405872,
+        "displayName": "No Collide Carpets (Version 1.1 - 1.11.2)",
+        "fileName": "NoCollideCarpets-v1.1.jar",
+        "fileDate": "2017-04-11T23:44:46.367Z",
+        "fileLength": 119509,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/2405/872/NoCollideCarpets-v1.1.jar",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "META-INF",
+            "fingerprint": 2464251221,
+            "type": 3
+          },
+          {
+            "foldername": "com",
+            "fingerprint": 4171897750,
+            "type": 3
+          },
+          {
+            "foldername": "assets",
+            "fingerprint": 2046322130,
+            "type": 3
+          },
+          {
+            "foldername": "mcmod.info",
+            "fingerprint": 4173344238,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 3358595991,
+        "gameVersion": ["1.11.2"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0000000001.0000000011.0000000002",
+            "gameVersion": "1.11.2",
+            "gameVersionReleaseDate": "2016-12-21T06:00:00Z",
+            "gameVersionName": "1.11.2"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": true,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 8,
+        "renderCacheId": 152123,
+        "fileLegacyMappingId": null,
+        "projectId": 264320,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 167130703,
+        "gameVersionDateReleased": "2016-12-21T06:00:00Z",
+        "gameVersionMappingId": 1308551,
+        "gameVersionId": 6452,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 435,
+        "name": "Server Utility",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/server-utility",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/48/635351498950580836.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 264320,
+        "avatarId": 6048,
+        "gameId": 432
+      },
+      {
+        "categoryId": 425,
+        "name": "Miscellaneous",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/mc-miscellaneous",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/40/635351497693711265.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 264320,
+        "avatarId": 6040,
+        "gameId": 432
+      },
+      {
+        "categoryId": 424,
+        "name": "Cosmetic",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/cosmetic",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/39/635351497555976928.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 264320,
+        "avatarId": 6039,
+        "gameId": 432
+      },
+      {
+        "categoryId": 423,
+        "name": "Map and Information",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/map-information",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/38/635351497437388438.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 264320,
+        "avatarId": 6038,
+        "gameId": 432
+      }
+    ],
+    "status": 4,
+    "primaryCategoryId": 425,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "no-collide-carpets",
+    "gameVersionLatestFiles": [
+      {
+        "gameVersion": "1.11.2",
+        "projectFileId": 2405872,
+        "projectFileName": "NoCollideCarpets-v1.1.jar",
+        "fileType": 1,
+        "gameVersionFlavor": null
+      }
+    ],
+    "isFeatured": false,
+    "popularityScore": 9.675999641418457,
+    "gamePopularityRank": 27335,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2017-04-11T23:50:28.933Z",
+    "dateCreated": "2017-04-02T23:38:04.177Z",
+    "dateReleased": "2017-04-11T23:44:46.367Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  },
+  {
+    "id": 40519,
+    "name": "Carpet Mod",
+    "authors": [
+      {
+        "name": "_ForgeUser8903789",
+        "url": "https://www.curseforge.com/members/8903789-_forgeuser8903789?username=_ForgeUser8903789",
+        "projectId": 40519,
+        "id": 6372,
+        "projectTitleId": null,
+        "projectTitleTitle": null,
+        "userId": 8903789,
+        "twitchId": null
+      }
+    ],
+    "attachments": [],
+    "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/carpet-mod",
+    "gameId": 432,
+    "summary": "This Adds Some Carpets",
+    "defaultFileId": 597254,
+    "downloadCount": 1363.0,
+    "latestFiles": [
+      {
+        "id": 597254,
+        "displayName": "CarpetMod_V2.zip",
+        "fileName": "CarpetMod_V2.zip",
+        "fileDate": "2012-06-09T01:14:44.03Z",
+        "fileLength": 24728,
+        "releaseType": 1,
+        "fileStatus": 4,
+        "downloadUrl": "https://edge.forgecdn.net/files/597/254/CarpetMod_V2.zip",
+        "isAlternate": false,
+        "alternateFileId": 0,
+        "dependencies": [],
+        "isAvailable": true,
+        "modules": [
+          {
+            "foldername": "BlockCarpetSlab5.class",
+            "fingerprint": 3008760164,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlabMain.class",
+            "fingerprint": 1201811597,
+            "type": 3
+          },
+          {
+            "foldername": "BlockThinCarpetSlabMain.class",
+            "fingerprint": 1513283083,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab2.class",
+            "fingerprint": 1711791492,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab.class",
+            "fingerprint": 412747463,
+            "type": 3
+          },
+          {
+            "foldername": "mod_carpet.class",
+            "fingerprint": 2865718289,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab9.class",
+            "fingerprint": 585732239,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab10.class",
+            "fingerprint": 1611891394,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab3.class",
+            "fingerprint": 2862717799,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab13.class",
+            "fingerprint": 313938320,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab14.class",
+            "fingerprint": 3875267706,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab7.class",
+            "fingerprint": 2906562554,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab4.class",
+            "fingerprint": 1126676030,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab6.class",
+            "fingerprint": 634325913,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab15.class",
+            "fingerprint": 453465133,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab8.class",
+            "fingerprint": 1655572996,
+            "type": 3
+          },
+          {
+            "foldername": "BlockTexture",
+            "fingerprint": 245612850,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab12.class",
+            "fingerprint": 2499309586,
+            "type": 3
+          },
+          {
+            "foldername": "BlockCarpetSlab11.class",
+            "fingerprint": 492898693,
+            "type": 3
+          }
+        ],
+        "packageFingerprint": 2305580451,
+        "gameVersion": ["CB 1.2.5-R3.0"],
+        "sortableGameVersion": [
+          {
+            "gameVersionPadded": "0000000001.0000000002.0000000005.0000000003",
+            "gameVersion": "1.2.5.3.0",
+            "gameVersionReleaseDate": "2012-05-26T00:00:00Z",
+            "gameVersionName": "CB 1.2.5-R3.0"
+          }
+        ],
+        "installMetadata": null,
+        "changelog": null,
+        "hasInstallScript": false,
+        "isCompatibleWithClient": true,
+        "categorySectionPackageType": 6,
+        "restrictProjectFileAccess": 1,
+        "projectStatus": 7,
+        "renderCacheId": 21193,
+        "fileLegacyMappingId": null,
+        "projectId": 40519,
+        "parentProjectFileId": null,
+        "parentFileLegacyMappingId": null,
+        "fileTypeId": null,
+        "exposeAsAlternative": null,
+        "packageFingerprintId": 351721,
+        "gameVersionDateReleased": "2012-05-26T00:00:00Z",
+        "gameVersionMappingId": 11196,
+        "gameVersionId": 209,
+        "gameId": 432,
+        "isServerPack": false,
+        "serverPackFileId": null,
+        "gameVersionFlavor": null
+      }
+    ],
+    "categories": [
+      {
+        "categoryId": 408,
+        "name": "Ores and Resources",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/world-gen/world-ores-resources",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/23/635351494012336510.png",
+        "parentId": 406,
+        "rootId": 6,
+        "projectId": 40519,
+        "avatarId": 6023,
+        "gameId": 432
+      },
+      {
+        "categoryId": 424,
+        "name": "Cosmetic",
+        "url": "https://www.curseforge.com/minecraft/mc-mods/cosmetic",
+        "avatarUrl": "https://media.forgecdn.net/avatars/6/39/635351497555976928.png",
+        "parentId": 6,
+        "rootId": 6,
+        "projectId": 40519,
+        "avatarId": 6039,
+        "gameId": 432
+      }
+    ],
+    "status": 7,
+    "primaryCategoryId": 408,
+    "categorySection": {
+      "id": 8,
+      "gameId": 432,
+      "name": "Mods",
+      "packageType": 6,
+      "path": "mods",
+      "initialInclusionPattern": ".",
+      "extraIncludePattern": null,
+      "gameCategoryId": 6
+    },
+    "slug": "carpet-mod",
+    "gameVersionLatestFiles": [],
+    "isFeatured": false,
+    "popularityScore": 8.3355998992919922,
+    "gamePopularityRank": 40400,
+    "primaryLanguage": "enUS",
+    "gameSlug": "minecraft",
+    "gameName": "Minecraft",
+    "portalName": "www.curseforge.com",
+    "dateModified": "2014-04-10T16:32:44.747Z",
+    "dateCreated": "2012-06-08T01:59:17.73Z",
+    "dateReleased": "2012-06-09T01:14:44.03Z",
+    "isAvailable": true,
+    "isExperiemental": false
+  }
+]

@@ -7,7 +7,7 @@ class ReleaseTypes(Enum):
     stable = "stable"
     beta = "beta"
     alpha = "alpha"
-    invalid = "invalid"
+    unknown = "invalid"
 
 
 class VersionInfo:

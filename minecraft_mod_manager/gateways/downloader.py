@@ -1,5 +1,7 @@
 import re
 from os import path
+from typing import Any
+
 import requests
 from requests.models import Response
 
@@ -11,9 +13,15 @@ _user_agent = (
     "user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) "
     + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"
 )
+_headers = {"User-Agent": _user_agent}
 
 
 class Downloader:
+    @staticmethod
+    def get(url: str) -> Any:
+        with requests.get(url, headers=_headers) as response:
+            return response.json()
+
     @staticmethod
     def download(url: str, filename: str) -> str:
         """Download the specified mod
@@ -25,9 +33,7 @@ class Downloader:
         if config.pretend:
             return filename
 
-        headers = {"User-Agent": _user_agent}
-
-        with requests.get(url, headers=headers) as response:
+        with requests.get(url, headers=_headers) as response:
 
             if len(filename) == 0:
                 filename = Downloader._get_filename(response)

@@ -1,0 +1,3947 @@
+[
+  {
+    "id": 2918924,
+    "displayName": "fabric-carpet-20w13b-1.3.17+v200401.jar",
+    "fileName": "fabric-carpet-20w13b-1.3.17+v200401.jar",
+    "fileDate": "2020-04-02T02:27:02.687Z",
+    "fileLength": 841027,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2918/924/fabric-carpet-20w13b-1.3.17+v200401.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3630346566
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2661675182
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1509151940
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2937790196
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1118330692
+      }
+    ],
+    "packageFingerprint": 2369833318,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2815968,
+    "displayName": "fabric-carpet-1.14.4-1.2.0+v191024.jar",
+    "fileName": "fabric-carpet-1.14.4-1.2.0+v191024.jar",
+    "fileDate": "2019-10-25T03:54:48.237Z",
+    "fileLength": 706773,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2815/968/fabric-carpet-1.14.4-1.2.0+v191024.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3839156203
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2548482506
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 859158650
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1790362765
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1284448042
+      }
+    ],
+    "packageFingerprint": 1344501363,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3030942,
+    "displayName": "fabric-carpet-1.16.2-1.4.8+v200811.jar",
+    "fileName": "fabric-carpet-1.16.2-1.4.8+v200811.jar",
+    "fileDate": "2020-08-13T06:08:04.28Z",
+    "fileLength": 1074429,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3030/942/fabric-carpet-1.16.2-1.4.8+v200811.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 885814776
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 857827928
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2854605762
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3853218968
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1211474
+      }
+    ],
+    "packageFingerprint": 81146453,
+    "gameVersion": ["Fabric", "1.16.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2841966,
+    "displayName": "fabric-carpet-1.15.1-pre1-1.3.1+v191212.jar",
+    "fileName": "fabric-carpet-1.15.1-pre1-1.3.1+v191212.jar",
+    "fileDate": "2019-12-13T05:37:34.09Z",
+    "fileLength": 743316,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2841/966/fabric-carpet-1.15.1-pre1-1.3.1+v191212.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3652674191
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3924912193
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1322109193
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 4017501556
+      }
+    ],
+    "packageFingerprint": 2137751535,
+    "gameVersion": ["1.15-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2889569,
+    "displayName": "fabric-carpet-1.15.2-1.3.12+v200226.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.12+v200226.jar",
+    "fileDate": "2020-02-27T02:22:37.387Z",
+    "fileLength": 827118,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2889/569/fabric-carpet-1.15.2-1.3.12+v200226.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 174090363
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3426152126
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 256227259
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1178657514
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 504249382
+      }
+    ],
+    "packageFingerprint": 710653418,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2931096,
+    "displayName": "fabric-carpet-1.15.2-1.3.19+v200415.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.19+v200415.jar",
+    "fileDate": "2020-04-15T19:41:54.75Z",
+    "fileLength": 856621,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2931/96/fabric-carpet-1.15.2-1.3.19+v200415.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2208425421
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2896679970
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 4179721455
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 863895406
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3727500709
+      }
+    ],
+    "packageFingerprint": 911924417,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2838966,
+    "displayName": "fabric-carpet-1.14.4-1.2.6+v191209.jar",
+    "fileName": "fabric-carpet-1.14.4-1.2.6+v191209.jar",
+    "fileDate": "2019-12-09T15:16:40.523Z",
+    "fileLength": 730524,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2838/966/fabric-carpet-1.14.4-1.2.6+v191209.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 4136959686
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 356555684
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3811099108
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 636513508
+      }
+    ],
+    "packageFingerprint": 71734701,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2827034,
+    "displayName": "fabric-carpet-1.14.4-1.2.3+v191113.jar",
+    "fileName": "fabric-carpet-1.14.4-1.2.3+v191113.jar",
+    "fileDate": "2019-11-14T02:10:36.387Z",
+    "fileLength": 719371,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2827/34/fabric-carpet-1.14.4-1.2.3+v191113.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3429435806
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1958823127
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2104673313
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 905649303
+      }
+    ],
+    "packageFingerprint": 1405091032,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3069670,
+    "displayName": "fabric-carpet-1.16.3-1.4.12+v201001.jar",
+    "fileName": "fabric-carpet-1.16.3-1.4.12+v201001.jar",
+    "fileDate": "2020-10-01T14:51:03.14Z",
+    "fileLength": 1098967,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3069/670/fabric-carpet-1.16.3-1.4.12+v201001.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2725612700
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2652598762
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2588615559
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2773532186
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 4195248160
+      }
+    ],
+    "packageFingerprint": 538258008,
+    "gameVersion": ["1.16.3", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3030941,
+    "displayName": "fabric-carpet-1.15.2-1.4.8+v200811.jar",
+    "fileName": "fabric-carpet-1.15.2-1.4.8+v200811.jar",
+    "fileDate": "2020-08-13T06:07:20.757Z",
+    "fileLength": 1070655,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3030/941/fabric-carpet-1.15.2-1.4.8+v200811.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3044326567
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3312009109
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2158121268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3455922540
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1372697390
+      }
+    ],
+    "packageFingerprint": 878357377,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2838967,
+    "displayName": "fabric-carpet-1.15-pre7-1.2.6+v191209.jar",
+    "fileName": "fabric-carpet-1.15-pre7-1.2.6+v191209.jar",
+    "fileDate": "2019-12-09T15:17:14.78Z",
+    "fileLength": 734869,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2838/967/fabric-carpet-1.15-pre7-1.2.6+v191209.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2871014125
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1397689991
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1431070099
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1150407837
+      }
+    ],
+    "packageFingerprint": 4238356574,
+    "gameVersion": ["1.15-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2894591,
+    "displayName": "fabric-carpet-20w10a-1.3.13+v200304.jar",
+    "fileName": "fabric-carpet-20w10a-1.3.13+v200304.jar",
+    "fileDate": "2020-03-05T01:50:25.513Z",
+    "fileLength": 833371,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2894/591/fabric-carpet-20w10a-1.3.13+v200304.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 733763109
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2670193117
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1509151940
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2982242492
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2075783625
+      }
+    ],
+    "packageFingerprint": 1327068746,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2922345,
+    "displayName": "fabric-carpet-20w14a-1.3.17+v200401.jar",
+    "fileName": "fabric-carpet-20w14a-1.3.17+v200401.jar",
+    "fileDate": "2020-04-06T03:54:20.367Z",
+    "fileLength": 841342,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2922/345/fabric-carpet-20w14a-1.3.17+v200401.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3630346566
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2661675182
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1509151940
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 556435101
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1439388711
+      }
+    ],
+    "packageFingerprint": 3024019265,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2924397,
+    "displayName": "fabric-carpet-1.15.2-1.3.18+v200408.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.18+v200408.jar",
+    "fileDate": "2020-04-08T15:40:58.023Z",
+    "fileLength": 840900,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2924/397/fabric-carpet-1.15.2-1.3.18+v200408.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 4127506883
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1014456969
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 256227259
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1250864865
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2082087947
+      }
+    ],
+    "packageFingerprint": 1581315020,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2905031,
+    "displayName": "fabric-carpet-20w12a-1.3.15+v200318.jar",
+    "fileName": "fabric-carpet-20w12a-1.3.15+v200318.jar",
+    "fileDate": "2020-03-19T00:51:38.27Z",
+    "fileLength": 829762,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2905/31/fabric-carpet-20w12a-1.3.15+v200318.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1127363080
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2755398066
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1509151940
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 681768274
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2217686622
+      }
+    ],
+    "packageFingerprint": 1699090902,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3054823,
+    "displayName": "fabric-carpet-1.16.3-1.4.11+v200910.jar",
+    "fileName": "fabric-carpet-1.16.3-1.4.11+v200910.jar",
+    "fileDate": "2020-09-11T20:15:30.21Z",
+    "fileLength": 1091669,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3054/823/fabric-carpet-1.16.3-1.4.11+v200910.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3156570767
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2443826179
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3652924603
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3078217606
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1348423967
+      }
+    ],
+    "packageFingerprint": 429008148,
+    "gameVersion": ["1.16.3", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2834141,
+    "displayName": "fabric-carpet-1.15-pre3-1.2.4+v191121.jar",
+    "fileName": "fabric-carpet-1.15-pre3-1.2.4+v191121.jar",
+    "fileDate": "2019-11-29T06:33:06.753Z",
+    "fileLength": 740839,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2834/141/fabric-carpet-1.15-pre3-1.2.4+v191121.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3303720056
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3899776455
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 73210074
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2771834731
+      }
+    ],
+    "packageFingerprint": 2972283313,
+    "gameVersion": ["1.15-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2931097,
+    "displayName": "fabric-carpet-20w16a-1.3.19b+v200415.jar",
+    "fileName": "fabric-carpet-20w16a-1.3.19b+v200415.jar",
+    "fileDate": "2020-04-15T19:42:31.417Z",
+    "fileLength": 858807,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2931/97/fabric-carpet-20w16a-1.3.19b+v200415.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 689489747
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3581260979
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2591796361
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1016861565
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1489626553
+      }
+    ],
+    "packageFingerprint": 40353144,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2924398,
+    "displayName": "fabric-carpet-20w15a-1.3.18+v200408.jar",
+    "fileName": "fabric-carpet-20w15a-1.3.18+v200408.jar",
+    "fileDate": "2020-04-08T15:41:19.55Z",
+    "fileLength": 841651,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2924/398/fabric-carpet-20w15a-1.3.18+v200408.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2292242045
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2661675182
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1509151940
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 393482360
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3751235703
+      }
+    ],
+    "packageFingerprint": 3373915751,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2889571,
+    "displayName": "fabric-carpet-20w09a-1.3.12+v200226.jar",
+    "fileName": "fabric-carpet-20w09a-1.3.12+v200226.jar",
+    "fileDate": "2020-02-27T02:23:09.71Z",
+    "fileLength": 827916,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2889/571/fabric-carpet-20w09a-1.3.12+v200226.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3729597894
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3426152126
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1509151940
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1652685163
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2813140572
+      }
+    ],
+    "packageFingerprint": 934729378,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2972988,
+    "displayName": "fabric-carpet-1.15.2-1.3.26+v200604.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.26+v200604.jar",
+    "fileDate": "2020-06-05T12:14:49.903Z",
+    "fileLength": 982697,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2972/988/fabric-carpet-1.15.2-1.3.26+v200604.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1141328242
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3944550811
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2617326321
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3706215769
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 721611086
+      }
+    ],
+    "packageFingerprint": 3987990590,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2905032,
+    "displayName": "fabric-carpet-1.15.2-1.3.15+v200318.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.15+v200318.jar",
+    "fileDate": "2020-03-19T00:51:59.267Z",
+    "fileLength": 829423,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2905/32/fabric-carpet-1.15.2-1.3.15+v200318.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3987622462
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3426152126
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 256227259
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2333828250
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1531969517
+      }
+    ],
+    "packageFingerprint": 2599978571,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2986869,
+    "displayName": "fabric-carpet-1.16-1.4.0+v200623.jar",
+    "fileName": "fabric-carpet-1.16-1.4.0+v200623.jar",
+    "fileDate": "2020-06-23T20:08:23.697Z",
+    "fileLength": 1032451,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2986/869/fabric-carpet-1.16-1.4.0+v200623.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1744277844
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3142521474
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 962331966
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 555756515
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1355618508
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2431853267
+      }
+    ],
+    "packageFingerprint": 1890220969,
+    "gameVersion": ["Fabric", "1.16"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2827035,
+    "displayName": "fabric-carpet-19w46a-1.2.3+v191113.jar",
+    "fileName": "fabric-carpet-19w46a-1.2.3+v191113.jar",
+    "fileDate": "2019-11-14T02:11:04.517Z",
+    "fileLength": 735225,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2827/35/fabric-carpet-19w46a-1.2.3+v191113.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3429435806
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1557510800
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2169511532
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2206905350
+      }
+    ],
+    "packageFingerprint": 1743151384,
+    "gameVersion": ["1.15-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2823875,
+    "displayName": "fabric-carpet-1.14.4-1.2.2+v191108.jar",
+    "fileName": "fabric-carpet-1.14.4-1.2.2+v191108.jar",
+    "fileDate": "2019-11-08T09:10:02.063Z",
+    "fileLength": 719278,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2823/875/fabric-carpet-1.14.4-1.2.2+v191108.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 508985923
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1958823127
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2104673313
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1154205412
+      }
+    ],
+    "packageFingerprint": 3351235154,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3130594,
+    "displayName": "fabric-carpet-20w49a-1.4.20+v201202.jar",
+    "fileName": "fabric-carpet-20w49a-1.4.20+v201202.jar",
+    "fileDate": "2020-12-04T03:53:20.277Z",
+    "fileLength": 1220799,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3130/594/fabric-carpet-20w49a-1.4.20+v201202.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3162315593
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1147963895
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1120116603
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 4131535255
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 429606239
+      }
+    ],
+    "packageFingerprint": 3584018411,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2861158,
+    "displayName": "fabric-carpet-1.14.4-1.3.5+v200114.jar",
+    "fileName": "fabric-carpet-1.14.4-1.3.5+v200114.jar",
+    "fileDate": "2020-01-15T15:22:05.973Z",
+    "fileLength": 751188,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2861/158/fabric-carpet-1.14.4-1.3.5+v200114.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2230051039
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3705785400
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2830551254
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1589353633
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2874106857
+      }
+    ],
+    "packageFingerprint": 3862229721,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2875787,
+    "displayName": "fabric-carpet-1.15.2-1.3.9+v200206.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.9+v200206.jar",
+    "fileDate": "2020-02-06T01:50:14.98Z",
+    "fileLength": 809176,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2875/787/fabric-carpet-1.15.2-1.3.9+v200206.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1867181855
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1879232851
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 256227259
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1813290109
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1484166210
+      }
+    ],
+    "packageFingerprint": 1825311939,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2830930,
+    "displayName": "fabric-carpet-1.14.4-1.2.4+v191121.jar",
+    "fileName": "fabric-carpet-1.14.4-1.2.4+v191121.jar",
+    "fileDate": "2019-11-22T19:58:47.1Z",
+    "fileLength": 685097,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2830/930/fabric-carpet-1.14.4-1.2.4+v191121.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1034579585
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1958823127
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2012421520
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2377344657
+      }
+    ],
+    "packageFingerprint": 2569020188,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3169450,
+    "displayName": "Carpet Mod v1.4.23 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.23+v210115.jar",
+    "fileDate": "2021-01-15T16:04:40.377Z",
+    "fileLength": 1200710,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3169/450/fabric-carpet-1.16.5-1.4.23+v210115.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 4067807312
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3661975155
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3107836963
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2627799396
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3620868893
+      }
+    ],
+    "packageFingerprint": 2460422855,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3169107,
+    "displayName": "fabric-carpet-1.16.4-1.4.22+v210113.jar",
+    "fileName": "fabric-carpet-1.16.4-1.4.22+v210113.jar",
+    "fileDate": "2021-01-15T04:55:18.807Z",
+    "fileLength": 1248241,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3169/107/fabric-carpet-1.16.4-1.4.22+v210113.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 4059593583
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3661975155
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3107836963
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1704093697
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1745447742
+      }
+    ],
+    "packageFingerprint": 2141751144,
+    "gameVersion": ["Fabric", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3175506,
+    "displayName": "Carpet Mod v1.4.24 for 1.17",
+    "fileName": "fabric-carpet-21w03a-1.4.24+v210120.jar",
+    "fileDate": "2021-01-20T23:44:34.253Z",
+    "fileLength": 1204211,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3175/506/fabric-carpet-21w03a-1.4.24+v210120.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1212116876
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1389935992
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3665581495
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 453033770
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2763203250
+      }
+    ],
+    "packageFingerprint": 1689422703,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3175505,
+    "displayName": "Carpet Mod v1.4.24 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.24+v210120.jar",
+    "fileDate": "2021-01-20T23:44:26.027Z",
+    "fileLength": 1200716,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3175/505/fabric-carpet-1.16.5-1.4.24+v210120.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2847797115
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3107836963
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3661975155
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1463881865
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2073516221
+      }
+    ],
+    "packageFingerprint": 3257727502,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2861159,
+    "displayName": "fabric-carpet-1.15.2-pre1-1.3.5+v200114.jar",
+    "fileName": "fabric-carpet-1.15.2-pre1-1.3.5+v200114.jar",
+    "fileDate": "2020-01-15T15:22:31.473Z",
+    "fileLength": 787684,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2861/159/fabric-carpet-1.15.2-pre1-1.3.5+v200114.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3377037012
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3916302384
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3705785400
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 601332247
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 4104468053
+      }
+    ],
+    "packageFingerprint": 2535361939,
+    "gameVersion": ["1.15-Snapshot", "Fabric", "1.15.1"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2918923,
+    "displayName": "fabric-carpet-20w14infinite-1.3.17+v200401.jar",
+    "fileName": "fabric-carpet-20w14infinite-1.3.17+v200401.jar",
+    "fileDate": "2020-04-02T02:26:34.643Z",
+    "fileLength": 837942,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2918/923/fabric-carpet-20w14infinite-1.3.17+v200401.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3630346566
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2661675182
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1509151940
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2937790196
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 193894231
+      }
+    ],
+    "packageFingerprint": 2375173236,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2972989,
+    "displayName": "fabric-carpet-1.16-pre1-1.3.26+v200605.jar",
+    "fileName": "fabric-carpet-1.16-pre1-1.3.26+v200605.jar",
+    "fileDate": "2020-06-05T12:15:16.913Z",
+    "fileLength": 984685,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2972/989/fabric-carpet-1.16-pre1-1.3.26+v200605.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 943944969
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1957507053
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3305941499
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3168411425
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2103768763
+      }
+    ],
+    "packageFingerprint": 2364830775,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2830931,
+    "displayName": "fabric-carpet-1.15-pre1-1.2.4+v191121.jar",
+    "fileName": "fabric-carpet-1.15-pre1-1.2.4+v191121.jar",
+    "fileDate": "2019-11-22T19:59:19.977Z",
+    "fileLength": 698927,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2830/931/fabric-carpet-1.15-pre1-1.2.4+v191121.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3303720056
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1557510800
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3310961211
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 684700200
+      }
+    ],
+    "packageFingerprint": 2441755879,
+    "gameVersion": ["1.15-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2836494,
+    "displayName": "fabric-carpet-1.15-pre4-1.2.5+v191203.jar",
+    "fileName": "fabric-carpet-1.15-pre4-1.2.5+v191203.jar",
+    "fileDate": "2019-12-04T04:14:08.64Z",
+    "fileLength": 749941,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2836/494/fabric-carpet-1.15-pre4-1.2.5+v191203.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3709858274
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3899776455
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 73210074
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 739796805
+      }
+    ],
+    "packageFingerprint": 1063861614,
+    "gameVersion": ["1.15-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2960461,
+    "displayName": "fabric-carpet-1.15.2-1.3.23+v200513.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.23+v200513.jar",
+    "fileDate": "2020-05-19T05:42:58.347Z",
+    "fileLength": 894529,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2960/461/fabric-carpet-1.15.2-1.3.23+v200513.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 795881642
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 424944363
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3363847472
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3305653265
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 162249969
+      }
+    ],
+    "packageFingerprint": 2036002982,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2894590,
+    "displayName": "fabric-carpet-1.15.2-1.3.13+v200304.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.13+v200304.jar",
+    "fileDate": "2020-03-05T01:49:51.41Z",
+    "fileLength": 832212,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2894/590/fabric-carpet-1.15.2-1.3.13+v200304.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2969116498
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2670193117
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 256227259
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1140439409
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 981643819
+      }
+    ],
+    "packageFingerprint": 2647307287,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2836493,
+    "displayName": "fabric-carpet-1.14.4-1.2.5+v191203.jar",
+    "fileName": "fabric-carpet-1.14.4-1.2.5+v191203.jar",
+    "fileDate": "2019-12-04T04:13:46.733Z",
+    "fileLength": 733330,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2836/493/fabric-carpet-1.14.4-1.2.5+v191203.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1739128222
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 356555684
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3999945109
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3594272248
+      }
+    ],
+    "packageFingerprint": 3796612230,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2870184,
+    "displayName": "fabric-carpet-1.14.4-1.3.6+v200121.jar",
+    "fileName": "fabric-carpet-1.14.4-1.3.6+v200121.jar",
+    "fileDate": "2020-01-27T12:27:38.237Z",
+    "fileLength": 758471,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2870/184/fabric-carpet-1.14.4-1.3.6+v200121.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 463486497
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3336287176
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 643721381
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 930964496
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3783994877
+      }
+    ],
+    "packageFingerprint": 582844057,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3130593,
+    "displayName": "fabric-carpet-1.16.4-1.4.20+v201202.jar",
+    "fileName": "fabric-carpet-1.16.4-1.4.20+v201202.jar",
+    "fileDate": "2020-12-04T03:52:46.803Z",
+    "fileLength": 1216003,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3130/593/fabric-carpet-1.16.4-1.4.20+v201202.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 4184565190
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3121546858
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2617375454
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3701716332
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1930021581
+      }
+    ],
+    "packageFingerprint": 4133527375,
+    "gameVersion": ["Fabric", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2960462,
+    "displayName": "fabric-carpet-20w20b-1.3.23+v200513.jar",
+    "fileName": "fabric-carpet-20w20b-1.3.23+v200513.jar",
+    "fileDate": "2020-05-19T05:43:23.203Z",
+    "fileLength": 897955,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2960/462/fabric-carpet-20w20b-1.3.23+v200513.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3811153039
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3253774521
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 683637625
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 4240091501
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1238106560
+      }
+    ],
+    "packageFingerprint": 234496029,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2870185,
+    "displayName": "fabric-carpet-1.15.2-1.3.6+v200121.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.6+v200121.jar",
+    "fileDate": "2020-01-27T12:28:02.207Z",
+    "fileLength": 759172,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2870/185/fabric-carpet-1.15.2-1.3.6+v200121.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 4165470454
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3336287176
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1425093533
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3081560257
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2447950960
+      }
+    ],
+    "packageFingerprint": 1665957655,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2855370,
+    "displayName": "fabric-carpet-1.14.4-1.3.3+v200105.jar",
+    "fileName": "fabric-carpet-1.14.4-1.3.3+v200105.jar",
+    "fileDate": "2020-01-05T23:50:35.153Z",
+    "fileLength": 773094,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2855/370/fabric-carpet-1.14.4-1.3.3+v200105.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2174631699
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2525536580
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3705785400
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2496564265
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3001324376
+      }
+    ],
+    "packageFingerprint": 3229305974,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2855371,
+    "displayName": "fabric-carpet-1.15.1-1.3.3+v200105.jar",
+    "fileName": "fabric-carpet-1.15.1-1.3.3+v200105.jar",
+    "fileDate": "2020-01-05T23:51:06.34Z",
+    "fileLength": 775559,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2855/371/fabric-carpet-1.15.1-1.3.3+v200105.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1874035493
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3655203083
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3705785400
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1586776354
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 4100826611
+      }
+    ],
+    "packageFingerprint": 3405037945,
+    "gameVersion": ["Fabric", "1.15.1"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2815969,
+    "displayName": "fabric-carpet-19w42a-1.2.0+v191024.jar",
+    "fileName": "fabric-carpet-19w42a-1.2.0+v191024.jar",
+    "fileDate": "2019-10-25T03:55:39.08Z",
+    "fileLength": 705545,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2815/969/fabric-carpet-19w42a-1.2.0+v191024.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3839156203
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 939063587
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 859158650
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 180678432
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3671822672
+      }
+    ],
+    "packageFingerprint": 3784852186,
+    "gameVersion": ["1.15-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3199712,
+    "displayName": "Carpet Mod v1.4.26 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.26+v210210.jar",
+    "fileDate": "2021-02-10T23:45:07.96Z",
+    "fileLength": 1208757,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3199/712/fabric-carpet-1.16.5-1.4.26+v210210.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2494302368
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1641539978
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 365952227
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 985059716
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1126462217
+      }
+    ],
+    "packageFingerprint": 2868614675,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2823876,
+    "displayName": "fabric-carpet-19w45a-1.2.2+v191108.jar",
+    "fileName": "fabric-carpet-19w45a-1.2.2+v191108.jar",
+    "fileDate": "2019-11-08T09:10:38.173Z",
+    "fileLength": 736898,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2823/876/fabric-carpet-19w45a-1.2.2+v191108.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 508985923
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1197109702
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2169511532
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 648428913
+      }
+    ],
+    "packageFingerprint": 3863815160,
+    "gameVersion": ["1.15-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2841965,
+    "displayName": "fabric-carpet-1.15-1.3.1+v191212.jar",
+    "fileName": "fabric-carpet-1.15-1.3.1+v191212.jar",
+    "fileDate": "2019-12-13T05:37:07.62Z",
+    "fileLength": 743316,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2841/965/fabric-carpet-1.15-1.3.1+v191212.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3652674191
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3924912193
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1322109193
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 4017501556
+      }
+    ],
+    "packageFingerprint": 118261333,
+    "gameVersion": ["Fabric", "1.15"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3268573,
+    "displayName": "Carpet Mod v1.4.31 for 1.17",
+    "fileName": "fabric-carpet-21w14a-1.4.31+v210407.jar",
+    "fileDate": "2021-04-07T19:25:11.337Z",
+    "fileLength": 1246262,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3268/573/fabric-carpet-21w14a-1.4.31+v210407.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1308253995
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2926354809
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1303376091
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2042395340
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 648840087
+      }
+    ],
+    "packageFingerprint": 4164817186,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3207693,
+    "displayName": "Carpet Mod v1.4.27 for 1.17",
+    "fileName": "fabric-carpet-21w07a-1.4.27+v210217.jar",
+    "fileDate": "2021-02-17T20:28:36.81Z",
+    "fileLength": 1212192,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3207/693/fabric-carpet-21w07a-1.4.27+v210217.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1289260351
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3569426227
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2114951455
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3560395315
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 4269171444
+      }
+    ],
+    "packageFingerprint": 3176503182,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3257166,
+    "displayName": "Carpet Mod v1.4.30 for 1.17",
+    "fileName": "fabric-carpet-21w13a-1.4.30+v210331.jar",
+    "fileDate": "2021-03-31T22:21:43.393Z",
+    "fileLength": 1242495,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3257/166/fabric-carpet-21w13a-1.4.30+v210331.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3263736847
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1505454659
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1308253995
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 122687387
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3497835776
+      }
+    ],
+    "packageFingerprint": 3266214319,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3215979,
+    "displayName": "Carpet Mod v1.4.28 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.28+v210224.jar",
+    "fileDate": "2021-02-24T22:40:37.137Z",
+    "fileLength": 1209132,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3215/979/fabric-carpet-1.16.5-1.4.28+v210224.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2964471746
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 365952227
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1641539978
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2865751461
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2280341741
+      }
+    ],
+    "packageFingerprint": 1773332789,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3257165,
+    "displayName": "Carpet Mod v1.4.30 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.30+v210331.jar",
+    "fileDate": "2021-03-31T22:21:03Z",
+    "fileLength": 1237476,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3257/165/fabric-carpet-1.16.5-1.4.30+v210331.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1171671530
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2226322428
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1234178344
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3505011841
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1035387762
+      }
+    ],
+    "packageFingerprint": 2396171245,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3268572,
+    "displayName": "Carpet Mod v1.4.31 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.31+v210407.jar",
+    "fileDate": "2021-04-07T19:25:05.63Z",
+    "fileLength": 1241806,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3268/572/fabric-carpet-1.16.5-1.4.31+v210407.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1234178344
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 320902629
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3531484694
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 325862057
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3739982114
+      }
+    ],
+    "packageFingerprint": 3699479992,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2819299,
+    "displayName": "fabric-carpet-19w44a-1.2.1+v191030.jar",
+    "fileName": "fabric-carpet-19w44a-1.2.1+v191030.jar",
+    "fileDate": "2019-10-31T02:26:03.953Z",
+    "fileLength": 716629,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2819/299/fabric-carpet-19w44a-1.2.1+v191030.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2421200731
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1557510800
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1328383364
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1486659242
+      }
+    ],
+    "packageFingerprint": 399045917,
+    "gameVersion": ["1.15-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2841964,
+    "displayName": "fabric-carpet-1.14.4-1.3.1+v191212.jar",
+    "fileName": "fabric-carpet-1.14.4-1.3.1+v191212.jar",
+    "fileDate": "2019-12-13T05:36:45.323Z",
+    "fileLength": 739126,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2841/964/fabric-carpet-1.14.4-1.3.1+v191212.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2775580114
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 4147855613
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2371489879
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 324422786
+      }
+    ],
+    "packageFingerprint": 3983290504,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2922347,
+    "displayName": "carpet-extra-20w14a-1.3.17.jar",
+    "fileName": "carpet-extra-20w14a-1.3.17.jar",
+    "fileDate": "2020-04-06T03:55:07.74Z",
+    "fileLength": 131712,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2922/347/carpet-extra-20w14a-1.3.17.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1216683359
+      },
+      {
+        "foldername": "carpet-extra.mixins.json",
+        "fingerprint": 1396176857
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2984128158
+      },
+      {
+        "foldername": "carpet-extra-refmap.json",
+        "fingerprint": 1987130211
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpetextra",
+        "fingerprint": 1352970679
+      }
+    ],
+    "packageFingerprint": 2611340230,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2986868,
+    "displayName": "fabric-carpet-1.15.2-1.4.0+v200623.jar",
+    "fileName": "fabric-carpet-1.15.2-1.4.0+v200623.jar",
+    "fileDate": "2020-06-23T20:08:03.467Z",
+    "fileLength": 1027566,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2986/868/fabric-carpet-1.15.2-1.4.0+v200623.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1744077309
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 718869099
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 962331966
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1148538946
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 459917435
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2334660579
+      }
+    ],
+    "packageFingerprint": 4221387635,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2918926,
+    "displayName": "fabric-carpet-1.15.2-1.3.17+v200401.jar",
+    "fileName": "fabric-carpet-1.15.2-1.3.17+v200401.jar",
+    "fileDate": "2020-04-02T02:27:33.287Z",
+    "fileLength": 840630,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2918/926/fabric-carpet-1.15.2-1.3.17+v200401.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3820702763
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1014456969
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 256227259
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1250864865
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1105197069
+      }
+    ],
+    "packageFingerprint": 56644180,
+    "gameVersion": ["Fabric", "1.15.2"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2875788,
+    "displayName": "fabric-carpet-20w06a-1.3.9+v200206.jar",
+    "fileName": "fabric-carpet-20w06a-1.3.9+v200206.jar",
+    "fileDate": "2020-02-06T01:50:41.653Z",
+    "fileLength": 810016,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2875/788/fabric-carpet-20w06a-1.3.9+v200206.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2737250400
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1879232851
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1509151940
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3580734270
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1326934045
+      }
+    ],
+    "packageFingerprint": 2394529446,
+    "gameVersion": ["1.16-Snapshot", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 2819297,
+    "displayName": "fabric-carpet-1.14.4-1.2.1+v191030.jar",
+    "fileName": "fabric-carpet-1.14.4-1.2.1+v191030.jar",
+    "fileDate": "2019-10-31T02:25:08.86Z",
+    "fileLength": 717841,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/2819/297/fabric-carpet-1.14.4-1.2.1+v191030.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE",
+        "fingerprint": 1136524626
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2421200731
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1958823127
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 2906028268
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2104673313
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3860892004
+      }
+    ],
+    "packageFingerprint": 516564147,
+    "gameVersion": ["1.14.4", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-07-19T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3169451,
+    "displayName": "Carpet Mod v1.4.23 for 1.17",
+    "fileName": "fabric-carpet-20w51a-1.4.23+v210115.jar",
+    "fileDate": "2021-01-15T16:04:46.91Z",
+    "fileLength": 1204200,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3169/451/fabric-carpet-20w51a-1.4.23+v210115.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1153058042
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3665581495
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1389935992
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2695806717
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3887888166
+      }
+    ],
+    "packageFingerprint": 3232011563,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3191597,
+    "displayName": "Carpet Mod v1.4.25 for 1.17",
+    "fileName": "fabric-carpet-21w05a-1.4.25+v210203.jar",
+    "fileDate": "2021-02-03T20:33:28.03Z",
+    "fileLength": 1211356,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3191/597/fabric-carpet-21w05a-1.4.25+v210203.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2916336647
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2114951455
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1389935992
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 1076522857
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 351219782
+      }
+    ],
+    "packageFingerprint": 3884479654,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3191595,
+    "displayName": "Carpet Mod v1.4.25 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.25+v210203.jar",
+    "fileDate": "2021-02-03T20:33:03.2Z",
+    "fileLength": 1207819,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3191/595/fabric-carpet-1.16.5-1.4.25+v210203.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2883657421
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1641539978
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3107836963
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3470632427
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3065104206
+      }
+    ],
+    "packageFingerprint": 2538846140,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3199713,
+    "displayName": "Carpet Mod v1.4.26 for 1.17",
+    "fileName": "fabric-carpet-21w06a-1.4.26+v210210.jar",
+    "fileDate": "2021-02-10T23:45:24.503Z",
+    "fileLength": 1212321,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3199/713/fabric-carpet-21w06a-1.4.26+v210210.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3648442077
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2114951455
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3569426227
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2094156624
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 900446267
+      }
+    ],
+    "packageFingerprint": 2357517188,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3235087,
+    "displayName": "Carpet Mod v1.4.29 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.29+v210310.jar",
+    "fileDate": "2021-03-10T23:31:38.31Z",
+    "fileLength": 1227036,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3235/87/fabric-carpet-1.16.5-1.4.29+v210310.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 531348739
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 2226322428
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 839195841
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3435141328
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 1489417017
+      }
+    ],
+    "packageFingerprint": 884231351,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3169109,
+    "displayName": "fabric-carpet-20w51a-1.4.22+v210113.jar",
+    "fileName": "fabric-carpet-20w51a-1.4.22+v210113.jar",
+    "fileDate": "2021-01-15T04:55:51.943Z",
+    "fileLength": 1251957,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3169/109/fabric-carpet-20w51a-1.4.22+v210113.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 1102263957
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3665581495
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1389935992
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2022027505
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2198276466
+      }
+    ],
+    "packageFingerprint": 870387024,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3207691,
+    "displayName": "Carpet Mod v1.4.27 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.27+v210217.jar",
+    "fileDate": "2021-02-17T20:28:26.907Z",
+    "fileLength": 1208780,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3207/691/fabric-carpet-1.16.5-1.4.27+v210217.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 4293655541
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 365952227
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1641539978
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2865751461
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 4136949446
+      }
+    ],
+    "packageFingerprint": 2275575782,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3215980,
+    "displayName": "Carpet Mod v1.4.28 for 1.17",
+    "fileName": "fabric-carpet-21w08a-1.4.28+v210224.jar",
+    "fileDate": "2021-02-24T22:41:28.647Z",
+    "fileLength": 1213748,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3215/980/fabric-carpet-21w08a-1.4.28+v210224.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3066698569
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3569426227
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3574538381
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2602432609
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 424752709
+      }
+    ],
+    "packageFingerprint": 2729033333,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3235088,
+    "displayName": "Carpet Mod v1.4.29 for 1.17",
+    "fileName": "fabric-carpet-21w10a-1.4.29+v210310.jar",
+    "fileDate": "2021-03-10T23:32:00.423Z",
+    "fileLength": 1229601,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3235/88/fabric-carpet-21w10a-1.4.29+v210310.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2623227547
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3518785740
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 3480780387
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 2561372873
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 3999215068
+      }
+    ],
+    "packageFingerprint": 2892757681,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3276129,
+    "displayName": "Carpet Mod v1.4.32 for 1.16.5",
+    "fileName": "fabric-carpet-1.16.5-1.4.32+v210414.jar",
+    "fileDate": "2021-04-14T18:33:58.09Z",
+    "fileLength": 1255548,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3276/129/fabric-carpet-1.16.5-1.4.32+v210414.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 1990599361
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 1701478558
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 2495936969
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 3357129954
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 2017555921
+      }
+    ],
+    "packageFingerprint": 2620795202,
+    "gameVersion": ["Fabric", "1.16.5", "1.16.4"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  },
+  {
+    "id": 3276130,
+    "displayName": "Carpet Mod v1.4.32 for 1.17",
+    "fileName": "fabric-carpet-21w15a-1.4.32+v210414.jar",
+    "fileDate": "2021-04-14T18:34:39.417Z",
+    "fileLength": 1263266,
+    "releaseType": 1,
+    "fileStatus": 4,
+    "downloadUrl": "https://edge.forgecdn.net/files/3276/130/fabric-carpet-21w15a-1.4.32+v210414.jar",
+    "isAlternate": false,
+    "alternateFileId": 0,
+    "dependencies": [],
+    "isAvailable": true,
+    "modules": [
+      {
+        "foldername": "LICENSE_fabric-carpet",
+        "fingerprint": 1543082860
+      },
+      {
+        "foldername": "carpet.accesswidener",
+        "fingerprint": 768960206
+      },
+      {
+        "foldername": "assets",
+        "fingerprint": 918338356
+      },
+      {
+        "foldername": "carpet.mixins.json",
+        "fingerprint": 3695126439
+      },
+      {
+        "foldername": "fabric.mod.json",
+        "fingerprint": 3493234223
+      },
+      {
+        "foldername": "fabric-carpet-refmap.json",
+        "fingerprint": 4043310502
+      },
+      {
+        "foldername": "META-INF",
+        "fingerprint": 2464251221
+      },
+      {
+        "foldername": "carpet",
+        "fingerprint": 900466927
+      }
+    ],
+    "packageFingerprint": 2014246976,
+    "gameVersion": ["1.17", "Fabric"],
+    "installMetadata": null,
+    "serverPackFileId": null,
+    "hasInstallScript": false,
+    "gameVersionDateReleased": "2008-03-01T06:00:00Z",
+    "gameVersionFlavor": null
+  }
+]
