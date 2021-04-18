@@ -36,6 +36,8 @@ class JarParser:
                 mod = JarParser._parse_fabric(zip)
             elif JarParser._is_forge(zip):
                 mod = JarParser._parse_forge(zip)
+            else:
+                Logger.warning(f"No mod info found for {file.name}")
 
         if mod:
             mod.file = file.name
