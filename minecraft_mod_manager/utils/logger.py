@@ -9,14 +9,15 @@ class LogColors:
     green = "\033[92m"
     cyan = "\033[96m"
     blue = "\033[94m"
+    orange = "\033[31;1m"
     yellow = "\033[33m"
-    bold = "\u001b[1m"
+    bold = "\033[1m"
 
     add = green
     remove = red
     found = cyan
     command = blue
-    warning = yellow
+    warning = orange
     skip = yellow
 
 
@@ -32,6 +33,11 @@ class Logger:
         print(f"{LogColors.red}{message}{LogColors.no_color}")
         if exit:
             sys.exit(1)
+
+    @staticmethod
+    def warning(message: str):
+        """Logs a message and prints it as orange"""
+        print(f"{LogColors.orange}{message}{LogColors.no_color}")
 
     @staticmethod
     def info(message: str, color: str = LogColors.no_color):
