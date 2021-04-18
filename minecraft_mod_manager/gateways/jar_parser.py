@@ -14,19 +14,25 @@ class JarParser:
     _fabric_file = "fabric.mod.json"
     _forge_file = "META-INF/mods.toml"
 
-    @staticmethod
-    def get_mods(dir: Path) -> List[Mod]:
-        mods = []
+    def __init__(self, dir: Path) -> None:
+        self._mods: List[Mod] = []
+        self._dir = dir
+
+    @property
+    def mods(self) -> List[Mod]:
+        # Return cached value
+        if len(self._mods) > 0:
+            return self._mods
 
         # Iterate through all files
-        for file in dir.glob("*.jar"):
+        for file in self._dir.glob("*.jar"):
             Logger.debug(f"Found file {file}")
             mod = JarParser.get_mod_info(file)
             if mod:
                 JarParser._log_found_mod(mod)
-                mods.append(mod)
+                self._mods.append(mod)
 
-        return mods
+        return self._mods
 
     @staticmethod
     def get_mod_info(file: Path) -> Union[Mod, None]:

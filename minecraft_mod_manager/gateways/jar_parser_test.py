@@ -46,7 +46,7 @@ def test_get_mods():
         Mod("jei", "Just Enough Items", version="7.6.4.86", mod_loader=ModLoaders.forge, file=jei_filename),
         Mod("modmenu", "Mod Menu", version="1.14.13+build.19", mod_loader=ModLoaders.fabric, file=mod_menu_filename),
     ]
-
-    result = JarParser.get_mods(input)
+    jar_parser = JarParser(input)
+    result = jar_parser.mods
 
     assert expected == result
