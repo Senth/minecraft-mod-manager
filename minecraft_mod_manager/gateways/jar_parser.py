@@ -10,7 +10,7 @@ from ..core.entities.mod_loaders import ModLoaders
 from ..utils.logger import LogColors, Logger
 
 
-class DirParser:
+class JarParser:
     _fabric_file = "fabric.mod.json"
     _forge_file = "META-INF/mods.toml"
 
@@ -21,9 +21,9 @@ class DirParser:
         # Iterate through all files
         for file in dir.glob("*.jar"):
             Logger.debug(f"Found file {file}")
-            mod = DirParser.get_mod_info(file)
+            mod = JarParser.get_mod_info(file)
             if mod:
-                DirParser._log_found_mod(mod)
+                JarParser._log_found_mod(mod)
                 mods.append(mod)
 
         return mods
@@ -32,10 +32,10 @@ class DirParser:
     def get_mod_info(file: Path) -> Union[Mod, None]:
         mod: Union[Mod, None] = None
         with ZipFile(file, "r") as zip:
-            if DirParser._is_fabric(zip):
-                mod = DirParser._parse_fabric(zip)
-            elif DirParser._is_forge(zip):
-                mod = DirParser._parse_forge(zip)
+            if JarParser._is_fabric(zip):
+                mod = JarParser._parse_fabric(zip)
+            elif JarParser._is_forge(zip):
+                mod = JarParser._parse_forge(zip)
 
         if mod:
             mod.file = file.name
@@ -44,11 +44,11 @@ class DirParser:
 
     @staticmethod
     def _is_fabric(zip: ZipFile) -> bool:
-        return DirParser._fabric_file in zip.namelist()
+        return JarParser._fabric_file in zip.namelist()
 
     @staticmethod
     def _parse_fabric(zip: ZipFile) -> Mod:
-        with zip.open(DirParser._fabric_file) as json_file:
+        with zip.open(JarParser._fabric_file) as json_file:
             object = json.load(json_file)
             return Mod(
                 id=object["id"],
@@ -59,11 +59,11 @@ class DirParser:
 
     @staticmethod
     def _is_forge(zip: ZipFile) -> bool:
-        return DirParser._forge_file in zip.namelist()
+        return JarParser._forge_file in zip.namelist()
 
     @staticmethod
     def _parse_forge(zip: ZipFile) -> Mod:
-        with zip.open(DirParser._forge_file) as file:
+        with zip.open(JarParser._forge_file) as file:
             lines = file.readlines()
             full_doc = ""
             for line in lines:
