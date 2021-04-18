@@ -23,7 +23,7 @@ class InstalledRepo(ConfigureRepo, UpdateRepo, InstallRepo):
         for installed_mod in self.mods:
             if installed_mod.id == id:
                 return installed_mod
-            elif installed_mod.alias == id:
+            elif installed_mod.repo_alias == id:
                 return installed_mod
 
     def update_mod(self, mod: Mod) -> None:

@@ -30,8 +30,8 @@ class Configure:
             if mod_arg.repo_type != RepoTypes.unknown:
                 found_mod.repo_type = mod_arg.repo_type
 
-            if mod_arg.alias:
-                found_mod.alias = mod_arg.alias
+            if mod_arg.repo_alias:
+                found_mod.repo_alias = mod_arg.repo_alias
 
             # Updating mod
             mods_to_update.append(found_mod)
@@ -43,9 +43,9 @@ class Configure:
             info = ""
             if mod.repo_type != RepoTypes.unknown:
                 info += f"site: {mod.repo_type.value}"
-            if len(mod.alias):
+            if len(mod.repo_alias):
                 if len(info) > 0:
                     info += ", "
-                info += f"alias: {mod.alias}"
+                info += f"alias: {mod.repo_alias}"
 
             Logger.info(f"Configured {mod.id}; {info}", LogColors.add)

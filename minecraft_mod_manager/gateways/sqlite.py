@@ -2,33 +2,14 @@ import sqlite3
 from os import path
 from typing import Dict, List
 
+from minecraft_mod_manager.gateways.sqlite_upgrader import SqliteUpgrader
+
 from ..config import config
 from ..core.entities.mod import Mod
 from ..core.entities.repo_types import RepoTypes
 from ..core.errors.mod_already_exists import ModAlreadyExists
 from ..utils.logger import LogColors, Logger
-
-
-class _Column:
-    c_id = "id"
-    c_repo_type = "repo_type"
-    c_repo_name = "repo_name"
-    c_upload_time = "upload_time"
-    c_active = "active"
-
-    def __init__(
-        self,
-        id: str,
-        repo_type: str,
-        repo_name: str,
-        upload_time: int,
-        active: bool,
-    ) -> None:
-        self.id = id
-        self.repo_type = repo_type
-        self.repo_name = repo_name
-        self.upload_time = upload_time
-        self.active = active
+from .sqlite_upgrader import _Column
 
 
 class Sqlite:
@@ -37,18 +18,9 @@ class Sqlite:
         Logger.debug(f"DB location: {file_path}")
         self._connection = sqlite3.connect(file_path)
         self._cursor = self._connection.cursor()
-        self._create_db()
 
-    def _create_db(self):
-        self._connection.execute(
-            "CREATE TABLE IF NOT EXISTS mod ("
-            + f"{_Column.c_id} TEXT UNIQUE, "
-            + f"{_Column.c_repo_type} TEXT, "
-            + f"{_Column.c_repo_name} TEXT, "
-            + f"{_Column.c_upload_time} INTEGER, "
-            + f"{_Column.c_active} INTEGER)"
-        )
-        self._connection.commit()
+        upgrader = SqliteUpgrader(self._connection, self._cursor)
+        upgrader.upgrade()
 
     def close(self) -> None:
         self._cursor.close()
@@ -98,7 +70,7 @@ class Sqlite:
             if mod.id in db_mods:
                 db_mod = db_mods[mod.id]
                 mod.repo_type = RepoTypes[db_mod.repo_type]
-                mod.alias = db_mod.repo_name
+                mod.repo_alias = db_mod.repo_alias
                 mod.upload_time = db_mod.upload_time
 
         return mods
@@ -107,8 +79,9 @@ class Sqlite:
         self._cursor.execute(
             "SELECT "
             + f"{_Column.c_id}, "
+            + f"{_Column.c_repo_id}, "
             + f"{_Column.c_repo_type}, "
-            + f"{_Column.c_repo_name}, "
+            + f"{_Column.c_repo_alias}, "
             + f"{_Column.c_upload_time}, "
             + f"{_Column.c_active} "
             + "FROM mod"
@@ -117,14 +90,16 @@ class Sqlite:
         rows = self._cursor.fetchall()
         for row in rows:
             id = str(row[0])
-            repo_type = str(row[1])
-            repo_name = str(row[2])
-            upload_time = int(row[3])
-            active = bool(row[4])
+            repo_id = str(row[1])
+            repo_type = str(row[2])
+            repo_name = str(row[3])
+            upload_time = int(row[4])
+            active = bool(row[5])
             mods[id] = _Column(
                 id=id,
+                repo_id=repo_id,
                 repo_type=repo_type,
-                repo_name=repo_name,
+                repo_alias=repo_name,
                 upload_time=upload_time,
                 active=active,
             )
@@ -141,12 +116,13 @@ class Sqlite:
         if self.exists(mod.id):
             self._connection.execute(
                 "UPDATE mod SET "
+                + f"{_Column.c_repo_id}=?, "
                 + f"{_Column.c_repo_type}=?, "
-                + f"{_Column.c_repo_name}=?, "
+                + f"{_Column.c_repo_alias}=?, "
                 + f"{_Column.c_upload_time}=? "
                 + "WHERE "
                 + f"{_Column.c_id}=?",
-                [mod.repo_type.value, mod.alias, mod.upload_time, mod.id],
+                [mod.repo_id, mod.repo_type.value, mod.repo_alias, mod.upload_time, mod.id],
             )
             self._connection.commit()
         else:
@@ -160,12 +136,13 @@ class Sqlite:
             self._connection.execute(
                 "INSERT INTO mod ("
                 + f"{_Column.c_id}, "
+                + f"{_Column.c_repo_id}, "
                 + f"{_Column.c_repo_type}, "
-                + f"{_Column.c_repo_name}, "
+                + f"{_Column.c_repo_alias}, "
                 + f"{_Column.c_upload_time}, "
                 + f"{_Column.c_active}) "
-                + "VALUES (?, ?, ?, ?, 1)",
-                [mod.id, mod.repo_type.value, mod.alias, mod.upload_time],
+                + "VALUES (?, ?, ?, ?, ?, 1)",
+                [mod.id, mod.repo_id, mod.repo_type.value, mod.repo_alias, mod.upload_time],
             )
             self._connection.commit()
         except sqlite3.IntegrityError:

@@ -37,11 +37,11 @@ def cursor(db: sqlite3.Connection) -> sqlite3.Cursor:
 
 @pytest.fixture
 def mod() -> Mod:
-    return Mod("id", "name", RepoTypes.curse, "alias", upload_time=15)
+    return Mod("id", "name", "repo_id", RepoTypes.curse, "alias", upload_time=15)
 
 
 def test_insert_mod(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
-    expected = [(mod.id, mod.repo_type.value, mod.alias, mod.upload_time, 1)]
+    expected = [(mod.id, mod.repo_id, mod.repo_type.value, mod.repo_alias, mod.upload_time, 1)]
 
     sqlite.insert_mod(mod)
 
@@ -52,7 +52,7 @@ def test_insert_mod(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
 
 
 def test_insert_mod_raises_error_when_already_exists(mod: Mod, sqlite: Sqlite):
-    mod_duplicate = Mod("id", "name2", RepoTypes.unknown, "alias2", upload_time=1)
+    mod_duplicate = Mod("id", "name2", "repo_id2", RepoTypes.unknown, "alias2", upload_time=1)
 
     with pytest.raises(ModAlreadyExists) as e:
         sqlite.insert_mod(mod)
@@ -72,12 +72,12 @@ def test_skip_insert_mod_when_pretend(mod: Mod, sqlite: Sqlite, cursor: sqlite3.
 
 def test_update_mod(mod: Mod, sqlite: Sqlite, db: sqlite3.Connection, cursor: sqlite3.Cursor):
     db.execute(
-        "INSERT INTO mod (id, repo_type, repo_name, upload_time, active) VALUES (?, ?, ?, ?, 1)",
-        [mod.id, mod.repo_type.value, mod.alias, mod.upload_time],
+        "INSERT INTO mod (id, repo_id, repo_type, repo_alias, upload_time, active) VALUES (?, ?, ?, ?, ?, 1)",
+        [mod.id, mod.repo_id, mod.repo_type.value, mod.repo_alias, mod.upload_time],
     )
     db.commit()
-    input = Mod("id", "something", RepoTypes.unknown, "new alias", upload_time=1337)
-    expected = [("id", "unknown", "new alias", 1337, 1)]
+    input = Mod("id", "something", "new repo id", RepoTypes.unknown, "new alias", upload_time=1337)
+    expected = [("id", "new repo id", "unknown", "new alias", 1337, 1)]
 
     sqlite.update_mod(input)
 
@@ -98,7 +98,7 @@ def test_skip_update_mod_when_pretend(mod: Mod, sqlite: Sqlite, cursor: sqlite3.
 
 def test_insert_mod_when_calling_update_mod_but_does_not_exist(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
     sqlite.update_mod(mod)
-    expected = [(mod.id, mod.repo_type.value, mod.alias, mod.upload_time, 1)]
+    expected = [(mod.id, mod.repo_id, mod.repo_type.value, mod.repo_alias, mod.upload_time, 1)]
 
     cursor.execute("SELECT * FROM mod")
 
@@ -107,8 +107,8 @@ def test_insert_mod_when_calling_update_mod_but_does_not_exist(mod: Mod, sqlite:
 
 def test_exists_when_exists(mod: Mod, sqlite: Sqlite, db: sqlite3.Connection):
     db.execute(
-        "INSERT INTO mod (id, repo_type, repo_name, upload_time, active) VALUES (?, ?, ?, ?, 1)",
-        [mod.id, mod.repo_type.value, mod.alias, mod.upload_time],
+        "INSERT INTO mod (id, repo_id, repo_type, repo_alias, upload_time, active) VALUES (?, ?, ?, ?, ?, 1)",
+        [mod.id, mod.repo_id, mod.repo_type.value, mod.repo_alias, mod.upload_time],
     )
     db.commit()
 
@@ -127,7 +127,7 @@ class SyncWithDirTest:
     def __init__(
         self,
         name: str,
-        db_before: List[Tuple[str, str, str, int, int]] = [],
+        db_before: List[Tuple[str, str, str, str, int, int]] = [],
         input: List[Mod] = [],
         expected: List[Mod] = [],
         db_after: List[Any] = [],
@@ -139,8 +139,8 @@ class SyncWithDirTest:
         self.db_after = db_after
 
 
-def row(id: str, repo="unknown", alias="", upload_time=0, active=1) -> Tuple[str, str, str, int, int]:
-    return (id, repo, alias, upload_time, active)
+def row(id: str, repo_id="", repo="unknown", alias="", upload_time=0, active=1) -> Tuple[str, str, str, str, int, int]:
+    return (id, repo_id, repo, alias, upload_time, active)
 
 
 @pytest.mark.parametrize(
@@ -149,22 +149,22 @@ def row(id: str, repo="unknown", alias="", upload_time=0, active=1) -> Tuple[str
         SyncWithDirTest(
             name="First time, add all mods",
             input=[
-                Mod("1", "name1"),
-                Mod("2", "name2", RepoTypes.curse),
+                Mod("1", "name1", repo_id="123"),
+                Mod("2", "name2", repo_type=RepoTypes.curse),
             ],
             expected=[
-                Mod("1", "name1"),
-                Mod("2", "name2", RepoTypes.curse),
+                Mod("1", "name1", repo_id="123"),
+                Mod("2", "name2", repo_type=RepoTypes.curse),
             ],
             db_after=[
-                row("1"),
+                row("1", repo_id="123"),
                 row("2", repo="curse"),
             ],
         ),
         SyncWithDirTest(
             name="Remove one mod",
             db_before=[
-                row("1"),
+                row("1", repo_id="125"),
                 row("2", repo="curse"),
             ],
             input=[
@@ -174,7 +174,7 @@ def row(id: str, repo="unknown", alias="", upload_time=0, active=1) -> Tuple[str
                 Mod("1", "name1"),
             ],
             db_after=[
-                row("1"),
+                row("1", repo_id="125"),
                 row("2", repo="curse", active=0),
             ],
         ),
@@ -211,8 +211,8 @@ def row(id: str, repo="unknown", alias="", upload_time=0, active=1) -> Tuple[str
                 Mod("2", "name2"),
             ],
             expected=[
-                Mod("1", "name1", alias="alias", upload_time=1337),
-                Mod("2", "name2", RepoTypes.curse),
+                Mod("1", "name1", repo_alias="alias", upload_time=1337),
+                Mod("2", "name2", repo_type=RepoTypes.curse),
             ],
             db_after=[
                 row("1", alias="alias", upload_time=1337),
@@ -230,8 +230,8 @@ def row(id: str, repo="unknown", alias="", upload_time=0, active=1) -> Tuple[str
                 Mod("2", "name2"),
             ],
             expected=[
-                Mod("1", "name1", alias="alias", upload_time=1337),
-                Mod("2", "name2", RepoTypes.curse),
+                Mod("1", "name1", repo_alias="alias", upload_time=1337),
+                Mod("2", "name2", repo_type=RepoTypes.curse),
             ],
             db_after=[
                 row("1", alias="alias", upload_time=1337),
@@ -246,7 +246,7 @@ def test_sync_with_dir(test: SyncWithDirTest, sqlite: Sqlite, db: sqlite3.Connec
     # Insert initial data
     for row in test.db_before:
         db.execute(
-            "INSERT INTO mod (id, repo_type, repo_name, upload_time, active) VALUES (?, ?, ?, ?, ?)",
+            "INSERT INTO mod (id, repo_id, repo_type, repo_alias, upload_time, active) VALUES (?, ?, ?, ?, ?, ?)",
             list(row),
         )
     db.commit()
