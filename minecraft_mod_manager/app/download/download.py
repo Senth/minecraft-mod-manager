@@ -1,4 +1,4 @@
-from typing import List, Sequence, Union
+from typing import List, Sequence
 
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
@@ -8,7 +8,7 @@ from .download_repo import DownloadRepo
 
 
 class DownloadInfo:
-    def __init__(self, mod: ModArg, version_info: VersionInfo):
+    def __init__(self, mod: Mod, version_info: VersionInfo):
         self.mod = mod
         self.version_info = version_info
 
@@ -16,15 +16,10 @@ class DownloadInfo:
     def name(self) -> str:
         name = f"{self.mod.id}"
 
-        if self.installed_mod:
-            name += f" {self.installed_mod.version}"
+        if self.mod.version:
+            name += f" {self.mod.version}"
 
         return name
-
-    @property
-    def installed_mod(self) -> Union[Mod, None]:
-        if isinstance(self.mod, Mod):
-            return self.mod
 
 
 class Download:
@@ -46,12 +41,6 @@ class Download:
             try:
                 latest_version = self._repo.get_latest_version(mod)
                 download_info = DownloadInfo(mod, latest_version)
-
-                # Update mod with latest mod info
-                if not download_info.installed_mod:
-                    installed_mod = self._repo.get_mod(mod.id)
-                    if installed_mod:
-                        download_info.mod = installed_mod
                 mods_to_install.append(download_info)
 
             except ModNotFoundException as exception:

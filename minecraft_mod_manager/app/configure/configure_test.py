@@ -17,7 +17,7 @@ def mock_repo():
 def test_abort_when_mod_not_found(mock_repo):
     when(mock_repo).get_mod(...).thenReturn(None)
     configure = Configure(mock_repo)
-    input = [ModArg(repo_type=RepoTypes.unknown, mod_name="not-found", alias="")]
+    input = [ModArg(repo_type=RepoTypes.unknown, id="not-found", repo_alias="")]
 
     with pytest.raises(SystemExit) as e:
         configure.execute(input)
@@ -32,8 +32,8 @@ def test_abort_before_updating_when_later_mod_not_found(mock_repo):
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(repo_type=RepoTypes.unknown, mod_name="found", alias="test"),
-        ModArg(repo_type=RepoTypes.unknown, mod_name="not-found", alias=""),
+        ModArg(repo_type=RepoTypes.unknown, id="found", repo_alias="test"),
+        ModArg(repo_type=RepoTypes.unknown, id="not-found", repo_alias=""),
     ]
 
     with pytest.raises(SystemExit) as e:
@@ -51,7 +51,7 @@ def test_mod_repo_changed(mock_repo):
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(repo_type=RepoTypes.curse, mod_name="carpet", alias=""),
+        ModArg(repo_type=RepoTypes.curse, id="carpet", repo_alias=""),
     ]
 
     configure.execute(input)
@@ -68,7 +68,7 @@ def test_mod_alias_changed(mock_repo):
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(repo_type=RepoTypes.unknown, mod_name="carpet", alias="carpet_alias"),
+        ModArg(repo_type=RepoTypes.unknown, id="carpet", repo_alias="carpet_alias"),
     ]
 
     configure.execute(input)
