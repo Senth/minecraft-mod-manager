@@ -43,7 +43,7 @@ class Configure:
             info = ""
             if mod.repo_type != RepoTypes.unknown:
                 info += f"site: {mod.repo_type.value}"
-            if len(mod.repo_alias):
+            if mod.repo_alias:
                 if len(info) > 0:
                     info += ", "
                 info += f"alias: {mod.repo_alias}"
