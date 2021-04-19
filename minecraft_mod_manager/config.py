@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Any, List, Literal, Union
 
 from minecraft_mod_manager.core.entities.mod_loaders import ModLoaders
@@ -14,7 +15,7 @@ class Config:
         self.verbose: bool = False
         self.debug: bool = False
         self.pretend: bool = False
-        self.dir: str = "."
+        self.dir: Path = Path(".")
         self.action: Literal["install", "update", "configure", "list"]
         self.arg_mods: List[ModArg] = []
         self.filter = Filter()

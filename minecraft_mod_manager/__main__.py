@@ -1,47 +1,43 @@
 from typing import List
 
+from .adapters.repo_impl import RepoImpl
+from .app.configure.configure import Configure
+from .app.install.install import Install
+from .app.show.show import Show
+from .app.update.update import Update
 from .config import config
-from .configurer import Configure
-from .db import Db
-from .dir_parser import DirParser
-from .installer import Installer
-from .logger import LogColors, Logger
-from .mod import Mod, RepoTypes
-from .updater import Updater
+from .gateways.arg_parser import parse_args
+from .gateways.downloader import Downloader
+from .gateways.jar_parser import JarParser
+from .gateways.sqlite import Sqlite
 
 
 def main():
-    db = Db()
-    try:
-        # Get mods in dir and sync with DB
-        installed_mods = DirParser.get_mods()
-        installed_mods = db.sync_with_dir(installed_mods)
+    args = parse_args()
+    config.add_arg_settings(args)
 
-        # ACTION: Update
+    sqlite = Sqlite()
+    jar_parser = JarParser(config.dir)
+    downloader = Downloader()
+    repo = RepoImpl(jar_parser, sqlite, downloader)
+    try:
         if config.action == "update":
-            updater = Updater(db)
-            try:
-                updater.update(installed_mods)
-            finally:
-                updater.close()
+            update = Update(repo)
+            update.execute(config.arg_mods)
 
         elif config.action == "install":
-            installer = Installer(db, installed_mods)
-            try:
-                installer.install(config.mods)
-            finally:
-                installer.close()
+            install = Install(repo)
+            install.execute(config.arg_mods)
 
         elif config.action == "configure":
-            configurer = Configure(db)
-            configurer.execute(installed_mods)
+            configure = Configure(repo)
+            configure.execute(config.arg_mods)
 
         elif config.action == "list":
-            _list_mods(installed_mods)
-            pass
+            show = Show(repo)
+            show.execute()
     finally:
-        if db:
-            db.close()
+        sqlite.close()
 
 
 if __name__ == "__main__":

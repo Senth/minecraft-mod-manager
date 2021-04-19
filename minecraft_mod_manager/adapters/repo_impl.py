@@ -19,7 +19,7 @@ from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
 
 
-class InstalledRepo(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
+class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
     """Cache/Adapter between jar_parser, sqlite and the rest of the application"""
 
     def __init__(self, jar_parser: JarParser, sqlite: Sqlite, downloader: Downloader) -> None:
