@@ -9,16 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Can parse Forge mods
+- Can parse and download Forge mods
 
 ### Changed
 
 - Restructured the whole project and added lots of test.
+- Now uses Curse API instead of Selenium with Chrome, thus you don't have to have Chrome installed and more futureproof.
 
 ### Fixed
 
 - Mods weren't saved correctly to the DB sometimes.
-- Crash when mod isn't fabric ([#17](https://github.com/Senth/minecraft-mod-manager/issues/17))
+- Doesn't crash when mod isn't fabric ([#17](https://github.com/Senth/minecraft-mod-manager/issues/17))
 
 ## [0.3.1] - 2021-03-02
 
