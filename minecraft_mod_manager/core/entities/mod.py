@@ -11,7 +11,7 @@ class ModArg:
     """Mod argument from the CLI"""
 
     def __init__(self, repo_type: RepoTypes, id: str, repo_alias: Union[str, None]) -> None:
-        self.repo_type = repo_type
+        self.repo_type: RepoTypes = repo_type
         """Where the mod is downloaded from"""
         self.id = id
         """String identifier of the mod, often case the same as mod name"""
@@ -66,22 +66,6 @@ class Mod(ModArg):
 
     def __str__(self) -> str:
         return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader}]"
-
-    def add_old_data(self, old: Mod) -> None:
-        if not self.repo_id:
-            self.repo_id = old.repo_id
-        if self.repo_type == RepoTypes.unknown:
-            self.repo_type = old.repo_type
-        if not self.repo_alias:
-            self.repo_alias = old.repo_alias
-        if not self.version:
-            self.version = old.version
-        if not self.file:
-            self.file = old.file
-        if self.upload_time == 0:
-            self.upload_time = old.upload_time
-        if self.mod_loader == ModLoaders.unknown:
-            self.mod_loader = old.mod_loader
 
     def get_possible_repo_names(self) -> Set[str]:
         possible_names: Set[str] = set()
