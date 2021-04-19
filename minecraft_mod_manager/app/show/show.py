@@ -51,7 +51,7 @@ class Show:
         self._repo_site_width += Show._padding
 
     def _print_header(self) -> None:
-        Logger.info(f"{LogColors.bold}Installed mods:{LogColors.no_color}\n")
+        Logger.info(f"{LogColors.bold}Installed mods:{LogColors.no_color}")
 
     def _print_row(self, id, alias, site, published) -> None:
         print(
