@@ -50,6 +50,51 @@ def test_find_mod_id(mod: Mod, api: CurseApi, carpet_search):
     assert mod_id == int(mod.repo_id)
 
 
+def test_find_mod_id_from_filename_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
+    when(Downloader).get(...).thenReturn("[]")
+    when(Downloader).get(
+        "https://addons-ecs.forgesvc.net/api/v2/addon/search?gameId=432&sectionId=6&searchFilter=carpet"
+    ).thenReturn(carpet_search)
+    mod.repo_alias = None
+    mod.id = "carput-fail"
+    mod.file = "fabric-carpet-1.14.4-1.2.0+v191024.jar"
+
+    mod_id = api._find_mod_id(mod)
+
+    unstub()
+
+    assert mod.repo_id
+    assert mod_id == int(mod.repo_id)
+
+
+def test_find_mod_id_from_filename_in_other_search_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
+    when(Downloader).get(...).thenReturn(carpet_search)
+    mod.repo_alias = None
+    mod.id = "carput-fail"
+    mod.file = "fabric-carpet-1.14.4-1.2.0+v191024.jar"
+
+    mod_id = api._find_mod_id(mod)
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
+
+    assert mod.repo_id
+    assert mod_id == int(mod.repo_id)
+
+
+def test_find_mod_id_from_id_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
+    when(Downloader).get(...).thenReturn(carpet_search)
+    mod.repo_alias = None
+
+    mod_id = api._find_mod_id(mod)
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
+
+    assert mod.repo_id
+    assert mod_id == int(mod.repo_id)
+
+
 def test_raise_exception_when_mod_not_found(api: CurseApi, carpet_search):
     when(Downloader).get(...).thenReturn(carpet_search)
 

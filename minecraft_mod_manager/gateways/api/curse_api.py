@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, List
+from typing import Any, List, Set, Tuple, Union
 
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
@@ -12,10 +12,11 @@ _base_url = "https://addons-ecs.forgesvc.net/api/v2/addon"
 
 
 class CurseApi:
-    def get_all_versions(self, mod: Mod) -> List[VersionInfo]:
+    @staticmethod
+    def get_all_versions(mod: Mod) -> List[VersionInfo]:
         # Get the mod's id
         if not mod.repo_id:
-            mod.repo_id = str(self._find_mod_id(mod))
+            mod.repo_id = str(CurseApi._find_mod_id(mod))
 
         versions: List[VersionInfo] = []
         files = Downloader.get(CurseApi._make_files_url(mod))
@@ -26,20 +27,36 @@ class CurseApi:
 
         return versions
 
-    def _find_mod_id(self, mod: Mod) -> int:
-        json = Downloader.get(self._make_search_url(mod))
-
-        for curse_mod in json:
-            if "slug" in curse_mod and "id" in curse_mod:
-                slug = curse_mod["slug"]
-                if slug == mod.repo_alias:
-                    return int(curse_mod["id"])
+    @staticmethod
+    def _find_mod_id(mod: Mod) -> int:
+        if mod.repo_alias:
+            version = CurseApi._find_mod_id_by_slug(mod.repo_alias, set([mod.repo_alias]))
+            if version:
+                return version[0]
+        else:
+            possible_names = mod.get_possible_repo_names()
+            for possible_name in possible_names:
+                version_slug = CurseApi._find_mod_id_by_slug(possible_name, possible_names)
+                if version_slug:
+                    version, slug = version_slug
+                    mod.repo_alias = slug
+                    return version
 
         raise ModNotFoundException(mod)
 
     @staticmethod
-    def _make_search_url(mod: Mod) -> str:
-        return f"{_base_url}/search?gameId=432&sectionId=6&searchFilter={mod.repo_alias}"
+    def _find_mod_id_by_slug(search: str, possible_slugs: Set[str]) -> Union[Tuple[int, str], None]:
+        json = Downloader.get(CurseApi._make_search_url(search))
+        for curse_mod in json:
+            if "slug" in curse_mod and "id" in curse_mod:
+                slug = curse_mod["slug"]
+                for possible_slug in possible_slugs:
+                    if slug == possible_slug:
+                        return int(curse_mod["id"]), slug
+
+    @staticmethod
+    def _make_search_url(search: str) -> str:
+        return f"{_base_url}/search?gameId=432&sectionId=6&searchFilter={search}"
 
     @staticmethod
     def _make_files_url(mod: Mod) -> str:
