@@ -7,7 +7,7 @@ from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.repo_types import RepoTypes
-from ...core.entities.version_info import ReleaseTypes, VersionInfo
+from ...core.entities.version_info import Stabilities, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from .download import Download
 from .download_repo import DownloadRepo
@@ -37,7 +37,7 @@ def test_exit_when_later_mod_not_found(mock_repo):
         Mod("not-found", ""),
     ]
     version_info = VersionInfo(
-        release_type=ReleaseTypes.beta,
+        stability=Stabilities.beta,
         mod_loader=ModLoaders.fabric,
         repo_type=RepoTypes.curse,
         upload_time=0,
@@ -59,7 +59,7 @@ def test_exit_when_later_mod_not_found(mock_repo):
 def test_download_and_install_when_found(mock_repo):
     input = [Mod("found", "")]
     version_info = VersionInfo(
-        release_type=ReleaseTypes.beta,
+        stability=Stabilities.beta,
         mod_loader=ModLoaders.fabric,
         repo_type=RepoTypes.curse,
         upload_time=0,

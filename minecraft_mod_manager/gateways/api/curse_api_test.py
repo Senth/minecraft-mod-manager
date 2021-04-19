@@ -7,7 +7,7 @@ from mockito import unstub, verifyStubbedInvocationsAreUsed, when
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.repo_types import RepoTypes
-from ...core.entities.version_info import ReleaseTypes, VersionInfo
+from ...core.entities.version_info import Stabilities, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..downloader import Downloader
 from .curse_api import CurseApi
@@ -112,7 +112,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
     1585794422.687, 1571975688.237, 1618425238.09, 1618425279.417
     expected = [
         VersionInfo(
-            release_type=ReleaseTypes.beta,
+            stability=Stabilities.beta,
             mod_loader=ModLoaders.forge,
             repo_type=RepoTypes.curse,
             name="Carpet",
@@ -122,7 +122,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
             filename="fabric-carpet-20w13b-1.3.17+v200401.jar",
         ),
         VersionInfo(
-            release_type=ReleaseTypes.alpha,
+            stability=Stabilities.alpha,
             mod_loader=ModLoaders.unknown,
             repo_type=RepoTypes.curse,
             name="Carpet",
@@ -132,7 +132,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
             filename="fabric-carpet-1.14.4-1.2.0+v191024.jar",
         ),
         VersionInfo(
-            release_type=ReleaseTypes.stable,
+            stability=Stabilities.stable,
             mod_loader=ModLoaders.fabric,
             repo_type=RepoTypes.curse,
             name="Carpet",
@@ -142,7 +142,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
             filename="fabric-carpet-1.16.5-1.4.32+v210414.jar",
         ),
         VersionInfo(
-            release_type=ReleaseTypes.stable,
+            stability=Stabilities.stable,
             mod_loader=ModLoaders.fabric,
             repo_type=RepoTypes.curse,
             name="Carpet",
