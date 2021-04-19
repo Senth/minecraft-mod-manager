@@ -1,12 +1,19 @@
 from pathlib import Path
-from typing import Sequence, Union
+from typing import List, Sequence, Union
+
+from minecraft_mod_manager.core.errors.mod_not_found_exception import (
+    ModNotFoundException,
+)
+from minecraft_mod_manager.gateways.api.curse_api import CurseApi
 
 from ..app.configure.configure_repo import ConfigureRepo
 from ..app.install.install_repo import InstallRepo
 from ..app.show.show_repo import ShowRepo
 from ..app.update.update_repo import UpdateRepo
-from ..core.entities.mod import Mod, ModArg
+from ..core.entities.mod import Mod
+from ..core.entities.repo_types import RepoTypes
 from ..core.entities.version_info import VersionInfo
+from ..core.utils.latest_version_finder import LatestVersionFinder
 from ..gateways.downloader import Downloader
 from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
@@ -36,10 +43,24 @@ class InstalledRepo(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
     def get_all_mods(self) -> Sequence[Mod]:
         return self.mods
 
-    def get_latest_version(self, mod: ModArg) -> VersionInfo:
+    def get_latest_version(self, mod: Mod) -> VersionInfo:
+        versions: List[VersionInfo] = []
 
-        # TODO check curse api
-        raise NotImplementedError()
+        # Curse
+        if mod.repo_type == RepoTypes.curse or mod.repo_type == RepoTypes.unknown:
+            try:
+                CurseApi.get_all_versions(mod)
+            except ModNotFoundException:
+                pass
+
+        version_info: Union[VersionInfo, None] = None
+        if len(versions) > 0:
+            version_info = LatestVersionFinder.find_latest_version(mod, versions)
+
+        if version_info:
+            return version_info
+        else:
+            raise ModNotFoundException(mod)
 
     def download(self, url: str, filename: str = "") -> Path:
         return Path(self.downloader.download(url, filename))

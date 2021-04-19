@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Mods weren't saved correctly to the DB sometimes.
 - Doesn't crash when mod isn't fabric [#17](https://github.com/Senth/minecraft-mod-manager/issues/17)
+- No longer can update to a wrong version (switching between fabric/forge version) [#10](https://github.com/Senth/minecraft-mod-manager/issues/10)
 
 ## [0.3.1] - 2021-03-02
 
