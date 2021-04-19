@@ -1,6 +1,6 @@
 import os
 import sqlite3
-from typing import Any, List, Tuple
+from typing import Any, List, Tuple, Union
 
 import pytest
 from minecraft_mod_manager.core.entities.repo_types import RepoTypes
@@ -42,6 +42,19 @@ def mod() -> Mod:
 
 def test_insert_mod(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
     expected = [(mod.id, mod.repo_id, mod.repo_type.value, mod.repo_alias, mod.upload_time, 1)]
+
+    sqlite.insert_mod(mod)
+
+    cursor.execute("SELECT * FROM mod")
+    rows = cursor.fetchall()
+
+    assert rows == expected
+
+
+def test_insert_mod_when_fields_set_to_none(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
+    mod.repo_alias = None
+    mod.repo_id = None
+    expected = [(mod.id, None, mod.repo_type.value, None, mod.upload_time, 1)]
 
     sqlite.insert_mod(mod)
 
@@ -127,7 +140,7 @@ class SyncWithDirTest:
     def __init__(
         self,
         name: str,
-        db_before: List[Tuple[str, str, str, str, int, int]] = [],
+        db_before: List[Tuple[str, Union[str, None], str, Union[str, None], int, int]] = [],
         input: List[Mod] = [],
         expected: List[Mod] = [],
         db_after: List[Any] = [],
@@ -139,7 +152,9 @@ class SyncWithDirTest:
         self.db_after = db_after
 
 
-def row(id: str, repo_id="", repo="unknown", alias="", upload_time=0, active=1) -> Tuple[str, str, str, str, int, int]:
+def row(
+    id: str, repo_id: Union[str, None] = None, repo="unknown", alias: Union[str, None] = None, upload_time=0, active=1
+) -> Tuple[str, Union[str, None], str, Union[str, None], int, int]:
     return (id, repo_id, repo, alias, upload_time, active)
 
 

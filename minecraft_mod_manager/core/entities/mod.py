@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from typing import Set
+from typing import Set, Union
 
 from .mod_loaders import ModLoaders
 from .repo_types import RepoTypes
@@ -10,24 +10,16 @@ from .repo_types import RepoTypes
 class ModArg:
     """Mod argument from the CLI"""
 
-    def __init__(self, repo_type: RepoTypes, mod_name: str, alias: str) -> None:
+    def __init__(self, repo_type: RepoTypes, id: str, repo_alias: Union[str, None]) -> None:
         self.repo_type = repo_type
         """Where the mod is downloaded from"""
-        self.id = mod_name
+        self.id = id
         """String identifier of the mod, often case the same as mod name"""
-        self.repo_alias = alias
+        self.repo_alias = repo_alias
         """Mod name id on the repository"""
 
     def __str__(self) -> str:
         return f"{self.repo_type.value}:{self.id}={self.repo_alias}"
-
-    def get_possible_repo_names(self) -> Set[str]:
-        """Get possible repo names when the repo name hasn't been set
-
-        Returns:
-            Set[str]: Possible repo name aliases
-        """
-        return set(self.id)
 
     def __members(self):
         return (
@@ -51,11 +43,11 @@ class Mod(ModArg):
         self,
         id: str,
         name: str,
-        repo_id: str = "",
+        repo_id: Union[str, None] = None,
         repo_type: RepoTypes = RepoTypes.unknown,
-        repo_alias: str = "",
-        version: str = "",
-        file: str = "",
+        repo_alias: Union[str, None] = None,
+        version: Union[str, None] = None,
+        file: Union[str, None] = None,
         upload_time: int = 0,
         mod_loader: ModLoaders = ModLoaders.unknown,
     ):
@@ -75,6 +67,22 @@ class Mod(ModArg):
     def __str__(self) -> str:
         return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader}]"
 
+    def add_old_data(self, old: Mod) -> None:
+        if not self.repo_id:
+            self.repo_id = old.repo_id
+        if self.repo_type == RepoTypes.unknown:
+            self.repo_type = old.repo_type
+        if not self.repo_alias:
+            self.repo_alias = old.repo_alias
+        if not self.version:
+            self.version = old.version
+        if not self.file:
+            self.file = old.file
+        if self.upload_time == 0:
+            self.upload_time = old.upload_time
+        if self.mod_loader == ModLoaders.unknown:
+            self.mod_loader = old.mod_loader
+
     def get_possible_repo_names(self) -> Set[str]:
         possible_names: Set[str] = set()
 
@@ -82,16 +90,17 @@ class Mod(ModArg):
         possible_names.add(self.id.replace("_", "-"))
 
         # Get mod name from filename
-        match = re.match(r"(\w+-\w+-\w+|\w+-\w+|\w+)-", self.file)
+        if self.file:
+            match = re.match(r"(\w+-\w+-\w+|\w+-\w+|\w+)-", self.file)
 
-        if match and match.lastindex == 1:
-            # Add basic name
-            filename = match.group(1).lower().replace("_", "-")
-            possible_names.add(filename)
+            if match and match.lastindex == 1:
+                # Add basic name
+                filename = match.group(1).lower().replace("_", "-")
+                possible_names.add(filename)
 
-            # Remove possible 'fabric' from the name
-            without_fabric = re.sub(r"-fabric\w*|fabric\w*-", "", filename)
-            possible_names.add(without_fabric)
+                # Remove possible 'fabric' from the name
+                without_fabric = re.sub(r"-fabric\w*|fabric\w*-", "", filename)
+                possible_names.add(without_fabric)
 
         return possible_names
 

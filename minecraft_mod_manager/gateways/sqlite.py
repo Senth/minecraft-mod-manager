@@ -90,9 +90,9 @@ class Sqlite:
         rows = self._cursor.fetchall()
         for row in rows:
             id = str(row[0])
-            repo_id = str(row[1])
-            repo_type = str(row[2])
-            repo_name = str(row[3])
+            repo_id = row[1]
+            repo_type = row[2]
+            repo_name = row[3]
             upload_time = int(row[4])
             active = bool(row[5])
             mods[id] = _Column(
