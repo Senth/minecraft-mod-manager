@@ -2,11 +2,12 @@ import json
 from pathlib import Path
 
 import pytest
-from minecraft_mod_manager.core.entities.repo_types import RepoTypes
-from minecraft_mod_manager.core.entities.version_info import ReleaseTypes, VersionInfo
 from mockito import unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod
+from ...core.entities.mod_loaders import ModLoaders
+from ...core.entities.repo_types import RepoTypes
+from ...core.entities.version_info import ReleaseTypes, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..downloader import Downloader
 from .curse_api import CurseApi
@@ -45,6 +46,7 @@ def test_find_mod_id(mod: Mod, api: CurseApi, carpet_search):
     verifyStubbedInvocationsAreUsed()
     unstub()
 
+    assert mod.repo_id
     assert mod_id == int(mod.repo_id)
 
 
@@ -60,21 +62,55 @@ def test_raise_exception_when_mod_not_found(api: CurseApi, carpet_search):
     assert e.type == ModNotFoundException
 
 
-def test_get_latest_version_when_we_have_mod_id(mod: Mod, api: CurseApi, carpet_files):
+def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, carpet_files):
     when(Downloader).get(...).thenReturn(carpet_files)
-    expected = VersionInfo(
-        ReleaseTypes.stable,
-        repo_type=RepoTypes.curse,
-        name="Carpet",
-        upload_time=0,
-        minecraft_version="1.17",
-        download_url="https://edge.forgecdn.net/files/3276/130/fabric-carpet-21w15a-1.4.32+v210414.jar",
-        filename="fabric-carpet-21w15a-1.4.32+v210414.jar",
-    )
+    1585794422.687, 1571975688.237, 1618425238.09, 1618425279.417
+    expected = [
+        VersionInfo(
+            release_type=ReleaseTypes.beta,
+            mod_loader=ModLoaders.forge,
+            repo_type=RepoTypes.curse,
+            name="Carpet",
+            upload_time=1585794423,
+            minecraft_versions=["1.16-Snapshot", "Forge"],
+            download_url="https://edge.forgecdn.net/files/2918/924/fabric-carpet-20w13b-1.3.17+v200401.jar",
+            filename="fabric-carpet-20w13b-1.3.17+v200401.jar",
+        ),
+        VersionInfo(
+            release_type=ReleaseTypes.alpha,
+            mod_loader=ModLoaders.unknown,
+            repo_type=RepoTypes.curse,
+            name="Carpet",
+            upload_time=1571975688,
+            minecraft_versions=["1.14.4"],
+            download_url="https://edge.forgecdn.net/files/2815/968/fabric-carpet-1.14.4-1.2.0+v191024.jar",
+            filename="fabric-carpet-1.14.4-1.2.0+v191024.jar",
+        ),
+        VersionInfo(
+            release_type=ReleaseTypes.stable,
+            mod_loader=ModLoaders.fabric,
+            repo_type=RepoTypes.curse,
+            name="Carpet",
+            upload_time=1618425238,
+            minecraft_versions=["Fabric", "1.16.5", "1.16.4"],
+            download_url="https://edge.forgecdn.net/files/3276/129/fabric-carpet-1.16.5-1.4.32+v210414.jar",
+            filename="fabric-carpet-1.16.5-1.4.32+v210414.jar",
+        ),
+        VersionInfo(
+            release_type=ReleaseTypes.stable,
+            mod_loader=ModLoaders.fabric,
+            repo_type=RepoTypes.curse,
+            name="Carpet",
+            upload_time=1618425279,
+            minecraft_versions=["1.17", "Fabric"],
+            download_url="https://edge.forgecdn.net/files/3276/130/fabric-carpet-21w15a-1.4.32+v210414.jar",
+            filename="fabric-carpet-21w15a-1.4.32+v210414.jar",
+        ),
+    ]
 
-    version_info = api.get_latest_version(mod)
+    versions = api.get_all_versions(mod)
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert version_info == expected
+    assert versions == expected
