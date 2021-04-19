@@ -1,5 +1,7 @@
 from enum import Enum
+from typing import List
 
+from .mod_loaders import ModLoaders
 from .repo_types import RepoTypes
 
 
@@ -14,33 +16,36 @@ class VersionInfo:
     def __init__(
         self,
         release_type: ReleaseTypes,
+        mod_loader: ModLoaders,
         repo_type: RepoTypes,
-        name: str,
         upload_time: int,
-        minecraft_version: str,
+        minecraft_versions: List[str],
         download_url: str,
         filename: str = "",
+        name: str = "",
     ) -> None:
         self.release_type = release_type
+        self.mod_loader = mod_loader
         self.repo_type = repo_type
-        self.name = name
         self.upload_time = upload_time
-        self.minecraft_version = minecraft_version
+        self.minecraft_versions = minecraft_versions
         self.download_url = download_url
         self.filename = filename
+        self.name = name
 
     def __str__(self) -> str:
-        return f"{self.name} for {self.minecraft_version}, uploaded {self.upload_time}"
+        return f"{self.minecraft_versions}; uploaded {self.upload_time}"
 
     def __members(self):
         return (
             self.release_type,
+            self.mod_loader,
             self.repo_type,
-            self.name,
             self.upload_time,
-            self.minecraft_version,
+            self.minecraft_versions,
             self.download_url,
             self.filename,
+            self.name,
         )
 
     def __eq__(self, other) -> bool:
