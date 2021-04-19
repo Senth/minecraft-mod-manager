@@ -4,7 +4,7 @@ from typing import Any, List, Set, Tuple, Union
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.repo_types import RepoTypes
-from ...core.entities.version_info import ReleaseTypes, VersionInfo
+from ...core.entities.version_info import Stabilities, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..downloader import Downloader
 
@@ -65,7 +65,7 @@ class CurseApi:
     @staticmethod
     def _file_to_version_info(file_data: Any) -> VersionInfo:
         return VersionInfo(
-            release_type=CurseApi._to_release_type(file_data["releaseType"]),
+            stability=CurseApi._to_release_type(file_data["releaseType"]),
             mod_loader=CurseApi._to_mod_loader(file_data["gameVersion"]),
             repo_type=RepoTypes.curse,
             upload_time=CurseApi._to_epoch_time(file_data["fileDate"]),
@@ -75,14 +75,14 @@ class CurseApi:
         )
 
     @staticmethod
-    def _to_release_type(value: int) -> ReleaseTypes:
+    def _to_release_type(value: int) -> Stabilities:
         if value == 1:
-            return ReleaseTypes.stable
+            return Stabilities.stable
         elif value == 2:
-            return ReleaseTypes.beta
+            return Stabilities.beta
         elif value == 3:
-            return ReleaseTypes.alpha
-        return ReleaseTypes.unknown
+            return Stabilities.alpha
+        return Stabilities.unknown
 
     @staticmethod
     def _to_epoch_time(date_string: str) -> int:

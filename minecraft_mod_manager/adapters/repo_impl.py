@@ -3,6 +3,7 @@ from typing import Sequence, Union
 
 from ..app.configure.configure_repo import ConfigureRepo
 from ..app.install.install_repo import InstallRepo
+from ..app.show.show_repo import ShowRepo
 from ..app.update.update_repo import UpdateRepo
 from ..core.entities.mod import Mod, ModArg
 from ..core.entities.version_info import VersionInfo
@@ -11,7 +12,7 @@ from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
 
 
-class InstalledRepo(ConfigureRepo, UpdateRepo, InstallRepo):
+class InstalledRepo(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
     """Cache/Adapter between jar_parser, sqlite and the rest of the application"""
 
     def __init__(self, jar_parser: JarParser, sqlite: Sqlite, downloader: Downloader) -> None:
@@ -36,6 +37,7 @@ class InstalledRepo(ConfigureRepo, UpdateRepo, InstallRepo):
         return self.mods
 
     def get_latest_version(self, mod: ModArg) -> VersionInfo:
+
         # TODO check curse api
         raise NotImplementedError()
 

@@ -13,7 +13,7 @@ class Actions(Enum):
     @staticmethod
     def from_name(name: str) -> Union[Actions, None]:
         for action in Actions:
-            if action.value == name:
+            if action.value == name.lower():
                 return action
 
     @staticmethod

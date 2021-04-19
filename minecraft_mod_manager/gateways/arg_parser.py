@@ -38,14 +38,26 @@ def parse_args():
         help="Only update mods to this Minecraft version",
     )
     parser.add_argument(
-        "--allow-beta",
+        "--beta",
         action="store_true",
-        help="Allow beta releases",
+        help="Allow beta releases of mods",
     )
     parser.add_argument(
-        "--allow-alpha",
+        "--alpha",
         action="store_true",
-        help="Allow alpha and beta releases",
+        help="Allow alpha and beta releases of mods",
+    )
+    parser.add_argument(
+        "--mod-loader",
+        action="store_true",
+        help="Only install forge mods. Rarely necessary to be this explicit",
+    )
+    parser.add_argument(
+        "--mod-loader",
+        choices=["fabric", "forge"],
+        help="Only install the specified mod of the specified mod loader. "
+        + "You rarely need to be this specific. "
+        + "The application figures out for itself which type you'll likely want to install.",
     )
     parser.add_argument(
         "--verbose",
@@ -60,7 +72,7 @@ def parse_args():
     parser.add_argument(
         "--pretend",
         action="store_true",
-        help="Only pretend to update/configure. Does not change anything",
+        help="Only pretend to install/update/configure. Does not change anything",
     )
 
     args = parser.parse_args()

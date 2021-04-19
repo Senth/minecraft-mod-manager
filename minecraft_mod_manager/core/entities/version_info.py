@@ -5,17 +5,17 @@ from .mod_loaders import ModLoaders
 from .repo_types import RepoTypes
 
 
-class ReleaseTypes(Enum):
+class Stabilities(Enum):
     stable = "stable"
     beta = "beta"
     alpha = "alpha"
-    unknown = "invalid"
+    unknown = "unknown"
 
 
 class VersionInfo:
     def __init__(
         self,
-        release_type: ReleaseTypes,
+        stability: Stabilities,
         mod_loader: ModLoaders,
         repo_type: RepoTypes,
         upload_time: int,
@@ -24,7 +24,7 @@ class VersionInfo:
         filename: str = "",
         name: str = "",
     ) -> None:
-        self.release_type = release_type
+        self.stability = stability
         self.mod_loader = mod_loader
         self.repo_type = repo_type
         self.upload_time = upload_time
@@ -36,9 +36,12 @@ class VersionInfo:
     def __str__(self) -> str:
         return f"{self.minecraft_versions}; uploaded {self.upload_time}"
 
+    def __repr__(self) -> str:
+        return str(self.__members())
+
     def __members(self):
         return (
-            self.release_type,
+            self.stability,
             self.mod_loader,
             self.repo_type,
             self.upload_time,
