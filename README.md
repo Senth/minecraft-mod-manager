@@ -26,7 +26,7 @@ Update mods from CurseForge (and other places in the future) through a simple co
 | Arguments                                        | Description                                                                                         |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
 | `install jei`                                    | Searches for jei on all sites (from Modrinth first). and installs the latest version                |
-| `install dynmap=dynmapforge`                     | Install dynmap with alias dynmapforge. Dynmap name on CurseForge is dynmapforge, even for fabric.   |
+| `install dynmap=dynmapforge`                     | Install dynmap with slug dynmapforge. Dynmap name on CurseForge is dynmapforge, even for fabric.    |
 | `install dynmap=dynmapforge --mod-loader fabric` | Install fabric version of dynmap. Not necessary if you have other fabric mods installed.            |
 | `install curse:sodium`                           | By default it searches for all sites, adding `curse:` in front only searches on CurseForge.         |
 | `install carpet fabric-api sodium lithium`       | Easily install many mods.                                                                           |
@@ -36,7 +36,7 @@ Update mods from CurseForge (and other places in the future) through a simple co
 | `update -v "1.16.5"`                             | Updates to latest mod version which works with specified MC version.                                |
 | `update -v "1.16.1"`                             | If you upgraded the mods, to a higher version (e.g. snapshot), you can easily downgrade them again. |
 | `configure modrith:sodium`                       | Change the download site for a mod                                                                  |
-| `carpet=fabric-carpet`                           | Change site alias for a mod                                                                         |
+| `carpet=fabric-carpet`                           | Change site slug for a mod                                                                          |
 | `configure modrinth:sodium curse:carpet=carpet`  | Easily configure multiple mods at the same time.                                                    |
 | `list`                                           | List all installed mods                                                                             |
 
@@ -54,7 +54,7 @@ positional arguments:
                         To specify the download site for the mod, put 'curse:' before the mod.
                         E.g. 'curse:litematica'
                         By default it searches all sites for the mod.
-                        To configure an alias for the mod, use 'mod_name=ALIAS_NAME'.
+                        To configure an slug for the mod, use 'mod_name=SLUG'.
                         E.g. 'dynmap=dynmapforge' must be used to find dynmap on Curse.
 
 

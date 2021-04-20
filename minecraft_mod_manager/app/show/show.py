@@ -36,11 +36,11 @@ class Show:
     def _calculate_repo_alias_width(self) -> None:
         for mod in self._installed_mods:
             # Make sure we display an empty alias instead of 'None'
-            if not mod.site_alias:
-                mod.site_alias = ""
+            if not mod.site_slug:
+                mod.site_slug = ""
 
-            if len(mod.site_alias) > self._repo_alias_width:
-                self._repo_alias_width = len(mod.site_alias)
+            if len(mod.site_slug) > self._repo_alias_width:
+                self._repo_alias_width = len(mod.site_slug)
 
         self._repo_alias_width += Show._padding
 
@@ -62,7 +62,7 @@ class Show:
         )
 
     def _print_mod(self, mod: Mod) -> None:
-        self._print_row(mod.id, mod.site_alias, mod.site.value, Show._get_date_from_epoch(mod.upload_time))
+        self._print_row(mod.id, mod.site_slug, mod.site.value, Show._get_date_from_epoch(mod.upload_time))
 
     @staticmethod
     def _get_date_from_epoch(epoch: int) -> str:

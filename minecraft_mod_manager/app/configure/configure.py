@@ -30,8 +30,8 @@ class Configure:
             if mod_arg.site != Sites.unknown:
                 found_mod.site = mod_arg.site
 
-            if mod_arg.site_alias:
-                found_mod.site_alias = mod_arg.site_alias
+            if mod_arg.site_slug:
+                found_mod.site_slug = mod_arg.site_slug
 
             # Updating mod
             mods_to_update.append(found_mod)
@@ -43,9 +43,9 @@ class Configure:
             info = ""
             if mod.site != Sites.unknown:
                 info += f"site: {mod.site.value}"
-            if mod.site_alias:
+            if mod.site_slug:
                 if len(info) > 0:
                     info += ", "
-                info += f"alias: {mod.site_alias}"
+                info += f"alias: {mod.site_slug}"
 
             Logger.info(f"Configured {mod.id}; {info}", LogColors.add)

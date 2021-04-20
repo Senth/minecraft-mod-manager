@@ -17,7 +17,7 @@ def mock_repo():
 def test_abort_when_mod_not_found(mock_repo):
     when(mock_repo).get_mod(...).thenReturn(None)
     configure = Configure(mock_repo)
-    input = [ModArg(site=Sites.unknown, id="not-found", alias="")]
+    input = [ModArg(site=Sites.unknown, id="not-found", slug="")]
 
     with pytest.raises(SystemExit) as e:
         configure.execute(input)
@@ -32,8 +32,8 @@ def test_abort_before_updating_when_later_mod_not_found(mock_repo):
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(site=Sites.unknown, id="found", alias="test"),
-        ModArg(site=Sites.unknown, id="not-found", alias=""),
+        ModArg(site=Sites.unknown, id="found", slug="test"),
+        ModArg(site=Sites.unknown, id="not-found", slug=""),
     ]
 
     with pytest.raises(SystemExit) as e:
@@ -51,7 +51,7 @@ def test_mod_repo_changed(mock_repo):
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(site=Sites.curse, id="carpet", alias=""),
+        ModArg(site=Sites.curse, id="carpet", slug=""),
     ]
 
     configure.execute(input)
@@ -61,14 +61,14 @@ def test_mod_repo_changed(mock_repo):
 
 
 def test_mod_alias_changed(mock_repo):
-    expected_update = Mod("carpet", "", site_alias="carpet_alias")
+    expected_update = Mod("carpet", "", site_slug="carpet_alias")
 
     when(mock_repo).get_mod("carpet").thenReturn(Mod("carpet", ""))
     when(mock_repo).update_mod(expected_update)
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(site=Sites.unknown, id="carpet", alias="carpet_alias"),
+        ModArg(site=Sites.unknown, id="carpet", slug="carpet_alias"),
     ]
 
     configure.execute(input)

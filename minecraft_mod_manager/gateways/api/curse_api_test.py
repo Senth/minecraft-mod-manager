@@ -35,7 +35,7 @@ def api():
 
 @pytest.fixture
 def mod():
-    return Mod("carpet", "Carpet", site_alias="carpet", site_id="349239")
+    return Mod("carpet", "Carpet", site_slug="carpet", site_id="349239")
 
 
 def test_find_mod_id(mod: Mod, api: CurseApi, carpet_search):
@@ -55,7 +55,7 @@ def test_find_mod_id_from_filename_without_repo_alias(mod: Mod, api: CurseApi, c
     when(Downloader).get(
         "https://addons-ecs.forgesvc.net/api/v2/addon/search?gameId=432&sectionId=6&searchFilter=carpet"
     ).thenReturn(carpet_search)
-    mod.site_alias = None
+    mod.site_slug = None
     mod.id = "carput-fail"
     mod.file = "fabric-carpet-1.14.4-1.2.0+v191024.jar"
 
@@ -69,7 +69,7 @@ def test_find_mod_id_from_filename_without_repo_alias(mod: Mod, api: CurseApi, c
 
 def test_find_mod_id_from_filename_in_other_search_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
     when(Downloader).get(...).thenReturn(carpet_search)
-    mod.site_alias = None
+    mod.site_slug = None
     mod.id = "carput-fail"
     mod.file = "fabric-carpet-1.14.4-1.2.0+v191024.jar"
 
@@ -84,7 +84,7 @@ def test_find_mod_id_from_filename_in_other_search_without_repo_alias(mod: Mod, 
 
 def test_find_mod_id_from_id_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
     when(Downloader).get(...).thenReturn(carpet_search)
-    mod.site_alias = None
+    mod.site_slug = None
 
     mod_id = api._find_mod_id(mod)
 

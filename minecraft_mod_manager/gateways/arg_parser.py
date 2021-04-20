@@ -24,7 +24,7 @@ def parse_args():
         + "If no mods are specified during an update, all mods will be updated.\n"
         + "To specify the download site for the mod you can put 'site:' before the mod. "
         + "E.g. 'curse:litematica'. By default it searches all sites for the mod.\n"
-        + "To configure an alias for the mod, use 'mod_name=ALIAS_NAME'. E.g. 'dynmap=dynmapforge'",
+        + "To configure an slug for the mod, use 'mod_name=SLUG'. E.g. 'dynmap=dynmapforge'",
     )
     parser.add_argument(
         "-d",
@@ -84,12 +84,12 @@ def _parse_mods(args_mod: Any) -> List[ModArg]:
         if not match:
             Logger.error(f"Invalid mod syntax: {mod_arg}", exit=True)
 
-        repo_type_name, mod_id, repo_alias = match.groups()
-        if repo_type_name and len(repo_type_name) > 0:
+        site, mod_id, slug = match.groups()
+        if site and len(site) > 0:
             try:
-                repo_type = Sites[repo_type_name.lower()]
+                repo_type = Sites[site.lower()]
             except KeyError:
-                Logger.error(f"No site named {repo_type_name}")
+                Logger.error(f"No site named {site}")
                 Logger.error("Valid names are:")
                 for enum in Sites:
                     Logger.error(f"{enum.value}")
@@ -97,10 +97,10 @@ def _parse_mods(args_mod: Any) -> List[ModArg]:
         else:
             repo_type = Sites.unknown
 
-        if not repo_alias:
-            repo_alias = mod_id
+        if not slug:
+            slug = mod_id
 
-        mods.append(ModArg(repo_type, mod_id, repo_alias))
+        mods.append(ModArg(repo_type, mod_id, slug))
     return mods
 
 

@@ -5,7 +5,7 @@ class _Column:
     c_id = "id"
     c_site = "site"
     c_site_id = "site_id"
-    c_site_alias = "site_alias"
+    c_site_slug = "site_slug"
     c_upload_time = "upload_time"
     c_active = "active"
 
@@ -14,14 +14,14 @@ class _Column:
         id: str,
         site: str,
         site_id: str,
-        site_alias: str,
+        site_slug: str,
         upload_time: int,
         active: bool,
     ) -> None:
         self.id = id
         self.site = site
         self.site_id = site_id
-        self.site_alias = site_alias
+        self.site_slug = site_slug
         self.upload_time = upload_time
         self.active = active
 
@@ -67,7 +67,7 @@ class SqliteUpgrader:
             + f"{_Column.c_id} TEXT UNIQUE, "
             + f"{_Column.c_site} TEXT, "
             + f"{_Column.c_site_id} TEXT, "
-            + f"{_Column.c_site_alias} TEXT, "
+            + f"{_Column.c_site_slug} TEXT, "
             + f"{_Column.c_upload_time} INTEGER, "
             + f"{_Column.c_active} INTEGER)"
         )

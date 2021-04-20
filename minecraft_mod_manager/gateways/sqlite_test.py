@@ -37,7 +37,7 @@ def cursor(db: sqlite3.Connection) -> sqlite3.Cursor:
 
 @pytest.fixture
 def mod() -> Mod:
-    return Mod("id", "name", Sites.curse, "site_id", "alias", upload_time=15)
+    return Mod("id", "name", Sites.curse, "site_id", "slug", upload_time=15)
 
 
 def test_insert_mod(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
@@ -46,7 +46,7 @@ def test_insert_mod(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
             id=mod.id,
             site=mod.site.value,
             site_id=mod.site_id,
-            alias=mod.site_alias,
+            alias=mod.site_slug,
             upload_time=mod.upload_time,
             active=1,
         )
@@ -61,14 +61,14 @@ def test_insert_mod(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
 
 
 def test_insert_mod_when_fields_set_to_none(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
-    mod.site_alias = None
+    mod.site_slug = None
     mod.site_id = None
     expected = [
         row(
             id=mod.id,
             site=mod.site.value,
             site_id=mod.site_id,
-            alias=mod.site_alias,
+            alias=mod.site_slug,
             upload_time=mod.upload_time,
             active=1,
         )
@@ -103,8 +103,8 @@ def test_skip_insert_mod_when_pretend(mod: Mod, sqlite: Sqlite, cursor: sqlite3.
 
 def test_update_mod(mod: Mod, sqlite: Sqlite, db: sqlite3.Connection, cursor: sqlite3.Cursor):
     db.execute(
-        "INSERT INTO mod (id, site, site_id, site_alias, upload_time, active) VALUES (?, ?, ?, ?, ?, 1)",
-        [mod.id, mod.site.value, mod.site_id, mod.site_alias, mod.upload_time],
+        "INSERT INTO mod (id, site, site_id, site_slug, upload_time, active) VALUES (?, ?, ?, ?, ?, 1)",
+        [mod.id, mod.site.value, mod.site_id, mod.site_slug, mod.upload_time],
     )
     db.commit()
     input = Mod("id", "something", Sites.unknown, "new site id", "new alias", upload_time=1337)
@@ -129,7 +129,7 @@ def test_skip_update_mod_when_pretend(mod: Mod, sqlite: Sqlite, cursor: sqlite3.
 
 def test_insert_mod_when_calling_update_mod_but_does_not_exist(mod: Mod, sqlite: Sqlite, cursor: sqlite3.Cursor):
     sqlite.update_mod(mod)
-    expected = [(mod.id, mod.site.value, mod.site_id, mod.site_alias, mod.upload_time, 1)]
+    expected = [(mod.id, mod.site.value, mod.site_id, mod.site_slug, mod.upload_time, 1)]
 
     cursor.execute("SELECT * FROM mod")
 
@@ -138,8 +138,8 @@ def test_insert_mod_when_calling_update_mod_but_does_not_exist(mod: Mod, sqlite:
 
 def test_exists_when_exists(mod: Mod, sqlite: Sqlite, db: sqlite3.Connection):
     db.execute(
-        "INSERT INTO mod (id, site, site_id, site_alias, upload_time, active) VALUES (?, ?, ?, ?, ?, 1)",
-        [mod.id, mod.site.value, mod.site_id, mod.site_alias, mod.upload_time],
+        "INSERT INTO mod (id, site, site_id, site_slug, upload_time, active) VALUES (?, ?, ?, ?, ?, 1)",
+        [mod.id, mod.site.value, mod.site_id, mod.site_slug, mod.upload_time],
     )
     db.commit()
 
@@ -244,7 +244,7 @@ def row(
                 Mod("2", "name2"),
             ],
             expected=[
-                Mod("1", "name1", site_alias="alias", upload_time=1337),
+                Mod("1", "name1", site_slug="alias", upload_time=1337),
                 Mod("2", "name2", site=Sites.curse),
             ],
             db_after=[
@@ -263,7 +263,7 @@ def row(
                 Mod("2", "name2"),
             ],
             expected=[
-                Mod("1", "name1", site_alias="alias", upload_time=1337),
+                Mod("1", "name1", site_slug="alias", upload_time=1337),
                 Mod("2", "name2", site=Sites.curse),
             ],
             db_after=[
@@ -279,7 +279,7 @@ def test_sync_with_dir(test: SyncWithDirTest, sqlite: Sqlite, db: sqlite3.Connec
     # Insert initial data
     for row in test.db_before:
         db.execute(
-            "INSERT INTO mod (id, site, site_id, site_alias, upload_time, active) VALUES (?, ?, ?, ?, ?, ?)",
+            "INSERT INTO mod (id, site, site_id, site_slug, upload_time, active) VALUES (?, ?, ?, ?, ?, ?)",
             list(row),
         )
     db.commit()
