@@ -30,20 +30,25 @@ def mock_file():
     return mock_file
 
 
-def test_use_filename_when_it_exists(mock_file):
+@pytest.fixture
+def downloader():
+    return Downloader()
+
+
+def test_use_filename_when_it_exists(downloader, mock_file):
     filename = "some-file.jar"
     expected = path.join(config.dir, filename)
 
     when(requests).get(...).thenReturn(Response())
     when(builtins).open(...).thenReturn(mock_file)
 
-    result = Downloader.download("", filename)
+    result = downloader.download("", filename)
 
     unstub()
     assert expected == result
 
 
-def test_use_downloaded_filename_when_no_filename_specified(mock_response, mock_file):
+def test_use_downloaded_filename_when_no_filename_specified(downloader, mock_response, mock_file):
     mock_headers = mock(CaseInsensitiveDict)
     mock_response.headers = mock_headers
     filename = "downloaded.jar"
@@ -53,13 +58,13 @@ def test_use_downloaded_filename_when_no_filename_specified(mock_response, mock_
     when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
 
-    result = Downloader.download("", "")
+    result = downloader.download("", "")
 
     unstub()
     assert expected == result
 
 
-def test_use_downloaded_filename_add_jar_when_no_filename_specified(mock_response, mock_file):
+def test_use_downloaded_filename_add_jar_when_no_filename_specified(downloader, mock_response, mock_file):
     mock_headers = mock(CaseInsensitiveDict)
     mock_response.headers = mock_headers
     filename = "downloaded"
@@ -69,13 +74,13 @@ def test_use_downloaded_filename_add_jar_when_no_filename_specified(mock_respons
     when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
 
-    result = Downloader.download("", "")
+    result = downloader.download("", "")
 
     unstub()
     assert expected == result
 
 
-def test_no_mock_interactions_when_pretending():
+def test_no_mock_interactions_when_pretending(downloader):
     filename = "file.jar"
     expected = filename
     config.pretend = True
@@ -83,7 +88,7 @@ def test_no_mock_interactions_when_pretending():
     when(builtins).open(...).thenRaise(NotImplementedError())
 
     try:
-        result = Downloader.download("", filename)
+        result = downloader.download("", filename)
         assert expected == result
     except Exception as e:
         assert e is None

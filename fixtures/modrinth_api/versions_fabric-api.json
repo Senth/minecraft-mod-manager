@@ -1,0 +1,110 @@
+[
+  {
+    "id": "Bnw2XweM",
+    "mod_id": "P7dR8mSH",
+    "author_id": "JZA4dW8o",
+    "featured": false,
+    "name": "[21w15a] Fabric API 0.33.0",
+    "version_number": "0.33.0+1.17",
+    "changelog": "The project has been updated to root project 'fabric-api'. No changelog was specified.",
+    "changelog_url": null,
+    "date_published": "2021-04-18T18:16:06.881834Z",
+    "downloads": 4,
+    "version_type": "beta",
+    "files": [
+      {
+        "hashes": {
+          "sha512": "1f279b8b3355b2bb43db30bcf265e08826584e14b2af7abb3af64364059e6e1bef261f529c378474e4536eccd41c30aaea98bb39cfa02ec7b0ab421ebfa0f724",
+          "sha1": "78eddaaaa4c6375db8cdfd8c586dac90c70acb99"
+        },
+        "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/0.33.0+1.17/fabric-api-0.33.0+1.17.jar",
+        "filename": "fabric-api-0.33.0+1.17.jar",
+        "primary": false
+      }
+    ],
+    "dependencies": [],
+    "game_versions": ["21w16a"],
+    "loaders": ["fabric"]
+  },
+  {
+    "id": "zd2RW4Xi",
+    "mod_id": "P7dR8mSH",
+    "author_id": "JZA4dW8o",
+    "featured": false,
+    "name": "[1.16.5] Fabric API 0.33.0",
+    "version_number": "0.33.0+1.16",
+    "changelog": "The project has been updated to root project 'fabric-api'. No changelog was specified.",
+    "changelog_url": null,
+    "date_published": "2021-04-18T17:59:23.016702Z",
+    "downloads": 39,
+    "version_type": "release",
+    "files": [
+      {
+        "hashes": {
+          "sha512": "7b00747ddb3b5cadb48386fc2969ba295474c0d53a84cad227366fe56d2d3878590e5379462465cffe3447066b1fe32c35e2694686b22ec1615e513ed67875e6",
+          "sha1": "7f20e318d9f244cbb7d0189b1c0103cb3f033969"
+        },
+        "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/0.33.0+1.16/fabric-api-0.33.0+1.16.jar",
+        "filename": "fabric-api-0.33.0+1.16.jar",
+        "primary": false
+      }
+    ],
+    "dependencies": [],
+    "game_versions": ["1.16.5"],
+    "loaders": []
+  },
+  {
+    "id": "3XrQEeEu",
+    "mod_id": "P7dR8mSH",
+    "author_id": "JZA4dW8o",
+    "featured": false,
+    "name": "[21w15a] Fabric API 0.32.9",
+    "version_number": "0.32.9+1.17",
+    "changelog": "The project has been updated to root project 'fabric-api'. No changelog was specified.",
+    "changelog_url": null,
+    "date_published": "2021-04-14T19:37:00.630630Z",
+    "downloads": 12,
+    "version_type": "alpha",
+    "files": [
+      {
+        "hashes": {
+          "sha1": "c94cd5f1d58a9415c64857d1e3760695bf8e948f",
+          "sha512": "15b54ce72943e1b51e901c641d5887aa836e3d7ea07cdb03af722e2360d32e97d4fa51267ad811d1f86b1ef05bd63d2eca5b08f6dc2ffd9724e3199284c918d2"
+        },
+        "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/0.32.9+1.17/fabric-api-0.32.9+1.17.jar",
+        "filename": "fabric-api-0.32.9+1.17.jar",
+        "primary": false
+      }
+    ],
+    "dependencies": [],
+    "game_versions": ["21w15a"],
+    "loaders": ["forge"]
+  },
+  {
+    "id": "CI09738V",
+    "mod_id": "P7dR8mSH",
+    "author_id": "JZA4dW8o",
+    "featured": false,
+    "name": "[1.16.5] Fabric API 0.32.9",
+    "version_number": "0.32.9+1.16",
+    "changelog": "The project has been updated to root project 'fabric-api'. No changelog was specified.",
+    "changelog_url": null,
+    "date_published": "2021-04-14T19:10:02.767932Z",
+    "downloads": 90,
+    "version_type": "release",
+    "files": [
+      {
+        "hashes": {
+          "sha512": "1ade2606a13c2ec4fa67d7eafbcbf5e6a6a6f48ca9d29831334ed10f4b5cbbcb7e9de157ac5bd73cf36fc1f3431787d34d57eaa74bff34c11265648687b805f9",
+          "sha1": "230936e18384bfb5ba7f229f2b9776a6b56c5add"
+        },
+        "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/0.32.9+1.16/fabric-api-0.32.9+1.16.jar",
+        "filename": "fabric-api-0.32.9+1.16.jar",
+        "primary": false
+      }
+    ],
+    "dependencies": [],
+    "game_versions": ["1.16.5"],
+    "loaders": ["fabric", "forge"]
+  }
+]

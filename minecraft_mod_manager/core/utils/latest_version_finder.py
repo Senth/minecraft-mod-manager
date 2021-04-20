@@ -34,7 +34,7 @@ class LatestVersionFinder:
             return False
         elif config.filter.stability == Stabilities.beta:
             return version.stability == Stabilities.alpha
-        elif config.filter.stability == Stabilities.stable:
+        elif config.filter.stability == Stabilities.release:
             return version.stability == Stabilities.beta or version.stability == Stabilities.alpha
         return False
 
@@ -48,6 +48,6 @@ class LatestVersionFinder:
     def _is_filtered_by_mod_loader(prev: ModLoaders, version: VersionInfo) -> bool:
         if config.filter.loader == ModLoaders.unknown:
             if prev != ModLoaders.unknown:
-                return prev != version.mod_loader
+                return prev not in version.mod_loaders
             return False
-        return config.filter.loader != version.mod_loader
+        return config.filter.loader not in version.mod_loaders

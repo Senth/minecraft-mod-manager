@@ -35,11 +35,11 @@ def mod(loader=ModLoaders.unknown):
 
 
 def version_info(
-    stability=Stabilities.stable, mod_loader=ModLoaders.unknown, versions: List[str] = [], uploaded=0
+    stability=Stabilities.release, mod_loaders: List[ModLoaders] = [], versions: List[str] = [], uploaded=0
 ) -> VersionInfo:
     return VersionInfo(
         stability=stability,
-        mod_loader=mod_loader,
+        mod_loaders=set(mod_loaders),
         site=Sites.curse,
         minecraft_versions=versions,
         upload_time=uploaded,
@@ -81,7 +81,7 @@ def reset_filter() -> None:
                     version_info(uploaded=20, stability=Stabilities.beta),
                     version_info(uploaded=50, stability=Stabilities.alpha),
                     version_info(uploaded=30, versions=["1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
                 expected=version_info(uploaded=50, stability=Stabilities.alpha),
             )
@@ -95,10 +95,10 @@ def reset_filter() -> None:
                     version_info(uploaded=20, stability=Stabilities.beta),
                     version_info(uploaded=50, stability=Stabilities.alpha),
                     version_info(uploaded=30, versions=["1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
                 filter=Filter(stability=Stabilities.beta),
-                expected=version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                expected=version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
             )
         ),
         (
@@ -110,7 +110,7 @@ def reset_filter() -> None:
                     version_info(uploaded=45, stability=Stabilities.beta),
                     version_info(uploaded=50, stability=Stabilities.alpha),
                     version_info(uploaded=30, versions=["1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
                 filter=Filter(stability=Stabilities.beta),
                 expected=version_info(uploaded=45, stability=Stabilities.beta),
@@ -125,7 +125,7 @@ def reset_filter() -> None:
                     version_info(uploaded=20, versions=["1.17", "Fabric", "1.16.5"]),
                     version_info(uploaded=50, stability=Stabilities.alpha),
                     version_info(uploaded=30, versions=["toast", "1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
                 filter=Filter(version="1.16.5"),
                 expected=version_info(uploaded=30, versions=["toast", "1.16.5"]),
@@ -136,14 +136,14 @@ def reset_filter() -> None:
                 name="Find latest version by mod loader",
                 mod=mod(),
                 versions=[
-                    version_info(uploaded=10, mod_loader=ModLoaders.forge),
-                    version_info(uploaded=20, mod_loader=ModLoaders.fabric),
-                    version_info(uploaded=30, mod_loader=ModLoaders.forge),
+                    version_info(uploaded=10, mod_loaders=[ModLoaders.forge]),
+                    version_info(uploaded=20, mod_loaders=[ModLoaders.fabric]),
+                    version_info(uploaded=30, mod_loaders=[ModLoaders.forge]),
                     version_info(uploaded=50, versions=["1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
                 filter=Filter(loader=ModLoaders.forge),
-                expected=version_info(uploaded=30, mod_loader=ModLoaders.forge),
+                expected=version_info(uploaded=30, mod_loaders=[ModLoaders.forge]),
             )
         ),
         (
@@ -151,14 +151,14 @@ def reset_filter() -> None:
                 name="Find latest version by mod loader",
                 mod=mod(),
                 versions=[
-                    version_info(uploaded=10, mod_loader=ModLoaders.forge),
-                    version_info(uploaded=20, mod_loader=ModLoaders.fabric),
-                    version_info(uploaded=30, mod_loader=ModLoaders.forge),
+                    version_info(uploaded=10, mod_loaders=[ModLoaders.forge]),
+                    version_info(uploaded=20, mod_loaders=[ModLoaders.fabric]),
+                    version_info(uploaded=30, mod_loaders=[ModLoaders.forge]),
                     version_info(uploaded=50, versions=["1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
                 filter=Filter(loader=ModLoaders.fabric),
-                expected=version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                expected=version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
             )
         ),
         (
@@ -166,13 +166,13 @@ def reset_filter() -> None:
                 name="Find latest version filter by mob loader in mod",
                 mod=mod(loader=ModLoaders.forge),
                 versions=[
-                    version_info(uploaded=10, mod_loader=ModLoaders.forge),
-                    version_info(uploaded=20, mod_loader=ModLoaders.fabric),
-                    version_info(uploaded=30, mod_loader=ModLoaders.forge),
+                    version_info(uploaded=10, mod_loaders=[ModLoaders.forge]),
+                    version_info(uploaded=20, mod_loaders=[ModLoaders.fabric]),
+                    version_info(uploaded=30, mod_loaders=[ModLoaders.forge]),
                     version_info(uploaded=50, versions=["1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
-                expected=version_info(uploaded=30, mod_loader=ModLoaders.forge),
+                expected=version_info(uploaded=30, mod_loaders=[ModLoaders.forge]),
             )
         ),
         (
@@ -180,13 +180,27 @@ def reset_filter() -> None:
                 name="Find latest version filter by mod loader in mod",
                 mod=mod(loader=ModLoaders.fabric),
                 versions=[
-                    version_info(uploaded=10, mod_loader=ModLoaders.forge),
-                    version_info(uploaded=20, mod_loader=ModLoaders.fabric),
-                    version_info(uploaded=30, mod_loader=ModLoaders.forge),
+                    version_info(uploaded=10, mod_loaders=[ModLoaders.forge]),
+                    version_info(uploaded=20, mod_loaders=[ModLoaders.fabric]),
+                    version_info(uploaded=30, mod_loaders=[ModLoaders.forge, ModLoaders.fabric]),
                     version_info(uploaded=50, versions=["1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
-                expected=version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                expected=version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
+            )
+        ),
+        (
+            Test(
+                name="Find latest version filter by mod loader using many mods in mod",
+                mod=mod(loader=ModLoaders.fabric),
+                versions=[
+                    version_info(uploaded=10, mod_loaders=[ModLoaders.forge]),
+                    version_info(uploaded=20, mod_loaders=[ModLoaders.fabric]),
+                    version_info(uploaded=30, mod_loaders=[ModLoaders.forge]),
+                    version_info(uploaded=50, versions=["1.16.5"]),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.forge, ModLoaders.fabric]),
+                ],
+                expected=version_info(uploaded=40, mod_loaders=[ModLoaders.forge, ModLoaders.fabric]),
             )
         ),
         (
@@ -194,14 +208,14 @@ def reset_filter() -> None:
                 name="Find latest version filter by mod loader overriding mod",
                 mod=mod(loader=ModLoaders.fabric),
                 versions=[
-                    version_info(uploaded=10, mod_loader=ModLoaders.forge),
-                    version_info(uploaded=20, mod_loader=ModLoaders.fabric),
-                    version_info(uploaded=30, mod_loader=ModLoaders.forge),
+                    version_info(uploaded=10, mod_loaders=[ModLoaders.forge]),
+                    version_info(uploaded=20, mod_loaders=[ModLoaders.fabric]),
+                    version_info(uploaded=30, mod_loaders=[ModLoaders.forge]),
                     version_info(uploaded=50, versions=["1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
                 filter=Filter(loader=ModLoaders.forge),
-                expected=version_info(uploaded=30, mod_loader=ModLoaders.forge),
+                expected=version_info(uploaded=30, mod_loaders=[ModLoaders.forge]),
             )
         ),
         (
@@ -209,14 +223,14 @@ def reset_filter() -> None:
                 name="Find latest version filter by mod loader overriding mod",
                 mod=mod(loader=ModLoaders.forge),
                 versions=[
-                    version_info(uploaded=10, mod_loader=ModLoaders.forge),
-                    version_info(uploaded=20, mod_loader=ModLoaders.fabric),
-                    version_info(uploaded=30, mod_loader=ModLoaders.forge),
+                    version_info(uploaded=10, mod_loaders=[ModLoaders.forge]),
+                    version_info(uploaded=20, mod_loaders=[ModLoaders.fabric]),
+                    version_info(uploaded=30, mod_loaders=[ModLoaders.forge]),
                     version_info(uploaded=50, versions=["1.16.5"]),
-                    version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                    version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
                 ],
                 filter=Filter(loader=ModLoaders.fabric),
-                expected=version_info(uploaded=40, mod_loader=ModLoaders.fabric),
+                expected=version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
             )
         ),
         (
@@ -226,37 +240,37 @@ def reset_filter() -> None:
                 versions=[
                     version_info(
                         uploaded=99,
-                        mod_loader=ModLoaders.forge,
-                        stability=Stabilities.stable,
+                        mod_loaders=[ModLoaders.forge],
+                        stability=Stabilities.release,
                         versions=["1.16.5"],
                     ),
                     version_info(
                         uploaded=99,
-                        mod_loader=ModLoaders.fabric,
+                        mod_loaders=[ModLoaders.fabric],
                         stability=Stabilities.alpha,
                         versions=["1.16.5"],
                     ),
                     version_info(
                         uploaded=99,
-                        mod_loader=ModLoaders.fabric,
-                        stability=Stabilities.stable,
+                        mod_loaders=[ModLoaders.fabric],
+                        stability=Stabilities.release,
                         versions=["1.16.4", "1.16.6"],
                     ),
                     version_info(
                         uploaded=10,
-                        mod_loader=ModLoaders.fabric,
-                        stability=Stabilities.stable,
+                        mod_loaders=[ModLoaders.fabric],
+                        stability=Stabilities.release,
                         versions=["1.17", "1.16.5"],
                     ),
                     version_info(
                         uploaded=20,
-                        mod_loader=ModLoaders.fabric,
-                        stability=Stabilities.stable,
+                        mod_loaders=[ModLoaders.fabric],
+                        stability=Stabilities.release,
                         versions=["1.16.5"],
                     ),
                     version_info(
                         uploaded=30,
-                        mod_loader=ModLoaders.fabric,
+                        mod_loaders=[ModLoaders.fabric],
                         stability=Stabilities.beta,
                         versions=["1.16.5"],
                     ),
@@ -264,7 +278,7 @@ def reset_filter() -> None:
                 filter=Filter(loader=ModLoaders.fabric, version="1.16.5", stability=Stabilities.beta),
                 expected=version_info(
                     uploaded=30,
-                    mod_loader=ModLoaders.fabric,
+                    mod_loaders=[ModLoaders.fabric],
                     stability=Stabilities.beta,
                     versions=["1.16.5"],
                 ),

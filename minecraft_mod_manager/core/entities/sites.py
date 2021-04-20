@@ -6,6 +6,7 @@ from enum import Enum
 class Sites(Enum):
     unknown = "unknown"
     curse = "curse"
+    modrinth = "modrinth"
 
     @staticmethod
     def from_name(name: str) -> Sites:

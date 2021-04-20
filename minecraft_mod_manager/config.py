@@ -52,7 +52,7 @@ class Config:
 
 class Filter:
     def __init__(self) -> None:
-        self.stability: Stabilities = Stabilities.stable
+        self.stability: Stabilities = Stabilities.release
         self.version: Union[str, None] = None
         self.loader: ModLoaders = ModLoaders.unknown
 

@@ -1,22 +1,31 @@
+from __future__ import annotations
+
 from enum import Enum
-from typing import List
+from typing import List, Set
 
 from .mod_loaders import ModLoaders
 from .sites import Sites
 
 
 class Stabilities(Enum):
-    stable = "stable"
+    release = "release"
     beta = "beta"
     alpha = "alpha"
     unknown = "unknown"
+
+    @staticmethod
+    def from_name(name: str) -> Stabilities:
+        for stability in Stabilities:
+            if stability.value.lower() == name.lower():
+                return stability
+        return Stabilities.unknown
 
 
 class VersionInfo:
     def __init__(
         self,
         stability: Stabilities,
-        mod_loader: ModLoaders,
+        mod_loaders: Set[ModLoaders],
         site: Sites,
         upload_time: int,
         minecraft_versions: List[str],
@@ -25,7 +34,7 @@ class VersionInfo:
         name: str = "",
     ) -> None:
         self.stability = stability
-        self.mod_loader = mod_loader
+        self.mod_loaders = mod_loaders
         self.repo_type = site
         self.upload_time = upload_time
         self.minecraft_versions = minecraft_versions
@@ -42,7 +51,7 @@ class VersionInfo:
     def __members(self):
         return (
             self.stability,
-            self.mod_loader,
+            self.mod_loaders,
             self.repo_type,
             self.upload_time,
             self.minecraft_versions,

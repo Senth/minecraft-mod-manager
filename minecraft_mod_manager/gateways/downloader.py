@@ -17,13 +17,11 @@ _headers = {"User-Agent": _user_agent}
 
 
 class Downloader:
-    @staticmethod
-    def get(url: str) -> Any:
+    def get(self, url: str) -> Any:
         with requests.get(url, headers=_headers) as response:
             return response.json()
 
-    @staticmethod
-    def download(url: str, filename: str) -> str:
+    def download(self, url: str, filename: str) -> str:
         """Download the specified mod
         Returns:
             Filename of the downloaded and saved file
