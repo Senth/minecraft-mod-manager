@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Modrinth API support (you can now download mods from modrinth as well) [#11](https://github.com/Senth/minecraft-mod-manager/issues/11)
 - Can parse and download Forge mods
 - Filter installed mod by Fabric/Forge using `--mod-loader` argument [#18](https://github.com/Senth/minecraft-mod-manager/issues/18)
 
@@ -16,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Restructured the whole project and added lots of test.
 - Now uses Curse API instead of Selenium with Chrome, thus you don't have to have Chrome installed and more futureproof.
+- Improved README with examples and minimum python requirement
 
 ### Fixed
 

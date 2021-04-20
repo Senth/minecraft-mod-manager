@@ -37,7 +37,7 @@ def test_exit_when_later_mod_not_found(mock_repo):
     ]
     version_info = VersionInfo(
         stability=Stabilities.beta,
-        mod_loader=ModLoaders.fabric,
+        mod_loaders=ModLoaders.fabric,
         site=Sites.curse,
         upload_time=0,
         minecraft_versions=[],
@@ -59,7 +59,7 @@ def test_download_and_install_when_found(mock_repo):
     input = [Mod("found", "")]
     version_info = VersionInfo(
         stability=Stabilities.beta,
-        mod_loader=ModLoaders.fabric,
+        mod_loaders=ModLoaders.fabric,
         site=Sites.curse,
         upload_time=0,
         minecraft_versions=[],

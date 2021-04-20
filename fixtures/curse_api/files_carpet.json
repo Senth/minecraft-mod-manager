@@ -204,7 +204,7 @@
       }
     ],
     "packageFingerprint": 2014246976,
-    "gameVersion": ["1.17", "Fabric"],
+    "gameVersion": ["1.17", "Fabric", "Forge"],
     "installMetadata": null,
     "serverPackFileId": null,
     "hasInstallScript": false,

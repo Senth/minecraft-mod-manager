@@ -73,7 +73,7 @@ class Mod(ModArg):
     def __repr__(self) -> str:
         return str(self.__members())
 
-    def get_possible_repo_names(self) -> Set[str]:
+    def get_possible_slugs(self) -> Set[str]:
         possible_names: Set[str] = set()
 
         # Add from id

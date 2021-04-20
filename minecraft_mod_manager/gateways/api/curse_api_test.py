@@ -1,14 +1,14 @@
 import json
 from pathlib import Path
+from typing import Union
 
 import pytest
-from mockito import unstub, verifyStubbedInvocationsAreUsed, when
+from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
-from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..downloader import Downloader
 from .curse_api import CurseApi
 
@@ -29,91 +29,68 @@ def carpet_files():
 
 
 @pytest.fixture
-def api():
-    return CurseApi()
+def downloader():
+    mocked = mock(Downloader)
+    yield mocked
+    unstub()
 
 
 @pytest.fixture
-def mod():
-    return Mod("carpet", "Carpet", site_slug="carpet", site_id="349239")
+def api(downloader):
+    return CurseApi(downloader)
 
 
-def test_find_mod_id(mod: Mod, api: CurseApi, carpet_search):
-    when(Downloader).get(...).thenReturn(carpet_search)
-
-    mod_id = api._find_mod_id(mod)
-
-    verifyStubbedInvocationsAreUsed()
-    unstub()
-
-    assert mod.site_id
-    assert mod_id == int(mod.site_id)
+site_id = "349239"
 
 
-def test_find_mod_id_from_filename_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
-    when(Downloader).get(...).thenReturn("[]")
-    when(Downloader).get(
-        "https://addons-ecs.forgesvc.net/api/v2/addon/search?gameId=432&sectionId=6&searchFilter=carpet"
-    ).thenReturn(carpet_search)
-    mod.site_slug = None
-    mod.id = "carput-fail"
-    mod.file = "fabric-carpet-1.14.4-1.2.0+v191024.jar"
-
-    mod_id = api._find_mod_id(mod)
-
-    unstub()
-
-    assert mod.site_id
-    assert mod_id == int(mod.site_id)
+def mod(id="carpet", name="Carpet", site_slug="carpet", site_id=site_id, file: Union[str, None] = None):
+    return Mod(id=id, name=name, site_slug=site_slug, site_id=site_id, file=file)
 
 
-def test_find_mod_id_from_filename_in_other_search_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
-    when(Downloader).get(...).thenReturn(carpet_search)
-    mod.site_slug = None
-    mod.id = "carput-fail"
-    mod.file = "fabric-carpet-1.14.4-1.2.0+v191024.jar"
+@pytest.mark.parametrize(
+    "name,mod,expected",
+    [
+        (
+            "Find site id by slug",
+            mod(),
+            (site_id, "carpet"),
+        ),
+        (
+            "Find site id by id",
+            mod(site_id=None),
+            (site_id, "carpet"),
+        ),
+        (
+            "Find site id from filename",
+            mod(id="carput-fail", site_slug=None, file="fabric-carpet-1.14.4-1.2.0+v191024.jar"),
+            (site_id, "carpet"),
+        ),
+        (
+            "Site id not found",
+            mod(id="crash", site_slug=None),
+            None,
+        ),
+    ],
+)
+def test_find_mod_id_by_slug(name, mod: Mod, expected, api: CurseApi, carpet_search):
+    print(name)
+    when(api.downloader).get(...).thenReturn(carpet_search)
 
-    mod_id = api._find_mod_id(mod)
-
-    verifyStubbedInvocationsAreUsed()
-    unstub()
-
-    assert mod.site_id
-    assert mod_id == int(mod.site_id)
-
-
-def test_find_mod_id_from_id_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
-    when(Downloader).get(...).thenReturn(carpet_search)
-    mod.site_slug = None
-
-    mod_id = api._find_mod_id(mod)
+    result = api._find_mod_id_by_slug("", mod.get_possible_slugs())
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert mod.site_id
-    assert mod_id == int(mod.site_id)
+    assert expected == result
 
 
-def test_raise_exception_when_mod_not_found(api: CurseApi, carpet_search):
-    when(Downloader).get(...).thenReturn(carpet_search)
-
-    with pytest.raises(ModNotFoundException) as e:
-        api._find_mod_id(Mod("oaeu", "uu"))
-
-    verifyStubbedInvocationsAreUsed()
-    unstub
-
-    assert e.type == ModNotFoundException
-
-
-def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, carpet_files):
-    when(Downloader).get(...).thenReturn(carpet_files)
+def test_get_all_versions_directly_when_we_have_mod_id(api: CurseApi, carpet_files):
+    when(api.downloader).get(...).thenReturn(carpet_files)
     1585794422.687, 1571975688.237, 1618425238.09, 1618425279.417
     expected = [
         VersionInfo(
             stability=Stabilities.beta,
-            mod_loader=ModLoaders.forge,
+            mod_loaders=set([ModLoaders.forge]),
             site=Sites.curse,
             name="Carpet",
             upload_time=1585794423,
@@ -123,7 +100,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
         ),
         VersionInfo(
             stability=Stabilities.alpha,
-            mod_loader=ModLoaders.unknown,
+            mod_loaders=set([]),
             site=Sites.curse,
             name="Carpet",
             upload_time=1571975688,
@@ -132,8 +109,8 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
             filename="fabric-carpet-1.14.4-1.2.0+v191024.jar",
         ),
         VersionInfo(
-            stability=Stabilities.stable,
-            mod_loader=ModLoaders.fabric,
+            stability=Stabilities.release,
+            mod_loaders=set([ModLoaders.fabric]),
             site=Sites.curse,
             name="Carpet",
             upload_time=1618425238,
@@ -142,18 +119,18 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
             filename="fabric-carpet-1.16.5-1.4.32+v210414.jar",
         ),
         VersionInfo(
-            stability=Stabilities.stable,
-            mod_loader=ModLoaders.fabric,
+            stability=Stabilities.release,
+            mod_loaders=set([ModLoaders.fabric, ModLoaders.forge]),
             site=Sites.curse,
             name="Carpet",
             upload_time=1618425279,
-            minecraft_versions=["1.17", "Fabric"],
+            minecraft_versions=["1.17", "Fabric", "Forge"],
             download_url="https://edge.forgecdn.net/files/3276/130/fabric-carpet-21w15a-1.4.32+v210414.jar",
             filename="fabric-carpet-21w15a-1.4.32+v210414.jar",
         ),
     ]
 
-    versions = api.get_all_versions(mod)
+    versions = api.get_all_versions(mod())
 
     verifyStubbedInvocationsAreUsed()
     unstub()

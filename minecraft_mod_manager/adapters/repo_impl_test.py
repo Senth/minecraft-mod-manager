@@ -1,8 +1,6 @@
 from typing import List, Literal, Union
 
 import pytest
-from minecraft_mod_manager.core.utils.latest_version_finder import LatestVersionFinder
-from minecraft_mod_manager.gateways.api.curse_api import CurseApi
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ..adapters.repo_impl import RepoImpl
@@ -11,6 +9,7 @@ from ..core.entities.mod_loaders import ModLoaders
 from ..core.entities.sites import Sites
 from ..core.entities.version_info import Stabilities, VersionInfo
 from ..core.errors.mod_not_found_exception import ModNotFoundException
+from ..core.utils.latest_version_finder import LatestVersionFinder
 from ..gateways.downloader import Downloader
 from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
@@ -65,8 +64,8 @@ def mod(site: Sites = Sites.unknown) -> Mod:
 
 def version(site: Sites = Sites.unknown) -> VersionInfo:
     return VersionInfo(
-        stability=Stabilities.stable,
-        mod_loader=ModLoaders.fabric,
+        stability=Stabilities.release,
+        mod_loaders=ModLoaders.fabric,
         site=site,
         minecraft_versions=[],
         upload_time=0,
@@ -124,9 +123,9 @@ def test_get_latest_version(test: TestGetLatestVersion, repo_impl: RepoImpl):
     # Mocks Curse API
     if test.curse_api_returns:
         if type(test.curse_api_returns) == list:
-            when(CurseApi).get_all_versions(...).thenReturn(test.curse_api_returns)
+            when(repo_impl.curse_api).get_all_versions(...).thenReturn(test.curse_api_returns)
         elif type(test.curse_api_returns) == ModNotFoundException:
-            when(CurseApi).get_all_versions(...).thenRaise(test.curse_api_returns)
+            when(repo_impl.curse_api).get_all_versions(...).thenRaise(test.curse_api_returns)
 
     # Mocks Version Finder
     if test.version_finder_returns:

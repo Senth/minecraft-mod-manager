@@ -26,6 +26,7 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         self.db = sqlite
         self.mods = self.db.sync_with_dir(jar_parser.mods)
         self.downloader = downloader
+        self.curse_api = CurseApi(downloader)
 
     def get_mod(self, id: str) -> Union[Mod, None]:
         for installed_mod in self.mods:
@@ -49,7 +50,7 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         # Curse
         if mod.site == Sites.curse or mod.site == Sites.unknown:
             try:
-                versions = CurseApi.get_all_versions(mod)
+                versions = self.curse_api.get_all_versions(mod)
                 mod.site = Sites.curse
             except ModNotFoundException:
                 pass
