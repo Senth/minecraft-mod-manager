@@ -29,8 +29,8 @@ class CurseApi:
 
     @staticmethod
     def _find_mod_id(mod: Mod) -> int:
-        if mod.site_alias:
-            version = CurseApi._find_mod_id_by_slug(mod.site_alias, set([mod.site_alias]))
+        if mod.site_slug:
+            version = CurseApi._find_mod_id_by_slug(mod.site_slug, set([mod.site_slug]))
             if version:
                 return version[0]
         else:
@@ -39,7 +39,7 @@ class CurseApi:
                 version_slug = CurseApi._find_mod_id_by_slug(possible_name, possible_names)
                 if version_slug:
                     version, slug = version_slug
-                    mod.site_alias = slug
+                    mod.site_slug = slug
                     return version
 
         raise ModNotFoundException(mod)

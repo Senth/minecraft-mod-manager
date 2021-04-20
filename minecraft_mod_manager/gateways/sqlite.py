@@ -70,7 +70,7 @@ class Sqlite:
             if mod.id in db_mods:
                 db_mod = db_mods[mod.id]
                 mod.site = Sites[db_mod.site]
-                mod.site_alias = db_mod.site_alias
+                mod.site_slug = db_mod.site_slug
                 mod.upload_time = db_mod.upload_time
 
         return mods
@@ -81,7 +81,7 @@ class Sqlite:
             + f"{_Column.c_id}, "
             + f"{_Column.c_site}, "
             + f"{_Column.c_site_id}, "
-            + f"{_Column.c_site_alias}, "
+            + f"{_Column.c_site_slug}, "
             + f"{_Column.c_upload_time}, "
             + f"{_Column.c_active} "
             + "FROM mod"
@@ -99,7 +99,7 @@ class Sqlite:
                 id=id,
                 site=site,
                 site_id=site_id,
-                site_alias=site_alias,
+                site_slug=site_alias,
                 upload_time=upload_time,
                 active=active,
             )
@@ -118,11 +118,11 @@ class Sqlite:
                 "UPDATE mod SET "
                 + f"{_Column.c_site}=?, "
                 + f"{_Column.c_site_id}=?, "
-                + f"{_Column.c_site_alias}=?, "
+                + f"{_Column.c_site_slug}=?, "
                 + f"{_Column.c_upload_time}=? "
                 + "WHERE "
                 + f"{_Column.c_id}=?",
-                [mod.site.value, mod.site_id, mod.site_alias, mod.upload_time, mod.id],
+                [mod.site.value, mod.site_id, mod.site_slug, mod.upload_time, mod.id],
             )
             self._connection.commit()
         else:
@@ -138,11 +138,11 @@ class Sqlite:
                 + f"{_Column.c_id}, "
                 + f"{_Column.c_site}, "
                 + f"{_Column.c_site_id}, "
-                + f"{_Column.c_site_alias}, "
+                + f"{_Column.c_site_slug}, "
                 + f"{_Column.c_upload_time}, "
                 + f"{_Column.c_active}) "
                 + "VALUES (?, ?, ?, ?, ?, 1)",
-                [mod.id, mod.site.value, mod.site_id, mod.site_alias, mod.upload_time],
+                [mod.id, mod.site.value, mod.site_id, mod.site_slug, mod.upload_time],
             )
             self._connection.commit()
         except sqlite3.IntegrityError:

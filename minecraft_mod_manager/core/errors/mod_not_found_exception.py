@@ -13,7 +13,7 @@ class ModNotFoundException(Exception):
         mod_repo = "any site"
 
         if self.mod.site != Sites.unknown:
-            mod_name = self.mod.site_alias
+            mod_name = self.mod.site_slug
             mod_repo = self.mod.site.value
 
         return (

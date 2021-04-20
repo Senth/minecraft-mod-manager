@@ -20,7 +20,7 @@ def installed_mods():
         Mod(
             id="fabric_api",
             name="Fabric API",
-            site_alias="fabric-api",
+            site_slug="fabric-api",
             site=Sites.curse,
         ),
         Mod(

@@ -10,16 +10,16 @@ from .sites import Sites
 class ModArg:
     """Mod argument from the CLI"""
 
-    def __init__(self, site: Sites, id: str, alias: Union[str, None]) -> None:
+    def __init__(self, site: Sites, id: str, slug: Union[str, None]) -> None:
         self.site: Sites = site
         """Where the mod is downloaded from"""
         self.id = id
         """String identifier of the mod, often case the same as mod name"""
-        self.site_alias = alias
-        """Mod name id on the repository"""
+        self.site_slug = slug
+        """Mod slug on the site"""
 
     def __str__(self) -> str:
-        return f"{self.site.value}:{self.id}={self.site_alias}"
+        return f"{self.site.value}:{self.id}={self.site_slug}"
 
     def __lt__(self, other: Mod) -> bool:
         return self.id < other.id
@@ -28,7 +28,7 @@ class ModArg:
         return (
             self.id,
             self.site,
-            self.site_alias,
+            self.site_slug,
         )
 
     def __eq__(self, other) -> bool:
@@ -48,13 +48,13 @@ class Mod(ModArg):
         name: str,
         site: Sites = Sites.unknown,
         site_id: Union[str, None] = None,
-        site_alias: Union[str, None] = None,
+        site_slug: Union[str, None] = None,
         version: Union[str, None] = None,
         file: Union[str, None] = None,
         upload_time: int = 0,
         mod_loader: ModLoaders = ModLoaders.unknown,
     ):
-        super().__init__(site, id, site_alias)
+        super().__init__(site, id, site_slug)
         self.site_id = site_id
         self.name = name
         self.version = version
@@ -65,7 +65,7 @@ class Mod(ModArg):
 
     @staticmethod
     def fromModArg(mod_arg: ModArg) -> Mod:
-        return Mod(mod_arg.id, mod_arg.id, site=mod_arg.site, site_alias=mod_arg.site_alias)
+        return Mod(mod_arg.id, mod_arg.id, site=mod_arg.site, site_slug=mod_arg.site_slug)
 
     def __str__(self) -> str:
         return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader}]"
@@ -100,7 +100,7 @@ class Mod(ModArg):
             self.name,
             self.site_id,
             self.site,
-            self.site_alias,
+            self.site_slug,
             self.version,
             self.file,
             self.upload_time,
