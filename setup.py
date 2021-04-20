@@ -23,9 +23,7 @@ setup(
         ],
     },
     install_requires=[
-        "selenium",
         "requests",
-        "webdriver-manager",
         "toml",
     ],
     classifiers=[
