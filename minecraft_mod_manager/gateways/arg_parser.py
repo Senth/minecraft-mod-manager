@@ -15,14 +15,14 @@ def parse_args():
     parser.add_argument(
         "action",
         choices=Actions.get_all_names_as_list(),
-        help="What the application should do.",
+        help="What you want to do",
     )
     parser.add_argument(
         "mods",
         nargs="*",
-        help="The mods to install, update, or configure. "
-        + "If no mods are specified during an update, all mods will be updated. "
-        + "\nTo specify the download site for the mod you can put 'site:' before the mod. "
+        help="The mods to install, update, or configure.\n"
+        + "If no mods are specified during an update, all mods will be updated.\n"
+        + "To specify the download site for the mod you can put 'site:' before the mod. "
         + "E.g. 'curse:litematica'. By default it searches all sites for the mod.\n"
         + "To configure an alias for the mod, use 'mod_name=ALIAS_NAME'. E.g. 'dynmap=dynmapforge'",
     )
@@ -49,13 +49,8 @@ def parse_args():
     )
     parser.add_argument(
         "--mod-loader",
-        action="store_true",
-        help="Only install forge mods. Rarely necessary to be this explicit",
-    )
-    parser.add_argument(
-        "--mod-loader",
         choices=["fabric", "forge"],
-        help="Only install the specified mod of the specified mod loader. "
+        help="Only install mods that use this mod loader. "
         + "You rarely need to be this specific. "
         + "The application figures out for itself which type you'll likely want to install.",
     )

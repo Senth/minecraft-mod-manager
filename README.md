@@ -33,15 +33,19 @@ positional arguments:
                         E.g. 'curse:litematica'
                         By default it searches all sites for the mod.
                         To configure an alias for the mod, use 'mod_name=ALIAS_NAME'.
-                        E.g. 'dynmap=dynmapforge'
+                        E.g. 'dynmap=dynmapforge' must be used to find dynmap on Curse.
 
 
 minecraft:
   -d DIR, --dir DIR     Location of the mods folder. By default it's the current directory
   -v MINECRAFT_VERSION, --minecraft-version MINECRAFT_VERSION
                         Only update mods to this Minecraft version. Example: -v 1.16.4
-  --allow-beta          Allow beta releases
-  --allow-alpha         Allow alpha and beta releases
+  --beta                Allow beta releases of mods
+  --alpha               Allow alpha and beta releases of mods
+  --mod-loader {fabric,forge}
+                        Only install mods that use this mod loader. You rarely need to be
+                        this specific. The application figures out for itself which type
+                        you'll likely want to install.
 
 logging & help:
   -h, --help            show this help message and exit
