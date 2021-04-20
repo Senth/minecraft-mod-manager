@@ -1,5 +1,3 @@
-from typing import List
-
 from .adapters.repo_impl import RepoImpl
 from .app.configure.configure import Configure
 from .app.install.install import Install

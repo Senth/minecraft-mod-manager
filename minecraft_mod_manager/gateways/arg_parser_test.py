@@ -1,7 +1,7 @@
 import pytest
 
 from ..core.entities.mod import ModArg
-from ..core.entities.repo_types import RepoTypes
+from ..core.entities.sites import Sites
 from .arg_parser import _parse_mods
 
 
@@ -15,8 +15,8 @@ from .arg_parser import _parse_mods
                 "litematica",
             ],
             [
-                ModArg(RepoTypes.unknown, "carpet", "carpet"),
-                ModArg(RepoTypes.unknown, "litematica", "litematica"),
+                ModArg(Sites.unknown, "carpet", "carpet"),
+                ModArg(Sites.unknown, "litematica", "litematica"),
             ],
         ),
         (
@@ -26,8 +26,8 @@ from .arg_parser import _parse_mods
                 "curse:litematica",
             ],
             [
-                ModArg(RepoTypes.curse, "carpet", "carpet"),
-                ModArg(RepoTypes.curse, "litematica", "litematica"),
+                ModArg(Sites.curse, "carpet", "carpet"),
+                ModArg(Sites.curse, "litematica", "litematica"),
             ],
         ),
         (
@@ -37,8 +37,8 @@ from .arg_parser import _parse_mods
                 "litematica=litematica-fabric",
             ],
             [
-                ModArg(RepoTypes.unknown, "carpet", "fabric-carpet"),
-                ModArg(RepoTypes.unknown, "litematica", "litematica-fabric"),
+                ModArg(Sites.unknown, "carpet", "fabric-carpet"),
+                ModArg(Sites.unknown, "litematica", "litematica-fabric"),
             ],
         ),
         (
@@ -48,8 +48,8 @@ from .arg_parser import _parse_mods
                 "curse:litematica=litematica-fabric",
             ],
             [
-                ModArg(RepoTypes.curse, "carpet", "fabric-carpet"),
-                ModArg(RepoTypes.curse, "litematica", "litematica-fabric"),
+                ModArg(Sites.curse, "carpet", "fabric-carpet"),
+                ModArg(Sites.curse, "litematica", "litematica-fabric"),
             ],
         ),
         (

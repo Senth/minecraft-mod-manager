@@ -3,7 +3,7 @@ from typing import Any, List, Set, Tuple, Union
 
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
-from ...core.entities.repo_types import RepoTypes
+from ...core.entities.sites import Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..downloader import Downloader
@@ -15,8 +15,8 @@ class CurseApi:
     @staticmethod
     def get_all_versions(mod: Mod) -> List[VersionInfo]:
         # Get the mod's id
-        if not mod.repo_id:
-            mod.repo_id = str(CurseApi._find_mod_id(mod))
+        if not mod.site_id:
+            mod.site_id = str(CurseApi._find_mod_id(mod))
 
         versions: List[VersionInfo] = []
         files = Downloader.get(CurseApi._make_files_url(mod))
@@ -29,8 +29,8 @@ class CurseApi:
 
     @staticmethod
     def _find_mod_id(mod: Mod) -> int:
-        if mod.repo_alias:
-            version = CurseApi._find_mod_id_by_slug(mod.repo_alias, set([mod.repo_alias]))
+        if mod.site_alias:
+            version = CurseApi._find_mod_id_by_slug(mod.site_alias, set([mod.site_alias]))
             if version:
                 return version[0]
         else:
@@ -39,7 +39,7 @@ class CurseApi:
                 version_slug = CurseApi._find_mod_id_by_slug(possible_name, possible_names)
                 if version_slug:
                     version, slug = version_slug
-                    mod.repo_alias = slug
+                    mod.site_alias = slug
                     return version
 
         raise ModNotFoundException(mod)
@@ -60,14 +60,14 @@ class CurseApi:
 
     @staticmethod
     def _make_files_url(mod: Mod) -> str:
-        return f"{_base_url}/{mod.repo_id}/files"
+        return f"{_base_url}/{mod.site_id}/files"
 
     @staticmethod
     def _file_to_version_info(file_data: Any) -> VersionInfo:
         return VersionInfo(
             stability=CurseApi._to_release_type(file_data["releaseType"]),
             mod_loader=CurseApi._to_mod_loader(file_data["gameVersion"]),
-            repo_type=RepoTypes.curse,
+            site=Sites.curse,
             upload_time=CurseApi._to_epoch_time(file_data["fileDate"]),
             minecraft_versions=file_data["gameVersion"],
             download_url=file_data["downloadUrl"],

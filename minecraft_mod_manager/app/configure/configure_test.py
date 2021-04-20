@@ -4,7 +4,7 @@ import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod, ModArg
-from ...core.entities.repo_types import RepoTypes
+from ...core.entities.sites import Sites
 from .configure import Configure
 from .configure_repo import ConfigureRepo
 
@@ -17,7 +17,7 @@ def mock_repo():
 def test_abort_when_mod_not_found(mock_repo):
     when(mock_repo).get_mod(...).thenReturn(None)
     configure = Configure(mock_repo)
-    input = [ModArg(repo_type=RepoTypes.unknown, id="not-found", repo_alias="")]
+    input = [ModArg(site=Sites.unknown, id="not-found", alias="")]
 
     with pytest.raises(SystemExit) as e:
         configure.execute(input)
@@ -32,8 +32,8 @@ def test_abort_before_updating_when_later_mod_not_found(mock_repo):
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(repo_type=RepoTypes.unknown, id="found", repo_alias="test"),
-        ModArg(repo_type=RepoTypes.unknown, id="not-found", repo_alias=""),
+        ModArg(site=Sites.unknown, id="found", alias="test"),
+        ModArg(site=Sites.unknown, id="not-found", alias=""),
     ]
 
     with pytest.raises(SystemExit) as e:
@@ -44,14 +44,14 @@ def test_abort_before_updating_when_later_mod_not_found(mock_repo):
 
 
 def test_mod_repo_changed(mock_repo):
-    expected_update = Mod("carpet", "", repo_type=RepoTypes.curse)
+    expected_update = Mod("carpet", "", site=Sites.curse)
 
     when(mock_repo).get_mod("carpet").thenReturn(Mod("carpet", ""))
     when(mock_repo).update_mod(expected_update)
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(repo_type=RepoTypes.curse, id="carpet", repo_alias=""),
+        ModArg(site=Sites.curse, id="carpet", alias=""),
     ]
 
     configure.execute(input)
@@ -61,14 +61,14 @@ def test_mod_repo_changed(mock_repo):
 
 
 def test_mod_alias_changed(mock_repo):
-    expected_update = Mod("carpet", "", repo_alias="carpet_alias")
+    expected_update = Mod("carpet", "", site_alias="carpet_alias")
 
     when(mock_repo).get_mod("carpet").thenReturn(Mod("carpet", ""))
     when(mock_repo).update_mod(expected_update)
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(repo_type=RepoTypes.unknown, id="carpet", repo_alias="carpet_alias"),
+        ModArg(site=Sites.unknown, id="carpet", alias="carpet_alias"),
     ]
 
     configure.execute(input)

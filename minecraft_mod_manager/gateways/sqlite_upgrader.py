@@ -3,25 +3,25 @@ import sqlite3
 
 class _Column:
     c_id = "id"
-    c_repo_id = "repo_id"
-    c_repo_type = "repo_type"
-    c_repo_alias = "repo_alias"
+    c_site = "site"
+    c_site_id = "site_id"
+    c_site_alias = "site_alias"
     c_upload_time = "upload_time"
     c_active = "active"
 
     def __init__(
         self,
         id: str,
-        repo_id: str,
-        repo_type: str,
-        repo_alias: str,
+        site: str,
+        site_id: str,
+        site_alias: str,
         upload_time: int,
         active: bool,
     ) -> None:
         self.id = id
-        self.repo_id = repo_id
-        self.repo_type = repo_type
-        self.repo_alias = repo_alias
+        self.site = site
+        self.site_id = site_id
+        self.site_alias = site_alias
         self.upload_time = upload_time
         self.active = active
 
@@ -65,9 +65,9 @@ class SqliteUpgrader:
         self._connection.execute(
             "CREATE TABLE IF NOT EXISTS mod ("
             + f"{_Column.c_id} TEXT UNIQUE, "
-            + f"{_Column.c_repo_id} TEXT, "
-            + f"{_Column.c_repo_type} TEXT, "
-            + f"{_Column.c_repo_alias} TEXT, "
+            + f"{_Column.c_site} TEXT, "
+            + f"{_Column.c_site_id} TEXT, "
+            + f"{_Column.c_site_alias} TEXT, "
             + f"{_Column.c_upload_time} INTEGER, "
             + f"{_Column.c_active} INTEGER)"
         )

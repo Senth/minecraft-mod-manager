@@ -1,6 +1,6 @@
 from ...config import config
 from ...utils.logger import LogColors
-from ..entities.mod import ModArg, RepoTypes
+from ..entities.mod import ModArg, Sites
 
 
 class ModNotFoundException(Exception):
@@ -12,9 +12,9 @@ class ModNotFoundException(Exception):
         mod_name = self.mod.id
         mod_repo = "any site"
 
-        if self.mod.repo_type != RepoTypes.unknown:
-            mod_name = self.mod.repo_alias
-            mod_repo = self.mod.repo_type.value
+        if self.mod.site != Sites.unknown:
+            mod_name = self.mod.site_alias
+            mod_repo = self.mod.site.value
 
         return (
             f"Mod {mod_name} not found on {mod_repo}.\n"

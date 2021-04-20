@@ -11,7 +11,7 @@ from ..app.install.install_repo import InstallRepo
 from ..app.show.show_repo import ShowRepo
 from ..app.update.update_repo import UpdateRepo
 from ..core.entities.mod import Mod
-from ..core.entities.repo_types import RepoTypes
+from ..core.entities.sites import Sites
 from ..core.entities.version_info import VersionInfo
 from ..core.utils.latest_version_finder import LatestVersionFinder
 from ..gateways.downloader import Downloader
@@ -31,7 +31,7 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         for installed_mod in self.mods:
             if installed_mod.id == id:
                 return installed_mod
-            elif installed_mod.repo_alias == id:
+            elif installed_mod.site_alias == id:
                 return installed_mod
 
     def update_mod(self, mod: Mod) -> None:
@@ -47,9 +47,10 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         versions: List[VersionInfo] = []
 
         # Curse
-        if mod.repo_type == RepoTypes.curse or mod.repo_type == RepoTypes.unknown:
+        if mod.site == Sites.curse or mod.site == Sites.unknown:
             try:
-                CurseApi.get_all_versions(mod)
+                versions = CurseApi.get_all_versions(mod)
+                mod.site = Sites.curse
             except ModNotFoundException:
                 pass
 

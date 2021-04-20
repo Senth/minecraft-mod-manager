@@ -5,7 +5,7 @@ import pytest
 from ...config import config
 from ..entities.mod import Mod
 from ..entities.mod_loaders import ModLoaders
-from ..entities.repo_types import RepoTypes
+from ..entities.sites import Sites
 from ..entities.version_info import Stabilities, VersionInfo
 from .latest_version_finder import LatestVersionFinder
 
@@ -40,7 +40,7 @@ def version_info(
     return VersionInfo(
         stability=stability,
         mod_loader=mod_loader,
-        repo_type=RepoTypes.curse,
+        site=Sites.curse,
         minecraft_versions=versions,
         upload_time=uploaded,
         download_url="",
