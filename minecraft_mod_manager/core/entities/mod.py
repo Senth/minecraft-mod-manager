@@ -21,6 +21,9 @@ class ModArg:
     def __str__(self) -> str:
         return f"{self.site.value}:{self.id}={self.site_alias}"
 
+    def __lt__(self, other: Mod) -> bool:
+        return self.id < other.id
+
     def __members(self):
         return (
             self.id,
