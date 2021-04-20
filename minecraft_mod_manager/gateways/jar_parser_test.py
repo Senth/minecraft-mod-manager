@@ -46,11 +46,11 @@ def test_no_mod_info_from_invalid_mod():
 def test_get_mods():
     input = Path("fixtures")
     expected = [
-        Mod("carpet", "Carpet Mod in Fabric", version="1.4.16", mod_loader=ModLoaders.fabric, file=carpet_filename),
         Mod("jei", "Just Enough Items", version="7.6.4.86", mod_loader=ModLoaders.forge, file=jei_filename),
+        Mod("carpet", "Carpet Mod in Fabric", version="1.4.16", mod_loader=ModLoaders.fabric, file=carpet_filename),
         Mod("modmenu", "Mod Menu", version="1.14.13+build.19", mod_loader=ModLoaders.fabric, file=mod_menu_filename),
     ]
     jar_parser = JarParser(input)
     result = jar_parser.mods
 
-    assert expected == result
+    assert sorted(expected) == sorted(result)
