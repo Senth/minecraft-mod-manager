@@ -5,7 +5,7 @@ from typing import Any, List
 
 from ..core.entities.actions import Actions
 from ..core.entities.mod import ModArg
-from ..core.entities.repo_types import RepoTypes
+from ..core.entities.sites import Sites
 from ..utils.logger import Logger
 
 
@@ -92,15 +92,15 @@ def _parse_mods(args_mod: Any) -> List[ModArg]:
         repo_type_name, mod_id, repo_alias = match.groups()
         if repo_type_name and len(repo_type_name) > 0:
             try:
-                repo_type = RepoTypes[repo_type_name.lower()]
+                repo_type = Sites[repo_type_name.lower()]
             except KeyError:
                 Logger.error(f"No site named {repo_type_name}")
                 Logger.error("Valid names are:")
-                for enum in RepoTypes:
+                for enum in Sites:
                     Logger.error(f"{enum.value}")
                 exit(1)
         else:
-            repo_type = RepoTypes.unknown
+            repo_type = Sites.unknown
 
         if not repo_alias:
             repo_alias = mod_id

@@ -6,7 +6,7 @@ from minecraft_mod_manager.gateways.sqlite_upgrader import SqliteUpgrader
 
 from ..config import config
 from ..core.entities.mod import Mod
-from ..core.entities.repo_types import RepoTypes
+from ..core.entities.sites import Sites
 from ..core.errors.mod_already_exists import ModAlreadyExists
 from ..utils.logger import LogColors, Logger
 from .sqlite_upgrader import _Column
@@ -69,8 +69,8 @@ class Sqlite:
         for mod in mods:
             if mod.id in db_mods:
                 db_mod = db_mods[mod.id]
-                mod.repo_type = RepoTypes[db_mod.repo_type]
-                mod.repo_alias = db_mod.repo_alias
+                mod.site = Sites[db_mod.site]
+                mod.site_alias = db_mod.site_alias
                 mod.upload_time = db_mod.upload_time
 
         return mods
@@ -79,9 +79,9 @@ class Sqlite:
         self._cursor.execute(
             "SELECT "
             + f"{_Column.c_id}, "
-            + f"{_Column.c_repo_id}, "
-            + f"{_Column.c_repo_type}, "
-            + f"{_Column.c_repo_alias}, "
+            + f"{_Column.c_site}, "
+            + f"{_Column.c_site_id}, "
+            + f"{_Column.c_site_alias}, "
             + f"{_Column.c_upload_time}, "
             + f"{_Column.c_active} "
             + "FROM mod"
@@ -90,16 +90,16 @@ class Sqlite:
         rows = self._cursor.fetchall()
         for row in rows:
             id = str(row[0])
-            repo_id = row[1]
-            repo_type = row[2]
-            repo_name = row[3]
+            site = row[1]
+            site_id = row[2]
+            site_alias = row[3]
             upload_time = int(row[4])
             active = bool(row[5])
             mods[id] = _Column(
                 id=id,
-                repo_id=repo_id,
-                repo_type=repo_type,
-                repo_alias=repo_name,
+                site=site,
+                site_id=site_id,
+                site_alias=site_alias,
                 upload_time=upload_time,
                 active=active,
             )
@@ -116,13 +116,13 @@ class Sqlite:
         if self.exists(mod.id):
             self._connection.execute(
                 "UPDATE mod SET "
-                + f"{_Column.c_repo_id}=?, "
-                + f"{_Column.c_repo_type}=?, "
-                + f"{_Column.c_repo_alias}=?, "
+                + f"{_Column.c_site}=?, "
+                + f"{_Column.c_site_id}=?, "
+                + f"{_Column.c_site_alias}=?, "
                 + f"{_Column.c_upload_time}=? "
                 + "WHERE "
                 + f"{_Column.c_id}=?",
-                [mod.repo_id, mod.repo_type.value, mod.repo_alias, mod.upload_time, mod.id],
+                [mod.site.value, mod.site_id, mod.site_alias, mod.upload_time, mod.id],
             )
             self._connection.commit()
         else:
@@ -136,13 +136,13 @@ class Sqlite:
             self._connection.execute(
                 "INSERT INTO mod ("
                 + f"{_Column.c_id}, "
-                + f"{_Column.c_repo_id}, "
-                + f"{_Column.c_repo_type}, "
-                + f"{_Column.c_repo_alias}, "
+                + f"{_Column.c_site}, "
+                + f"{_Column.c_site_id}, "
+                + f"{_Column.c_site_alias}, "
                 + f"{_Column.c_upload_time}, "
                 + f"{_Column.c_active}) "
                 + "VALUES (?, ?, ?, ?, ?, 1)",
-                [mod.id, mod.repo_id, mod.repo_type.value, mod.repo_alias, mod.upload_time],
+                [mod.id, mod.site.value, mod.site_id, mod.site_alias, mod.upload_time],
             )
             self._connection.commit()
         except sqlite3.IntegrityError:

@@ -6,7 +6,7 @@ from mockito import unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
-from ...core.entities.repo_types import RepoTypes
+from ...core.entities.sites import Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..downloader import Downloader
@@ -35,7 +35,7 @@ def api():
 
 @pytest.fixture
 def mod():
-    return Mod("carpet", "Carpet", repo_alias="carpet", repo_id="349239")
+    return Mod("carpet", "Carpet", site_alias="carpet", site_id="349239")
 
 
 def test_find_mod_id(mod: Mod, api: CurseApi, carpet_search):
@@ -46,8 +46,8 @@ def test_find_mod_id(mod: Mod, api: CurseApi, carpet_search):
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert mod.repo_id
-    assert mod_id == int(mod.repo_id)
+    assert mod.site_id
+    assert mod_id == int(mod.site_id)
 
 
 def test_find_mod_id_from_filename_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
@@ -55,7 +55,7 @@ def test_find_mod_id_from_filename_without_repo_alias(mod: Mod, api: CurseApi, c
     when(Downloader).get(
         "https://addons-ecs.forgesvc.net/api/v2/addon/search?gameId=432&sectionId=6&searchFilter=carpet"
     ).thenReturn(carpet_search)
-    mod.repo_alias = None
+    mod.site_alias = None
     mod.id = "carput-fail"
     mod.file = "fabric-carpet-1.14.4-1.2.0+v191024.jar"
 
@@ -63,13 +63,13 @@ def test_find_mod_id_from_filename_without_repo_alias(mod: Mod, api: CurseApi, c
 
     unstub()
 
-    assert mod.repo_id
-    assert mod_id == int(mod.repo_id)
+    assert mod.site_id
+    assert mod_id == int(mod.site_id)
 
 
 def test_find_mod_id_from_filename_in_other_search_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
     when(Downloader).get(...).thenReturn(carpet_search)
-    mod.repo_alias = None
+    mod.site_alias = None
     mod.id = "carput-fail"
     mod.file = "fabric-carpet-1.14.4-1.2.0+v191024.jar"
 
@@ -78,21 +78,21 @@ def test_find_mod_id_from_filename_in_other_search_without_repo_alias(mod: Mod, 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert mod.repo_id
-    assert mod_id == int(mod.repo_id)
+    assert mod.site_id
+    assert mod_id == int(mod.site_id)
 
 
 def test_find_mod_id_from_id_without_repo_alias(mod: Mod, api: CurseApi, carpet_search):
     when(Downloader).get(...).thenReturn(carpet_search)
-    mod.repo_alias = None
+    mod.site_alias = None
 
     mod_id = api._find_mod_id(mod)
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert mod.repo_id
-    assert mod_id == int(mod.repo_id)
+    assert mod.site_id
+    assert mod_id == int(mod.site_id)
 
 
 def test_raise_exception_when_mod_not_found(api: CurseApi, carpet_search):
@@ -114,7 +114,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
         VersionInfo(
             stability=Stabilities.beta,
             mod_loader=ModLoaders.forge,
-            repo_type=RepoTypes.curse,
+            site=Sites.curse,
             name="Carpet",
             upload_time=1585794423,
             minecraft_versions=["1.16-Snapshot", "Forge"],
@@ -124,7 +124,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
         VersionInfo(
             stability=Stabilities.alpha,
             mod_loader=ModLoaders.unknown,
-            repo_type=RepoTypes.curse,
+            site=Sites.curse,
             name="Carpet",
             upload_time=1571975688,
             minecraft_versions=["1.14.4"],
@@ -134,7 +134,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
         VersionInfo(
             stability=Stabilities.stable,
             mod_loader=ModLoaders.fabric,
-            repo_type=RepoTypes.curse,
+            site=Sites.curse,
             name="Carpet",
             upload_time=1618425238,
             minecraft_versions=["Fabric", "1.16.5", "1.16.4"],
@@ -144,7 +144,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(mod: Mod, api: CurseApi, 
         VersionInfo(
             stability=Stabilities.stable,
             mod_loader=ModLoaders.fabric,
-            repo_type=RepoTypes.curse,
+            site=Sites.curse,
             name="Carpet",
             upload_time=1618425279,
             minecraft_versions=["1.17", "Fabric"],

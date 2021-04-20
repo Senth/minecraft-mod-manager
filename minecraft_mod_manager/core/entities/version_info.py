@@ -2,7 +2,7 @@ from enum import Enum
 from typing import List
 
 from .mod_loaders import ModLoaders
-from .repo_types import RepoTypes
+from .sites import Sites
 
 
 class Stabilities(Enum):
@@ -17,7 +17,7 @@ class VersionInfo:
         self,
         stability: Stabilities,
         mod_loader: ModLoaders,
-        repo_type: RepoTypes,
+        site: Sites,
         upload_time: int,
         minecraft_versions: List[str],
         download_url: str,
@@ -26,7 +26,7 @@ class VersionInfo:
     ) -> None:
         self.stability = stability
         self.mod_loader = mod_loader
-        self.repo_type = repo_type
+        self.repo_type = site
         self.upload_time = upload_time
         self.minecraft_versions = minecraft_versions
         self.download_url = download_url

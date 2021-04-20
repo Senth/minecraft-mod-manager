@@ -4,28 +4,28 @@ import re
 from typing import Set, Union
 
 from .mod_loaders import ModLoaders
-from .repo_types import RepoTypes
+from .sites import Sites
 
 
 class ModArg:
     """Mod argument from the CLI"""
 
-    def __init__(self, repo_type: RepoTypes, id: str, repo_alias: Union[str, None]) -> None:
-        self.repo_type: RepoTypes = repo_type
+    def __init__(self, site: Sites, id: str, alias: Union[str, None]) -> None:
+        self.site: Sites = site
         """Where the mod is downloaded from"""
         self.id = id
         """String identifier of the mod, often case the same as mod name"""
-        self.repo_alias = repo_alias
+        self.site_alias = alias
         """Mod name id on the repository"""
 
     def __str__(self) -> str:
-        return f"{self.repo_type.value}:{self.id}={self.repo_alias}"
+        return f"{self.site.value}:{self.id}={self.site_alias}"
 
     def __members(self):
         return (
             self.id,
-            self.repo_type,
-            self.repo_alias,
+            self.site,
+            self.site_alias,
         )
 
     def __eq__(self, other) -> bool:
@@ -43,16 +43,16 @@ class Mod(ModArg):
         self,
         id: str,
         name: str,
-        repo_id: Union[str, None] = None,
-        repo_type: RepoTypes = RepoTypes.unknown,
-        repo_alias: Union[str, None] = None,
+        site: Sites = Sites.unknown,
+        site_id: Union[str, None] = None,
+        site_alias: Union[str, None] = None,
         version: Union[str, None] = None,
         file: Union[str, None] = None,
         upload_time: int = 0,
         mod_loader: ModLoaders = ModLoaders.unknown,
     ):
-        super().__init__(repo_type, id, repo_alias)
-        self.repo_id = repo_id
+        super().__init__(site, id, site_alias)
+        self.site_id = site_id
         self.name = name
         self.version = version
         self.file = file
@@ -62,10 +62,13 @@ class Mod(ModArg):
 
     @staticmethod
     def fromModArg(mod_arg: ModArg) -> Mod:
-        return Mod(mod_arg.id, mod_arg.id, repo_type=mod_arg.repo_type, repo_alias=mod_arg.repo_alias)
+        return Mod(mod_arg.id, mod_arg.id, site=mod_arg.site, site_alias=mod_arg.site_alias)
 
     def __str__(self) -> str:
         return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader}]"
+
+    def __repr__(self) -> str:
+        return str(self.__members())
 
     def get_possible_repo_names(self) -> Set[str]:
         possible_names: Set[str] = set()
@@ -92,9 +95,9 @@ class Mod(ModArg):
         return (
             self.id,
             self.name,
-            self.repo_id,
-            self.repo_type,
-            self.repo_alias,
+            self.site_id,
+            self.site,
+            self.site_alias,
             self.version,
             self.file,
             self.upload_time,

@@ -2,7 +2,7 @@ import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import ModArg
-from ...core.entities.repo_types import RepoTypes
+from ...core.entities.sites import Sites
 from .install import Install
 from .install_repo import InstallRepo
 
@@ -15,7 +15,7 @@ def mock_repo():
 def test_mod_not_installed_when_already_installed(mock_repo):
     when(mock_repo).is_installed(...).thenReturn(True)
 
-    input = [ModArg(RepoTypes.unknown, "", "")]
+    input = [ModArg(Sites.unknown, "", "")]
     install = Install(mock_repo)
     install.execute(input)
 

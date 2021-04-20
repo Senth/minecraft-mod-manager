@@ -1,12 +1,11 @@
 from pathlib import Path
-from typing import List
 
 import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
-from ...core.entities.repo_types import RepoTypes
+from ...core.entities.sites import Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from .download import Download
@@ -39,7 +38,7 @@ def test_exit_when_later_mod_not_found(mock_repo):
     version_info = VersionInfo(
         stability=Stabilities.beta,
         mod_loader=ModLoaders.fabric,
-        repo_type=RepoTypes.curse,
+        site=Sites.curse,
         upload_time=0,
         minecraft_versions=[],
         download_url="",
@@ -61,7 +60,7 @@ def test_download_and_install_when_found(mock_repo):
     version_info = VersionInfo(
         stability=Stabilities.beta,
         mod_loader=ModLoaders.fabric,
-        repo_type=RepoTypes.curse,
+        site=Sites.curse,
         upload_time=0,
         minecraft_versions=[],
         download_url="",

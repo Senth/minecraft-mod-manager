@@ -1,7 +1,7 @@
 from typing import List, Sequence
 
 from ...config import config
-from ...core.entities.mod import Mod, ModArg, RepoTypes
+from ...core.entities.mod import Mod, ModArg, Sites
 from ...utils.logger import LogColors, Logger
 from ..configure.configure_repo import ConfigureRepo
 
@@ -27,11 +27,11 @@ class Configure:
                 )
                 return
 
-            if mod_arg.repo_type != RepoTypes.unknown:
-                found_mod.repo_type = mod_arg.repo_type
+            if mod_arg.site != Sites.unknown:
+                found_mod.site = mod_arg.site
 
-            if mod_arg.repo_alias:
-                found_mod.repo_alias = mod_arg.repo_alias
+            if mod_arg.site_alias:
+                found_mod.site_alias = mod_arg.site_alias
 
             # Updating mod
             mods_to_update.append(found_mod)
@@ -41,11 +41,11 @@ class Configure:
 
             # Log info
             info = ""
-            if mod.repo_type != RepoTypes.unknown:
-                info += f"site: {mod.repo_type.value}"
-            if mod.repo_alias:
+            if mod.site != Sites.unknown:
+                info += f"site: {mod.site.value}"
+            if mod.site_alias:
                 if len(info) > 0:
                     info += ", "
-                info += f"alias: {mod.repo_alias}"
+                info += f"alias: {mod.site_alias}"
 
             Logger.info(f"Configured {mod.id}; {info}", LogColors.add)

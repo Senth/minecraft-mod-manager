@@ -81,8 +81,8 @@ class Download:
         add_mod = Mod(
             id=mod.id,
             name=mod.id,
-            repo_alias=mod.repo_alias,
-            repo_type=mod.repo_type,
+            site_alias=mod.site_alias,
+            site=mod.site,
             file=downloaded_file.name,
             upload_time=latest_version.upload_time,
         )
