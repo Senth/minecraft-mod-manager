@@ -2,7 +2,7 @@ import sqlite3
 from os import path
 from typing import Dict, List
 
-from minecraft_mod_manager.gateways.sqlite_upgrader import SqliteUpgrader
+from ..gateways.sqlite_upgrader import SqliteUpgrader
 
 from ..config import config
 from ..core.entities.mod import Mod

@@ -1,6 +1,6 @@
 import sys
 
-import minecraft_mod_manager.config
+from ..config import config
 
 
 class LogColors:
@@ -60,7 +60,7 @@ class Logger:
             message (str): The message to log
             color (LogColors): Optional color of the message
         """
-        if minecraft_mod_manager.config.config.verbose:
+        if config.verbose:
             if color == LogColors.no_color:
                 print(message)
             else:
@@ -74,7 +74,7 @@ class Logger:
             message (str): The message to log
             color (LogColors): Optional color of the message
         """
-        if minecraft_mod_manager.config.config.debug:
+        if config.debug:
             if color == LogColors.no_color:
                 print(message)
             else:
