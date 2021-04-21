@@ -68,7 +68,7 @@ class Mod(ModArg):
         return Mod(mod_arg.id, mod_arg.id, site=mod_arg.site, site_slug=mod_arg.site_slug)
 
     def __str__(self) -> str:
-        return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader}]"
+        return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader.value}]"
 
     def __repr__(self) -> str:
         return str(self.__members())

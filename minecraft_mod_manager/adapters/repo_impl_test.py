@@ -45,7 +45,7 @@ class TestGetLatestVersion:
         self,
         name: str,
         mod: Mod,
-        expected_result: Union[VersionInfo, type],
+        expected_result: Union[VersionInfo, type, None],
         expected_mod: Mod,
         curse_api_returns: Union[List[VersionInfo], ModNotFoundException, None] = None,
         modrinth_api_returns: Union[List[VersionInfo], ModNotFoundException, None] = None,
@@ -83,7 +83,6 @@ def version(site: Sites = Sites.unknown) -> VersionInfo:
                 name="Get mod from Modrinth API when site type is unspecified",
                 mod=mod(),
                 modrinth_api_returns=[version(site=Sites.modrinth)],
-                curse_api_returns=ModNotFoundException(mod()),
                 version_finder_returns=version(site=Sites.modrinth),
                 expected_result=version(site=Sites.modrinth),
                 expected_mod=mod(site=Sites.modrinth),
@@ -120,17 +119,18 @@ def version(site: Sites = Sites.unknown) -> VersionInfo:
                 expected_mod=mod(site=Sites.curse),
             )
         ),
-        (
-            TestGetLatestVersion(
-                name="Don't specify mod site when returning mods from all sites",
-                mod=mod(),
-                modrinth_api_returns=[version(site=Sites.modrinth)],
-                curse_api_returns=[version(site=Sites.curse)],
-                version_finder_returns=version(site=Sites.curse),
-                expected_result=version(site=Sites.curse),
-                expected_mod=mod(),
-            )
-        ),
+        # FIXME Ability to download from both sites
+        # (
+        #     TestGetLatestVersion(
+        #         name="Don't specify mod site when returning mods from all sites",
+        #         mod=mod(),
+        #         modrinth_api_returns=[version(site=Sites.modrinth)],
+        #         curse_api_returns=[version(site=Sites.curse)],
+        #         version_finder_returns=version(site=Sites.curse),
+        #         expected_result=version(site=Sites.curse),
+        #         expected_mod=mod(),
+        #     )
+        # ),
         (
             TestGetLatestVersion(
                 name="Mod not found in any API",
@@ -148,7 +148,7 @@ def version(site: Sites = Sites.unknown) -> VersionInfo:
                 modrinth_api_returns=ModNotFoundException(mod()),
                 curse_api_returns=[version(site=Sites.curse)],
                 version_finder_returns="None",
-                expected_result=ModNotFoundException,
+                expected_result=None,
                 expected_mod=mod(site=Sites.curse),
             )
         ),

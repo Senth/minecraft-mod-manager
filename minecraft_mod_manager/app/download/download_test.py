@@ -7,7 +7,6 @@ from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
-from ...core.errors.mod_not_found_exception import ModNotFoundException
 from .download import Download
 from .download_repo import DownloadRepo
 
@@ -17,49 +16,11 @@ def mock_repo():
     return mock(DownloadRepo)
 
 
-def test_exit_when_mod_not_found(mock_repo):
-    input = [Mod("", "")]
-    when(mock_repo).get_latest_version(...).thenRaise(ModNotFoundException(input[0]))
-
-    download = Download(mock_repo, "")
-    with pytest.raises(SystemExit) as e:
-        download.find_download_and_install(input)
-
-    verifyStubbedInvocationsAreUsed()
-    unstub()
-    assert e.type == SystemExit
-
-
-def test_exit_when_later_mod_not_found(mock_repo):
-    input = [
-        Mod("found", ""),
-        Mod("not-found", ""),
-    ]
-    version_info = VersionInfo(
-        stability=Stabilities.beta,
-        mod_loaders=ModLoaders.fabric,
-        site=Sites.curse,
-        upload_time=0,
-        minecraft_versions=[],
-        download_url="",
-    )
-    when(mock_repo).get_latest_version(input[0]).thenReturn(version_info)
-    when(mock_repo).get_latest_version(input[1]).thenRaise(ModNotFoundException(input[0]))
-
-    download = Download(mock_repo, "")
-    with pytest.raises(SystemExit) as e:
-        download.find_download_and_install(input)
-
-    verifyStubbedInvocationsAreUsed()
-    unstub()
-    assert e.type == SystemExit
-
-
 def test_download_and_install_when_found(mock_repo):
     input = [Mod("found", "")]
     version_info = VersionInfo(
         stability=Stabilities.beta,
-        mod_loaders=ModLoaders.fabric,
+        mod_loaders=set([ModLoaders.fabric]),
         site=Sites.curse,
         upload_time=0,
         minecraft_versions=[],
