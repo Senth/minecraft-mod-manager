@@ -72,7 +72,7 @@ def parse_args():
 
     args = parser.parse_args()
     args.action = Actions.from_name(args.action)
-    args.mods = _parse_mods(args)
+    args.mods = _parse_mods(args.mods)
     return args
 
 
