@@ -7,7 +7,6 @@ from requests.models import Response
 
 # from .. import web_driver
 from ..config import config
-from ..utils.logger import Logger
 
 _user_agent = (
     "user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) "
@@ -26,7 +25,6 @@ class Downloader:
         Returns:
             Filename of the downloaded and saved file
         """
-        Logger.verbose("Downloading...")
 
         if config.pretend:
             return filename
@@ -44,8 +42,6 @@ class Downloader:
             # Save file
             with open(filename, "wb") as file:
                 file.write(response.content)
-
-            Logger.verbose("Download finished")
 
         return filename
 

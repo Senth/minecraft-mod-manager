@@ -15,6 +15,7 @@ from ..gateways.api.modrinth_api import ModrinthApi
 from ..gateways.downloader import Downloader
 from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
+from ..utils.logger import LogColors, Logger
 
 
 class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
@@ -43,42 +44,41 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
     def get_all_mods(self) -> Sequence[Mod]:
         return self.mods
 
-    def get_latest_version(self, mod: Mod) -> VersionInfo:
+    def get_latest_version(self, mod: Mod) -> Union[VersionInfo, None]:
         versions: List[VersionInfo] = []
-
-        find_count = 0
-        site_last = Sites.unknown
 
         # Modrinth
         if mod.site == Sites.modrinth or mod.site == Sites.unknown:
             try:
+                Logger.verbose("🔍 Searching on Modrinth...", indent=1)
                 versions.extend(self.modrinth_api.get_all_versions(mod))
-                site_last = Sites.modrinth
-                find_count += 1
+                mod.site = Sites.modrinth
+                RepoImpl._print_found()
             except ModNotFoundException:
-                pass
+                RepoImpl._print_not_found()
 
         # Curse
         if mod.site == Sites.curse or mod.site == Sites.unknown:
             try:
+                Logger.verbose("🔍 Searching on CurseForge...", indent=1)
                 versions.extend(self.curse_api.get_all_versions(mod))
-                site_last = Sites.curse
-                find_count += 1
+                mod.site = Sites.curse
+                RepoImpl._print_found()
             except ModNotFoundException:
-                pass
+                RepoImpl._print_not_found()
 
-        # Only set site if found in one place
-        if find_count == 1:
-            mod.site = site_last
-
-        version_info: Union[VersionInfo, None] = None
-        if len(versions) > 0:
-            version_info = LatestVersionFinder.find_latest_version(mod, versions)
-
-        if version_info:
-            return version_info
-        else:
+        if len(versions) == 0:
             raise ModNotFoundException(mod)
+
+        return LatestVersionFinder.find_latest_version(mod, versions)
 
     def download(self, url: str, filename: str = "") -> Path:
         return Path(self.downloader.download(url, filename))
+
+    @staticmethod
+    def _print_found():
+        Logger.verbose("Found", LogColors.green, indent=2)
+
+    @staticmethod
+    def _print_not_found():
+        Logger.verbose("Not found", LogColors.yellow, indent=2)

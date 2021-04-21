@@ -87,4 +87,4 @@ class JarParser:
 
     @staticmethod
     def _log_found_mod(mod: Mod) -> None:
-        Logger.verbose(f"Found {mod.mod_loader} mod: {mod}", LogColors.found)
+        Logger.verbose(f"Found {mod.mod_loader.value} mod: {mod}", LogColors.found)
