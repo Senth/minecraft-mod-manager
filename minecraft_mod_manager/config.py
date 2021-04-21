@@ -1,9 +1,8 @@
 from pathlib import Path
 from typing import Any, List, Literal, Union
 
-from minecraft_mod_manager.core.entities.mod_loaders import ModLoaders
-
 from .core.entities.mod import ModArg
+from .core.entities.mod_loaders import ModLoaders
 from .core.entities.version_info import Stabilities
 
 _app_name = __package__.replace("_", "-")
@@ -36,7 +35,7 @@ class Config:
             self.verbose = True
 
         if args.dir:
-            self.dir = args.dir
+            self.dir = Path(args.dir)
 
         if args.minecraft_version:
             self.filter.version = args.minecraft_version
