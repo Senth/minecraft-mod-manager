@@ -1,11 +1,9 @@
 import pytest
-from minecraft_mod_manager.core.errors.mod_not_found_exception import (
-    ModNotFoundException,
-)
-from minecraft_mod_manager.gateways.downloader import Downloader
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod
+from ...core.errors.mod_not_found_exception import ModNotFoundException
+from ...gateways.downloader import Downloader
 from .api import Api
 
 

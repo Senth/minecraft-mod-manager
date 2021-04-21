@@ -3,8 +3,8 @@ import sqlite3
 from typing import Any, List, Tuple, Union
 
 import pytest
-from minecraft_mod_manager.core.entities.sites import Sites
-from minecraft_mod_manager.core.errors.mod_already_exists import ModAlreadyExists
+from ..core.entities.sites import Sites
+from ..core.errors.mod_already_exists import ModAlreadyExists
 
 from ..config import config
 from ..core.entities.mod import Mod

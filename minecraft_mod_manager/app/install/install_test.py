@@ -1,5 +1,5 @@
 import pytest
-from minecraft_mod_manager.core.entities.mod_loaders import ModLoaders
+from ...core.entities.mod_loaders import ModLoaders
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod, ModArg
