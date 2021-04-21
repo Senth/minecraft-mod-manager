@@ -17,7 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- A bunch of errors that made it impossible to run the application
+- Missing .com in Modrinth url
+- Mod didn't do anything when running
+- Crash when running
+- Fixed crash when CurseForge supplied a date with missing milliseconds
 
 ## [1.0.1] - 2021-04-20
 
