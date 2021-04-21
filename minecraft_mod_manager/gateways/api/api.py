@@ -32,7 +32,16 @@ class Api:
 
     @staticmethod
     def _to_epoch_time(date_string: str) -> int:
-        date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S.%f%z")
+        # Has milliseconds
+        date = 0
+        try:
+            date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S.%f%z")
+        except ValueError:
+            pass
+
+        if date == 0:
+            date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S%z")
+
         return round(date.timestamp())
 
     @staticmethod
