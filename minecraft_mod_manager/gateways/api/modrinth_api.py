@@ -8,7 +8,7 @@ from ...core.entities.version_info import Stabilities, VersionInfo
 from ...gateways.downloader import Downloader
 from .api import Api
 
-_base_url = "https://api.modrinth/api/v1"
+_base_url = "https://api.modrinth.com/api/v1"
 
 
 class ModrinthApi(Api):
