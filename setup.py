@@ -16,7 +16,7 @@ setup(
     description="Download and update Minecraft mods from CurseForge and possibly other places in the future.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=find_packages(include=[module, f"{module}.*"]),
+    packages=find_packages(),
     entry_points={
         "console_scripts": [
             f"{package}={module}.__main__:main",
