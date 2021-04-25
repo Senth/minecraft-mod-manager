@@ -31,7 +31,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
-    setup_reqires=[
+    setup_requires=[
         "setuptools_scm",
         "pytest-runner",
     ],
