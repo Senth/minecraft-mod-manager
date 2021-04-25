@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -16,7 +16,7 @@ setup(
     description="Download and update Minecraft mods from CurseForge and possibly other places in the future.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=[f"{module}"],
+    packages=find_packages(include=[module, f"{module}.*"]),
     entry_points={
         "console_scripts": [
             f"{package}={module}.__main__:main",
