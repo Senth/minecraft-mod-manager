@@ -2,12 +2,11 @@ import sqlite3
 from os import path
 from typing import Dict, List
 
-from ..gateways.sqlite_upgrader import SqliteUpgrader
-
 from ..config import config
 from ..core.entities.mod import Mod
 from ..core.entities.sites import Sites
 from ..core.errors.mod_already_exists import ModAlreadyExists
+from ..gateways.sqlite_upgrader import SqliteUpgrader
 from ..utils.logger import LogColors, Logger
 from .sqlite_upgrader import _Column
 
@@ -105,15 +104,18 @@ class Sqlite:
             )
         return mods
 
-    def exists(self, id: str) -> bool:
-        self._cursor.execute(f"SELECT 1 FROM mod WHERE {_Column.c_id}=?", [id])
+    def exists(self, id: str, filter_active: bool = True) -> bool:
+        extra_filter = ""
+        if filter_active:
+            extra_filter = f"AND {_Column.c_active}=1"
+        self._cursor.execute(f"SELECT 1 FROM mod WHERE {_Column.c_id}=? {extra_filter}", [id])
         return bool(self._cursor.fetchone())
 
     def update_mod(self, mod: Mod):
         if config.pretend:
             return
 
-        if self.exists(mod.id):
+        if self.exists(mod.id, filter_active=False):
             self._connection.execute(
                 "UPDATE mod SET "
                 + f"{_Column.c_site}=?, "
