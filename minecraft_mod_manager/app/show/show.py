@@ -1,6 +1,7 @@
 from datetime import date
 
 from ...core.entities.mod import Mod
+from ...core.entities.sites import Sites
 from ...utils.logger import LogColors, Logger
 from .show_repo import ShowRepo
 
@@ -10,20 +11,21 @@ class Show:
 
     def __init__(self, show_repo: ShowRepo) -> None:
         self._repo = show_repo
-        self._id_width = 0
-        self._repo_alias_width = 0
-        self._repo_site_width = 0
+        # Using width of headers as a minimum
+        self._id_width = 3
+        self._site_slug_width = 4
+        self._site_width = 4
         self._update_time_width = len("YYYY-MM-DD")
 
     def execute(self) -> None:
         self._installed_mods = self._repo.get_all_mods()
 
         self._calculate_id_width()
-        self._calculate_repo_alias_width()
+        self._calculate_repo_slug_width()
         self._calculate_repo_site_width()
 
         self._print_header()
-        self._print_row("Mod", "Alias", "Site", "Published")
+        self._print_row("Mod", "Slug", "Site", "Published")
         for mod in self._installed_mods:
             self._print_mod(mod)
 
@@ -33,31 +35,34 @@ class Show:
                 self._id_width = len(mod.id)
         self._id_width += Show._padding
 
-    def _calculate_repo_alias_width(self) -> None:
+    def _calculate_repo_slug_width(self) -> None:
         for mod in self._installed_mods:
-            # Make sure we display an empty alias instead of 'None'
+            # Make sure we display an empty slug instead of 'None'
             if not mod.site_slug:
                 mod.site_slug = ""
 
-            if len(mod.site_slug) > self._repo_alias_width:
-                self._repo_alias_width = len(mod.site_slug)
+            if len(mod.site_slug) > self._site_slug_width:
+                self._site_slug_width = len(mod.site_slug)
 
-        self._repo_alias_width += Show._padding
+        self._site_slug_width += Show._padding
 
     def _calculate_repo_site_width(self) -> None:
         for mod in self._installed_mods:
-            if len(mod.site.value) > self._repo_site_width:
-                self._repo_site_width = len(mod.site.value)
-        self._repo_site_width += Show._padding
+            if mod.site != Sites.unknown and len(mod.site.value) > self._site_width:
+                self._site_width = len(mod.site.value)
+        self._site_width += Show._padding
 
     def _print_header(self) -> None:
         Logger.info(f"{LogColors.bold}Installed mods:{LogColors.no_color}")
 
-    def _print_row(self, id, alias, site, published) -> None:
+    def _print_row(self, id, slug, site, published) -> None:
+        if site == "unknown":
+            site = ""
+
         print(
             f"{id}".ljust(self._id_width)
-            + f"{alias}".ljust(self._repo_alias_width)
-            + f"{site}".ljust(self._repo_site_width)
+            + f"{slug}".ljust(self._site_slug_width)
+            + f"{site}".ljust(self._site_width)
             + f"{published}"
         )
 

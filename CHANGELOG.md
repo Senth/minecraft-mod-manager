@@ -5,11 +5,14 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.4] - ???
+## [1.0.4] - 2021-04-29
 
 ### Fixed
 
 - Reinstalling a mod after deleting it manually #33
+- Using `minecraft-mod-manager list` now doesn't display site if none is set
+- Using `minecraft-mod-manager list` didn't align properly if no slug was set
+- Changed `Alias` to `Slug` when using `list` command (to be consistent)
 
 ## [1.0.3] - 2021-04-25
 
