@@ -3,11 +3,11 @@ import sqlite3
 from typing import Any, List, Tuple, Union
 
 import pytest
-from ..core.entities.sites import Sites
-from ..core.errors.mod_already_exists import ModAlreadyExists
 
 from ..config import config
 from ..core.entities.mod import Mod
+from ..core.entities.sites import Sites
+from ..core.errors.mod_already_exists import ModAlreadyExists
 from ..gateways.sqlite import Sqlite
 
 db_file = f".{config.app_name}.db"
@@ -144,6 +144,30 @@ def test_exists_when_exists(mod: Mod, sqlite: Sqlite, db: sqlite3.Connection):
     db.commit()
 
     result = sqlite.exists(mod.id)
+
+    assert result
+
+
+def test_does_not_exist_when_set_as_inactive(mod: Mod, sqlite: Sqlite, db: sqlite3.Connection):
+    db.execute(
+        "INSERT INTO mod (id, site, site_id, site_slug, upload_time, active) VALUES (?, ?, ?, ?, ?, 0)",
+        [mod.id, mod.site.value, mod.site_id, mod.site_slug, mod.upload_time],
+    )
+    db.commit()
+
+    result = sqlite.exists(mod.id)
+
+    assert not result
+
+
+def test_exists_when_set_as_inactive_but_not_filtering(mod: Mod, sqlite: Sqlite, db: sqlite3.Connection):
+    db.execute(
+        "INSERT INTO mod (id, site, site_id, site_slug, upload_time, active) VALUES (?, ?, ?, ?, ?, 0)",
+        [mod.id, mod.site.value, mod.site_id, mod.site_slug, mod.upload_time],
+    )
+    db.commit()
+
+    result = sqlite.exists(mod.id, filter_active=False)
 
     assert result
 
