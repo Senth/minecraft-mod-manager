@@ -79,6 +79,8 @@ logging & help:
 ## Planned features
 
 - Automatically install dependencies
+- GUI
+- Executable for Windows
 
 ## Authors
 
