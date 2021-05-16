@@ -36,7 +36,7 @@ Install and update mods from CurseForge and Modrinth through a simple command.
 | `update -v "1.16.5"`                             | Updates to latest mod version which works with specified MC version.                                |
 | `update -v "1.16.1"`                             | If you upgraded the mods, to a higher version (e.g. snapshot), you can easily downgrade them again. |
 | `configure modrith:sodium`                       | Change the download site for a mod.                                                                 |
-| `carpet=fabric-carpet`                           | Change site slug for a mod.                                                                         |
+| `configure carpet=fabric-carpet`                 | Change site slug for a mod.                                                                         |
 | `configure modrinth:sodium curse:carpet=carpet`  | Easily configure multiple mods at the same time.                                                    |
 | `list`                                           | List all installed mods.                                                                            |
 
