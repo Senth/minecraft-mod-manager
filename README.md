@@ -16,7 +16,7 @@ Install and update mods from CurseForge and Modrinth through a simple command.
 
 ## Installation & Requirements
 
-1. Requires at least python 3.8
+1. Requires at least python 
 1. Install with `$ pip install --user minecraft-mod-manager`
 
 ## Examples
