@@ -1,4 +1,4 @@
-from typing import Any, Callable, List, Literal, Union
+from typing import Any, List, Literal, Union
 
 import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
