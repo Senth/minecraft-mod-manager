@@ -3,19 +3,20 @@ import re
 from os import path
 from typing import Any, List
 
+from ..config import config
 from ..core.entities.actions import Actions
 from ..core.entities.mod import ModArg
 from ..core.entities.sites import Sites
-from ..utils.logger import Logger
+from ..utils.logger import LogColors, Logger
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Install or update Minecraft mods from Curseforge")
+    parser = argparse.ArgumentParser(description="Install or update Minecraft mods from Modrinth and CurseForge")
 
     parser.add_argument(
         "action",
         choices=Actions.get_all_names_as_list(),
-        help="What you want to do",
+        help="What you want to do. version prints the version of this application",
     )
     parser.add_argument(
         "mods",
@@ -68,6 +69,12 @@ def parse_args():
         "--pretend",
         action="store_true",
         help="Only pretend to install/update/configure. Does not change anything",
+    )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"{config.app_name}: {LogColors.bold}{config.app_version}{LogColors.no_color}",
+        help="Show application version",
     )
 
     args = parser.parse_args()
