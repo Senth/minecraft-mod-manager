@@ -21,8 +21,17 @@ class ModArg:
     def __str__(self) -> str:
         return f"{self.site.value}:{self.id}={self.site_slug}"
 
-    def __lt__(self, other: Mod) -> bool:
+    def __lt__(self, other: ModArg) -> bool:
         return self.id < other.id
+
+    def __le__(self, other: ModArg) -> bool:
+        return self.id <= other.id
+
+    def __gt__(self, other: ModArg) -> bool:
+        return self.id > other.id
+
+    def __ge__(self, other: ModArg) -> bool:
+        return self.id >= other.id
 
     def __members(self):
         return (

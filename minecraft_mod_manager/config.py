@@ -56,5 +56,4 @@ class Filter:
         self.loader: ModLoaders = ModLoaders.unknown
 
 
-global config
 config = Config()
