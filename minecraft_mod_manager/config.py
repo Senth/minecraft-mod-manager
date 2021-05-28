@@ -1,3 +1,4 @@
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Any, List, Literal, Union
 
@@ -5,12 +6,10 @@ from .core.entities.mod import ModArg
 from .core.entities.mod_loaders import ModLoaders
 from .core.entities.version_info import Stabilities
 
-_app_name = __package__.replace("_", "-")
-
 
 class Config:
     def __init__(self):
-        self.app_name: str = _app_name
+        self.app_name: str = __package__.replace("_", "-")
         self.verbose: bool = False
         self.debug: bool = False
         self.pretend: bool = False
@@ -18,6 +17,11 @@ class Config:
         self.action: Literal["install", "update", "configure", "list"]
         self.arg_mods: List[ModArg] = []
         self.filter = Filter()
+
+        try:
+            self.app_version: str = version(self.app_name)
+        except PackageNotFoundError:
+            self.app_version: str = "UNKNOWN"
 
     def add_arg_settings(self, args: Any):
         """Set additional configuration from script arguments
