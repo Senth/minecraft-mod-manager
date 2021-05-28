@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Upcoming]
 
+### Added
+
+- Get application version using `--version` [#49](https://github.com/Senth/minecraft-mod-manager/issues/49)
+
 ### Fixed
 
 - Can now install mods that don't specify a mod loader [#35](https://github.com/Senth/minecraft-mod-manager/issues/35)
