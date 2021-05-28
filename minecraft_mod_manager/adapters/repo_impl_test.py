@@ -1,4 +1,4 @@
-from typing import List, Literal, Union
+from typing import Any, Callable, List, Literal, Union
 
 import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
@@ -157,19 +157,9 @@ def version(site: Sites = Sites.unknown) -> VersionInfo:
 def test_get_latest_version(test: TestGetLatestVersion, repo_impl: RepoImpl):
     print(test.name)
 
-    # Mocks Modrinth API
-    if test.modrinth_api_returns:
-        if type(test.modrinth_api_returns) == list:
-            when(repo_impl.modrinth_api).get_all_versions(...).thenReturn(test.modrinth_api_returns)
-        elif type(test.modrinth_api_returns) == ModNotFoundException:
-            when(repo_impl.modrinth_api).get_all_versions(...).thenRaise(test.modrinth_api_returns)
-
-    # Mocks Curse API
-    if test.curse_api_returns:
-        if type(test.curse_api_returns) == list:
-            when(repo_impl.curse_api).get_all_versions(...).thenReturn(test.curse_api_returns)
-        elif type(test.curse_api_returns) == ModNotFoundException:
-            when(repo_impl.curse_api).get_all_versions(...).thenRaise(test.curse_api_returns)
+    # Mocks API
+    mock_get_all_versions(repo_impl.modrinth_api, test.modrinth_api_returns)
+    mock_get_all_versions(repo_impl.curse_api, test.curse_api_returns)
 
     # Mocks Version Finder
     if test.version_finder_returns:
@@ -192,3 +182,11 @@ def test_get_latest_version(test: TestGetLatestVersion, repo_impl: RepoImpl):
     finally:
         verifyStubbedInvocationsAreUsed()
         unstub()
+
+
+def mock_get_all_versions(api: Any, result: Union[List[VersionInfo], ModNotFoundException, None]) -> None:
+    if result:
+        if type(result) == list:
+            when(api).get_all_versions(...).thenReturn(result)
+        elif type(result) == ModNotFoundException:
+            when(api).get_all_versions(...).thenRaise(result)
