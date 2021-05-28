@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Upcoming]
+
+### Fixed
+
+- Can now install mods that don't specify a mod loader [#35](https://github.com/Senth/minecraft-mod-manager/issues/35)
+
 ## [1.0.4] - 2021-04-29
 
 ### Fixed

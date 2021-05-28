@@ -46,8 +46,28 @@ class LatestVersionFinder:
 
     @staticmethod
     def _is_filtered_by_mod_loader(prev: ModLoaders, version: VersionInfo) -> bool:
-        if config.filter.loader == ModLoaders.unknown:
+        """Check whether this version should be filtered by mod_loader.
+        Will check both if a global filter has been set, otherwise it will match against
+        the already install version's mod loader (if one exists).
+
+        Args:
+            prev (ModLoaders): The mod loader of the existing installed version
+            version (VersionInfo): Downloaded version to filter
+
+        Returns:
+            bool: True -> filter/remove; false -> keep it
+        """
+        # No mod loaders specified in version, match all
+        if len(version.mod_loaders) == 0:
+            return False
+
+        # Use global filter
+        elif config.filter.loader != ModLoaders.unknown:
+            return config.filter.loader not in version.mod_loaders
+
+        # Use filter from previous version
+        else:
             if prev != ModLoaders.unknown:
                 return prev not in version.mod_loaders
-            return False
-        return config.filter.loader not in version.mod_loaders
+
+        return False
