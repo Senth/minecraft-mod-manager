@@ -5,3 +5,4 @@ extraction:
 
 queries:
   - include: '*'
+  - exclude: 'py/uninitialized-local-variable'
