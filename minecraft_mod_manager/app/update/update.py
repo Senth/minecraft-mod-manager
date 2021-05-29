@@ -8,7 +8,11 @@ from .update_repo import UpdateRepo
 class Update(Download):
     def __init__(self, repo: UpdateRepo) -> None:
         super().__init__(repo, "Updated")
-        self._repo = repo
+        self.__update_repo = repo
+
+    @property
+    def _repo(self) -> UpdateRepo:
+        return self.__update_repo
 
     def execute(self, mods: Sequence[ModArg]) -> None:
         mods_to_update: List[Mod] = []
