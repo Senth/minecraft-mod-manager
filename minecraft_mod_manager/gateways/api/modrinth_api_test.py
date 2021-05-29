@@ -86,7 +86,6 @@ def test_find_mod_id_by_slug(name, mod: Mod, expected, api: ModrinthApi, search_
 
 def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, versions_result):
     when(api.downloader).get(...).thenReturn(versions_result)
-    1585794422.687, 1571975688.237, 1618425238.09, 1618425279.417
     expected = [
         VersionInfo(
             stability=Stabilities.beta,

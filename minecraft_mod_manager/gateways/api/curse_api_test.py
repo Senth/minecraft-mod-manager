@@ -86,7 +86,6 @@ def test_find_mod_id_by_slug(name, mod: Mod, expected, api: CurseApi, carpet_sea
 
 def test_get_all_versions_directly_when_we_have_mod_id(api: CurseApi, carpet_files):
     when(api.downloader).get(...).thenReturn(carpet_files)
-    1585794422.687, 1571975688.237, 1618425238.09, 1618425279.417
     expected = [
         VersionInfo(
             stability=Stabilities.beta,
