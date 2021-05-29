@@ -8,21 +8,17 @@ from .update_repo import UpdateRepo
 class Update(Download):
     def __init__(self, repo: UpdateRepo) -> None:
         super().__init__(repo, "Updated")
-        self.__update_repo = repo
-
-    @property
-    def _repo(self) -> UpdateRepo:
-        return self.__update_repo
+        self._update_repo = repo
 
     def execute(self, mods: Sequence[ModArg]) -> None:
         mods_to_update: List[Mod] = []
 
         # Use all installed mods if mods is empty
         if len(mods) == 0:
-            mods_to_update = list(self._repo.get_all_mods())
+            mods_to_update = list(self._update_repo.get_all_mods())
         else:
             for mod_arg in mods:
-                mod = self._repo.get_mod(mod_arg.id)
+                mod = self._update_repo.get_mod(mod_arg.id)
                 if mod:
                     mods_to_update.append(mod)
 

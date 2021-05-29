@@ -10,11 +10,7 @@ from .install_repo import InstallRepo
 class Install(Download):
     def __init__(self, repo: InstallRepo) -> None:
         super().__init__(repo, "Installed")
-        self.__install_repo = repo
-
-    @property
-    def _repo(self) -> InstallRepo:
-        return self.__install_repo
+        self._install_repo = repo
 
     def execute(self, mods: Sequence[ModArg]) -> None:
         mods = self._filter_installed_mods(mods)
@@ -25,7 +21,7 @@ class Install(Download):
         mods_to_install: List[Mod] = []
 
         for mod in mods:
-            if not self._repo.is_installed(mod.id):
+            if not self._install_repo.is_installed(mod.id):
                 mods_to_install.append(Mod.fromModArg(mod))
             else:
                 Logger.info(f"{mod.id} has already been installed, skipping...", LogColors.skip)
@@ -40,7 +36,7 @@ class Install(Download):
         return mods
 
     def _get_mod_loader_to_use(self) -> ModLoaders:
-        mods = self._repo.get_all_mods()
+        mods = self._install_repo.get_all_mods()
 
         # Count
         counts: Dict[ModLoaders, int] = {}
