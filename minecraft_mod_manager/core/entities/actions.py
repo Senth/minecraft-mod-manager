@@ -15,6 +15,7 @@ class Actions(Enum):
         for action in Actions:
             if action.value == name.lower():
                 return action
+        return None
 
     @staticmethod
     def get_all_names_as_list() -> List[str]:

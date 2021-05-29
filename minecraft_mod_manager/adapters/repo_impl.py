@@ -34,6 +34,7 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
                 return installed_mod
             elif installed_mod.site_slug == id:
                 return installed_mod
+        return None
 
     def update_mod(self, mod: Mod) -> None:
         self.db.update_mod(mod)
