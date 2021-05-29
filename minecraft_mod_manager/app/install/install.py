@@ -10,7 +10,11 @@ from .install_repo import InstallRepo
 class Install(Download):
     def __init__(self, repo: InstallRepo) -> None:
         super().__init__(repo, "Installed")
-        self._repo = repo
+        self.__install_repo = repo
+
+    @property
+    def _repo(self) -> InstallRepo:
+        return self.__install_repo
 
     def execute(self, mods: Sequence[ModArg]) -> None:
         mods = self._filter_installed_mods(mods)
