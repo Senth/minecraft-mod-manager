@@ -32,7 +32,7 @@ class ModrinthApi(Api):
     def _find_mod_id_by_slug(self, search: str, possible_slugs: Set[str]) -> Union[Tuple[str, str], None]:
         json = self.downloader.get(ModrinthApi._make_search_url(search))
         if "hits" not in json:
-            return
+            return None
 
         for mod_info in json["hits"]:
             if "slug" in mod_info and "mod_id" in mod_info:
@@ -42,6 +42,7 @@ class ModrinthApi(Api):
                         site_id = str(mod_info["mod_id"])
                         site_id = site_id.replace("local-", "")
                         return site_id, slug
+        return None
 
     @staticmethod
     def _make_search_url(search: str) -> str:

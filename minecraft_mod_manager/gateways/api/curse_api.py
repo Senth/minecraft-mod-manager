@@ -35,6 +35,7 @@ class CurseApi(Api):
                 for possible_slug in possible_slugs:
                     if slug == possible_slug:
                         return str(curse_mod["id"]), slug
+        return None
 
     @staticmethod
     def _make_search_url(search: str) -> str:
