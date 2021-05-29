@@ -37,9 +37,6 @@ class Api:
         try:
             date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S.%f%z")
         except ValueError:
-            pass
-
-        if date == 0:
             date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S%z")
 
         return round(date.timestamp())
