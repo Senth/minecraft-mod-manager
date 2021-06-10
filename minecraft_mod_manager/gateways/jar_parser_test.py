@@ -1,5 +1,6 @@
-import io
 from pathlib import Path
+
+import pytest
 
 from ..core.entities.mod import Mod
 from ..core.entities.mod_loaders import ModLoaders
@@ -15,38 +16,51 @@ def path(filename: str) -> Path:
     return Path("fixtures").joinpath("mods").joinpath(filename)
 
 
-def test_get_mod_info_when_mod_is_fabric():
-    input = path(carpet_filename)
-    expected = Mod(
-        "carpet", "Carpet Mod in Fabric", version="1.4.16", mod_loader=ModLoaders.fabric, file=carpet_filename
-    )
-
-    result = JarParser.get_mod_info(input)
-
-    assert expected == result
-
-
-def test_get_mod_info_when_mod_is_forge():
-    input = path(jei_filename)
-    expected = Mod("jei", "Just Enough Items", version="7.6.4.86", mod_loader=ModLoaders.forge, file=jei_filename)
-
-    result = JarParser.get_mod_info(input)
-
-    assert expected == result
-
-
-def test_no_mod_info_from_invalid_mod():
-    input = path("invalid.jar")
-    expected = None
-
-    result = JarParser.get_mod_info(input)
-
-    assert expected == result
-
-
-def test_parse_fabric_json_with_invalid_character():
-    input = path(capes_filename)
-    expected = Mod("capes", "Capes", version="1.1.2", mod_loader=ModLoaders.fabric, file=capes_filename)
+@pytest.mark.parametrize(
+    "name,file,expected",
+    [
+        (
+            "Returns mod info when fabric",
+            carpet_filename,
+            Mod(
+                "carpet",
+                "Carpet Mod in Fabric",
+                version="1.4.16",
+                mod_loader=ModLoaders.fabric,
+                file=carpet_filename,
+            ),
+        ),
+        (
+            "Returns mod info when forge",
+            jei_filename,
+            Mod(
+                "jei",
+                "Just Enough Items",
+                version="7.6.4.86",
+                mod_loader=ModLoaders.forge,
+                file=jei_filename,
+            ),
+        ),
+        (
+            "Returns no mod info when invalid mod",
+            "invalid.jar",
+            None,
+        ),
+        (
+            "Returns valid mod info when contains invalid characters",
+            capes_filename,
+            Mod(
+                "capes",
+                "Capes",
+                version="1.1.2",
+                mod_loader=ModLoaders.fabric,
+                file=capes_filename,
+            ),
+        ),
+    ],
+)
+def test_get_mod_info(name, file, expected):
+    input = path(file)
 
     result = JarParser.get_mod_info(input)
 
