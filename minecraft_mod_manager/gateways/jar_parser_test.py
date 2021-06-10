@@ -10,7 +10,7 @@ mod_menu_filename = "modmenu-1.14.13+build.19.jar"
 
 
 def path(filename: str) -> Path:
-    return Path("fixtures").joinpath(filename)
+    return Path("fixtures").joinpath("mods").joinpath(filename)
 
 
 def test_get_mod_info_when_mod_is_fabric():
@@ -44,7 +44,7 @@ def test_no_mod_info_from_invalid_mod():
 
 
 def test_get_mods():
-    input = Path("fixtures")
+    input = Path("fixtures").joinpath("mods")
     expected = [
         Mod("jei", "Just Enough Items", version="7.6.4.86", mod_loader=ModLoaders.forge, file=jei_filename),
         Mod("carpet", "Carpet Mod in Fabric", version="1.4.16", mod_loader=ModLoaders.fabric, file=carpet_filename),
