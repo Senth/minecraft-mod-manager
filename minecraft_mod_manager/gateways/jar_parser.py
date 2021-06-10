@@ -46,7 +46,7 @@ class JarParser:
                     mod = JarParser._parse_forge(zip)
                 else:
                     Logger.warning(f"No mod info found for {file.name}")
-        except UnicodeDecodeError:
+        except Exception:
             Logger.error(f"Failed to parse mod file {file}", print_exception=True)
 
         if mod:
