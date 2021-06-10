@@ -73,7 +73,7 @@ minecraft:
 logging & help:
   -h, --help            show this help message and exit
   --version             Print application version
-  --verbose             Print more massages
+  --verbose             Print more messages
   --debug               Turn on debug messages
   --pretend             Only pretend to install/update/configure. Does not change anything
 ```
