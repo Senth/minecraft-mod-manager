@@ -37,18 +37,23 @@ class JarParser:
     @staticmethod
     def get_mod_info(file: Path) -> Union[Mod, None]:
         mod: Union[Mod, None] = None
-        with ZipFile(file, "r") as zip:
-            if JarParser._is_fabric(zip):
-                mod = JarParser._parse_fabric(zip)
-            elif JarParser._is_forge(zip):
-                mod = JarParser._parse_forge(zip)
-            else:
-                Logger.warning(f"No mod info found for {file.name}")
+
+        try:
+            with ZipFile(file, "r") as zip:
+                if JarParser._is_fabric(zip):
+                    mod = JarParser._parse_fabric(zip)
+                elif JarParser._is_forge(zip):
+                    mod = JarParser._parse_forge(zip)
+                else:
+                    Logger.warning(f"No mod info found for {file.name}")
+        except UnicodeDecodeError:
+            Logger.error(f"Failed to parse mod file {file}", print_exception=True)
 
         if mod:
             mod.file = file.name
+            return mod
 
-        return mod
+        return None
 
     @staticmethod
     def _is_fabric(zip: ZipFile) -> bool:
