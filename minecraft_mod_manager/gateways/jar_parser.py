@@ -62,7 +62,8 @@ class JarParser:
     @staticmethod
     def _parse_fabric(zip: ZipFile) -> Mod:
         with zip.open(JarParser._fabric_file) as json_file:
-            object = json.load(json_file)
+            full_doc = json_file.read().decode("utf-8", "ignore")
+            object = json.loads(full_doc)
             return Mod(
                 id=object["id"],
                 name=object["name"],
@@ -77,10 +78,7 @@ class JarParser:
     @staticmethod
     def _parse_forge(zip: ZipFile) -> Mod:
         with zip.open(JarParser._forge_file) as file:
-            lines = file.readlines()
-            full_doc = ""
-            for line in lines:
-                full_doc += f"{line.decode('utf-8')}\n"
+            full_doc = file.read().decode("utf-8", "ignore")
             obj = toml.loads(full_doc)
             mods = obj["mods"][0]
             return Mod(
