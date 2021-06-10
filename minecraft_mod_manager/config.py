@@ -10,6 +10,9 @@ from .core.entities.version_info import Stabilities
 class Config:
     def __init__(self):
         self.app_name: str = __package__.replace("_", "-")
+        self.app_report_url: str = (
+            "https://github.com/Senth/minecraft-mod-manager/issues/new?labels=bug&template=bug_report.md"
+        )
         self.verbose: bool = False
         self.debug: bool = False
         self.pretend: bool = False

@@ -1,4 +1,5 @@
 import sys
+import traceback
 
 from ..config import config
 
@@ -23,7 +24,7 @@ class LogColors:
 
 class Logger:
     @staticmethod
-    def error(message: str, indent: int = 0, exit: bool = False):
+    def error(message: str, indent: int = 0, exit: bool = False, print_exception: bool = False):
         """Logs a message and prints is at red
 
         Args:
@@ -31,6 +32,9 @@ class Logger:
             exit (bool): If the program should exit after printing the error
         """
         Logger._print(message, LogColors.red, indent)
+        if print_exception:
+            traceback.print_exc()
+        Logger._print("!!! Please report this and paste the above message !!!", LogColors.red, indent=0)
         if exit:
             sys.exit(1)
 

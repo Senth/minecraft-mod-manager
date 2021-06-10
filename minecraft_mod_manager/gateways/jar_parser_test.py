@@ -1,3 +1,4 @@
+import io
 from pathlib import Path
 
 from ..core.entities.mod import Mod
@@ -36,6 +37,15 @@ def test_get_mod_info_when_mod_is_forge():
 def test_no_mod_info_from_invalid_mod():
     filename = "invalid.jar"
     input = path(filename)
+    expected = None
+
+    result = JarParser.get_mod_info(input)
+
+    assert expected == result
+
+
+def test_parse_fabric_json_with_invalid_character():
+    input = path("fabric-invalid-character.jar")
     expected = None
 
     result = JarParser.get_mod_info(input)
