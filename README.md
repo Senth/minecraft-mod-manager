@@ -8,7 +8,7 @@ Install and update mods from CurseForge and Modrinth through a simple command.
 ## Features
 
 - Install mods with `minecraft-mod-manager install mod_name`
-- Update all mods with `minecraft-mod-manager update`
+- Update all mods with `minecraft-mod-manager update`, `mcman update` or `mmm update`
 - Searches on CurseForge and Modrinth for updates on installed mods
 - Filter updates by
   - Stable (default), beta `--beta`, or alpha `--alpha` releases
@@ -22,7 +22,7 @@ Install and update mods from CurseForge and Modrinth through a simple command.
 
 ## Examples
 
-**Note!** All examples start with `minecraft-mod-manager`, then comes the arguments.
+**Note!** All examples start with `minecraft-mod-manager`, `mcman` or `mmm` (shorthand commands) then comes the arguments.
 
 | Arguments                                        | Description                                                                                         |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------- |

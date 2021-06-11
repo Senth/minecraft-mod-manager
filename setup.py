@@ -20,6 +20,8 @@ setup(
     entry_points={
         "console_scripts": [
             f"{package}={module}.__main__:main",
+            f"mcman={module}.__main__:main",
+            f"mmm={module}.__main__:main",
         ],
     },
     install_requires=[
