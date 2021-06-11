@@ -44,8 +44,6 @@ Install and update mods from CurseForge and Modrinth through a simple command.
 ## Full usage
 
 ```
-Install or update Minecraft mods from Curseforge.
-
 positional arguments:
   {install,update,configure,list}
                         Install, update, configure, or list mods
