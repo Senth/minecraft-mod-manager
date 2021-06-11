@@ -63,7 +63,7 @@ class JarParser:
     def _parse_fabric(zip: ZipFile) -> Mod:
         with zip.open(JarParser._fabric_file) as json_file:
             full_doc = json_file.read().decode("utf-8", "ignore")
-            object = json.loads(full_doc)
+            object = json.loads(full_doc, strict=False)
             return Mod(
                 id=object["id"],
                 name=object["name"],
