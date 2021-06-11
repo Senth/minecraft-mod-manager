@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Mod information is now loaded properly even if it contains character errors [#60](https://github.com/Senth/minecraft-mod-manager/issues/60)
+- Mod information is now loaded properly even if JSON file is not strict [#53](https://github.com/Senth/minecraft-mod-manager/issues/53)
 
 ## [1.1.0] - 2021-05-30
 
