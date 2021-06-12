@@ -89,17 +89,17 @@ def _parse_mods(args_mod: Any) -> List[ModArg]:
         match = re.match(r"(?:(.+):)?([\w-]+)(?:=(.+))?", mod_arg)
 
         if not match:
-            Logger.error(f"Invalid mod syntax: {mod_arg}", exit=True)
+            Logger.info(f"Invalid mod syntax: {mod_arg}", LogColors.error, exit=True)
 
         site, mod_id, slug = match.groups()
         if site and len(site) > 0:
             try:
                 repo_type = Sites[site.lower()]
             except KeyError:
-                Logger.error(f"No site named {site}")
-                Logger.error("Valid names are:")
+                Logger.info(f"No site named {site}", LogColors.error)
+                Logger.info("Valid names are:", LogColors.error)
                 for enum in Sites:
-                    Logger.error(f"{enum.value}")
+                    Logger.info(f"{enum.value}", LogColors.error)
                 exit(1)
         else:
             repo_type = Sites.unknown
