@@ -1,0 +1,14 @@
+default: true
+MD013:
+  line_length: 119
+  heading_line_length: 80
+  code_block_line_length: 119
+  code_blocks: true
+  tables: false
+  headings: true
+  headers: true
+  strict: false
+  stern: false
+MD024:
+  allow_different_nesting: true
+  siblings_only: false
