@@ -19,10 +19,11 @@ class Configure:
             found_mod = self._repo.get_mod(mod_id_lower)
 
             if not found_mod:
-                Logger.error(
+                Logger.info(
                     f"Mod {mod_arg.id} not found in installed mods. "
                     + "Did you misspell the name?\nList installed mods by running: "
                     + f"{LogColors.command}{config.app_name} list",
+                    LogColors.error,
                     exit=True,
                 )
                 return

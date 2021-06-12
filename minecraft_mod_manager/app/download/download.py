@@ -49,7 +49,7 @@ class Download:
                     Logger.verbose("🟨 No new version found", LogColors.skip, indent=1)
 
             except ModNotFoundException as exception:
-                Logger.error("🔺 Mod not found on any site...", indent=1)
+                Logger.info("🔺 Mod not found on any site...", LogColors.red, indent=1)
                 mods_not_found.append(exception)
 
         # Print errors
@@ -57,7 +57,7 @@ class Download:
             errorMessage = ""
             for error in mods_not_found:
                 errorMessage += str(error) + "\n\n"
-            Logger.error(errorMessage)
+            Logger.info(errorMessage, LogColors.error)
 
     def _download_and_install(self, download_info: DownloadInfo) -> None:
         downloaded_mod = self._download(download_info.mod, download_info.version_info)
