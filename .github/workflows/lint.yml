@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    name: black & flake8
+    name: black & flake8 & markdownlint
 
     steps:
       - uses: actions/checkout@v2
@@ -24,9 +24,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install flake8 black
+          npm install markdownlint --save-dev
       - name: Lint with black
         run: black --line-length 119 --check .
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --max-line-length=119 --max-complexity=10 --show-source --statistics
+      - name: Markdown lint
+        uses: DavidAnson/markdownlint-cli2-action@v2
+        with:
+          globs: '**/*.md'
