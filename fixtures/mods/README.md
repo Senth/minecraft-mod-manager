@@ -1,6 +1,7 @@
 # Copyright notices
 
-The mods in this folder is not developed by me and are not included when you install minecraft-mod-manager. They are only here for testing purposes, making sure that minecraft-mod-manager works correctly.
+The mods in this folder is not developed by me and are not included when you install minecraft-mod-manager.
+They are only here for testing purposes, making sure that minecraft-mod-manager works correctly.
 
 ## Mods and their copyright notices
 
