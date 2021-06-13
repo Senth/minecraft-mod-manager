@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from typing import Dict, List, Set, Union
+from typing import Dict, Set, Union
 
 from .mod_loaders import ModLoaders
 from .sites import Site, Sites
@@ -19,7 +19,7 @@ class ModArg:
     def matches_site(self, site: Sites) -> bool:
         if self.sites:
             return site in self.sites
-        return False
+        return True
 
     def __str__(self) -> str:
         return f"{self.id}"

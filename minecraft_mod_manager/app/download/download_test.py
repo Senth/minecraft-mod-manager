@@ -5,7 +5,7 @@ from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
-from ...core.entities.sites import Sites
+from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
 from .download import Download
 from .download_repo import DownloadRepo
@@ -26,6 +26,7 @@ def test_download_and_install_when_found(mock_repo):
         minecraft_versions=[],
         download_url="",
     )
+    when(mock_repo).search_for_mod(...).thenReturn({Sites.curse: Site(Sites.curse, "", "")})
     when(mock_repo).get_versions(...).thenReturn([version_info])
     when(mock_repo).download(...).thenReturn(Path("mod.jar"))
     when(mock_repo).update_mod(...)
