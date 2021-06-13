@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Shorthand command for `minecraft-mod-manager`; you can now use `mcman` or `mmm` instead 🙂
+- Shorthand command for `minecraft-mod-manager`; you can now use `mcman` or `mmm` instead 🙂 [#57](https://github.com/Senth/minecraft-mod-manager/issues/57)
 
 ### Changed
 
