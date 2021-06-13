@@ -1,28 +1,26 @@
 from __future__ import annotations
 
 import re
-from typing import Set, Union
+from typing import Dict, List, Set, Union
 
 from .mod_loaders import ModLoaders
-from .sites import Sites
+from .sites import Site, Sites
 
 
 class ModArg:
     """Mod argument from the CLI"""
 
-    def __init__(self, site: Sites, id: str, slug: Union[str, None]) -> None:
-        self.site: Sites = site
+    def __init__(self, id: str, sites: Dict[Sites, Site]) -> None:
+        self.sites = sites
         """Where the mod is downloaded from"""
         self.id = id
         """String identifier of the mod, often case the same as mod name"""
-        self.site_slug = slug
-        """Mod slug on the site"""
 
     def matches_site(self, site: Sites) -> bool:
-        return self.site == site or self.site == Sites.unknown or self.site == Sites.all
+        return site in self.sites
 
     def __str__(self) -> str:
-        return f"{self.site.value}:{self.id}={self.site_slug}"
+        return f"{self.id}"
 
     def __lt__(self, other: ModArg) -> bool:
         return self.id < other.id
@@ -39,8 +37,7 @@ class ModArg:
     def __members(self):
         return (
             self.id,
-            self.site,
-            self.site_slug,
+            self.sites,
         )
 
     def __eq__(self, other) -> bool:
@@ -49,7 +46,7 @@ class ModArg:
 
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.__members())
 
 
@@ -58,16 +55,13 @@ class Mod(ModArg):
         self,
         id: str,
         name: str,
-        site: Sites = Sites.unknown,
-        site_id: Union[str, None] = None,
-        site_slug: Union[str, None] = None,
+        sites: Dict[Sites, Site] = {},
         version: Union[str, None] = None,
         file: Union[str, None] = None,
         upload_time: int = 0,
         mod_loader: ModLoaders = ModLoaders.unknown,
     ):
-        super().__init__(site, id, site_slug)
-        self.site_id = site_id
+        super().__init__(id, sites)
         self.name = name
         self.version = version
         self.file = file
@@ -77,7 +71,7 @@ class Mod(ModArg):
 
     @staticmethod
     def fromModArg(mod_arg: ModArg) -> Mod:
-        return Mod(mod_arg.id, mod_arg.id, site=mod_arg.site, site_slug=mod_arg.site_slug)
+        return Mod(mod_arg.id, mod_arg.id, mod_arg.sites)
 
     def __str__(self) -> str:
         return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader.value}]"
@@ -110,9 +104,7 @@ class Mod(ModArg):
         return (
             self.id,
             self.name,
-            self.site_id,
-            self.site,
-            self.site_slug,
+            self.sites,
             self.version,
             self.file,
             self.upload_time,

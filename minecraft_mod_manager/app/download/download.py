@@ -35,6 +35,8 @@ class Download:
         for mod in mods:
             try:
                 Logger.info(mod.id, LogColors.bold)
+                mod.sites = self._repo.search_for_mod(mod)
+
                 versions = self._repo.get_versions(mod)
                 latest_version = LatestVersionFinder.find_latest_version(mod, versions, filter=True)
 

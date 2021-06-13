@@ -11,13 +11,9 @@ _base_url = "https://addons-ecs.forgesvc.net/api/v2/addon"
 
 class CurseApi(Api):
     def __init__(self, downloader: Downloader) -> None:
-        super().__init__(downloader)
+        super().__init__(downloader, Sites.curse)
 
     def get_all_versions(self, mod: Mod) -> List[VersionInfo]:
-        # Get the mod's id
-        if not mod.site_id:
-            mod.site_id = self._find_mod_id(mod)
-
         versions: List[VersionInfo] = []
         files = self.downloader.get(CurseApi._make_files_url(mod))
         for file in files:
@@ -43,7 +39,7 @@ class CurseApi(Api):
 
     @staticmethod
     def _make_files_url(mod: Mod) -> str:
-        return f"{_base_url}/{mod.site_id}/files"
+        return f"{_base_url}/{mod.sites[Sites.curse].id}/files"
 
     @staticmethod
     def _file_to_version_info(file_data: Any) -> VersionInfo:

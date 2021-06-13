@@ -1,14 +1,15 @@
 from pathlib import Path
-from typing import List, Sequence, Union
+from typing import Dict, List, Sequence, Tuple, Union
 
 from ..app.configure.configure_repo import ConfigureRepo
 from ..app.install.install_repo import InstallRepo
 from ..app.show.show_repo import ShowRepo
 from ..app.update.update_repo import UpdateRepo
 from ..core.entities.mod import Mod
-from ..core.entities.sites import Sites
+from ..core.entities.sites import Site, Sites
 from ..core.entities.version_info import VersionInfo
 from ..core.errors.mod_not_found_exception import ModNotFoundException
+from ..gateways.api.api import Api
 from ..gateways.api.curse_api import CurseApi
 from ..gateways.api.modrinth_api import ModrinthApi
 from ..gateways.downloader import Downloader
@@ -24,15 +25,19 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         self.db = sqlite
         self.mods = self.db.sync_with_dir(jar_parser.mods)
         self.downloader = downloader
-        self.curse_api = CurseApi(downloader)
-        self.modrinth_api = ModrinthApi(downloader)
+        self.apis = (
+            CurseApi(downloader),
+            ModrinthApi(downloader),
+        )
 
     def get_mod(self, id: str) -> Union[Mod, None]:
         for installed_mod in self.mods:
             if installed_mod.id == id:
                 return installed_mod
-            elif installed_mod.site_slug == id:
-                return installed_mod
+            else:
+                for site in installed_mod.sites.values():
+                    if site.slug == id:
+                        return installed_mod
         return None
 
     def update_mod(self, mod: Mod) -> None:
@@ -44,29 +49,28 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
     def get_all_mods(self) -> Sequence[Mod]:
         return self.mods
 
+    def search_for_mod(self, mod: Mod) -> Dict[Sites, Site]:
+        sites: Dict[Sites, Site] = {}
+
+        for api in self.apis:
+            try:
+                Logger.verbose(f"🔍 Searching on {api.site_name}...", indent=1)
+                site = api.find_mod_id(mod)
+                sites[site.name] = site
+                RepoImpl._print_found()
+            except ModNotFoundException:
+                RepoImpl._print_not_found()
+
+        if len(sites) == 0:
+            raise ModNotFoundException(mod)
+
+        return sites
+
     def get_versions(self, mod: Mod) -> List[VersionInfo]:
         versions: List[VersionInfo] = []
 
-        # Modrinth
-        if mod.matches_site(Sites.modrinth):
-            try:
-                Logger.verbose("🔍 Searching on Modrinth...", indent=1)
-                versions.extend(self.modrinth_api.get_all_versions(mod))
-                RepoImpl._print_found()
-            except ModNotFoundException:
-                RepoImpl._print_not_found()
-
-        # Curse
-        if mod.matches_site(Sites.curse):
-            try:
-                Logger.verbose("🔍 Searching on CurseForge...", indent=1)
-                versions.extend(self.curse_api.get_all_versions(mod))
-                RepoImpl._print_found()
-            except ModNotFoundException:
-                RepoImpl._print_not_found()
-
-        if len(versions) == 0:
-            raise ModNotFoundException(mod)
+        for api in self.apis:
+            versions.extend(api.get_all_versions(mod))
 
         return versions
 
