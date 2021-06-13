@@ -9,7 +9,6 @@ from ..core.entities.mod import Mod
 from ..core.entities.sites import Sites
 from ..core.entities.version_info import VersionInfo
 from ..core.errors.mod_not_found_exception import ModNotFoundException
-from ..core.utils.latest_version_finder import LatestVersionFinder
 from ..gateways.api.curse_api import CurseApi
 from ..gateways.api.modrinth_api import ModrinthApi
 from ..gateways.downloader import Downloader
