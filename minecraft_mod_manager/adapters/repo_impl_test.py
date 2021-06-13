@@ -1,7 +1,6 @@
-from typing import Any, List, Literal, Union
+from typing import Any, List, Union
 
 import pytest
-from minecraft_mod_manager.gateways.api import modrinth_api
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ..adapters.repo_impl import RepoImpl
@@ -10,7 +9,6 @@ from ..core.entities.mod_loaders import ModLoaders
 from ..core.entities.sites import Sites
 from ..core.entities.version_info import Stabilities, VersionInfo
 from ..core.errors.mod_not_found_exception import ModNotFoundException
-from ..core.utils.latest_version_finder import LatestVersionFinder
 from ..gateways.downloader import Downloader
 from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
