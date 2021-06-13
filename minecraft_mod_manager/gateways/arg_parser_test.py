@@ -1,7 +1,7 @@
 import pytest
 
 from ..core.entities.mod import ModArg
-from ..core.entities.sites import Sites
+from ..core.entities.sites import Site, Sites
 from .arg_parser import _parse_mods
 
 
@@ -15,47 +15,67 @@ from .arg_parser import _parse_mods
                 "litematica",
             ],
             [
-                ModArg(Sites.unknown, "carpet", "carpet"),
-                ModArg(Sites.unknown, "litematica", "litematica"),
+                ModArg("carpet"),
+                ModArg("litematica"),
             ],
         ),
         (
             "Valid repo types",
             [
-                "curse:carpet",
-                "curse:litematica",
+                "carpet=curse",
+                "litematica=modrinth",
             ],
             [
-                ModArg(Sites.curse, "carpet", "carpet"),
-                ModArg(Sites.curse, "litematica", "litematica"),
-            ],
-        ),
-        (
-            "Valid aliases",
-            [
-                "carpet=fabric-carpet",
-                "litematica=litematica-fabric",
-            ],
-            [
-                ModArg(Sites.unknown, "carpet", "fabric-carpet"),
-                ModArg(Sites.unknown, "litematica", "litematica-fabric"),
+                ModArg("carpet", {Sites.curse: Site(Sites.curse)}),
+                ModArg("litematica", {Sites.modrinth: Site(Sites.modrinth)}),
             ],
         ),
         (
-            "Valid repo and alias",
+            "Valid slugs",
             [
-                "curse:carpet=fabric-carpet",
-                "curse:litematica=litematica-fabric",
+                "carpet=curse:fabric-carpet",
+                "litematica=modrinth:litematica-fabric",
             ],
             [
-                ModArg(Sites.curse, "carpet", "fabric-carpet"),
-                ModArg(Sites.curse, "litematica", "litematica-fabric"),
+                ModArg("carpet", {Sites.curse: Site(Sites.curse, slug="fabric-carpet")}),
+                ModArg("litematica", {Sites.modrinth: Site(Sites.modrinth, slug="litematica-fabric")}),
+            ],
+        ),
+        (
+            "Reset site",
+            ["carpet="],
+            [ModArg("carpet", sites={})],
+        ),
+        (
+            "Multiple sites for one mod",
+            ["carpet=curse,modrinth"],
+            [
+                ModArg(
+                    "carpet",
+                    sites={
+                        Sites.curse: Site(Sites.curse),
+                        Sites.modrinth: Site(Sites.modrinth),
+                    },
+                )
+            ],
+        ),
+        (
+            "Multiple sites and slugs for one mod",
+            ["carpet=curse:fabric-carpet,modrinth:fabric-carpet"],
+            [
+                ModArg(
+                    "carpet",
+                    sites={
+                        Sites.curse: Site(Sites.curse, slug="fabric-carpet"),
+                        Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet"),
+                    },
+                )
             ],
         ),
         (
             "Invalid repo",
             [
-                "hello:carpet",
+                "carpet=hello",
             ],
             SystemExit,
         ),

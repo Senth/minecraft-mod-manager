@@ -43,21 +43,13 @@ class Sites(Enum):
     modrinth = "modrinth"
 
     @staticmethod
-    def from_names(names: str) -> List[Sites]:
-        """Get all sites from a string with comma separated names
-
-        Args:
-            names (str): Comma separated names. Invalid names are ignored.
-
-        Returns:
-            List[Sites]: All found names, empty list if names is empty
-        """
-        sites: List[Sites] = []
-        for name in names.split(","):
-            site = Sites.from_name(name)
-            if site:
-                sites.append(site)
-        return sites
+    def all() -> str:
+        all = ""
+        for name in Sites:
+            if len(all) > 0:
+                all += "|"
+            all += name.value
+        return all
 
     @staticmethod
     def from_name(name: str) -> Union[Sites, None]:

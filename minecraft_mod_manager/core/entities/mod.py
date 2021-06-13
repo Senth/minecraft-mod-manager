@@ -32,7 +32,10 @@ class ModArg:
         return sites
 
     def __str__(self) -> str:
-        return f"{self.id}"
+        return f"{self.id}={self.get_site_slug_string()}"
+
+    def __repr__(self) -> str:
+        return str(self.__members())
 
     def __lt__(self, other: ModArg) -> bool:
         return self.id < other.id
