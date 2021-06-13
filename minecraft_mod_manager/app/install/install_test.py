@@ -1,9 +1,8 @@
 import pytest
-from ...core.entities.mod_loaders import ModLoaders
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod, ModArg
-from ...core.entities.sites import Sites
+from ...core.entities.mod_loaders import ModLoaders
 from .install import Install
 from .install_repo import InstallRepo
 
@@ -17,7 +16,7 @@ def test_mod_not_installed_when_already_installed(mock_repo):
     when(mock_repo).is_installed(...).thenReturn(True)
     when(mock_repo).get_all_mods(...).thenReturn([])
 
-    input = [ModArg(Sites.unknown, "", "")]
+    input = [ModArg("")]
     install = Install(mock_repo)
     install.execute(input)
 
@@ -46,7 +45,7 @@ def test_set_mod_loader_by_majority(mock_repo):
         Mod("", "", mod_loader=ModLoaders.unknown),
     ]
 
-    input = ModArg(Sites.unknown, "", None)
+    input = ModArg("")
     expected_mod = [Mod("", "", mod_loader=ModLoaders.fabric)]
     when(mock_repo).is_installed(...).thenReturn(False)
     when(mock_repo).get_all_mods(...).thenReturn(installed_mods)
@@ -62,7 +61,7 @@ def test_dont_set_mod_loader(mock_repo):
     install = Install(mock_repo)
     installed_mods = []
 
-    input = ModArg(Sites.unknown, "", None)
+    input = ModArg("")
     expected_mod = [Mod("", "")]
     when(mock_repo).is_installed(...).thenReturn(False)
     when(mock_repo).get_all_mods(...).thenReturn(installed_mods)
@@ -81,7 +80,7 @@ def test_dont_set_mod_loader_when_no_majority(mock_repo):
         Mod("", "", mod_loader=ModLoaders.forge),
     ]
 
-    input = ModArg(Sites.unknown, "", None)
+    input = ModArg("")
     expected_mod = [Mod("", "")]
     when(mock_repo).is_installed(...).thenReturn(False)
     when(mock_repo).get_all_mods(...).thenReturn(installed_mods)
