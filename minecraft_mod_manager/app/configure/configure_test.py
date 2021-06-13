@@ -85,6 +85,12 @@ def test_abort_before_configuring_when_later_mod_not_found(mock_repo):
             [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth, slug="car")})],
             Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, slug="car")}),
         ),
+        (
+            "Site id is kept when changing other settings",
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, id="id", slug="fabric-carpet")}),
+            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth, slug="car")})],
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, id="id", slug="car")}),
+        ),
     ],
 )
 def test_configure_mod(name: str, existing: Mod, input: List[ModArg], expected: Mod, mock_repo: ConfigureRepo):

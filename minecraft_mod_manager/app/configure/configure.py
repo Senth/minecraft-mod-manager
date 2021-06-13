@@ -1,7 +1,8 @@
-from typing import List, Sequence
+from typing import Dict, List, Sequence
 
 from ...config import config
-from ...core.entities.mod import Mod, ModArg, Sites
+from ...core.entities.mod import Mod, ModArg
+from ...core.entities.sites import Site, Sites
 from ...utils.logger import LogColors, Logger
 from ..configure.configure_repo import ConfigureRepo
 
@@ -29,7 +30,7 @@ class Configure:
                 return
 
             if isinstance(mod_arg.sites, dict):
-                found_mod.sites = mod_arg.sites
+                Configure._update_sites(found_mod, mod_arg.sites)
 
             # Updating mod
             mods_to_update.append(found_mod)
@@ -45,3 +46,13 @@ class Configure:
                 site_info += site.get_configure_string()
 
             Logger.info(f"Configured sites for {mod.id}; {{{site_info}}}", LogColors.add)
+
+    @staticmethod
+    def _update_sites(mod: Mod, sites: Dict[Sites, Site]) -> None:
+        old_sites = mod.sites
+        mod.sites = sites
+
+        for old_site in old_sites.values():
+            if old_site.id:
+                if mod.sites and old_site.name in mod.sites:
+                    mod.sites[old_site.name].id = old_site.id
