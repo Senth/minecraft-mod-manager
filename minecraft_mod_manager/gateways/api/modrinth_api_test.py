@@ -7,7 +7,7 @@ from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
-from ...core.entities.sites import Sites
+from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
 from ...gateways.downloader import Downloader
 from .modrinth_api import ModrinthApi
@@ -44,7 +44,7 @@ site_id = "P7dR8mSH"
 
 
 def mod(id="fabric-api", name="Fabric API", site_slug="fabric-api", site_id=site_id, file: Union[str, None] = None):
-    return Mod(id=id, name=name, site_slug=site_slug, site_id=site_id, file=file)
+    return Mod(id=id, name=name, sites={Sites.modrinth: Site(Sites.modrinth, site_id, site_slug)}, file=file)
 
 
 @pytest.mark.parametrize(
