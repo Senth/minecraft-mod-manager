@@ -3,27 +3,37 @@ from typing import List, Set, Tuple, Union
 
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
+from ...core.entities.sites import Site, Sites
+from ...core.entities.version_info import VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ...gateways.downloader import Downloader
 
 
 class Api:
-    def __init__(self, downloader: Downloader) -> None:
+    def __init__(self, downloader: Downloader, site_name: Sites) -> None:
         self.downloader = downloader
+        self.site_name = site_name
 
-    def _find_mod_id(self, mod: Mod) -> str:
-        if mod.site_slug:
-            version = self._find_mod_id_by_slug(mod.site_slug, set([mod.site_slug]))
-            if version:
-                return version[0]
+    def get_all_versions(self, mod: Mod) -> List[VersionInfo]:
+        raise NotImplementedError()
+
+    def find_mod_id(self, mod: Mod) -> Site:
+        # Specified a slug
+        if self.site_name in mod.sites:
+            existing_site = mod.sites[self.site_name]
+            if existing_site.slug:
+                info = self._find_mod_id_by_slug(existing_site.slug, set([existing_site.slug]))
+                if info:
+                    id, slug = info
+                    return Site(self.site_name, id, slug)
+        # No specified slug
         else:
             possible_names = mod.get_possible_slugs()
             for possible_name in possible_names:
-                version_slug = self._find_mod_id_by_slug(possible_name, possible_names)
-                if version_slug:
-                    version, slug = version_slug
-                    mod.site_slug = slug
-                    return version
+                info = self._find_mod_id_by_slug(possible_name, possible_names)
+                if info:
+                    id, slug = info
+                    return Site(self.site_name, id, slug)
 
         raise ModNotFoundException(mod)
 

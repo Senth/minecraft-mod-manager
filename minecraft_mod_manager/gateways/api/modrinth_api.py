@@ -13,13 +13,9 @@ _base_url = "https://api.modrinth.com/api/v1"
 
 class ModrinthApi(Api):
     def __init__(self, downloader: Downloader) -> None:
-        super().__init__(downloader)
+        super().__init__(downloader, Sites.modrinth)
 
     def get_all_versions(self, mod: Mod) -> List[VersionInfo]:
-        # Get the mod's id
-        if not mod.site_id:
-            mod.site_id = self._find_mod_id(mod)
-
         versions: List[VersionInfo] = []
         json = self.downloader.get(ModrinthApi._make_versions_url(mod))
         for json_version in json:
@@ -56,7 +52,7 @@ class ModrinthApi(Api):
 
     @staticmethod
     def _make_versions_url(mod: Mod) -> str:
-        return f"{_base_url}/mod/{mod.site_id}/version"
+        return f"{_base_url}/mod/{mod.sites[Sites.modrinth].id}/version"
 
     @staticmethod
     def _json_to_version_info(data: Any) -> VersionInfo:

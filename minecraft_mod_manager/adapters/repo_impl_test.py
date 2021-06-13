@@ -6,7 +6,7 @@ from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 from ..adapters.repo_impl import RepoImpl
 from ..core.entities.mod import Mod
 from ..core.entities.mod_loaders import ModLoaders
-from ..core.entities.sites import Sites
+from ..core.entities.sites import Site, Sites
 from ..core.entities.version_info import Stabilities, VersionInfo
 from ..core.errors.mod_not_found_exception import ModNotFoundException
 from ..gateways.downloader import Downloader
@@ -55,11 +55,11 @@ class TestGetLatestVersion:
         self.modrinth_api_returns = modrinth_api_returns
 
 
-def mod(site: Sites = Sites.unknown) -> Mod:
-    return Mod("", "", site=site)
+def mod() -> Mod:
+    return Mod("", "")
 
 
-def version(site: Sites = Sites.unknown) -> VersionInfo:
+def version(site: Sites) -> VersionInfo:
     return VersionInfo(
         stability=Stabilities.release,
         mod_loaders=set([ModLoaders.fabric]),
@@ -76,7 +76,7 @@ def version(site: Sites = Sites.unknown) -> VersionInfo:
         (
             TestGetLatestVersion(
                 name="Get mod from Modrinth API when site type is specified",
-                mod=mod(site=Sites.modrinth),
+                mod=Mod("", "", {Sites.modrinth: Site(Sites.modrinth)}),
                 modrinth_api_returns=[version(site=Sites.modrinth)],
                 expected_result=[version(site=Sites.modrinth)],
             )
@@ -102,7 +102,7 @@ def version(site: Sites = Sites.unknown) -> VersionInfo:
         (
             TestGetLatestVersion(
                 name="Get mod from Curse API when site type is curse",
-                mod=mod(site=Sites.curse),
+                mod=Mod("", "", {Sites.curse: Site(Sites.curse)}),
                 curse_api_returns=[version(site=Sites.curse)],
                 expected_result=[version(site=Sites.curse)],
             )
@@ -128,7 +128,7 @@ def version(site: Sites = Sites.unknown) -> VersionInfo:
         (
             TestGetLatestVersion(
                 name="Get mod from Curse API when site type is curse",
-                mod=mod(site=Sites.curse),
+                mod=Mod("", "", {Sites.curse: Site(Sites.curse)}),
                 curse_api_returns=[version(site=Sites.curse)],
                 expected_result=[version(site=Sites.curse)],
             )
@@ -141,6 +141,22 @@ def version(site: Sites = Sites.unknown) -> VersionInfo:
                 curse_api_returns=[version(site=Sites.curse)],
                 expected_result=[version(site=Sites.modrinth), version(site=Sites.curse)],
             )
+        ),
+        (
+            TestGetLatestVersion(
+                name="Get mods from all sites when all sites are specified",
+                mod=Mod(
+                    "",
+                    "",
+                    sites={
+                        Sites.modrinth: Site(Sites.modrinth),
+                        Sites.curse: Site(Sites.curse),
+                    },
+                ),
+                modrinth_api_returns=[version(site=Sites.modrinth)],
+                curse_api_returns=[version(site=Sites.curse)],
+                expected_result=[version(site=Sites.modrinth), version(site=Sites.curse)],
+            ),
         ),
         (
             TestGetLatestVersion(
@@ -172,6 +188,65 @@ def test_get_latest_version(test: TestGetLatestVersion, repo_impl: RepoImpl):
     finally:
         verifyStubbedInvocationsAreUsed()
         unstub()
+
+
+@pytest.mark.parametrize(
+    "test_name,mods,input,expected",
+    [
+        (
+            "Returns None when no mods",
+            [],
+            "id",
+            None,
+        ),
+        (
+            "Returns None when specified name",
+            [
+                Mod("id", "name", {}),
+            ],
+            "name",
+            None,
+        ),
+        (
+            "Returns mod when found by id",
+            [
+                Mod("id2", "name2", {}),
+                Mod("id", "name", {}),
+            ],
+            "id",
+            Mod("id", "name", {}),
+        ),
+        (
+            "Returns mod when found by slug",
+            [
+                Mod(
+                    "id",
+                    "name",
+                    {
+                        Sites.modrinth: Site(Sites.modrinth, "utecro", "slug-modrinth"),
+                        Sites.curse: Site(Sites.curse, "utso", "slug-curse"),
+                    },
+                ),
+            ],
+            "slug-curse",
+            Mod(
+                "id",
+                "name",
+                {
+                    Sites.modrinth: Site(Sites.modrinth, "utecro", "slug-modrinth"),
+                    Sites.curse: Site(Sites.curse, "utso", "slug-curse"),
+                },
+            ),
+        ),
+    ],
+)
+def test_get_mod(test_name: str, mods: List[Mod], input: str, expected: Union[Mod, None], repo_impl: RepoImpl):
+    print(test_name)
+
+    repo_impl.mods = mods
+    result = repo_impl.get_mod(input)
+
+    assert expected == result
 
 
 def mock_get_all_versions(api: Any, result: Union[List[VersionInfo], ModNotFoundException, None]) -> None:
