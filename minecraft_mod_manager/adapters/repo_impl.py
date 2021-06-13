@@ -54,8 +54,12 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
 
         for api in self.apis:
             if mod.matches_site(api.site_name):
+                # Already has an id
+                if mod.sites and api.site_name in mod.sites and mod.sites[api.site_name].id:
+                    Logger.verbose(f"🔍 Previously found on {api.site_name.value}")
+                    return mod.sites
                 try:
-                    Logger.verbose(f"🔍 Searching on {api.site_name}...", indent=1)
+                    Logger.verbose(f"🔍 Searching on {api.site_name.value}...", indent=1)
                     site = api.find_mod_id(mod)
                     sites[site.name] = site
                     RepoImpl._print_found()

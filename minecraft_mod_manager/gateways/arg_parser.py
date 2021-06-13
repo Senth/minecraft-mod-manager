@@ -1,12 +1,12 @@
 import argparse
 import re
 from os import path
-from typing import Any, List
+from typing import Any, Dict, List, Union
 
 from ..config import config
 from ..core.entities.actions import Actions
 from ..core.entities.mod import ModArg
-from ..core.entities.sites import Sites
+from ..core.entities.sites import Site, Sites
 from ..utils.logger import LogColors, Logger
 
 
@@ -21,11 +21,13 @@ def parse_args():
     parser.add_argument(
         "mods",
         nargs="*",
-        help="The mods to install, update, or configure.\n"
-        + "If no mods are specified during an update, all mods will be updated.\n"
-        + "To specify the download site for the mod you can put 'site:' before the mod. "
-        + "E.g. 'curse:litematica'. By default it searches all sites for the mod.\n"
-        + "To configure an slug for the mod, use 'mod_name=SLUG'. E.g. 'dynmap=dynmapforge'",
+        help="The mods to install, update, or configure. "
+        + "If no mods are specified during an update, all mods will be updated. "
+        + "To specify the download site for the mod you can put '=site' after the mod. "
+        + "E.g. 'litematica=curse'. By default it searches all sites for the mod. "
+        + "To configure an slug for the mod, use 'mod_name=curse:SLUG'. E.g. 'dynmap=curse:dynmapforge' "
+        + "To reset configuration, type 'mod_name='. To specify multiple sites add a comma between site names. "
+        + "E.g. 'dynmap=curse,modrinth' or 'dynmap=curse:dynmapforge,modrinth' if you want to have different slugs",
     )
     parser.add_argument(
         "-d",
@@ -86,29 +88,69 @@ def parse_args():
 def _parse_mods(args_mod: Any) -> List[ModArg]:
     mods: List[ModArg] = []
     for mod_arg in args_mod:
-        match = re.match(r"(?:(.+):)?([\w-]+)(?:=(.+))?", mod_arg)
-
-        if not match:
-            Logger.info(f"Invalid mod syntax: {mod_arg}", LogColors.error, exit=True)
-
-        site, mod_id, slug = match.groups()
-        if site and len(site) > 0:
-            try:
-                repo_type = Sites[site.lower()]
-            except KeyError:
-                Logger.info(f"No site named {site}", LogColors.error)
-                Logger.info("Valid names are:", LogColors.error)
-                for enum in Sites:
-                    Logger.info(f"{enum.value}", LogColors.error)
-                exit(1)
+        mod_arg = str(mod_arg)
+        mod = ModArg("")
+        if "=" in mod_arg:
+            if mod_arg.count("=") > 1:
+                _print_invalid_mod_syntax(mod_arg, "Too many equal signs '=' in argument")
+            mod.id, sites = mod_arg.split("=")
+            mod.sites = _parse_sites(mod_arg, sites)
         else:
-            repo_type = Sites.unknown
+            mod.id = mod_arg
+        mods.append(mod)
 
-        if not slug:
-            slug = mod_id
-
-        mods.append(ModArg(repo_type, mod_id, slug))
     return mods
+
+
+def _parse_sites(mod_arg, sites: str) -> Dict[Sites, Site]:
+    if "," in sites:
+        sites_str = sites.split(",")
+    else:
+        sites_str = [sites]
+
+    sites_dict: Dict[Sites, Site] = {}
+    for site_str in sites_str:
+        site = _parse_site(mod_arg, site_str)
+        if site:
+            sites_dict[site.name] = site
+    return sites_dict
+
+
+def _parse_site(mod_arg: str, site_str: str) -> Union[Site, None]:
+    if len(site_str) == 0:
+        return None
+
+    slug: Union[str, None] = None
+    name: str = ""
+
+    # Slug
+    if ":" in site_str:
+        if site_str.count(":") > 1:
+            _print_invalid_mod_syntax(mod_arg, "Too many colon signs ':' in argument")
+        name, slug = site_str.split(":")
+    else:
+        name = site_str
+
+    site_name = Sites.from_name(name)
+
+    if not site_name:
+        _print_invalid_mod_syntax(mod_arg, f"Invalid site, valid sites are {Sites.all()}")
+    else:
+        return Site(site_name, slug=slug)
+
+    return None
+
+
+def _print_invalid_mod_syntax(mod_arg: str, extra_info: str) -> None:
+    Logger.info(f"Invalid mod syntax: {mod_arg}", LogColors.error)
+    Logger.info(extra_info, LogColors.error)
+    Logger.info(
+        f"Valid syntax is: {LogColors.command}dynmap=curse{LogColors.no_color}, "
+        + f"{LogColors.command}dynmap=curse:dynmapforge{LogColors.no_color}, or "
+        + f"{LogColors.command}dynmap=modrinth,curse:dynmapforge{LogColors.no_color}",
+        LogColors.error,
+        exit=True,
+    )
 
 
 def _is_dir(dir: str) -> str:
