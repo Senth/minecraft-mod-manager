@@ -21,6 +21,16 @@ class ModArg:
             return site in self.sites
         return True
 
+    def get_site_slug_string(self) -> str:
+        sites = ""
+        if self.sites:
+            for site in self.sites.values():
+                if len(sites) > 0:
+                    sites += ", "
+                sites += site.get_configure_string()
+
+        return sites
+
     def __str__(self) -> str:
         return f"{self.id}"
 
