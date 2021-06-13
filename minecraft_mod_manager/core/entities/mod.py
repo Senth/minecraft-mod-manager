@@ -18,6 +18,9 @@ class ModArg:
         self.site_slug = slug
         """Mod slug on the site"""
 
+    def matches_site(self, site: Sites) -> bool:
+        return self.site == site or self.site == Sites.unknown or self.site == Sites.all
+
     def __str__(self) -> str:
         return f"{self.site.value}:{self.id}={self.site_slug}"
 

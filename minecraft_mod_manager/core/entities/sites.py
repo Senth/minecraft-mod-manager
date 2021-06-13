@@ -7,6 +7,7 @@ class Sites(Enum):
     unknown = "unknown"
     curse = "curse"
     modrinth = "modrinth"
+    all = "all"
 
     @staticmethod
     def from_name(name: str) -> Sites:

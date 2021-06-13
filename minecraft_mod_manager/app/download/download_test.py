@@ -19,18 +19,19 @@ def mock_repo():
 def test_download_and_install_when_found(mock_repo):
     input = [Mod("found", "")]
     version_info = VersionInfo(
-        stability=Stabilities.beta,
+        stability=Stabilities.release,
         mod_loaders=set([ModLoaders.fabric]),
         site=Sites.curse,
         upload_time=0,
         minecraft_versions=[],
         download_url="",
     )
-    when(mock_repo).get_latest_version(...).thenReturn(version_info)
+    when(mock_repo).get_versions(...).thenReturn([version_info])
     when(mock_repo).download(...).thenReturn(Path("mod.jar"))
     when(mock_repo).update_mod(...)
 
-    download = Download(mock_repo, "")
+    download = Download(mock_repo)
+    when(download).on_version_found(...)
     download.find_download_and_install(input)
 
     verifyStubbedInvocationsAreUsed()
