@@ -10,14 +10,16 @@ from .sites import Site, Sites
 class ModArg:
     """Mod argument from the CLI"""
 
-    def __init__(self, id: str, sites: Dict[Sites, Site]) -> None:
+    def __init__(self, id: str, sites: Union[Dict[Sites, Site], None] = None) -> None:
         self.sites = sites
         """Where the mod is downloaded from"""
         self.id = id
         """String identifier of the mod, often case the same as mod name"""
 
     def matches_site(self, site: Sites) -> bool:
-        return site in self.sites
+        if self.sites:
+            return site in self.sites
+        return False
 
     def __str__(self) -> str:
         return f"{self.id}"
@@ -71,7 +73,10 @@ class Mod(ModArg):
 
     @staticmethod
     def fromModArg(mod_arg: ModArg) -> Mod:
-        return Mod(mod_arg.id, mod_arg.id, mod_arg.sites)
+        sites = mod_arg.sites
+        if not sites:
+            sites = {}
+        return Mod(mod_arg.id, mod_arg.id, sites)
 
     def __str__(self) -> str:
         return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader.value}]"

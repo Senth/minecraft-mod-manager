@@ -10,6 +10,12 @@ class Site:
         self.name = name
         self.slug = slug
 
+    def get_configure_string(self) -> str:
+        slug = ""
+        if self.slug:
+            slug = f":self.slug"
+        return f"{self.name.value}{slug}"
+
     def __str__(self) -> str:
         return f"Site({self.name.value}, {self.id}, {self.slug})"
 

@@ -1,10 +1,13 @@
 from __future__ import unicode_literals
 
+from os import curdir
+from typing import List
+
 import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod, ModArg
-from ...core.entities.sites import Sites
+from ...core.entities.sites import Site, Sites
 from .configure import Configure
 from .configure_repo import ConfigureRepo
 
@@ -17,7 +20,7 @@ def mock_repo():
 def test_abort_when_mod_not_found(mock_repo):
     when(mock_repo).get_mod(...).thenReturn(None)
     configure = Configure(mock_repo)
-    input = [ModArg(sites=Sites.unknown, id="not-found", slug="")]
+    input = [ModArg(id="not-found")]
 
     with pytest.raises(SystemExit) as e:
         configure.execute(input)
@@ -26,14 +29,14 @@ def test_abort_when_mod_not_found(mock_repo):
     assert e.type == SystemExit
 
 
-def test_abort_before_updating_when_later_mod_not_found(mock_repo):
+def test_abort_before_configuring_when_later_mod_not_found(mock_repo):
     when(mock_repo).get_mod("found").thenReturn(Mod("", ""))
     when(mock_repo).get_mod("not-found").thenReturn(None)
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(sites=Sites.unknown, id="found", slug="test"),
-        ModArg(sites=Sites.unknown, id="not-found", slug=""),
+        ModArg(id="found"),
+        ModArg(id="not-found"),
     ]
 
     with pytest.raises(SystemExit) as e:
@@ -43,34 +46,52 @@ def test_abort_before_updating_when_later_mod_not_found(mock_repo):
     assert e.type == SystemExit
 
 
-def test_mod_repo_changed(mock_repo):
-    expected_update = Mod("carpet", "", site=Sites.curse)
-
-    when(mock_repo).get_mod("carpet").thenReturn(Mod("carpet", ""))
-    when(mock_repo).update_mod(expected_update)
+@pytest.mark.parametrize(
+    "name,existing,input,expected",
+    [
+        (
+            "Mod site set when specified",
+            Mod("carpet", ""),
+            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth)})],
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth)}),
+        ),
+        (
+            "Mod site changed when specified",
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth)}),
+            [ModArg(id="carpet", sites={Sites.curse: Site(Sites.curse)})],
+            Mod("carpet", "", sites={Sites.curse: Site(Sites.curse)}),
+        ),
+        (
+            "Mod sites remove when no is specified",
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth)}),
+            [ModArg(id="carpet", sites={})],
+            Mod("carpet", ""),
+        ),
+        (
+            "Mod slug set when specified",
+            Mod("carpet", ""),
+            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")})],
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")}),
+        ),
+        (
+            "Mod slug remove when not specified",
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")}),
+            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth)})],
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth)}),
+        ),
+        (
+            "Mod slug updated when specified",
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")}),
+            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth, slug="car")})],
+            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, slug="car")}),
+        ),
+    ],
+)
+def test_configure_mod(name: str, existing: Mod, input: List[ModArg], expected: Mod, mock_repo: ConfigureRepo):
+    when(mock_repo).get_mod(existing.id).thenReturn(existing)
+    when(mock_repo).update_mod(expected)
 
     configure = Configure(mock_repo)
-    input = [
-        ModArg(sites=Sites.curse, id="carpet", slug=""),
-    ]
-
-    configure.execute(input)
-
-    verifyStubbedInvocationsAreUsed()
-    unstub()
-
-
-def test_mod_alias_changed(mock_repo):
-    expected_update = Mod("carpet", "", site_slug="carpet_alias")
-
-    when(mock_repo).get_mod("carpet").thenReturn(Mod("carpet", ""))
-    when(mock_repo).update_mod(expected_update)
-
-    configure = Configure(mock_repo)
-    input = [
-        ModArg(sites=Sites.unknown, id="carpet", slug="carpet_alias"),
-    ]
-
     configure.execute(input)
 
     verifyStubbedInvocationsAreUsed()

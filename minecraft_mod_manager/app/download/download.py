@@ -72,12 +72,14 @@ class Download:
 
     def _download(self, mod: ModArg, latest_version: VersionInfo) -> Mod:
         downloaded_file = self._repo.download(latest_version.download_url, latest_version.filename)
+        sites = mod.sites
+        if not sites:
+            sites = {}
 
         add_mod = Mod(
             id=mod.id,
             name=mod.id,
-            site_slug=mod.site_slug,
-            site=mod.site,
+            sites=sites,
             file=downloaded_file.name,
             upload_time=latest_version.upload_time,
         )

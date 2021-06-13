@@ -28,11 +28,8 @@ class Configure:
                 )
                 return
 
-            if mod_arg.site != Sites.unknown:
-                found_mod.site = mod_arg.site
-
-            if mod_arg.site_slug:
-                found_mod.site_slug = mod_arg.site_slug
+            if isinstance(mod_arg.sites, dict):
+                found_mod.sites = mod_arg.sites
 
             # Updating mod
             mods_to_update.append(found_mod)
@@ -40,13 +37,11 @@ class Configure:
         for mod in mods_to_update:
             self._repo.update_mod(mod)
 
-            # Log info
-            info = ""
-            if mod.site != Sites.unknown:
-                info += f"site: {mod.site.value}"
-            if mod.site_slug:
-                if len(info) > 0:
-                    info += ", "
-                info += f"alias: {mod.site_slug}"
+            # Sites info
+            site_info = ""
+            for site in mod.sites.values():
+                if len(site_info) > 0:
+                    site_info += ", "
+                site_info += site.get_configure_string()
 
-            Logger.info(f"Configured {mod.id}; {info}", LogColors.add)
+            Logger.info(f"Configured sites for {mod.id}; {{{site_info}}}", LogColors.add)
