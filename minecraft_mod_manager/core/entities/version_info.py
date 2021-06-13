@@ -35,7 +35,7 @@ class VersionInfo:
     ) -> None:
         self.stability = stability
         self.mod_loaders = mod_loaders
-        self.repo_type = site
+        self.site_name = site
         self.upload_time = upload_time
         self.minecraft_versions = minecraft_versions
         self.download_url = download_url
@@ -52,7 +52,7 @@ class VersionInfo:
         return (
             self.stability,
             self.mod_loaders,
-            self.repo_type,
+            self.site_name,
             self.upload_time,
             self.minecraft_versions,
             self.download_url,
@@ -67,3 +67,27 @@ class VersionInfo:
 
     def __hash__(self):
         return hash(self.__members())
+
+    def __lt__(self, other: VersionInfo) -> bool:
+        if self.upload_time < other.upload_time:
+            return True
+        if self.name < other.name:
+            return True
+        if self.site_name.value < other.site_name.value:
+            return True
+        return False
+
+    def __le__(self, other: VersionInfo) -> bool:
+        if self.upload_time <= other.upload_time:
+            return True
+        if self.name <= other.name:
+            return True
+        if self.site_name.value <= other.site_name.value:
+            return True
+        return False
+
+    def __gt__(self, other: VersionInfo) -> bool:
+        return not self.__le__(other)
+
+    def __ge__(self, other: VersionInfo) -> bool:
+        return not self.__lt__(other)

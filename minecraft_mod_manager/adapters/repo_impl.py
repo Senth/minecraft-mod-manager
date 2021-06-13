@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, List, Sequence, Tuple, Union
+from typing import Dict, List, Sequence, Union
 
 from ..app.configure.configure_repo import ConfigureRepo
 from ..app.install.install_repo import InstallRepo
@@ -53,13 +53,14 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         sites: Dict[Sites, Site] = {}
 
         for api in self.apis:
-            try:
-                Logger.verbose(f"🔍 Searching on {api.site_name}...", indent=1)
-                site = api.find_mod_id(mod)
-                sites[site.name] = site
-                RepoImpl._print_found()
-            except ModNotFoundException:
-                RepoImpl._print_not_found()
+            if mod.matches_site(api.site_name):
+                try:
+                    Logger.verbose(f"🔍 Searching on {api.site_name}...", indent=1)
+                    site = api.find_mod_id(mod)
+                    sites[site.name] = site
+                    RepoImpl._print_found()
+                except ModNotFoundException:
+                    RepoImpl._print_not_found()
 
         if len(sites) == 0:
             raise ModNotFoundException(mod)
@@ -70,7 +71,8 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         versions: List[VersionInfo] = []
 
         for api in self.apis:
-            versions.extend(api.get_all_versions(mod))
+            if mod.matches_site(api.site_name):
+                versions.extend(api.get_all_versions(mod))
 
         return versions
 
