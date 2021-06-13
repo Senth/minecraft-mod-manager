@@ -173,8 +173,8 @@ def test_get_latest_version(test: TestGetLatestVersion, repo_impl: RepoImpl):
     print(test.name)
 
     # Mocks API
-    mock_get_all_versions(repo_impl.modrinth_api, test.modrinth_api_returns)
-    mock_get_all_versions(repo_impl.curse_api, test.curse_api_returns)
+    mock_get_all_versions(repo_impl.apis[0], test.curse_api_returns)
+    mock_get_all_versions(repo_impl.apis[1], test.modrinth_api_returns)
 
     try:
         if test.expected_result == ModNotFoundException:

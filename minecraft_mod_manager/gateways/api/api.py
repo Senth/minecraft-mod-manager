@@ -19,7 +19,7 @@ class Api:
 
     def find_mod_id(self, mod: Mod) -> Site:
         # Specified a slug
-        if self.site_name in mod.sites:
+        if mod.sites and self.site_name in mod.sites:
             existing_site = mod.sites[self.site_name]
             if existing_site.slug:
                 info = self._find_mod_id_by_slug(existing_site.slug, set([existing_site.slug]))
