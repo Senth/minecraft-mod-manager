@@ -1,5 +1,7 @@
 from typing import List, Sequence
 
+from minecraft_mod_manager.core.utils.latest_version_finder import LatestVersionFinder
+
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
@@ -23,9 +25,8 @@ class DownloadInfo:
 
 
 class Download:
-    def __init__(self, repo: DownloadRepo, success_prefix: str):
+    def __init__(self, repo: DownloadRepo):
         self._repo = repo
-        self._success_prefix = success_prefix
 
     def find_download_and_install(self, mods: Sequence[Mod]) -> None:
         mods_not_found: List[ModNotFoundException] = []
@@ -34,19 +35,17 @@ class Download:
         for mod in mods:
             try:
                 Logger.info(mod.id, LogColors.bold)
-                latest_version = self._repo.get_latest_version(mod)
+                versions = self._repo.get_versions(mod)
+                latest_version = LatestVersionFinder.find_latest_version(mod, versions, filter=True)
 
                 if latest_version:
                     download_info = DownloadInfo(mod, latest_version)
                     Logger.verbose("⬇ Downloading...", indent=1)
                     self._download_and_install(download_info)
-                    Logger.info(
-                        f"🟢 {self._success_prefix} -> {download_info.version_info.filename}",
-                        LogColors.green,
-                        indent=1,
-                    )
+                    # TODO #32 read mod again to get version number etc.
+                    self.on_version_found(download_info)
                 else:
-                    Logger.verbose("🟨 No new version found", LogColors.skip, indent=1)
+                    self.on_version_not_found(mod, versions)
 
             except ModNotFoundException as exception:
                 Logger.info("🔺 Mod not found on any site...", LogColors.red, indent=1)
@@ -58,6 +57,12 @@ class Download:
             for error in mods_not_found:
                 errorMessage += str(error) + "\n\n"
             Logger.info(errorMessage, LogColors.error)
+
+    def on_version_found(self, download_info: DownloadInfo) -> None:
+        raise NotImplementedError("Not implemented in subclass")
+
+    def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:
+        raise NotImplementedError("Not implemented in subclass")
 
     def _download_and_install(self, download_info: DownloadInfo) -> None:
         downloaded_mod = self._download(download_info.mod, download_info.version_info)

@@ -1,13 +1,15 @@
 from typing import List, Sequence
 
 from ...core.entities.mod import Mod, ModArg
-from ..download.download import Download
+from ...core.entities.version_info import VersionInfo
+from ...utils.logger import LogColors, Logger
+from ..download.download import Download, DownloadInfo
 from .update_repo import UpdateRepo
 
 
 class Update(Download):
     def __init__(self, repo: UpdateRepo) -> None:
-        super().__init__(repo, "Updated")
+        super().__init__(repo)
         self._update_repo = repo
 
     def execute(self, mods: Sequence[ModArg]) -> None:
@@ -23,3 +25,14 @@ class Update(Download):
                     mods_to_update.append(mod)
 
         self.find_download_and_install(mods_to_update)
+
+    def on_version_found(self, download_info: DownloadInfo) -> None:
+        # TODO #32 improve message
+        Logger.info(
+            f"🟢 Updated -> {download_info.version_info.filename}",
+            LogColors.green,
+            indent=1,
+        )
+
+    def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:
+        Logger.verbose("🟨 No new version found", LogColors.skip, indent=1)

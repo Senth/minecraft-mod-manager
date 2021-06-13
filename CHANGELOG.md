@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Shorthand command for `minecraft-mod-manager`; you can now use `mcman` or `mmm` instead 🙂
 
+### Changed
+
+- Show a message why a mod wasn't installed if no versions were available [#58](https://github.com/Senth/minecraft-mod-manager/issues/58)
+
 ### Fixed
 
 - Mod information is now loaded properly even if it contains character errors [#60](https://github.com/Senth/minecraft-mod-manager/issues/60)

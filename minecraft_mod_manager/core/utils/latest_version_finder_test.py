@@ -325,6 +325,20 @@ def reset_filter() -> None:
 def test_find_latest_version(test: Test):
     print(test.name)
     set_filter(test.filter)
-    result = LatestVersionFinder.find_latest_version(test.mod, test.versions)
+    result = LatestVersionFinder.find_latest_version(test.mod, test.versions, filter=True)
     reset_filter()
     assert test.expected == result
+
+
+def test_find_latest_version_unfiltered():
+    set_filter(Filter(loader=ModLoaders.forge, version="1.16.5"))
+    versions = [
+        version_info(uploaded=10, mod_loaders=[ModLoaders.forge], versions=["1.16.4"]),
+        version_info(uploaded=20, mod_loaders=[ModLoaders.fabric], versions=["1.16.5"]),
+        version_info(uploaded=40, mod_loaders=[ModLoaders.fabric]),
+        version_info(uploaded=30, mod_loaders=[ModLoaders.fabric], versions=["1.16.2", "1.16.5"]),
+    ]
+    expected = version_info(uploaded=40, mod_loaders=[ModLoaders.fabric])
+    result = LatestVersionFinder.find_latest_version(mod(), versions, filter=False)
+    reset_filter()
+    assert expected == result

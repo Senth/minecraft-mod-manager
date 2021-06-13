@@ -45,25 +45,23 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
     def get_all_mods(self) -> Sequence[Mod]:
         return self.mods
 
-    def get_latest_version(self, mod: Mod) -> Union[VersionInfo, None]:
+    def get_versions(self, mod: Mod) -> List[VersionInfo]:
         versions: List[VersionInfo] = []
 
         # Modrinth
-        if mod.site == Sites.modrinth or mod.site == Sites.unknown:
+        if mod.matches_site(Sites.modrinth):
             try:
                 Logger.verbose("🔍 Searching on Modrinth...", indent=1)
                 versions.extend(self.modrinth_api.get_all_versions(mod))
-                mod.site = Sites.modrinth
                 RepoImpl._print_found()
             except ModNotFoundException:
                 RepoImpl._print_not_found()
 
         # Curse
-        if mod.site == Sites.curse or mod.site == Sites.unknown:
+        if mod.matches_site(Sites.curse):
             try:
                 Logger.verbose("🔍 Searching on CurseForge...", indent=1)
                 versions.extend(self.curse_api.get_all_versions(mod))
-                mod.site = Sites.curse
                 RepoImpl._print_found()
             except ModNotFoundException:
                 RepoImpl._print_not_found()
@@ -71,7 +69,7 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         if len(versions) == 0:
             raise ModNotFoundException(mod)
 
-        return LatestVersionFinder.find_latest_version(mod, versions)
+        return versions
 
     def download(self, url: str, filename: str = "") -> Path:
         return Path(self.downloader.download(url, filename))

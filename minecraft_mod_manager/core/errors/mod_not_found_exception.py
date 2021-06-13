@@ -10,14 +10,14 @@ class ModNotFoundException(Exception):
 
     def __str__(self) -> str:
         mod_name = self.mod.id
-        mod_repo = "any site"
+        mod_site = "any site"
 
         if self.mod.site != Sites.unknown:
             mod_name = self.mod.site_slug
-            mod_repo = self.mod.site.value
+            mod_site = self.mod.site.value
 
         return (
-            f"Mod {mod_name} not found on {mod_repo}.\n"
+            f"Mod {mod_name} not found on {mod_site}.\n"
             + "Check so that it's name is correct. Or you can set the name by running:\n"
             + f"{LogColors.command}{config.app_name} configure {self.mod.id}=NEW_NAME{LogColors.no_color}"
         )
