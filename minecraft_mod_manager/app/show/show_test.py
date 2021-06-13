@@ -5,7 +5,7 @@ import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod
-from ...core.entities.sites import Sites
+from ...core.entities.sites import Site, Sites
 from .show import Show
 from .show_repo import ShowRepo
 
@@ -20,8 +20,12 @@ def installed_mods():
         Mod(
             id="fabric_api",
             name="Fabric API",
-            site_slug="fabric-api",
-            site=Sites.curse,
+            sites={Sites.curse: Site(Sites.curse, "56ey55o", "fabric-api")},
+        ),
+        Mod(
+            id="jei",
+            name="Just Enough Items",
+            sites={Sites.curse: Site(Sites.curse, "56ey55o")},
         ),
         Mod(
             id="sodium",

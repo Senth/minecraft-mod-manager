@@ -78,6 +78,7 @@ def path(filename: str) -> Path:
     ],
 )
 def test_get_mod_info(name, file, expected):
+    print(name)
     input = path(file)
 
     result = JarParser.get_mod_info(input)
