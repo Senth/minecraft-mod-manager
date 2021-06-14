@@ -1,5 +1,4 @@
 import argparse
-import re
 from os import path
 from typing import Any, Dict, List, Union
 
