@@ -84,6 +84,11 @@ def test_v0_to_v1(db: sqlite3.Connection, cursor: sqlite3.Cursor):
             ("id", "unknown", "", "", 123, 1),
             ("id", "", 123, 1),
         ),
+        (
+            "Convert 'None' to empty",
+            ("id", "curse", "None", "None", 123, 1),
+            ("id", "curse::", 123, 1),
+        ),
     ],
 )
 def test_v1_to_v2(test_name: str, input, expected, db: sqlite3.Connection, cursor: sqlite3.Cursor):
