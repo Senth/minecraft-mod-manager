@@ -12,8 +12,7 @@ class Show:
         self._repo = show_repo
         # Using width of headers as a minimum
         self._id_width = 3
-        self._site_slug_width = 4
-        self._site_width = 4
+        self._site_slug_width = 9
         self._update_time_width = len("YYYY-MM-DD")
 
     def execute(self) -> None:
@@ -45,7 +44,6 @@ class Show:
         Logger.info(f"{LogColors.bold}Installed mods:{LogColors.no_color}")
 
     def _print_row(self, id, site_slug, published) -> None:
-
         print(f"{id}".ljust(self._id_width) + f"{site_slug}".ljust(self._site_slug_width) + f"{published}")
 
     def _print_mod(self, mod: Mod) -> None:
