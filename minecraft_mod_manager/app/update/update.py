@@ -27,6 +27,8 @@ class Update(Download):
         self.find_download_and_install(mods_to_update)
 
     def on_version_found(self, download_info: DownloadInfo) -> None:
+        if download_info.mod.file:
+            self._update_repo.remove_mod_file(download_info.mod.file)
         # TODO #32 improve message
         Logger.info(
             f"🟢 Updated -> {download_info.version_info.filename}",

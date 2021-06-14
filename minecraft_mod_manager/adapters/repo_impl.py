@@ -5,6 +5,7 @@ from ..app.configure.configure_repo import ConfigureRepo
 from ..app.install.install_repo import InstallRepo
 from ..app.show.show_repo import ShowRepo
 from ..app.update.update_repo import UpdateRepo
+from ..config import config
 from ..core.entities.mod import Mod
 from ..core.entities.sites import Site, Sites
 from ..core.entities.version_info import VersionInfo
@@ -47,6 +48,10 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
 
     def get_all_mods(self) -> Sequence[Mod]:
         return self.mods
+
+    def remove_mod_file(self, filename: str) -> None:
+        path = Path(config.dir).joinpath(filename)
+        path.unlink(missing_ok=True)
 
     def search_for_mod(self, mod: Mod) -> Dict[Sites, Site]:
         sites: Dict[Sites, Site] = {}

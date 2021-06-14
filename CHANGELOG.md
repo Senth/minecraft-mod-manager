@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Upcoming]
+## [1.2.0] - 2021-06-14
 
 ### Added
 
@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Can now download from multiple sites [#27](https://github.com/Senth/minecraft-mod-manager/issues/27)
+- Can now download from multiple sites [#27](https://github.com/Senth/minecraft-mod-manager/issues/27) and [#68](https://github.com/Senth/minecraft-mod-manager/issues/68)
 
   - Because of this, `configure` command has changed; slugs are now set per-site and not globally. Example: `configure dynmap=curse:dynmapforge,modrinth:dynmap`
 
@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Mod information is now loaded properly even if it contains character errors [#60](https://github.com/Senth/minecraft-mod-manager/issues/60)
 - Mod information is now loaded properly even if JSON file is not strict [#53](https://github.com/Senth/minecraft-mod-manager/issues/53)
+- Doesn't remove old jar file [#54](https://github.com/Senth/minecraft-mod-manager/issues/54)
 
 ## [1.1.0] - 2021-05-30
 
