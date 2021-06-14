@@ -1,5 +1,3 @@
-from minecraft_mod_manager.core import utils
-
 from ...config import config
 from ...utils.logger import LogColors, Logger
 from ..entities.mod import ModArg
@@ -12,7 +10,6 @@ class ModNotFoundException(Exception):
 
     def print_message(self) -> None:
         mod_name = self.mod.id
-        mod_site = "any site"
 
         Logger.info(f"{mod_name}", LogColors.bold)
         Logger.info("Check so that it's slug is correct. You can set the slug by running:", indent=1)
