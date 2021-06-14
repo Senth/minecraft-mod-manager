@@ -1,14 +1,86 @@
 import sqlite3
 from os import path
-from typing import Dict, List
+from typing import Any, Dict, List, Union
 
 from ..config import config
 from ..core.entities.mod import Mod
-from ..core.entities.sites import Sites
+from ..core.entities.sites import Site, Sites
 from ..core.errors.mod_already_exists import ModAlreadyExists
 from ..gateways.sqlite_upgrader import SqliteUpgrader
 from ..utils.logger import LogColors, Logger
-from .sqlite_upgrader import _Column
+
+
+class _Column:
+    c_id = "id"
+    c_sites = "sites"
+    c_upload_time = "upload_time"
+    c_active = "active"
+
+    def __init__(
+        self,
+        id: Any,
+        sites: Any,
+        upload_time: Any,
+        active: Any,
+    ) -> None:
+        self.id = str(id)
+        self.sites = _Column.string_sites_to_dict(sites)
+        self.upload_time = int(upload_time)
+        self.active = bool(active)
+
+    @staticmethod
+    def string_sites_to_dict(full_str: str) -> Union[Dict[Sites, Site], None]:
+        if "," in full_str:
+            sites_strings = full_str.split(",")
+        else:
+            sites_strings = [full_str]
+
+        sites: Dict[Sites, Site] = {}
+        for site_str in sites_strings:
+            if len(site_str) == 0:
+                continue
+
+            name_str, id, slug = site_str.split(":")
+            if len(name_str) == 0:
+                continue
+
+            if len(id) == 0:
+                id = None
+            if len(slug) == 0:
+                slug = None
+
+            try:
+                name = Sites[name_str]
+                sites[name] = Site(name, id, slug)
+            except KeyError:
+                Logger.error(f"DB site {site_str} not a valid site, full: '{full_str}'")
+
+        if not sites:
+            return None
+
+        return sites
+
+    @staticmethod
+    def dict_sites_to_string(sites: Union[Dict[Sites, Site], None]) -> str:
+        if not sites:
+            return ""
+
+        full_str = ""
+        for site in sites.values():
+            if len(full_str) > 0:
+                full_str += ","
+
+            id = ""
+            if site.id:
+                id = site.id
+
+            slug = ""
+            if site.slug:
+                slug = site.slug
+
+            full_str += f"{site.name.value}:{id}:{slug}"
+
+        return full_str
 
 
 class Sqlite:
@@ -68,9 +140,13 @@ class Sqlite:
         for mod in mods:
             if mod.id in db_mods:
                 db_mod = db_mods[mod.id]
-                mod.site = Sites[db_mod.site]
-                mod.site_slug = db_mod.site_slug
                 mod.upload_time = db_mod.upload_time
+
+                # Update new mod sites info
+                if isinstance(mod.sites, dict):
+                    self.update_mod(mod)
+                else:
+                    mod.sites = db_mod.sites
 
         return mods
 
@@ -78,9 +154,7 @@ class Sqlite:
         self._cursor.execute(
             "SELECT "
             + f"{_Column.c_id}, "
-            + f"{_Column.c_site}, "
-            + f"{_Column.c_site_id}, "
-            + f"{_Column.c_site_slug}, "
+            + f"{_Column.c_sites}, "
             + f"{_Column.c_upload_time}, "
             + f"{_Column.c_active} "
             + "FROM mod"
@@ -88,17 +162,10 @@ class Sqlite:
         mods: Dict[str, _Column] = {}
         rows = self._cursor.fetchall()
         for row in rows:
-            id = str(row[0])
-            site = row[1]
-            site_id = row[2]
-            site_alias = row[3]
-            upload_time = int(row[4])
-            active = bool(row[5])
+            id, sites, upload_time, active = row
             mods[id] = _Column(
                 id=id,
-                site=site,
-                site_id=site_id,
-                site_slug=site_alias,
+                sites=sites,
                 upload_time=upload_time,
                 active=active,
             )
@@ -116,15 +183,13 @@ class Sqlite:
             return
 
         if self.exists(mod.id, filter_active=False):
-            self._connection.execute(
+            self._cursor.execute(
                 "UPDATE mod SET "
-                + f"{_Column.c_site}=?, "
-                + f"{_Column.c_site_id}=?, "
-                + f"{_Column.c_site_slug}=?, "
+                + f"{_Column.c_sites}=?, "
                 + f"{_Column.c_upload_time}=? "
                 + "WHERE "
                 + f"{_Column.c_id}=?",
-                [mod.site.value, mod.site_id, mod.site_slug, mod.upload_time, mod.id],
+                [_Column.dict_sites_to_string(mod.sites), mod.upload_time, mod.id],
             )
             self._connection.commit()
         else:
@@ -135,16 +200,14 @@ class Sqlite:
             return
 
         try:
-            self._connection.execute(
+            self._cursor.execute(
                 "INSERT INTO mod ("
                 + f"{_Column.c_id}, "
-                + f"{_Column.c_site}, "
-                + f"{_Column.c_site_id}, "
-                + f"{_Column.c_site_slug}, "
+                + f"{_Column.c_sites}, "
                 + f"{_Column.c_upload_time}, "
                 + f"{_Column.c_active}) "
-                + "VALUES (?, ?, ?, ?, ?, 1)",
-                [mod.id, mod.site.value, mod.site_id, mod.site_slug, mod.upload_time],
+                + "VALUES (?, ?, ?, 1)",
+                [mod.id, _Column.dict_sites_to_string(mod.sites), mod.upload_time],
             )
             self._connection.commit()
         except sqlite3.IntegrityError:
@@ -155,7 +218,7 @@ class Sqlite:
             return
 
         Logger.debug(f"Reactivate mod {id} in DB", LogColors.add)
-        self._connection.execute(f"UPDATE mod SET {_Column.c_active}=1 WHERE {_Column.c_id}=?", [id])
+        self._cursor.execute(f"UPDATE mod SET {_Column.c_active}=1 WHERE {_Column.c_id}=?", [id])
         self._connection.commit()
 
     def _inactivate_mod(self, id: str):
@@ -163,5 +226,5 @@ class Sqlite:
             return
 
         Logger.debug(f"Inactivate mod {id} in DB", LogColors.remove)
-        self._connection.execute(f"UPDATE mod SET {_Column.c_active}=0 WHERE {_Column.c_id}=?", [id])
+        self._cursor.execute(f"UPDATE mod SET {_Column.c_active}=0 WHERE {_Column.c_id}=?", [id])
         self._connection.commit()
