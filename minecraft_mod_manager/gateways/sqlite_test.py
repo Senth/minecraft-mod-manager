@@ -189,7 +189,7 @@ def row(
 ) -> Tuple[str, str, int, int]:
     if isinstance(sites, dict):
         sites = _Column.dict_sites_to_string(sites)
-    elif sites == None:
+    elif sites is None:
         sites = ""
     return (id, sites, upload_time, active)
 

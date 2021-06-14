@@ -93,6 +93,7 @@ class SqliteUpgrader:
                     valid_site = Sites[site]
                     combined_site = f"{valid_site.value}:{site_id}:{site_slug}"
                 except KeyError:
+                    # Skip if the site is invalid 'unknown'
                     pass
 
             new = (id, combined_site, upload_time, active)

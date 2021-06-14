@@ -231,7 +231,6 @@ def test_get_versions(test: TestGetVersions, repo_impl: RepoImpl):
     mock_get_all_versions(repo_impl.apis[1], test.modrinth_api_returns)
 
     result = repo_impl.get_versions(test.mod)
-    result
 
     assert sorted(test.expected) == sorted(result)
 
