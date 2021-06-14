@@ -1,5 +1,6 @@
 from typing import List, Sequence
 
+from ...config import config
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
 from ...utils.logger import LogColors, Logger
@@ -27,7 +28,7 @@ class Update(Download):
         self.find_download_and_install(mods_to_update)
 
     def on_version_found(self, download_info: DownloadInfo) -> None:
-        if download_info.mod.file:
+        if download_info.mod.file and not config.pretend:
             self._update_repo.remove_mod_file(download_info.mod.file)
         # TODO #32 improve message
         Logger.info(
