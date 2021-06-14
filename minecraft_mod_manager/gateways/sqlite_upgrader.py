@@ -1,29 +1,6 @@
 import sqlite3
 
-
-class _Column:
-    c_id = "id"
-    c_site = "site"
-    c_site_id = "site_id"
-    c_site_slug = "site_slug"
-    c_upload_time = "upload_time"
-    c_active = "active"
-
-    def __init__(
-        self,
-        id: str,
-        site: str,
-        site_id: str,
-        site_slug: str,
-        upload_time: int,
-        active: bool,
-    ) -> None:
-        self.id = id
-        self.site = site
-        self.site_id = site_id
-        self.site_slug = site_slug
-        self.upload_time = upload_time
-        self.active = active
+from ..core.entities.sites import Sites
 
 
 class SqliteUpgrader:
@@ -112,7 +89,11 @@ class SqliteUpgrader:
 
             combined_site = ""
             if site:
-                combined_site = f"{site}:{site_id}:{site_slug}"
+                try:
+                    valid_site = Sites[site]
+                    combined_site = f"{valid_site.value}:{site_id}:{site_slug}"
+                except KeyError:
+                    pass
 
             new = (id, combined_site, upload_time, active)
             self._cursor.execute("INSERT INTO mod (id, sites, upload_time, active) VALUES (?, ?, ?, ?)", new)

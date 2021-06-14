@@ -121,24 +121,22 @@ def _parse_site(mod_arg: str, site_str: str) -> Union[Site, None]:
         return None
 
     slug: Union[str, None] = None
-    name: str = ""
+    name_str: str = ""
 
     # Slug
     if ":" in site_str:
         if site_str.count(":") > 1:
             _print_invalid_mod_syntax(mod_arg, "Too many colon signs ':' in argument")
-        name, slug = site_str.split(":")
+        name_str, slug = site_str.split(":")
     else:
-        name = site_str
+        name_str = site_str
 
-    site_name = Sites.from_name(name)
-
-    if not site_name:
+    try:
+        name = Sites[name_str]
+        return Site(name, slug=slug)
+    except KeyError:
         _print_invalid_mod_syntax(mod_arg, f"Invalid site, valid sites are {Sites.all()}")
-    else:
-        return Site(site_name, slug=slug)
-
-    return None
+        return None
 
 
 def _print_invalid_mod_syntax(mod_arg: str, extra_info: str) -> None:

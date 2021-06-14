@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Can now download from multiple sites [#27](https://github.com/Senth/minecraft-mod-manager/issues/27)
+
+  - Because of this, `configure` command has changed; slugs are now set per-site and not globally. Example: `configure dynmap=curse:dynmapforge,modrinth:dynmap`
+
 - Show a message why a mod wasn't installed if no versions were available [#58](https://github.com/Senth/minecraft-mod-manager/issues/58)
 
 ### Fixed

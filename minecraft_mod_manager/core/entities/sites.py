@@ -50,10 +50,3 @@ class Sites(Enum):
                 all += "|"
             all += name.value
         return all
-
-    @staticmethod
-    def from_name(name: str) -> Union[Sites, None]:
-        for type in Sites:
-            if type.value == name:
-                return type
-        return None

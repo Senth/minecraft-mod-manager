@@ -70,7 +70,7 @@ class Mod(ModArg):
         self,
         id: str,
         name: str,
-        sites: Dict[Sites, Site] = {},
+        sites: Union[Dict[Sites, Site], None] = None,
         version: Union[str, None] = None,
         file: Union[str, None] = None,
         upload_time: int = 0,
@@ -86,10 +86,7 @@ class Mod(ModArg):
 
     @staticmethod
     def fromModArg(mod_arg: ModArg) -> Mod:
-        sites = mod_arg.sites
-        if not sites:
-            sites = {}
-        return Mod(mod_arg.id, mod_arg.id, sites)
+        return Mod(mod_arg.id, mod_arg.id, mod_arg.sites)
 
     def __str__(self) -> str:
         return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader.value}]"

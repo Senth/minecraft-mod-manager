@@ -20,7 +20,7 @@ def mock_repo():
 def test_abort_when_mod_not_found(mock_repo):
     when(mock_repo).get_mod(...).thenReturn(None)
     configure = Configure(mock_repo)
-    input = [ModArg(id="not-found")]
+    input = [ModArg("not-found")]
 
     with pytest.raises(SystemExit) as e:
         configure.execute(input)
@@ -35,8 +35,8 @@ def test_abort_before_configuring_when_later_mod_not_found(mock_repo):
 
     configure = Configure(mock_repo)
     input = [
-        ModArg(id="found"),
-        ModArg(id="not-found"),
+        ModArg("found"),
+        ModArg("not-found"),
     ]
 
     with pytest.raises(SystemExit) as e:
@@ -50,46 +50,52 @@ def test_abort_before_configuring_when_later_mod_not_found(mock_repo):
     "name,existing,input,expected",
     [
         (
-            "Mod site set when specified",
+            "Set site when specified",
             Mod("carpet", ""),
-            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth)})],
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth)}),
+            [ModArg("carpet", {Sites.modrinth: Site(Sites.modrinth)})],
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth)}),
         ),
         (
-            "Mod site changed when specified",
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth)}),
-            [ModArg(id="carpet", sites={Sites.curse: Site(Sites.curse)})],
-            Mod("carpet", "", sites={Sites.curse: Site(Sites.curse)}),
+            "Change sites when specified",
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth)}),
+            [ModArg("carpet", {Sites.curse: Site(Sites.curse)})],
+            Mod("carpet", "", {Sites.curse: Site(Sites.curse)}),
         ),
         (
             "Mod sites remove when no is specified",
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth)}),
-            [ModArg(id="carpet", sites={})],
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth)}),
+            [ModArg("carpet", {})],
+            Mod("carpet", "", {}),
+        ),
+        (
+            "Keep old info if no site is specified",
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth)}),
+            [ModArg("carpet")],
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth)}),
+        ),
+        (
+            "Set slug when specified",
             Mod("carpet", ""),
+            [ModArg("carpet", {Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")})],
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")}),
         ),
         (
-            "Mod slug set when specified",
-            Mod("carpet", ""),
-            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")})],
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")}),
+            "Remove slug when not specified",
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")}),
+            [ModArg("carpet", {Sites.modrinth: Site(Sites.modrinth)})],
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth)}),
         ),
         (
-            "Mod slug remove when not specified",
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")}),
-            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth)})],
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth)}),
-        ),
-        (
-            "Mod slug updated when specified",
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")}),
-            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth, slug="car")})],
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, slug="car")}),
+            "Slug updated when specified",
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth, slug="fabric-carpet")}),
+            [ModArg("carpet", {Sites.modrinth: Site(Sites.modrinth, slug="car")})],
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth, slug="car")}),
         ),
         (
             "Site id is kept when changing other settings",
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, id="id", slug="fabric-carpet")}),
-            [ModArg(id="carpet", sites={Sites.modrinth: Site(Sites.modrinth, slug="car")})],
-            Mod("carpet", "", sites={Sites.modrinth: Site(Sites.modrinth, id="id", slug="car")}),
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth, "id", slug="fabric-carpet")}),
+            [ModArg("carpet", {Sites.modrinth: Site(Sites.modrinth, slug="car")})],
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth, "id", slug="car")}),
         ),
     ],
 )
