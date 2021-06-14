@@ -55,10 +55,9 @@ class Download:
 
         # Print errors
         if len(mods_not_found) > 0:
-            errorMessage = ""
+            Logger.info("🔺 Mods not found", LogColors.bold + LogColors.red)
             for error in mods_not_found:
-                errorMessage += str(error) + "\n\n"
-            Logger.info(errorMessage, LogColors.error)
+                error.print_message()
 
     def on_version_found(self, download_info: DownloadInfo) -> None:
         raise NotImplementedError("Not implemented in subclass")

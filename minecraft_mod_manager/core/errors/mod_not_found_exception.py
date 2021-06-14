@@ -1,6 +1,8 @@
+from minecraft_mod_manager.core import utils
+
 from ...config import config
-from ...utils.logger import LogColors
-from ..entities.mod import ModArg, Sites
+from ...utils.logger import LogColors, Logger
+from ..entities.mod import ModArg
 
 
 class ModNotFoundException(Exception):
@@ -8,16 +10,12 @@ class ModNotFoundException(Exception):
         super()
         self.mod = mod
 
-    def __str__(self) -> str:
+    def print_message(self) -> None:
         mod_name = self.mod.id
         mod_site = "any site"
 
-        if self.mod.site != Sites.unknown:
-            mod_name = self.mod.site_slug
-            mod_site = self.mod.site.value
-
-        return (
-            f"Mod {mod_name} not found on {mod_site}.\n"
-            + "Check so that it's name is correct. Or you can set the name by running:\n"
-            + f"{LogColors.command}{config.app_name} configure {self.mod.id}=NEW_NAME{LogColors.no_color}"
+        Logger.info(f"{mod_name}", LogColors.bold)
+        Logger.info("Check so that it's slug is correct. You can set the slug by running:", indent=1)
+        Logger.info(
+            f"{config.app_name} configure {self.mod.id}=curse:mod-slug,modrinth:mod-slug", LogColors.command, indent=1
         )
