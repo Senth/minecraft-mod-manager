@@ -90,6 +90,11 @@ class SqliteUpgrader:
             combined_site = ""
             if site:
                 try:
+                    if site_id == "None":
+                        site_id = ""
+                    if site_slug == "None":
+                        site_slug = ""
+
                     valid_site = Sites[site]
                     combined_site = f"{valid_site.value}:{site_id}:{site_slug}"
                 except KeyError:
