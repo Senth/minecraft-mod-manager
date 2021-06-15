@@ -18,7 +18,7 @@ _headers = {"User-Agent": _user_agent}
 class Downloader:
     def get(self, url: str) -> Any:
         with requests.get(url, headers=_headers) as response:
-            return response.json()
+            return response.json(strict=False)
 
     def download(self, url: str, filename: str) -> str:
         """Download the specified mod
