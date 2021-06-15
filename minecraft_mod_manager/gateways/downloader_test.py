@@ -95,3 +95,18 @@ def test_no_mock_interactions_when_pretending(downloader):
     finally:
         config.pretend = False
         unstub()
+
+
+def test_get_when_non_strict_json(downloader):
+    response = Response()
+    response.encoding = "UTF-8"
+    response.status_code = 200
+    response._content = '\n{"text":"This is\nmy text"}'.encode("UTF-8")
+    expected = {"text": "This is\nmy text"}
+    when(requests).get(...).thenReturn(response)
+
+    result = downloader.get("https://test.com")
+
+    assert expected == result
+
+    unstub()
