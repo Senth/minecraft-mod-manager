@@ -18,10 +18,10 @@ Install and update mods from CurseForge and Modrinth through a simple command.
   - Minecraft version `-v 1.16.4`
   - Fabric/Forge mod `--mod-loader fabric`
 
-## Installation & Requirements
+## Installation/Upgrade & Requirements
 
 1. Requires at least python 3.8
-1. Install with `$ pip install --user minecraft-mod-manager`
+1. Install/Upgrade with `$ pip install --user --upgrade minecraft-mod-manager`
 
 ## Examples
 
