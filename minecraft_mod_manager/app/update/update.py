@@ -35,7 +35,7 @@ class Update(Download):
 
                 # TODO #32 improve message
                 Logger.info(
-                    f"🟢 Updated -> {download_info.version_info.filename}",
+                    f"🟢 Updated {download_info.mod.version} -> {download_info.version_info.filename}",
                     LogColors.green,
                     indent=1,
                 )
