@@ -24,6 +24,8 @@ class LogColors:
 
 
 class Logger:
+    _encode = False
+
     @staticmethod
     def error(message: str, indent: int = 0, exit: bool = False, print_exception: bool = False):
         """Logs a message and prints is at red
@@ -81,9 +83,21 @@ class Logger:
     def _print(message: str, color: str, indent: int, exit: bool):
         if indent > 0:
             message = "".ljust(indent * 4) + message
-        if color == LogColors.no_color:
-            print(message)
-        else:
-            print(f"{color}{message}{LogColors.no_color}")
-        if exit:
-            sys.exit(1)
+
+        print_message = True
+        while print_message:
+            try:
+                if color != LogColors.no_color:
+                    message = f"{color}{message}{LogColors.no_color}"
+
+                # Special case on some Windows consoles, can't handle utf-8 characters
+                if Logger._encode:
+                    message = message.encode("utf-8", "ignore").decode("cp1252", "ignore")
+
+                print(message)
+
+                if exit:
+                    sys.exit(1)
+                print_message = False
+            except UnicodeEncodeError:
+                Logger._encode = True
