@@ -27,15 +27,14 @@ class Update(Download):
 
         self.find_download_and_install(mods_to_update)
 
-    def on_version_found(self, download_info: DownloadInfo) -> None:
-        if download_info.mod.file:
-            if Update._has_downloaded_new_file(download_info):
-                if not config.pretend:
-                    self._update_repo.remove_mod_file(download_info.mod.file)
+    def on_version_found(self, old: Mod, new: Mod) -> None:
+        if new.file:
+            if Update._has_downloaded_new_file(old, new):
+                if not config.pretend and old.file:
+                    self._update_repo.remove_mod_file(old.file)
 
-                # TODO #32 improve message
                 Logger.info(
-                    f"🟢 Updated {download_info.mod.version} -> {download_info.version_info.filename}",
+                    f"🟢 Updated {old.version} -> {new.version}",
                     LogColors.green,
                     indent=1,
                 )
@@ -44,13 +43,9 @@ class Update(Download):
         Logger.verbose("🟨 No new version found", LogColors.skip, indent=1)
 
     @staticmethod
-    def _has_downloaded_new_file(download_info: DownloadInfo) -> bool:
-        mod = download_info.mod
-        version_info = download_info.version_info
-
-        if mod.file:
-            if len(version_info.filename) > 0:
-                if mod.file != version_info.filename:
-                    return True
+    def _has_downloaded_new_file(old: Mod, new: Mod) -> bool:
+        if new.file and len(new.file) > 0:
+            if old.file != new.file:
+                return True
 
         return False

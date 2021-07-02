@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Union
 
 from ...core.entities.mod import Mod
 from ...core.entities.sites import Site, Sites
@@ -17,4 +17,7 @@ class DownloadRepo:
         raise NotImplementedError()
 
     def update_mod(self, mod: Mod) -> None:
+        raise NotImplementedError()
+
+    def get_mod_from_file(self, filepath: str) -> Union[Mod, None]:
         raise NotImplementedError()

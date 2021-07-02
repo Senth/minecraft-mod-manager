@@ -21,3 +21,14 @@ def test_install_mod_that_has_no_mod_loader(helper: Helper):
 
     assert code == 0
     assert jei is not None
+
+
+def test_remember_slug_for_installed_mod_if_mod_id_varies(helper: Helper):
+    """When installing and supplying a slug it used to save the slug as an id.
+    This test makes sure that we actually check what the mod id is before saving
+    to the database.
+    """
+    code = helper.run("install", "unearthed-fabric")
+
+    assert code == 0
+    assert helper.exists_in_db("unearthed")

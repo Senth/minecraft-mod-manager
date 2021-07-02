@@ -81,8 +81,7 @@ def test_get_mod_info(name, file, expected):
     print(name)
     input = path(file)
 
-    jar_parser = JarParser(Path(""))
-    result = jar_parser.get_mod_info(input)
+    result = JarParser._get_mod_info(input)
 
     assert expected == result
 

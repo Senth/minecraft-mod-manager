@@ -41,11 +41,11 @@ class Download:
                 latest_version = LatestVersionFinder.find_latest_version(mod, versions, filter=True)
 
                 if latest_version:
-                    download_info = DownloadInfo(mod, latest_version)
                     Logger.verbose("⬇ Downloading...", indent=1)
-                    self._download_and_install(download_info)
-                    # TODO #32 read mod again to get version number etc.
-                    self.on_version_found(download_info)
+                    downloaded_mod = self._download(mod, latest_version)
+                    self._update_mod_from_file(downloaded_mod)
+                    self._repo.update_mod(downloaded_mod)
+                    self.on_version_found(mod, downloaded_mod)
                 else:
                     self.on_version_not_found(mod, versions)
 
@@ -59,11 +59,19 @@ class Download:
             for error in mods_not_found:
                 error.print_message()
 
-    def on_version_found(self, download_info: DownloadInfo) -> None:
+    def on_version_found(self, old: Mod, new: Mod) -> None:
         raise NotImplementedError("Not implemented in subclass")
 
     def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:
         raise NotImplementedError("Not implemented in subclass")
+
+    def _update_mod_from_file(self, mod: Mod) -> None:
+        if mod.file:
+            installed_mod = self._repo.get_mod_from_file(mod.file)
+            if installed_mod:
+                mod.id = installed_mod.id
+                mod.name = installed_mod.name
+                mod.version = installed_mod.version
 
     def _download_and_install(self, download_info: DownloadInfo) -> None:
         downloaded_mod = self._download(download_info.mod, download_info.version_info)

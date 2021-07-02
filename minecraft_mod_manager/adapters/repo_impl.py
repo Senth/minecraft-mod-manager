@@ -51,7 +51,7 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         return self.mods
 
     def get_mod_from_file(self, filepath: str) -> Union[Mod, None]:
-        return self.jar_parser.get_mod_info(Path(filepath))
+        return self.jar_parser.get_mod(filepath)
 
     def remove_mod_file(self, filename: str) -> None:
         path = Path(config.dir).joinpath(filename)
