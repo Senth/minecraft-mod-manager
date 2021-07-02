@@ -6,6 +6,7 @@ extraction:
 path_classifiers:
   test:
     - exclude: /
+    - exclude: tests/util
 
 queries:
   - include: '*'
