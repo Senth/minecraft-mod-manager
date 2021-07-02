@@ -27,15 +27,14 @@ class JarParser:
         # Iterate through all files
         for file in self._dir.glob("*.jar"):
             Logger.debug(f"Found file {file}")
-            mod = JarParser.get_mod_info(file)
+            mod = self.get_mod_info(file)
             if mod:
                 JarParser._log_found_mod(mod)
                 self._mods.append(mod)
 
         return self._mods
 
-    @staticmethod
-    def get_mod_info(file: Path) -> Union[Mod, None]:
+    def get_mod_info(self, file: Path) -> Union[Mod, None]:
         mod: Union[Mod, None] = None
 
         try:
