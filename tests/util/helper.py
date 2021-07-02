@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 from subprocess import run
-from typing import List, Union
+from typing import Any, List, Union
 
 import pytest
 
@@ -25,6 +25,10 @@ class Helper:
         for file in self.dir.glob(glob):
             return file
         return None
+
+    def exists_in_db(self, id: str) -> bool:
+        self.cursor.execute("SELECT * FROM mod WHERE id=?", [id])
+        return self.cursor.fetchone() is not None
 
     def unstub(self) -> None:
         self.cursor.close()

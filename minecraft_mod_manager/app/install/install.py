@@ -66,10 +66,9 @@ class Install(Download):
 
         return loader_max
 
-    def on_version_found(self, download_info: DownloadInfo) -> None:
-        # TODO #32 improve message
+    def on_version_found(self, old: Mod, new: Mod) -> None:
         Logger.info(
-            f"🟢 Installed ({download_info.version_info.filename})",
+            f"🟢 Installed version {new.version}",
             LogColors.green,
             indent=1,
         )

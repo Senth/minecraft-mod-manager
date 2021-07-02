@@ -300,20 +300,3 @@ def test_get_mod(test_name: str, mods: List[Mod], input: str, expected: Union[Mo
     result = repo_impl.get_mod(input)
 
     assert expected == result
-
-
-def test_get_mod_from_file(repo_impl: RepoImpl):
-    expected = Mod("id", "name")
-    when(repo_impl.jar_parser).get_mod_info(...).thenReturn(expected)
-
-    result = repo_impl.get_mod_from_file("")
-
-    assert expected == result
-
-
-def test_get_mod_from_file_mod_not_found(repo_impl: RepoImpl):
-    when(repo_impl.jar_parser).get_mod_info(...)
-
-    result = repo_impl.get_mod_from_file("")
-
-    assert result is None

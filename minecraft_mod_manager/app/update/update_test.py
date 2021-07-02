@@ -52,60 +52,66 @@ def version_info(filename: str) -> VersionInfo:
     )
 
 
-def download_info(old: Union[str, None], new: str) -> DownloadInfo:
-    return DownloadInfo(Mod("", "", file=old), version_info(new))
-
-
 @pytest.mark.parametrize(
-    "name,input,pretend,expected",
+    "name,old,new,pretend,expected",
     [
         (
             "Remove file when new file has been downloaded",
-            download_info("old", "new"),
+            "old",
+            "new",
             False,
             True,
         ),
         (
             "Keep file when no new file has been downloaded",
-            download_info("old", "old"),
+            "old",
+            "old",
             False,
             False,
         ),
         (
             "Keep old file when new filename is empty",
-            download_info("old", ""),
+            "old",
+            "",
             False,
             False,
         ),
         (
             "Don't remove old file when it doesn't exist",
-            download_info(None, "new"),
+            None,
+            "new",
             False,
             False,
         ),
         (
             "Don't remove old file when it's empty",
-            download_info("", "new"),
+            "",
+            "new",
             False,
             False,
         ),
         (
             "Don't remove old file when --pretend is on",
-            download_info("old", "new"),
+            "old",
+            "new",
             True,
             False,
         ),
     ],
 )
-def test_on_version_found(name: str, input: DownloadInfo, pretend: bool, expected: bool, mock_repo):
+def test_on_version_found(
+    name: str, old: Union[str, None], new: Union[str, None], pretend: bool, expected: bool, mock_repo
+):
     print(name)
 
     config.pretend = pretend
     if expected:
-        when(mock_repo).remove_mod_file(input.mod.file)
+        when(mock_repo).remove_mod_file(old)
 
     update = Update(mock_repo)
-    update.on_version_found(input)
+    old_mod = Mod("", "", file=old)
+    new_mod = Mod("", "", file=new)
+    update.on_version_found(old_mod, new_mod)
 
     config.pretend = False
     verifyStubbedInvocationsAreUsed()

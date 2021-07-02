@@ -39,7 +39,9 @@ class CurseApi(Api):
 
     @staticmethod
     def _make_files_url(mod: Mod) -> str:
-        return f"{_base_url}/{mod.sites[Sites.curse].id}/files"
+        if mod.sites:
+            return f"{_base_url}/{mod.sites[Sites.curse].id}/files"
+        return ""
 
     @staticmethod
     def _file_to_version_info(file_data: Any) -> VersionInfo:
