@@ -3,6 +3,10 @@ extraction:
     python_setup:
       version: 3
 
+path_classifiers:
+  test:
+    - exclude: /
+
 queries:
   - include: '*'
   - exclude: 'py/uninitialized-local-variable'
