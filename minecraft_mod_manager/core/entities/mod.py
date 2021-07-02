@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from typing import Dict, Set, Union
+from typing import Dict, List, Set, Union
 
 from .mod_loaders import ModLoaders
 from .sites import Site, Sites
@@ -112,6 +112,12 @@ class Mod(ModArg):
                 # Remove possible 'fabric' from the name
                 without_fabric = re.sub(r"-fabric\w*|fabric\w*-", "", filename)
                 possible_names.add(without_fabric)
+
+        # Split parts of name
+        split_names: Set[str] = set()
+        for possible_name in possible_names:
+            split_names.update(possible_name.split("-"))
+        possible_names.update(split_names)
 
         return possible_names
 
