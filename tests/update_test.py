@@ -1,4 +1,4 @@
-from .helper import Helper, helper  # lgtm[py/unused-import]
+from .util.helper import Helper, helper  # lgtm[py/unused-import]
 
 
 def test_update_does_not_remove_mods(helper: Helper):
