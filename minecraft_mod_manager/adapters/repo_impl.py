@@ -23,6 +23,7 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
 
     def __init__(self, jar_parser: JarParser, sqlite: Sqlite, downloader: Downloader) -> None:
         self.db = sqlite
+        self.jar_parser = jar_parser
         self.mods = self.db.sync_with_dir(jar_parser.mods)
         self.downloader = downloader
         self.apis = (
@@ -48,6 +49,9 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
 
     def get_all_mods(self) -> Sequence[Mod]:
         return self.mods
+
+    def get_mod_from_file(self, filepath: str) -> Union[Mod, None]:
+        return self.jar_parser.get_mod_info(Path(filepath))
 
     def remove_mod_file(self, filename: str) -> None:
         path = Path(config.dir).joinpath(filename)
