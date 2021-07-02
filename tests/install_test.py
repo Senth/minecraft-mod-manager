@@ -1,4 +1,4 @@
-from .helper import Helper, helper
+from .helper import Helper, helper  # lgtm[py/unused-import]
 
 
 def test_reinstall_mod_after_manual_removal(helper: Helper):

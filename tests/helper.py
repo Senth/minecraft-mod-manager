@@ -15,7 +15,6 @@ class Helper:
 
         self.db = sqlite3.connect(self.dir.joinpath(".minecraft-mod-manager.db"))
         self.cursor = self.db.cursor()
-        pass
 
     def run(self, *args: str) -> int:
         cmd: List[str] = [*self.cmd, *args]
