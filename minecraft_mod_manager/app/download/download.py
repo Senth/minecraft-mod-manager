@@ -9,21 +9,6 @@ from ...utils.logger import LogColors, Logger
 from .download_repo import DownloadRepo
 
 
-class DownloadInfo:
-    def __init__(self, mod: Mod, version_info: VersionInfo):
-        self.mod = mod
-        self.version_info = version_info
-
-    @property
-    def name(self) -> str:
-        name = f"{self.mod.id}"
-
-        if self.mod.version:
-            name += f" {self.mod.version}"
-
-        return name
-
-
 class Download:
     def __init__(self, repo: DownloadRepo):
         self._repo = repo
@@ -72,10 +57,6 @@ class Download:
                 mod.id = installed_mod.id
                 mod.name = installed_mod.name
                 mod.version = installed_mod.version
-
-    def _download_and_install(self, download_info: DownloadInfo) -> None:
-        downloaded_mod = self._download(download_info.mod, download_info.version_info)
-        self._repo.update_mod(downloaded_mod)
 
     def _download(self, mod: ModArg, latest_version: VersionInfo) -> Mod:
         downloaded_file = self._repo.download(latest_version.download_url, latest_version.filename)

@@ -7,7 +7,7 @@ from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.version_info import VersionInfo
 from ...core.utils.latest_version_finder import LatestVersionFinder
 from ...utils.logger import LogColors, Logger
-from ..download.download import Download, DownloadInfo
+from ..download.download import Download
 from .install_repo import InstallRepo
 
 

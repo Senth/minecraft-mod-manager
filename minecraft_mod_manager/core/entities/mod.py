@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from typing import Dict, List, Set, Union
+from typing import Dict, Set, Union
 
 from .mod_loaders import ModLoaders
 from .sites import Site, Sites
