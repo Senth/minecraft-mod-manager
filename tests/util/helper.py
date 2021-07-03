@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 from subprocess import run
-from typing import Any, List, Union
+from typing import List, Union
 
 import pytest
 

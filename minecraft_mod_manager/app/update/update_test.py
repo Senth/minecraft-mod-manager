@@ -1,7 +1,6 @@
 from typing import List, Union
 
 import pytest
-from minecraft_mod_manager.app.download.download import DownloadInfo
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...config import config

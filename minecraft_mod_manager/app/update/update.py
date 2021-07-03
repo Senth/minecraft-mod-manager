@@ -4,7 +4,7 @@ from ...config import config
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
 from ...utils.logger import LogColors, Logger
-from ..download.download import Download, DownloadInfo
+from ..download.download import Download
 from .update_repo import UpdateRepo
 
 
