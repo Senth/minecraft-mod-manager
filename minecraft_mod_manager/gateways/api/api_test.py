@@ -47,9 +47,11 @@ def test_find_mod_id_from_mod_id(api: Api):
 
 
 def test_mod_not_found_uses_all_possible_names(api: Api):
-    input = Mod("mod-id", "", file="some-filename")
+    input = Mod("unearthed-fabric", "", file="some-filename")
 
-    when(api)._find_mod_id_by_slug("mod-id", input.get_possible_slugs())
+    when(api)._find_mod_id_by_slug("unearthed-fabric", input.get_possible_slugs())
+    when(api)._find_mod_id_by_slug("unearthed", input.get_possible_slugs())
+    when(api)._find_mod_id_by_slug("fabric", input.get_possible_slugs())
     when(api)._find_mod_id_by_slug("some", input.get_possible_slugs())
 
     with pytest.raises(ModNotFoundException) as e:
