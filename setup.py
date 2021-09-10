@@ -25,8 +25,10 @@ setup(
         ],
     },
     install_requires=[
-        "requests",
-        "toml",
+        "requests==2.25.0",
+        "toml==0.10.2",
+        "kivy==2.0.0",
+        "Pillow==8.3.2",
     ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
