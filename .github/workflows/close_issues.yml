@@ -1,0 +1,17 @@
+name: Close issues related to PR
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - v2.x
+
+jobs:
+  closeIssueOnPRMerge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Closes issues related to a merge pull request
+        uses: ldez/gha-mjolnir
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
