@@ -1,6 +1,7 @@
 import json
+import re
 from pathlib import Path
-from typing import List, Union
+from typing import Any, List, MutableMapping, Union
 from zipfile import ZipFile
 
 import toml
@@ -82,7 +83,7 @@ class JarParser:
     def _parse_forge(zip: ZipFile) -> Mod:
         with zip.open(JarParser._forge_file) as file:
             full_doc = file.read().decode("utf-8", "ignore")
-            obj = toml.loads(full_doc)
+            obj = JarParser._load_toml(full_doc)
             mods = obj["mods"][0]
             return Mod(
                 mods["modId"],
@@ -90,6 +91,44 @@ class JarParser:
                 mod_loader=ModLoaders.forge,
                 version=mods["version"],
             )
+
+    @staticmethod
+    def _load_toml(toml_str: str) -> MutableMapping[str, Any]:
+        try:
+            return toml.loads(toml_str)
+        except toml.TomlDecodeError as e:
+            return toml.loads(JarParser._fix_toml_multiline_string(toml_str))
+
+    @staticmethod
+    def _fix_toml_multiline_string(toml_str: str) -> str:
+        new = ""
+        basic_start = re.compile(r"=\s*\"[^\"]")
+        basic_end = re.compile(r"\"\s*$")
+        literal_start = re.compile(r"=\s*'[^']")
+        literal_end = re.compile(r"'\s*$")
+        basic_active = False
+        literal_active = False
+        for line in toml_str.split("\n"):
+            # Basic
+            if not literal_active and basic_start.search(line):
+                if not basic_end.search(line):
+                    basic_active = True
+            elif basic_active and basic_end.search(line):
+                basic_active = False
+
+            # Literal
+            if not basic_active and literal_start.search(line):
+                if not literal_end.search(line):
+                    literal_active = True
+            elif literal_active and literal_end.search(line):
+                literal_active = False
+
+            new += line
+            if basic_active or literal_active:
+                new += " "
+            else:
+                new += "\n"
+        return new
 
     @staticmethod
     def _log_found_mod(mod: Mod) -> None:
