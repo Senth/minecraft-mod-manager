@@ -12,8 +12,9 @@ from ...core.entities.version_info import Stabilities, VersionInfo
 from ..downloader import Downloader
 from .curse_api import CurseApi
 
-search_carpet_file = Path("fixtures").joinpath("curse_api").joinpath("search_carpet.json")
-files_carpet_file = Path("fixtures").joinpath("curse_api").joinpath("files_carpet.json")
+testdata_dir = Path(__file__).parent.joinpath("testdata").joinpath("curse_api")
+search_carpet_file = testdata_dir.joinpath("search_carpet.json")
+files_carpet_file = testdata_dir.joinpath("files_carpet.json")
 
 
 @pytest.fixture
