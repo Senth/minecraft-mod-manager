@@ -12,8 +12,9 @@ from ...core.entities.version_info import Stabilities, VersionInfo
 from ...gateways.downloader import Downloader
 from .modrinth_api import ModrinthApi
 
-search_result_file = Path("fixtures").joinpath("modrinth_api").joinpath("search_fabric-api.json")
-versions_result_file = Path("fixtures").joinpath("modrinth_api").joinpath("versions_fabric-api.json")
+testdata_dir = Path(__file__).parent.joinpath("testdata").joinpath("modrinth_api")
+search_result_file = testdata_dir.joinpath("search_fabric-api.json")
+versions_result_file = testdata_dir.joinpath("versions_fabric-api.json")
 
 
 @pytest.fixture
