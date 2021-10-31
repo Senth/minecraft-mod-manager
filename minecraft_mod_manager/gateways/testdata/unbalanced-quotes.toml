@@ -1,0 +1,16 @@
+basic_wrong = "This description spans over
+multiple lines. But doesn't use correct syntax"
+literal_wrong = 'Multiline
+comment
+with
+more
+lines
+'
+basic_correct = """
+this is a correct
+comment
+"""
+literal_correct = '''
+this is a correct
+comment
+'''
