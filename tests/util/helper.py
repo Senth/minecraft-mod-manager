@@ -3,8 +3,6 @@ from pathlib import Path
 from subprocess import run
 from typing import List, Union
 
-import pytest
-
 
 class Helper:
     def __init__(self) -> None:
@@ -38,10 +36,3 @@ class Helper:
             file.unlink()
 
         self.dir.rmdir()
-
-
-@pytest.fixture
-def helper():
-    helper = Helper()
-    yield helper
-    helper.unstub()

@@ -96,7 +96,7 @@ class JarParser:
     def _load_toml(toml_str: str) -> MutableMapping[str, Any]:
         try:
             return toml.loads(toml_str)
-        except toml.TomlDecodeError as e:
+        except toml.TomlDecodeError:
             return toml.loads(JarParser._fix_toml_multiline_string(toml_str))
 
     @staticmethod

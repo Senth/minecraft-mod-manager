@@ -1,4 +1,13 @@
-from .util.helper import Helper, helper  # lgtm[py/unused-import]
+from .util.helper import Helper
+
+import pytest
+
+
+@pytest.fixture
+def helper():
+    helper = Helper()
+    yield helper
+    helper.unstub()
 
 
 def test_reinstall_mod_after_manual_removal(helper: Helper):
