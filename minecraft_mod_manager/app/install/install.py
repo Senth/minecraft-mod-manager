@@ -74,7 +74,7 @@ class Install(Download):
         )
 
     def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:
-        Logger.info(f"🟨 All versions were filtered out", LogColors.skip, indent=1)
+        Logger.info("🟨 All versions were filtered out", LogColors.skip, indent=1)
 
         latest_unfiltered = LatestVersionFinder.find_latest_version(mod, versions, filter=False)
         if latest_unfiltered:
@@ -99,7 +99,8 @@ class Install(Download):
         if LatestVersionFinder.is_filtered_by_mod_loader(mod.mod_loader, latest):
             Logger.info("The latest versios was filtered out by mod loader", indent=2)
             Logger.info(
-                f"Run with {LogColors.command}--mod_loader {next(iter(latest.mod_loaders))}{LogColors.command} to download it",
+                f"Run with {LogColors.command}--mod_loader {next(iter(latest.mod_loaders))}{LogColors.command} " +
+                "to download it",
                 indent=3,
             )
 

@@ -1,4 +1,13 @@
-from .util.helper import Helper, helper  # lgtm[py/unused-import]
+import pytest
+
+from .util.helper import Helper
+
+
+@pytest.fixture
+def helper():
+    helper = Helper()
+    yield helper
+    helper.unstub()
 
 
 def test_update_does_not_remove_mods(helper: Helper):
