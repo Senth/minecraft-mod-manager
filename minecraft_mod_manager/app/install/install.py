@@ -99,8 +99,8 @@ class Install(Download):
         if LatestVersionFinder.is_filtered_by_mod_loader(mod.mod_loader, latest):
             Logger.info("The latest versios was filtered out by mod loader", indent=2)
             Logger.info(
-                f"Run with {LogColors.command}--mod_loader {next(iter(latest.mod_loaders))}{LogColors.command} " +
-                "to download it",
+                f"Run with {LogColors.command}--mod_loader {next(iter(latest.mod_loaders))}{LogColors.command} "
+                + "to download it",
                 indent=3,
             )
 
