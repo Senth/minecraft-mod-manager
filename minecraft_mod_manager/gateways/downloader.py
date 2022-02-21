@@ -5,19 +5,22 @@ from typing import Any
 import requests
 from requests.models import Response
 
-# from .. import web_driver
 from ..config import config
 
 _user_agent = (
-    "user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) "
-    + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"
+    "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
 )
 _headers = {"User-Agent": _user_agent}
 
 
 class Downloader:
-    def get(self, url: str) -> Any:
-        with requests.get(url, headers=_headers) as response:
+    def get(self, url: str, user_agent_fix: bool = False) -> Any:
+        headers = {}
+        if user_agent_fix:
+            headers = _headers
+
+        with requests.get(url, headers=headers) as response:
             return response.json(strict=False)
 
     def download(self, url: str, filename: str) -> str:
