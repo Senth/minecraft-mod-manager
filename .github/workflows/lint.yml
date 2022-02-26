@@ -1,22 +1,26 @@
-# This workflow checks for linting errors
-
 name: lint
 
 on:
-  push:
-    branches: [main, v2.x]
   pull_request:
-    branches: [main, v2.x]
+  push:
+    branches: [main]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
-
-    name: markdown
+    name: eslint, prettier, markdown
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Install modules
+        run: yarn
+
+      - name: Run ESLint
+        run: make lint-eslint
+
+      - name: Prettier
+        run: make lint-prettier
+
       - name: Markdown lint
-        uses: DavidAnson/markdownlint-cli2-action@v2
-        with:
-          globs: '**/*.md'
+        run: make lint-markdown

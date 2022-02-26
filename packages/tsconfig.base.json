@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": true /* Generates corresponding '.map' file. */,
+    "noEmit": false,
+    "noEmitOnError": true /* Do not emit output on error */,
+    "typeRoots": [
+      "../node_modules/@types"
+    ] /* List of folders to include type definitions from. */,
+    "types": [
+      "jest"
+    ] /* Type declaration files to be included in compilation. */,
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+    "skipLibCheck": true /* Skip type checking of declaration files. */,
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+  }
+}

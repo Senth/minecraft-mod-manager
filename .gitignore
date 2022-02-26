@@ -1,3 +1,4 @@
 .vscode
 debug.log
 /mods
+node_modules

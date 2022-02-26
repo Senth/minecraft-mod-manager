@@ -1,0 +1,7 @@
+{
+  "name": "@mcman/lib",
+  "version": "2.0.0",
+  "description": "Library for minecraft-mod-manager",
+  "main": "index.js",
+  "license": "MIT"
+}
