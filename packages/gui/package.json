@@ -6,6 +6,7 @@
     "electron": "latest",
     "electron-reload": "^2.0.0-alpha.1"
   },
+  "main": "./dist/main.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",

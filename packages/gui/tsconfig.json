@@ -2,7 +2,10 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "noImplicitAny": true,
+    "baseUrl": ".",
+    "lib": ["ESNext", "DOM"]
   },
   "include": ["src/*.ts", "src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]

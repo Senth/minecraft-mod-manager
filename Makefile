@@ -1,11 +1,3 @@
-start-emulators:
-	docker-compose up -d
-
-stop-emulators:
-	docker-compose down
-
-restart-emulators: stop-emulators start-emulators
-
 test-all: test-lib
 
 test-lib:
