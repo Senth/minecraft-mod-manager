@@ -2,3 +2,5 @@
 debug.log
 /mods
 node_modules
+**/dist
+coverage

@@ -1,9 +1,12 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
     "sourceMap": true /* Generates corresponding '.map' file. */,
     "noEmit": false,
     "noEmitOnError": true /* Do not emit output on error */,
+    "moduleResolution": "node",
     "typeRoots": [
       "../node_modules/@types"
     ] /* List of folders to include type definitions from. */,
