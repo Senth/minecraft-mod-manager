@@ -5,7 +5,6 @@ from ..entities.mod import ModArg
 
 class ModNotFoundException(Exception):
     def __init__(self, mod: ModArg) -> None:
-        super()
         self.mod = mod
 
     def print_message(self) -> None:
