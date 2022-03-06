@@ -5,15 +5,19 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Upcoming] -
+## [1.2.7] - 2022-03-06
 
 ### Fixed
 
 - Add official support for python 3.10 when installing with PIP [#160](https://github.com/Senth/minecraft-mod-manager/issues/160)
+- Modrinth blocking user agent. Now uses a random latest user agent, let's see if this fixed the problem [#150](https://github.com/Senth/minecraft-mod-manager/issues/150)
+- Doesn't save corrupt files that were downloaded, instead it keeps the old mod when updating [#150](https://github.com/Senth/minecraft-mod-manager/issues/150)
 
 ### Changes
 
 - Remove **bold** from `--version` [#153](https://github.com/Senth/minecraft-mod-manager/issues/153)
+- Use random latest user agent for both Modrinth [#150](https://github.com/Senth/minecraft-mod-manager/issues/150) and CurseForge
+- Now displays an error if there was any issue downloading the mod file
 
 ## [1.2.6] - 2022-02-21
 
