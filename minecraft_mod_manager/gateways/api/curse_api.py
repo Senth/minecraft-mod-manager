@@ -15,7 +15,7 @@ class CurseApi(Api):
 
     def get_all_versions(self, mod: Mod) -> List[VersionInfo]:
         versions: List[VersionInfo] = []
-        files = self.downloader.get(CurseApi._make_files_url(mod), user_agent_fix=True)
+        files = self.downloader.get(CurseApi._make_files_url(mod))
         for file in files:
             version = CurseApi._file_to_version_info(file)
             version.name = mod.name
@@ -24,7 +24,7 @@ class CurseApi(Api):
         return versions
 
     def _find_mod_id_by_slug(self, search: str, possible_slugs: Set[str]) -> Union[Tuple[str, str], None]:
-        json = self.downloader.get(CurseApi._make_search_url(search), user_agent_fix=True)
+        json = self.downloader.get(CurseApi._make_search_url(search))
         for curse_mod in json:
             if "slug" in curse_mod and "id" in curse_mod:
                 slug = curse_mod["slug"]

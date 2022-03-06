@@ -2,24 +2,19 @@ import re
 from os import path
 from typing import Any
 
+import latest_user_agents
 import requests
 from requests.models import Response
 
 from ..config import config
 from ..core.errors.download_failed import DownloadFailed
 
-_user_agent = (
-    "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-    + "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
-)
-_headers = {"User-Agent": _user_agent}
+_headers = {"User-Agent": latest_user_agents.get_random_user_agent()}
 
 
 class Downloader:
-    def get(self, url: str, user_agent_fix: bool = False) -> Any:
-        headers = {}
-        if user_agent_fix:
-            headers = _headers
+    def get(self, url: str) -> Any:
+        headers = _headers
 
         with requests.get(url, headers=headers) as response:
             return response.json(strict=False)

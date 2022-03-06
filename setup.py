@@ -27,6 +27,7 @@ setup(
     install_requires=[
         "requests",
         "toml",
+        "latest-user-agents",
     ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
