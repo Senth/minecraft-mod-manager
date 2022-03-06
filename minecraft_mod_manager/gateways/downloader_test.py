@@ -10,11 +10,13 @@ from requests.structures import CaseInsensitiveDict
 
 from ..config import config
 from ..gateways.downloader import Downloader
+from ..core.errors.download_failed import DownloadFailed
 
 
 @pytest.fixture
 def mock_response():
     mock_response = mock(Response)
+    mock_response.status_code = 200  # type:ignore
     mock_response.content = ""  # type:ignore
     when(mock_response).__enter__(...).thenReturn(mock_response)
     when(mock_response).__exit__(...)
@@ -35,11 +37,11 @@ def downloader():
     return Downloader()
 
 
-def test_use_filename_when_it_exists(downloader, mock_file):
+def test_use_filename_when_it_exists(downloader, mock_response, mock_file):
     filename = "some-file.jar"
     expected = path.join(config.dir, filename)
 
-    when(requests).get(...).thenReturn(Response())
+    when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
 
     result = downloader.download("", filename)
@@ -108,5 +110,17 @@ def test_get_when_non_strict_json(downloader):
     result = downloader.get("https://test.com")
 
     assert expected == result
+
+    unstub()
+
+
+def test_download_failed(downloader, mock_response):
+    mock_response.status_code = "404"  # type:ignore
+    mock_response.reason = "Not found"  # type:ignore
+    mock_response.content = "404 not found"  # type:ignore
+    when(requests).get(...).thenReturn(mock_response)
+
+    with pytest.raises(DownloadFailed):
+        downloader.download("", "")
 
     unstub()

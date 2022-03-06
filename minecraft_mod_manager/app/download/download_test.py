@@ -7,6 +7,7 @@ from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
+from ...core.errors.mod_file_invalid import ModFileInvalid
 from .download import Download
 from .download_repo import DownloadRepo
 
@@ -34,6 +35,29 @@ def test_download_and_install_when_found(mock_repo):
 
     download = Download(mock_repo)
     when(download).on_version_found(...)
+    download.find_download_and_install(input)
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
+
+
+def test_download_and_install_remove_downloaded_file_when_invalid_mod_file(mock_repo):
+    input = [Mod("found", "")]
+    version_info = VersionInfo(
+        stability=Stabilities.release,
+        mod_loaders=set([ModLoaders.fabric]),
+        site=Sites.curse,
+        upload_time=0,
+        minecraft_versions=[],
+        download_url="",
+    )
+    when(mock_repo).search_for_mod(...).thenReturn({Sites.curse: Site(Sites.curse, "", "")})
+    when(mock_repo).get_versions(...).thenReturn([version_info])
+    when(mock_repo).download(...).thenReturn(Path("mod.jar"))
+    when(mock_repo).get_mod_from_file(...).thenRaise(ModFileInvalid(Path("mod.jar")))
+    when(mock_repo).remove_mod_file(...)
+
+    download = Download(mock_repo)
     download.find_download_and_install(input)
 
     verifyStubbedInvocationsAreUsed()

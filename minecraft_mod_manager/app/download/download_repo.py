@@ -21,3 +21,6 @@ class DownloadRepo:
 
     def get_mod_from_file(self, filepath: str) -> Union[Mod, None]:
         raise NotImplementedError()
+
+    def remove_mod_file(self, filename: str) -> None:
+        raise NotImplementedError()

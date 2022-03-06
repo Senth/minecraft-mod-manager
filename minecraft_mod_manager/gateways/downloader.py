@@ -6,6 +6,7 @@ import requests
 from requests.models import Response
 
 from ..config import config
+from ..core.errors.download_failed import DownloadFailed
 
 _user_agent = (
     "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -27,12 +28,16 @@ class Downloader:
         """Download the specified mod
         Returns:
             Filename of the downloaded and saved file
+        Exception:
+            DownloadFailed if the download failed
         """
 
         if config.pretend:
             return filename
 
         with requests.get(url, headers=_headers) as response:
+            if response.status_code != 200:
+                raise DownloadFailed(response.status_code, response.reason, str(response.content))
 
             if len(filename) == 0:
                 filename = Downloader._get_filename(response)

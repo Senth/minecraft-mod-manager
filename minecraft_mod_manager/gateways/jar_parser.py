@@ -8,6 +8,7 @@ import toml
 
 from ..core.entities.mod import Mod
 from ..core.entities.mod_loaders import ModLoaders
+from ..core.errors.mod_file_invalid import ModFileInvalid
 from ..utils.logger import LogColors, Logger
 
 
@@ -28,10 +29,13 @@ class JarParser:
         # Iterate through all files
         for file in self._dir.glob("*.jar"):
             Logger.debug(f"Found file {file}")
-            mod = JarParser._get_mod_info(file)
-            if mod:
-                JarParser._log_found_mod(mod)
-                self._mods.append(mod)
+            try:
+                mod = JarParser._get_mod_info(file)
+                if mod:
+                    JarParser._log_found_mod(mod)
+                    self._mods.append(mod)
+            except ModFileInvalid as e:
+                Logger.warning(str(e))
 
         return self._mods
 
@@ -52,6 +56,7 @@ class JarParser:
                     Logger.info(f"No mod info found for {file.name}", LogColors.warning)
         except Exception:
             Logger.error(f"Failed to parse mod file {file}", print_exception=True)
+            raise ModFileInvalid(file)
 
         if mod:
             mod.file = file.name

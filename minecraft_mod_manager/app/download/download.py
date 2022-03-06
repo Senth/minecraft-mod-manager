@@ -1,10 +1,11 @@
 from typing import List, Sequence
 
-from minecraft_mod_manager.core.utils.latest_version_finder import LatestVersionFinder
-
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
+from ...core.errors.download_failed import DownloadFailed
+from ...core.errors.mod_file_invalid import ModFileInvalid
 from ...core.errors.mod_not_found_exception import ModNotFoundException
+from ...core.utils.latest_version_finder import LatestVersionFinder
 from ...utils.logger import LogColors, Logger
 from .download_repo import DownloadRepo
 
@@ -15,6 +16,7 @@ class Download:
 
     def find_download_and_install(self, mods: Sequence[Mod]) -> None:
         mods_not_found: List[ModNotFoundException] = []
+        corrupt_mods: List[Mod] = []
 
         # Find latest version of mod
         for mod in mods:
@@ -27,10 +29,26 @@ class Download:
 
                 if latest_version:
                     Logger.verbose("⬇ Downloading...", indent=1)
-                    downloaded_mod = self._download(mod, latest_version)
-                    self._update_mod_from_file(downloaded_mod)
-                    self._repo.update_mod(downloaded_mod)
-                    self.on_version_found(mod, downloaded_mod)
+                    try:
+                        downloaded_mod = self._download(mod, latest_version)
+                        self._update_mod_from_file(downloaded_mod)
+                        self._repo.update_mod(downloaded_mod)
+                        self.on_version_found(mod, downloaded_mod)
+                    except DownloadFailed as e:
+                        Logger.info(
+                            f"🔺 Download failed from {latest_version.site_name}. Might be user-agent error.",
+                            LogColors.red,
+                            indent=1,
+                        )
+                        Logger.error(str(e), indent=1)
+                        pass
+                    except ModFileInvalid:
+                        # Remove temporary downloaded file
+                        self._repo.remove_mod_file(latest_version.filename)
+                        Logger.info("❌ Corrupted file.", LogColors.red, indent=1)
+                        corrupt_mods.append(mod)
+                        continue
+
                 else:
                     self.on_version_not_found(mod, versions)
 
@@ -43,6 +61,11 @@ class Download:
             Logger.info("🔺 Mods not found", LogColors.bold + LogColors.red)
             for error in mods_not_found:
                 error.print_message()
+
+        if len(corrupt_mods) > 0:
+            Logger.info("❌ Corrupted mods.")
+            for mod in corrupt_mods:
+                Logger.info(f"{mod.name}", indent=1)
 
     def on_version_found(self, old: Mod, new: Mod) -> None:
         raise NotImplementedError("Not implemented in subclass")
