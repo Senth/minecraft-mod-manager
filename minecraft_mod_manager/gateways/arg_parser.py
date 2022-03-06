@@ -74,7 +74,7 @@ def parse_args():
     parser.add_argument(
         "--version",
         action="version",
-        version=f"{config.app_name}: {LogColors.bold}{config.app_version}{LogColors.no_color}",
+        version=f"{config.app_name}: {config.app_version}",
         help="Show application version",
     )
 

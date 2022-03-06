@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add official support for python 3.10 when installing with PIP [#160](https://github.com/Senth/minecraft-mod-manager/issues/160)
 
+### Changes
+
+- Remove **bold** from `--version` [#153](https://github.com/Senth/minecraft-mod-manager/issues/153)
+
 ## [1.2.6] - 2022-02-21
 
 ### Fixed
