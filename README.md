@@ -8,23 +8,17 @@
 
 Install and update mods from CurseForge and Modrinth through a simple command.
 
-## The GUI Update (late 2022)
+## News — No GUI Update, focus on CLI improvements (2022-03-19)
 
-There was an idea of adding a GUI to python.
-Unfortunately, python development is not meant for fast GUI development.
-So testing changes often requires restarting the application,
-this is less than ideal especially when I'm used to changing the code and seeing updates directly.
+After some pondering, I've decided to shelve the actual GUI update and instead continue working on the CLI python version.
 
-It's one of the reasons the progress stopped on this because it was slow and frustrating.
+There were a lot of reasons against a GUI update.
+But mainly, it would require a lot of time and energy to do a GUI and rewrite the entire application.
+I'd rather spend time fixing existing bugs, improving the CLI and installation process, and making it more user-friendly.
 
-Thus I started looking for alternatives and found [Electron](https://www.electronjs.org/)
-to hopefully be a good fit.
-This way I can leverage my existing web development skills for creating an GUI instead of learning another.
-I still want to support a CLI though, but I think this can be done even on servers.
-It's a main requirement. Of course the new App will be cross platform.
+Now to the fun part, what's to come in the next releases... _[read full story](./NEWS.md)_
 
-What this means is that I'll start "scratch".
-But I'd almost have to do that either way with the changes I wanted to do.
+_[(News Archive)](./NEWS.md)_
 
 ## Features
 
