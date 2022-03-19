@@ -10,15 +10,16 @@ I'd rather spend time fixing existing bugs, improving the CLI and installation p
 
 ### Pros of shelving GUI
 
-* Would take 1+ years to catch up to the python version in functionality.
-* More energy and time to actually make a fantastic CLI version
-* CurseForge already has a good and easy-to-use GUI for updating mods.
-* Less competition with CurseForge
+- Would take 1+ years to catch up to the python version in functionality.
+- More energy and time to actually make a fantastic CLI version
+- CurseForge already has a good and easy-to-use GUI for updating mods.
+- Less competition with CurseForge
 
 ### Cons of shelving GUI
 
-* No mod manager can download from either CurseForge or Modrinth with GUI support; but hopefully someone else will create one? :)
-* Less accessible to ordinary people that don't have experiences with CLIs
+- No mod manager can download from either CurseForge or Modrinth with GUI support;
+  but hopefully someone else will create one? :)
+- Less accessible to ordinary people that don't have experiences with CLIs
 
 ### Who will use mcman?
 
