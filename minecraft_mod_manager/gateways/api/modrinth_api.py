@@ -19,9 +19,13 @@ class ModrinthApi(Api):
         versions: List[VersionInfo] = []
         json = self.downloader.get(ModrinthApi._make_versions_url(mod))
         for json_version in json:
-            version = ModrinthApi._json_to_version_info(json_version)
-            version.name = mod.name
-            versions.append(version)
+            try:
+                version = ModrinthApi._json_to_version_info(json_version)
+                version.name = mod.name
+                versions.append(version)
+            except IndexError:
+                # Skip this version
+                pass
 
         return versions
 
@@ -56,6 +60,7 @@ class ModrinthApi(Api):
 
     @staticmethod
     def _json_to_version_info(data: Any) -> VersionInfo:
+
         return VersionInfo(
             stability=Stabilities.from_name(data["version_type"]),
             mod_loaders=Api._to_mod_loaders(data["loaders"]),
