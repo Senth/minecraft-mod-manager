@@ -106,11 +106,12 @@ class JarParser:
 
     @staticmethod
     def _fix_toml_multiline_string(toml_str: str) -> str:
+        # TODO fix this as it makes everything on one line
         new = ""
         basic_start = re.compile(r"=\s*\"[^\"]")
-        basic_end = re.compile(r"\"\s*$")
+        basic_end = re.compile(r"\"\s*$|\"[\s#]+")
         literal_start = re.compile(r"=\s*'[^']")
-        literal_end = re.compile(r"'\s*$")
+        literal_end = re.compile(r"'\s*$|'[\s#]+")
         basic_active = False
         literal_active = False
         for line in toml_str.split("\n"):
