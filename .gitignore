@@ -1,9 +1,3 @@
 .vscode
 **/__pycache__
-debug.log
-/mods
-node_modules
-packages
-.yarn
-coverage
-.eslintrc
+temp
