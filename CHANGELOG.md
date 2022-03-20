@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Failed to get information from some forge mods if they contained inline comments [#146](https://github.com/Senth/minecraft-mod-manager/issues/146)
+- Crash when loading forge mods if they contained inline comments [#146](https://github.com/Senth/minecraft-mod-manager/issues/146)
+- Crash if a mod from Modrith was missing file links [#145](https://github.com/Senth/minecraft-mod-manager/issues/145)
 
 ## [1.2.7] - 2022-03-06
 

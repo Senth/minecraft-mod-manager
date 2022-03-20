@@ -15,6 +15,7 @@ from .modrinth_api import ModrinthApi
 testdata_dir = Path(__file__).parent.joinpath("testdata").joinpath("modrinth_api")
 search_result_file = testdata_dir.joinpath("search_fabric-api.json")
 versions_result_file = testdata_dir.joinpath("versions_fabric-api.json")
+versions_without_files_file = testdata_dir.joinpath("versions-without-files.json")
 
 
 @pytest.fixture
@@ -26,6 +27,12 @@ def search_result():
 @pytest.fixture
 def versions_result():
     with open(versions_result_file) as file:
+        return json.load(file)
+
+
+@pytest.fixture
+def versions_without_files():
+    with open(versions_without_files_file) as file:
         return json.load(file)
 
 
@@ -58,17 +65,17 @@ def mod(id="fabric-api", name="Fabric API", site_slug="fabric-api", site_id=site
         ),
         (
             "Find site id by id",
-            mod(site_id=None),
+            mod(site_id=""),
             (site_id, "fabric-api"),
         ),
         (
             "Find site id from filename",
-            mod(id="invalid", site_slug=None, file="fabric-api-1.14.4-1.2.0+v191024.jar"),
+            mod(id="invalid", site_slug="", file="fabric-api-1.14.4-1.2.0+v191024.jar"),
             (site_id, "fabric-api"),
         ),
         (
             "Site id not found",
-            mod(id="invalid", site_slug=None),
+            mod(id="invalid", site_slug=""),
             None,
         ),
     ],
@@ -127,6 +134,39 @@ def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, version
             minecraft_versions=["1.16.5"],
             download_url="https://cdn.modrinth.com/data/P7dR8mSH/versions/0.32.9+1.16/fabric-api-0.32.9+1.16.jar",
             filename="fabric-api-0.32.9+1.16.jar",
+        ),
+    ]
+
+    versions = api.get_all_versions(mod())
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
+
+    assert expected == versions
+
+
+def test_get_versions_without_files(api: ModrinthApi, versions_without_files):
+    when(api.downloader).get(...).thenReturn(versions_without_files)
+    expected = [
+        VersionInfo(
+            stability=Stabilities.release,
+            mod_loaders=set([ModLoaders.fabric]),
+            site=Sites.modrinth,
+            name="Fabric API",
+            upload_time=1638379386,
+            minecraft_versions=["1.18"],
+            download_url="https://cdn.modrinth.com/data/Nz0RSWrF/versions/0.2.5/lazy-language-loader-0.2.5.jar",
+            filename="lazy-language-loader-0.2.5.jar",
+        ),
+        VersionInfo(
+            stability=Stabilities.release,
+            mod_loaders=set([ModLoaders.fabric]),
+            site=Sites.modrinth,
+            name="Fabric API",
+            upload_time=1638297554,
+            minecraft_versions=["1.18"],
+            download_url="https://cdn.modrinth.com/data/Nz0RSWrF/versions/0.2.3/lazy-language-loader-0.2.3.jar",
+            filename="lazy-language-loader-0.2.3.jar",
         ),
     ]
 
