@@ -37,6 +37,13 @@ fabric_invalid_control_character = Mod(
     mod_loader=ModLoaders.fabric,
     file="fabric-invalid-control-character.jar",
 )
+toml_inline_comment = Mod(
+    "twilightforest",
+    "The Twilight Forest",
+    version="${file.jarVersion}",
+    mod_loader=ModLoaders.forge,
+    file="toml-inline-comment.jar",
+)
 
 
 def path(filename: str) -> Path:
@@ -71,6 +78,11 @@ def path(filename: str) -> Path:
             fabric_invalid_control_character.file,
             fabric_invalid_control_character,
         ),
+        (
+            "Handle missing key 'mods' in forge file",
+            toml_inline_comment.file,
+            toml_inline_comment,
+        ),
     ],
 )
 def test_get_mod_info(name, file, expected):
@@ -83,7 +95,13 @@ def test_get_mod_info(name, file, expected):
 
 
 def test_get_mods():
-    expected = [forge_valid, fabric_valid, fabric_invalid_character, fabric_invalid_control_character]
+    expected = [
+        forge_valid,
+        fabric_valid,
+        fabric_invalid_character,
+        fabric_invalid_control_character,
+        toml_inline_comment,
+    ]
     jar_parser = JarParser(mod_dir)
     result = jar_parser.mods
 
