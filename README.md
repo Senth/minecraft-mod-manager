@@ -2,7 +2,6 @@
 
 [![python](https://img.shields.io/pypi/pyversions/minecraft-mod-manager.svg)](https://pypi.python.org/pypi/minecraft-mod-manager)
 [![Latest PyPI version](https://img.shields.io/pypi/v/minecraft-mod-manager.svg)](https://pypi.python.org/pypi/minecraft-mod-manager)
-[![Downloads](https://pepy.tech/badge/minecraft-mod-manager)](https://pepy.tech/project/minecraft-mod-manager?right_color=orange)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Senth/minecraft-mod-manager.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Senth/minecraft-mod-manager/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Senth/minecraft-mod-manager.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Senth/minecraft-mod-manager/context:python)
 
@@ -102,11 +101,13 @@ logging & help:
 ## Alternatives
 
 ### GUI
+
 - [kaniol-lck/modmanager](https://github.com/kaniol-lck/modmanager)
 - [ReviversMC/modget-minecraft](https://github.com/ReviversMC/modget-minecraft)
 - [4JX/mCubed](https://github.com/4JX/mCubed)
 
 ### CLI
+
 - [sargunv/modsman](https://github.com/sargunv/modsman)
 - [tyra314/modweaver](https://github.com/tyra314/modweaver)
 
