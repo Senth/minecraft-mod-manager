@@ -97,8 +97,18 @@ logging & help:
 ## Planned features
 
 - Automatically install dependencies
-- GUI
 - Executable for Windows
+
+## Alternatives
+
+### GUI
+- [kaniol-lck/modmanager](https://github.com/kaniol-lck/modmanager)
+- [ReviversMC/modget-minecraft](https://github.com/ReviversMC/modget-minecraft)
+- [4JX/mCubed](https://github.com/4JX/mCubed)
+
+### CLI
+- [sargunv/modsman](https://github.com/sargunv/modsman)
+- [tyra314/modweaver](https://github.com/tyra314/modweaver)
 
 ## Authors
 
