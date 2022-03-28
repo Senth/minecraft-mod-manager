@@ -1,9 +1,11 @@
 from typing import Dict, List, Sequence
 
+from tealprint import TealPrint
+
 from ...config import config
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.sites import Site, Sites
-from ...utils.logger import LogColors, Logger
+from ...utils.log_colors import LogColors
 from ..configure.configure_repo import ConfigureRepo
 
 
@@ -20,11 +22,10 @@ class Configure:
             found_mod = self._repo.get_mod(mod_id_lower)
 
             if not found_mod:
-                Logger.info(
+                TealPrint.error(
                     f"Mod {mod_arg.id} not found in installed mods. "
                     + "Did you misspell the name?\nList installed mods by running: "
                     + f"{LogColors.command}{config.app_name} list",
-                    LogColors.error,
                     exit=True,
                 )
                 return
@@ -45,7 +46,7 @@ class Configure:
                     site_info += ", "
                 site_info += site.get_configure_string()
 
-            Logger.info(f"Configured sites for {mod.id}; {{{site_info}}}", LogColors.add)
+            TealPrint.info(f"Configured sites for {mod.id}; {{{site_info}}}", color=LogColors.add)
 
     @staticmethod
     def _update_sites(mod: Mod, sites: Dict[Sites, Site]) -> None:

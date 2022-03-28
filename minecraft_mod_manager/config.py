@@ -2,6 +2,8 @@ from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Any, List, Literal, Union
 
+from tealprint import TealConfig, TealLevel
+
 from .core.entities.mod import ModArg
 from .core.entities.mod_loaders import ModLoaders
 from .core.entities.version_info import Stabilities
@@ -13,8 +15,6 @@ class Config:
         self.app_report_url: str = (
             "https://github.com/Senth/minecraft-mod-manager/issues/new?labels=bug&template=bug_report.md"
         )
-        self.verbose: bool = False
-        self.debug: bool = False
         self.pretend: bool = False
         self.dir: Path = Path(".")
         self.action: Literal["install", "update", "configure", "list"]
@@ -34,12 +34,12 @@ class Config:
         """
         self.action = args.action
         self.pretend = args.pretend
-        self.verbose = args.verbose
-        self.debug = args.debug
         self.arg_mods = args.mods
 
         if args.debug:
-            self.verbose = True
+            TealConfig.level = TealLevel.debug
+        elif args.verbose:
+            TealConfig.level = TealLevel.verbose
 
         if args.dir:
             self.dir = Path(args.dir)

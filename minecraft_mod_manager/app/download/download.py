@@ -1,12 +1,14 @@
 from typing import List, Sequence
 
+from tealprint import TealPrint
+
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
 from ...core.errors.download_failed import DownloadFailed
 from ...core.errors.mod_file_invalid import ModFileInvalid
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ...core.utils.latest_version_finder import LatestVersionFinder
-from ...utils.logger import LogColors, Logger
+from ...utils.log_colors import LogColors
 from .download_repo import DownloadRepo
 
 
@@ -21,31 +23,29 @@ class Download:
         # Find latest version of mod
         for mod in mods:
             try:
-                Logger.info(mod.id, LogColors.bold)
+                TealPrint.info(mod.id, color=LogColors.header, push_indent=True)
                 mod.sites = self._repo.search_for_mod(mod)
 
                 versions = self._repo.get_versions(mod)
                 latest_version = LatestVersionFinder.find_latest_version(mod, versions, filter=True)
 
                 if latest_version:
-                    Logger.verbose("⬇ Downloading...", indent=1)
+                    TealPrint.verbose("⬇ Downloading...")
                     try:
                         downloaded_mod = self._download(mod, latest_version)
                         self._update_mod_from_file(downloaded_mod)
                         self._repo.update_mod(downloaded_mod)
                         self.on_version_found(mod, downloaded_mod)
                     except DownloadFailed as e:
-                        Logger.info(
+                        TealPrint.error(
                             f"🔺 Download failed from {latest_version.site_name}. Might be user-agent error.",
-                            LogColors.red,
-                            indent=1,
                         )
-                        Logger.error(str(e), indent=1)
+                        TealPrint.error(str(e))
                         pass
                     except ModFileInvalid:
                         # Remove temporary downloaded file
                         self._repo.remove_mod_file(latest_version.filename)
-                        Logger.info("❌ Corrupted file.", LogColors.red, indent=1)
+                        TealPrint.error("❌ Corrupted file.")
                         corrupt_mods.append(mod)
                         continue
 
@@ -53,19 +53,31 @@ class Download:
                     self.on_version_not_found(mod, versions)
 
             except ModNotFoundException as exception:
-                Logger.info("🔺 Mod not found on any site...", LogColors.red, indent=1)
+                TealPrint.warning("🔺 Mod not found on any site...")
                 mods_not_found.append(exception)
+
+            TealPrint.pop_indent()
 
         # Print errors
         if len(mods_not_found) > 0:
-            Logger.info("🔺 Mods not found", LogColors.bold + LogColors.red)
+            TealPrint.warning(
+                f"🔺 {len(mods_not_found)} mods not found",
+                color=LogColors.header + LogColors.error,
+                push_indent=True,
+            )
             for error in mods_not_found:
                 error.print_message()
+            TealPrint.pop_indent()
 
         if len(corrupt_mods) > 0:
-            Logger.info("❌ Corrupted mods.")
+            TealPrint.warning(
+                f"❌ {len(corrupt_mods)} corrupt mods",
+                push_indent=True,
+                color=LogColors.error + LogColors.header,
+            )
             for mod in corrupt_mods:
-                Logger.info(f"{mod.name}", indent=1)
+                TealPrint.info(f"{mod.name}")
+            TealPrint.pop_indent()
 
     def on_version_found(self, old: Mod, new: Mod) -> None:
         raise NotImplementedError("Not implemented in subclass")

@@ -2,11 +2,13 @@ import argparse
 from os import path
 from typing import Any, Dict, List, Union
 
+from tealprint import TealPrint
+
 from ..config import config
 from ..core.entities.actions import Actions
 from ..core.entities.mod import ModArg
 from ..core.entities.sites import Site, Sites
-from ..utils.logger import LogColors, Logger
+from ..utils.log_colors import LogColors
 
 
 def parse_args():
@@ -139,13 +141,12 @@ def _parse_site(mod_arg: str, site_str: str) -> Union[Site, None]:
 
 
 def _print_invalid_mod_syntax(mod_arg: str, extra_info: str) -> None:
-    Logger.info(f"Invalid mod syntax: {mod_arg}", LogColors.error)
-    Logger.info(extra_info, LogColors.error)
-    Logger.info(
+    TealPrint.error(f"Invalid mod syntax: {mod_arg}")
+    TealPrint.error(extra_info)
+    TealPrint.error(
         f"Valid syntax is: {LogColors.command}dynmap=curse{LogColors.no_color}, "
         + f"{LogColors.command}dynmap=curse:dynmapforge{LogColors.no_color}, or "
         + f"{LogColors.command}dynmap=modrinth,curse:dynmapforge{LogColors.no_color}",
-        LogColors.error,
         exit=True,
     )
 

@@ -25,9 +25,10 @@ setup(
         ],
     },
     install_requires=[
-        "requests",
-        "toml",
         "latest-user-agents",
+        "requests",
+        "tealprint",
+        "toml",
     ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",

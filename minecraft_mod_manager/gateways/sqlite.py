@@ -2,12 +2,14 @@ import sqlite3
 from os import path
 from typing import Any, Dict, List, Union
 
+from tealprint import TealPrint
+
 from ..config import config
 from ..core.entities.mod import Mod
 from ..core.entities.sites import Site, Sites
 from ..core.errors.mod_already_exists import ModAlreadyExists
 from ..gateways.sqlite_upgrader import SqliteUpgrader
-from ..utils.logger import LogColors, Logger
+from ..utils.log_colors import LogColors
 
 
 class _Column:
@@ -53,7 +55,7 @@ class _Column:
                 name = Sites[name_str]
                 sites[name] = Site(name, id, slug)
             except KeyError:
-                Logger.error(f"DB site {site_str} not a valid site, full: '{full_str}'")
+                TealPrint.error(f"DB site {site_str} not a valid site, full: '{full_str}'")
 
         if not sites:
             return None
@@ -86,7 +88,7 @@ class _Column:
 class Sqlite:
     def __init__(self) -> None:
         file_path = path.join(config.dir, f".{config.app_name}.db")
-        Logger.debug(f"DB location: {file_path}")
+        TealPrint.debug(f"DB location: {file_path}")
         self._connection = sqlite3.connect(file_path)
         self._cursor = self._connection.cursor()
 
@@ -120,7 +122,7 @@ class Sqlite:
                 if mod.id == db_mod.id:
                     found = True
                     mods_to_add.remove(mod)
-                    Logger.debug(f"Found mod {mod.id} in DB", LogColors.found)
+                    TealPrint.debug(f"Found mod {mod.id} in DB", color=LogColors.found)
 
                     # Reactivate mod
                     if not db_mod.active:
@@ -133,7 +135,7 @@ class Sqlite:
 
         # Add mods
         for mod in mods_to_add:
-            Logger.debug(f"Adding mod {mod.id} to DB", LogColors.add)
+            TealPrint.debug(f"Adding mod {mod.id} to DB", color=LogColors.add)
             self.insert_mod(mod)
 
         # Update mod info
@@ -217,7 +219,7 @@ class Sqlite:
         if config.pretend:
             return
 
-        Logger.debug(f"Reactivate mod {id} in DB", LogColors.add)
+        TealPrint.debug(f"Reactivate mod {id} in DB", color=LogColors.add)
         self._cursor.execute(f"UPDATE mod SET {_Column.c_active}=1 WHERE {_Column.c_id}=?", [id])
         self._connection.commit()
 
@@ -225,6 +227,6 @@ class Sqlite:
         if config.pretend:
             return
 
-        Logger.debug(f"Inactivate mod {id} in DB", LogColors.remove)
+        TealPrint.debug(f"Inactivate mod {id} in DB", color=LogColors.remove)
         self._cursor.execute(f"UPDATE mod SET {_Column.c_active}=0 WHERE {_Column.c_id}=?", [id])
         self._connection.commit()

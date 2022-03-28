@@ -1,9 +1,11 @@
 from typing import List, Sequence
 
+from tealprint import TealPrint
+
 from ...config import config
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
-from ...utils.logger import LogColors, Logger
+from ...utils.log_colors import LogColors
 from ..download.download import Download
 from .update_repo import UpdateRepo
 
@@ -33,14 +35,10 @@ class Update(Download):
                 if not config.pretend and old.file:
                     self._update_repo.remove_mod_file(old.file)
 
-                Logger.info(
-                    f"🟢 Updated {old.version} -> {new.version}",
-                    LogColors.green,
-                    indent=1,
-                )
+                TealPrint.info(f"🟢 Updated {old.version} -> {new.version}", color=LogColors.updated)
 
     def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:
-        Logger.verbose("🟨 No new version found", LogColors.skip, indent=1)
+        TealPrint.verbose("🟨 No new version found", color=LogColors.skip)
 
     @staticmethod
     def _has_downloaded_new_file(old: Mod, new: Mod) -> bool:

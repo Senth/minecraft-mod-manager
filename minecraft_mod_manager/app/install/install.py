@@ -1,12 +1,14 @@
 from datetime import datetime
 from typing import Dict, List, Sequence
 
+from tealprint import TealPrint
+
 from ...config import config
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.version_info import VersionInfo
 from ...core.utils.latest_version_finder import LatestVersionFinder
-from ...utils.logger import LogColors, Logger
+from ...utils.log_colors import LogColors
 from ..download.download import Download
 from .install_repo import InstallRepo
 
@@ -28,7 +30,8 @@ class Install(Download):
             if not self._install_repo.is_installed(mod.id):
                 mods_to_install.append(Mod.fromModArg(mod))
             else:
-                Logger.info(f"{mod.id} has already been installed, skipping...", LogColors.skip)
+                TealPrint.info(mod.id, color=LogColors.header, push_indent=True)
+                TealPrint.info("Skipping... has already been installed", color=LogColors.skip, pop_indent=True)
 
         return mods_to_install
 
@@ -67,46 +70,50 @@ class Install(Download):
         return loader_max
 
     def on_version_found(self, old: Mod, new: Mod) -> None:
-        Logger.info(
+        TealPrint.info(
             f"🟢 Installed version {new.version}",
-            LogColors.green,
-            indent=1,
+            color=LogColors.add,
         )
 
     def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:
-        Logger.info("🟨 All versions were filtered out", LogColors.skip, indent=1)
+        TealPrint.info("🟨 All versions were filtered out", color=LogColors.skip, push_indent=True)
 
         latest_unfiltered = LatestVersionFinder.find_latest_version(mod, versions, filter=False)
         if latest_unfiltered:
             Install._print_latest_unfiltered(mod, latest_unfiltered)
+        TealPrint.pop_indent()
 
     @staticmethod
     def _print_latest_unfiltered(mod: Mod, latest: VersionInfo) -> None:
         if config.filter.version and config.filter.version not in latest.minecraft_versions:
-            Logger.info("The latest version was filtered out by minecraft version", indent=2)
-            Logger.info(f"Run without {LogColors.command}--minecraft-version{LogColors.no_color}, or")
-            Logger.info(
-                f"run with {LogColors.command}--minecraft-version VERSION{LogColors.no_color} to download it", indent=3
+            TealPrint.info("The latest version was filtered out by minecraft version")
+            TealPrint.info(
+                f"Run without {LogColors.command}--minecraft-version{LogColors.no_color}, or",
+                push_indent=True,
             )
-            Logger.info(str(latest.minecraft_versions), indent=3)
+            TealPrint.info(
+                f"run with {LogColors.command}--minecraft-version VERSION{LogColors.no_color} to download it",
+                pop_indent=True,
+            )
 
         if LatestVersionFinder.is_filtered_by_stability(latest):
-            Logger.info("The latest version was filtered out by stability", indent=2)
-            Logger.info(
-                f"Run with {LogColors.command}--{latest.stability.value}{LogColors.no_color} to download it", indent=3
+            TealPrint.info("The latest version was filtered out by stability", push_indent=True)
+            TealPrint.info(
+                f"Run with {LogColors.command}--{latest.stability.value}{LogColors.no_color} to download it",
+                pop_indent=True,
             )
 
         if LatestVersionFinder.is_filtered_by_mod_loader(mod.mod_loader, latest):
-            Logger.info("The latest versios was filtered out by mod loader", indent=2)
-            Logger.info(
-                f"Run with {LogColors.command}--mod_loader {next(iter(latest.mod_loaders))}{LogColors.command} "
+            TealPrint.info("The latest versios was filtered out by mod loader", push_indent=True)
+            TealPrint.info(
+                f"Run with {LogColors.command}--mod_loader {next(iter(latest.mod_loaders))}{LogColors.no_color} "
                 + "to download it",
-                indent=3,
+                pop_indent=True,
             )
 
-        Logger.verbose("Latest version", LogColors.bold, indent=2)
+        TealPrint.info("Latest version", color=LogColors.header, push_indent=True)
         width = 20
-        Logger.verbose("Upload date:".ljust(width) + str(datetime.fromtimestamp(latest.upload_time)), indent=3)
-        Logger.verbose("Stability:".ljust(width) + latest.stability.value, indent=3)
-        Logger.verbose("Minecraft versions:".ljust(width) + str(latest.minecraft_versions), indent=3)
-        Logger.verbose("Filename:".ljust(width) + latest.filename, indent=3)
+        TealPrint.info("Upload date:".ljust(width) + str(datetime.fromtimestamp(latest.upload_time)))
+        TealPrint.info("Stability:".ljust(width) + latest.stability.value)
+        TealPrint.info("Minecraft versions:".ljust(width) + str(latest.minecraft_versions))
+        TealPrint.verbose("Filename:".ljust(width) + latest.filename, pop_indent=True)
