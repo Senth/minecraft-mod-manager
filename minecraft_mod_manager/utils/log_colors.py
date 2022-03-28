@@ -4,7 +4,6 @@ from colored import attr, fg
 class LogColors:
     add = fg("green")
     updated = fg("green")
-    found = fg("green")
     remove = fg("red")
     error = fg("red")
     found = fg("cyan")
