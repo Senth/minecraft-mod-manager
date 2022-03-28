@@ -79,6 +79,11 @@ def parse_args():
         version=f"{config.app_name}: {config.app_version}",
         help="Show application version",
     )
+    parser.add_argument(
+        "--no-color",
+        action="store_true",
+        help="Disable color output",
+    )
 
     args = parser.parse_args()
     args.action = Actions.from_name(args.action)
