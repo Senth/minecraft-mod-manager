@@ -41,7 +41,6 @@ class Download:
                             f"🔺 Download failed from {latest_version.site_name}. Might be user-agent error.",
                         )
                         TealPrint.error(str(e))
-                        pass
                     except ModFileInvalid:
                         # Remove temporary downloaded file
                         self._repo.remove_mod_file(latest_version.filename)
