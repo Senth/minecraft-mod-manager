@@ -91,6 +91,7 @@ logging & help:
   --verbose             Print more messages
   --debug               Turn on debug messages
   --pretend             Only pretend to install/update/configure. Does not change anything
+  --no-color            Disable color output
 ```
 
 ## Planned features

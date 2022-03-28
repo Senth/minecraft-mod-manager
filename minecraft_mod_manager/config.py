@@ -40,6 +40,7 @@ class Config:
             TealConfig.level = TealLevel.debug
         elif args.verbose:
             TealConfig.level = TealLevel.verbose
+        TealConfig.colors_enabled = not args.no_color
 
         if args.dir:
             self.dir = Path(args.dir)
