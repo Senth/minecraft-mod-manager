@@ -5,11 +5,12 @@ from typing import Any, List, MutableMapping, Union
 from zipfile import ZipFile
 
 import toml
+from tealprint import TealPrint
 
 from ..core.entities.mod import Mod
 from ..core.entities.mod_loaders import ModLoaders
 from ..core.errors.mod_file_invalid import ModFileInvalid
-from ..utils.logger import LogColors, Logger
+from ..utils.log_colors import LogColors
 
 
 class JarParser:
@@ -28,14 +29,14 @@ class JarParser:
 
         # Iterate through all files
         for file in self._dir.glob("*.jar"):
-            Logger.debug(f"Found file {file}")
+            TealPrint.debug(f"Found file {file}")
             try:
                 mod = JarParser._get_mod_info(file)
                 if mod:
                     JarParser._log_found_mod(mod)
                     self._mods.append(mod)
             except ModFileInvalid as e:
-                Logger.warning(str(e))
+                TealPrint.warning(str(e))
 
         return self._mods
 
@@ -53,9 +54,9 @@ class JarParser:
                 elif JarParser._is_forge(zip):
                     mod = JarParser._parse_forge(zip)
                 else:
-                    Logger.info(f"No mod info found for {file.name}", LogColors.warning)
+                    TealPrint.warning(f"No mod info found for {file.name}")
         except Exception:
-            Logger.error(f"Failed to parse mod file {file}", print_exception=True)
+            TealPrint.error(f"Failed to parse mod file {file}", print_exception=True, print_report_this=True)
             raise ModFileInvalid(file)
 
         if mod:
@@ -138,4 +139,4 @@ class JarParser:
 
     @staticmethod
     def _log_found_mod(mod: Mod) -> None:
-        Logger.verbose(f"Found {mod.mod_loader.value} mod: {mod}", LogColors.found)
+        TealPrint.verbose(f"Found {mod.mod_loader.value} mod: {mod}", color=LogColors.found)

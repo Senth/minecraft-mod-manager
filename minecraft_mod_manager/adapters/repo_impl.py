@@ -1,6 +1,8 @@
 from pathlib import Path
 from typing import Dict, List, Sequence, Union
 
+from tealprint import TealPrint
+
 from ..app.configure.configure_repo import ConfigureRepo
 from ..app.install.install_repo import InstallRepo
 from ..app.show.show_repo import ShowRepo
@@ -15,7 +17,7 @@ from ..gateways.api.modrinth_api import ModrinthApi
 from ..gateways.downloader import Downloader
 from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
-from ..utils.logger import LogColors, Logger
+from ..utils.log_colors import LogColors
 
 
 class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
@@ -64,15 +66,17 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
             if mod.matches_site(api.site_name):
                 # Already has an id
                 if mod.sites and api.site_name in mod.sites and mod.sites[api.site_name].id:
-                    Logger.verbose(f"🔍 Previously found on {api.site_name.value}")
+                    TealPrint.verbose(f"🔍 Previously found on {api.site_name.value}")
                     return mod.sites
                 try:
-                    Logger.verbose(f"🔍 Searching on {api.site_name.value}...", indent=1)
+                    TealPrint.verbose(f"🔍 Searching on {api.site_name.value}...", push_indent=True)
                     site = api.find_mod_id(mod)
                     sites[site.name] = site
                     RepoImpl._print_found()
                 except ModNotFoundException:
                     RepoImpl._print_not_found()
+                finally:
+                    TealPrint.pop_indent()
 
         if len(sites) == 0:
             raise ModNotFoundException(mod)
@@ -93,8 +97,8 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
 
     @staticmethod
     def _print_found():
-        Logger.verbose("Found", LogColors.green, indent=2)
+        TealPrint.verbose("Found", color=LogColors.found)
 
     @staticmethod
     def _print_not_found():
-        Logger.verbose("Not found", LogColors.yellow, indent=2)
+        TealPrint.verbose("Not found", color=LogColors.not_found)

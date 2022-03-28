@@ -1,7 +1,9 @@
 from datetime import date
 
+from tealprint import TealPrint
+
 from ...core.entities.mod import Mod
-from ...utils.logger import LogColors, Logger
+from ...utils.log_colors import LogColors
 from .show_repo import ShowRepo
 
 
@@ -41,7 +43,7 @@ class Show:
         self._site_slug_width += Show._padding
 
     def _print_header(self) -> None:
-        Logger.info(f"{LogColors.bold}Installed mods:{LogColors.no_color}")
+        TealPrint.info("Installed mods", color=LogColors.header)
 
     def _print_row(self, id, site_slug, published) -> None:
         print(f"{id}".ljust(self._id_width) + f"{site_slug}".ljust(self._site_slug_width) + f"{published}")
