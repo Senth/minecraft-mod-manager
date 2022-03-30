@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Colored output continued to next messages [#141](https://github.com/Senth/minecraft-mod-manager/issues/141)
 - Handles Ctrl-C by stopping the program without printing a stack trace.
   It can still break the program in an invalid state [#140](https://github.com/Senth/minecraft-mod-manager/issues/140)
+- Now retries to fetch/download file 5 times before skipping [#169](https://github.com/Senth/minecraft-mod-manager/issues/169)
 
 ## [1.2.7] - 2022-03-06
 

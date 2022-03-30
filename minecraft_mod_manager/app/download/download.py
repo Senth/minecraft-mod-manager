@@ -1,5 +1,6 @@
 from typing import List, Sequence
 
+from minecraft_mod_manager.gateways.downloader import MaxRetriesExceeded
 from tealprint import TealPrint
 
 from ...core.entities.mod import Mod, ModArg
@@ -36,9 +37,9 @@ class Download:
                         self._update_mod_from_file(downloaded_mod)
                         self._repo.update_mod(downloaded_mod)
                         self.on_version_found(mod, downloaded_mod)
-                    except DownloadFailed as e:
+                    except (DownloadFailed, MaxRetriesExceeded) as e:
                         TealPrint.error(
-                            f"🔺 Download failed from {latest_version.site_name}. Might be user-agent error.",
+                            f"🔺 Download failed from {latest_version.site_name}",
                         )
                         TealPrint.error(str(e))
                     except ModFileInvalid:
@@ -46,14 +47,15 @@ class Download:
                         self._repo.remove_mod_file(latest_version.filename)
                         TealPrint.error("❌ Corrupted file.")
                         corrupt_mods.append(mod)
-                        continue
-
                 else:
                     self.on_version_not_found(mod, versions)
 
             except ModNotFoundException as exception:
                 TealPrint.warning("🔺 Mod not found on any site...")
                 mods_not_found.append(exception)
+            except MaxRetriesExceeded:
+                TealPrint.warning("🔺 Max retries exceeded. Skipping...")
+                mods_not_found.append(ModNotFoundException(mod))
 
             TealPrint.pop_indent()
 
