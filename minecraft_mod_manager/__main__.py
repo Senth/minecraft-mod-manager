@@ -1,3 +1,8 @@
+import signal
+
+from colored import attr, fg
+from tealprint import TealPrint
+
 from .adapters.repo_impl import RepoImpl
 from .app.configure.configure import Configure
 from .app.install.install import Install
@@ -11,7 +16,13 @@ from .gateways.jar_parser import JarParser
 from .gateways.sqlite import Sqlite
 
 
+def signal_handler(signal, frame):
+    TealPrint.error("Exiting...", color=fg("yellow") + attr("bold"), exit=True)
+
+
 def main():
+    signal.signal(signal.SIGINT, signal_handler)
+
     args = parse_args()
     config.add_arg_settings(args)
 

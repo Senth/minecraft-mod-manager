@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Crash when loading forge mods if they contained inline comments [#146](https://github.com/Senth/minecraft-mod-manager/issues/146)
 - Crash if a mod from Modrith was missing file links [#145](https://github.com/Senth/minecraft-mod-manager/issues/145)
 - Colored output continued to next messages [#141](https://github.com/Senth/minecraft-mod-manager/issues/141)
+- Handles Ctrl-C by stopping the program without printing a stack trace.
+  It can still break the program in an invalid state [#140](https://github.com/Senth/minecraft-mod-manager/issues/140)
 
 ## [1.2.7] - 2022-03-06
 
