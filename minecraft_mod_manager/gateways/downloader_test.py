@@ -4,13 +4,13 @@ from os import path
 
 import pytest
 import requests
-from mockito import mock, unstub, when
+from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 from requests.models import Response
 from requests.structures import CaseInsensitiveDict
 
 from ..config import config
-from ..gateways.downloader import Downloader
 from ..core.errors.download_failed import DownloadFailed
+from ..gateways.downloader import Downloader, MaxRetriesExceeded
 
 
 @pytest.fixture
@@ -115,12 +115,26 @@ def test_get_when_non_strict_json(downloader):
 
 
 def test_download_failed(downloader, mock_response):
-    mock_response.status_code = "404"  # type:ignore
+    mock_response.status_code = 404  # type:ignore
     mock_response.reason = "Not found"  # type:ignore
     mock_response.content = "404 not found"  # type:ignore
     when(requests).get(...).thenReturn(mock_response)
 
     with pytest.raises(DownloadFailed):
+        downloader.download("", "")
+
+    unstub()
+
+
+def test_download_retry(downloader, mock_response):
+    mock_response.status_code = 524  # type:ignore
+    mock_response.reason = "Timed out"  # type:ignore
+    mock_response.content = "524 Timed out"  # type:ignore
+    when(mock_response).close()
+
+    when(requests).get(...).thenReturn(mock_response)
+
+    with pytest.raises(MaxRetriesExceeded):
         downloader.download("", "")
 
     unstub()

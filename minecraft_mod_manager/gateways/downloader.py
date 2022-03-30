@@ -1,10 +1,12 @@
 import re
+import time
 from os import path
 from typing import Any
 
 import latest_user_agents
 import requests
 from requests.models import Response
+from tealprint import TealPrint
 
 from ..config import config
 from ..core.errors.download_failed import DownloadFailed
@@ -12,11 +14,24 @@ from ..core.errors.download_failed import DownloadFailed
 _headers = {"User-Agent": latest_user_agents.get_random_user_agent()}
 
 
-class Downloader:
-    def get(self, url: str) -> Any:
-        headers = _headers
+class MaxRetriesExceeded(Exception):
+    def __init__(self, url: str, retries: int, status_code: int, reason: str, content: str):
+        self.url = url
+        self.retries = retries
+        self.status_code = status_code
+        self.reason = reason
+        self.content = content
 
-        with requests.get(url, headers=headers) as response:
+    def __str__(self) -> str:
+        return f"{self.status_code}: {self.reason}"
+
+
+class Downloader:
+    retries_max = 5
+    retry_backoff_factor = 1.5
+
+    def get(self, url: str) -> Any:
+        with Downloader._get_with_retries(url) as response:
             return response.json(strict=False)
 
     def download(self, url: str, filename: str) -> str:
@@ -30,7 +45,7 @@ class Downloader:
         if config.pretend:
             return filename
 
-        with requests.get(url, headers=_headers) as response:
+        with Downloader._get_with_retries(url) as response:
             if response.status_code != 200:
                 raise DownloadFailed(response.status_code, response.reason, str(response.content))
 
@@ -47,6 +62,24 @@ class Downloader:
                 file.write(response.content)
 
         return filename
+
+    @staticmethod
+    def _get_with_retries(url: str) -> Response:
+        response: Response = Response()
+        for retry in range(Downloader.retries_max):
+            response = requests.get(url, headers=_headers)
+            if response.status_code < 500 or response.status_code >= 600:
+                return response
+            elif retry < Downloader.retries_max:
+                response.close()
+                delay = Downloader.retry_backoff_factor**retry
+                TealPrint.warning(f"{(retry+1)}: Failed to connect to {url}. Retrying in {delay} seconds...")
+                time.sleep(delay)
+        TealPrint.error(f"{Downloader.retries_max}: Failed to connect to {url}. Giving up.")
+        TealPrint.error(f"{response.status_code}: {response.reason}")
+        raise MaxRetriesExceeded(
+            url, Downloader.retries_max, response.status_code, response.reason, str(response.content)
+        )
 
     @staticmethod
     def _get_filename(response: Response) -> str:
