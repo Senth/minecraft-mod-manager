@@ -4,7 +4,7 @@ from os import path
 
 import pytest
 import requests
-from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
+from mockito import mock, unstub, when
 from requests.models import Response
 from requests.structures import CaseInsensitiveDict
 
