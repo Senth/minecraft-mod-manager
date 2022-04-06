@@ -3,21 +3,21 @@ from typing import Any, List, Set, Tuple, Union
 from ...config import config
 from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
-from ...core.entities.sites import Sites
+from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
-from ...gateways.downloader import Downloader
+from ..http import Http
 from .api import Api
 
 _base_url = "https://api.modrinth.com/api/v1"
 
 
 class ModrinthApi(Api):
-    def __init__(self, downloader: Downloader) -> None:
-        super().__init__(downloader, Sites.modrinth)
+    def __init__(self, http: Http) -> None:
+        super().__init__(http, Sites.modrinth)
 
     def get_all_versions(self, mod: Mod) -> List[VersionInfo]:
         versions: List[VersionInfo] = []
-        json = self.downloader.get(ModrinthApi._make_versions_url(mod))
+        json = self.http.get(ModrinthApi._make_versions_url(mod))
         for json_version in json:
             try:
                 version = ModrinthApi._json_to_version_info(json_version)
@@ -30,7 +30,7 @@ class ModrinthApi(Api):
         return versions
 
     def _find_mod_id_by_slug(self, search: str, possible_slugs: Set[str]) -> Union[Tuple[str, str], None]:
-        json = self.downloader.get(ModrinthApi._make_search_url(search))
+        json = self.http.get(ModrinthApi._make_search_url(search))
         if "hits" not in json:
             return None
 
@@ -43,6 +43,18 @@ class ModrinthApi(Api):
                         site_id = site_id.replace("local-", "")
                         return site_id, slug
         return None
+
+    def search_mod(self, search: str) -> List[Site]:
+        mods: List[Site] = []
+        json = self.http.get(ModrinthApi._make_search_url(search))
+
+        for mod_info in json["hits"]:
+            if "slug" in mod_info and "mod_id" in mod_info:
+                slug = mod_info["slug"]
+                site_id = str(mod_info["mod_id"])
+                site_id = site_id.replace("local-", "")
+                mods.append(Site(Sites.modrinth, site_id, slug))
+        return mods
 
     @staticmethod
     def _make_search_url(search: str) -> str:

@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Union
+from typing import Optional, Union
 
 import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
@@ -9,7 +9,7 @@ from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
-from ..downloader import Downloader
+from ..http import Http
 from .curse_api import CurseApi
 
 testdata_dir = Path(__file__).parent.joinpath("testdata").joinpath("curse_api")
@@ -31,7 +31,7 @@ def carpet_files():
 
 @pytest.fixture
 def downloader():
-    mocked = mock(Downloader)
+    mocked = mock(Http)
     yield mocked
     unstub()
 
@@ -58,35 +58,60 @@ def mod(id="carpet", name="Carpet", site_slug="carpet", site_id=site_id, file: U
         ),
         (
             "Find site id by id",
-            mod(site_id=None),
+            mod(site_id=""),
             (site_id, "carpet"),
         ),
         (
             "Find site id from filename",
-            mod(id="carput-fail", site_slug=None, file="fabric-carpet-1.14.4-1.2.0+v191024.jar"),
+            mod(id="carput-fail", site_slug="", file="fabric-carpet-1.14.4-1.2.0+v191024.jar"),
             (site_id, "carpet"),
         ),
         (
             "Site id not found",
-            mod(id="crash", site_slug=None),
+            mod(id="crash", site_slug=""),
             None,
         ),
     ],
 )
 def test_find_mod_id_by_slug(name, mod: Mod, expected, api: CurseApi, carpet_search):
     print(name)
-    when(api.downloader).get(...).thenReturn(carpet_search)
+    when(api.http).get(...).thenReturn(carpet_search)
 
-    result = api._find_mod_id_by_slug("", mod.get_possible_slugs())
+    actual = api._find_mod_id_by_slug("", mod.get_possible_slugs())
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert expected == result
+    assert expected == actual
+
+
+def test_search_mod(api: CurseApi, carpet_search):
+    when(api.http).get(...).thenReturn(carpet_search)
+    expected = [
+        Site(Sites.curse, "349239", "carpet"),
+        Site(Sites.curse, "361689", "carpet-stairs-mod"),
+        Site(Sites.curse, "349240", "carpet-extra"),
+        Site(Sites.curse, "409947", "ceiling-carpets"),
+        Site(Sites.curse, "397510", "carpet-tis-addition"),
+        Site(Sites.curse, "315944", "forgedcarpet"),
+        Site(Sites.curse, "441529", "ivan-carpet-addition"),
+        Site(Sites.curse, "229429", "weather-carpets-mod"),
+        Site(Sites.curse, "443142", "carpet-without-player"),
+        Site(Sites.curse, "417744", "carpet-wood"),
+        Site(Sites.curse, "264320", "no-collide-carpets"),
+        Site(Sites.curse, "40519", "carpet-mod"),
+    ]
+
+    actual = api.search_mod("carpet")
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
+
+    assert expected == actual
 
 
 def test_get_all_versions_directly_when_we_have_mod_id(api: CurseApi, carpet_files):
-    when(api.downloader).get(...).thenReturn(carpet_files)
+    when(api.http).get(...).thenReturn(carpet_files)
     expected = [
         VersionInfo(
             stability=Stabilities.beta,
@@ -130,9 +155,9 @@ def test_get_all_versions_directly_when_we_have_mod_id(api: CurseApi, carpet_fil
         ),
     ]
 
-    versions = api.get_all_versions(mod())
+    actual = api.get_all_versions(mod())
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert versions == expected
+    assert expected == actual

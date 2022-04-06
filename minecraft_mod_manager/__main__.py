@@ -11,7 +11,7 @@ from .app.update.update import Update
 from .config import config
 from .core.entities.actions import Actions
 from .gateways.arg_parser import parse_args
-from .gateways.downloader import Downloader
+from .gateways.http import Http
 from .gateways.jar_parser import JarParser
 from .gateways.sqlite import Sqlite
 
@@ -28,7 +28,7 @@ def main():
 
     sqlite = Sqlite()
     jar_parser = JarParser(config.dir)
-    downloader = Downloader()
+    downloader = Http()
     repo = RepoImpl(jar_parser, sqlite, downloader)
     try:
         if config.action == Actions.update:

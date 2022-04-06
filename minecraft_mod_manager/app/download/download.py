@@ -1,6 +1,6 @@
 from typing import List, Sequence
 
-from minecraft_mod_manager.gateways.downloader import MaxRetriesExceeded
+from minecraft_mod_manager.gateways.http import MaxRetriesExceeded
 from tealprint import TealPrint
 
 from ...core.entities.mod import Mod, ModArg

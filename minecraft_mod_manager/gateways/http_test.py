@@ -10,7 +10,7 @@ from requests.structures import CaseInsensitiveDict
 
 from ..config import config
 from ..core.errors.download_failed import DownloadFailed
-from ..gateways.downloader import Downloader, MaxRetriesExceeded
+from .http import Http, MaxRetriesExceeded
 
 
 @pytest.fixture
@@ -34,7 +34,7 @@ def mock_file():
 
 @pytest.fixture
 def downloader():
-    return Downloader()
+    return Http()
 
 
 def test_use_filename_when_it_exists(downloader, mock_response, mock_file):

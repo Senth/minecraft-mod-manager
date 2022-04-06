@@ -14,7 +14,7 @@ from ..core.entities.version_info import VersionInfo
 from ..core.errors.mod_not_found_exception import ModNotFoundException
 from ..gateways.api.curse_api import CurseApi
 from ..gateways.api.modrinth_api import ModrinthApi
-from ..gateways.downloader import Downloader
+from ..gateways.http import Http
 from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
 from ..utils.log_colors import LogColors
@@ -23,14 +23,14 @@ from ..utils.log_colors import LogColors
 class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
     """Cache/Adapter between jar_parser, sqlite and the rest of the application"""
 
-    def __init__(self, jar_parser: JarParser, sqlite: Sqlite, downloader: Downloader) -> None:
+    def __init__(self, jar_parser: JarParser, sqlite: Sqlite, http: Http) -> None:
         self.db = sqlite
         self.jar_parser = jar_parser
         self.mods = self.db.sync_with_dir(jar_parser.mods)
-        self.downloader = downloader
+        self.http = http
         self.apis = (
-            CurseApi(downloader),
-            ModrinthApi(downloader),
+            CurseApi(http),
+            ModrinthApi(http),
         )
 
     def get_mod(self, id: str) -> Union[Mod, None]:
@@ -100,7 +100,7 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         return versions
 
     def download(self, url: str, filename: str = "") -> Path:
-        return Path(self.downloader.download(url, filename))
+        return Path(self.http.download(url, filename))
 
     @staticmethod
     def _print_found():
