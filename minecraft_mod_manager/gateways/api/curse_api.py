@@ -1,21 +1,21 @@
 from typing import Any, List, Set, Tuple, Union
 
 from ...core.entities.mod import Mod
-from ...core.entities.sites import Sites
+from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
-from ..downloader import Downloader
+from ..http import Http
 from .api import Api
 
 _base_url = "https://addons-ecs.forgesvc.net/api/v2/addon"
 
 
 class CurseApi(Api):
-    def __init__(self, downloader: Downloader) -> None:
-        super().__init__(downloader, Sites.curse)
+    def __init__(self, http: Http) -> None:
+        super().__init__(http, Sites.curse)
 
     def get_all_versions(self, mod: Mod) -> List[VersionInfo]:
         versions: List[VersionInfo] = []
-        files = self.downloader.get(CurseApi._make_files_url(mod))
+        files = self.http.get(CurseApi._make_files_url(mod))
         for file in files:
             version = CurseApi._file_to_version_info(file)
             version.name = mod.name
@@ -24,7 +24,7 @@ class CurseApi(Api):
         return versions
 
     def _find_mod_id_by_slug(self, search: str, possible_slugs: Set[str]) -> Union[Tuple[str, str], None]:
-        json = self.downloader.get(CurseApi._make_search_url(search))
+        json = self.http.get(CurseApi._make_search_url(search))
         for curse_mod in json:
             if "slug" in curse_mod and "id" in curse_mod:
                 slug = curse_mod["slug"]
@@ -32,6 +32,16 @@ class CurseApi(Api):
                     if slug == possible_slug:
                         return str(curse_mod["id"]), slug
         return None
+
+    def search_mod(self, search: str) -> List[Site]:
+        mods: List[Site] = []
+        json = self.http.get(CurseApi._make_search_url(search))
+        for curse_mod in json:
+            if "slug" in curse_mod and "id" in curse_mod:
+                slug = curse_mod["slug"]
+                site_id = curse_mod["id"]
+                mods.append(Site(Sites.curse, str(site_id), slug))
+        return mods
 
     @staticmethod
     def _make_search_url(search: str) -> str:

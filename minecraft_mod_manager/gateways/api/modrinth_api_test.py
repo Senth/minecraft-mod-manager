@@ -9,7 +9,7 @@ from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
-from ...gateways.downloader import Downloader
+from ..http import Http
 from .modrinth_api import ModrinthApi
 
 testdata_dir = Path(__file__).parent.joinpath("testdata").joinpath("modrinth_api")
@@ -38,7 +38,7 @@ def versions_without_files():
 
 @pytest.fixture
 def downloader():
-    mocked = mock(Downloader)
+    mocked = mock(Http)
     yield mocked
     unstub()
 
@@ -82,18 +82,41 @@ def mod(id="fabric-api", name="Fabric API", site_slug="fabric-api", site_id=site
 )
 def test_find_mod_id_by_slug(name, mod: Mod, expected, api: ModrinthApi, search_result):
     print(name)
-    when(api.downloader).get(...).thenReturn(search_result)
+    when(api.http).get(...).thenReturn(search_result)
 
-    result = api._find_mod_id_by_slug("", mod.get_possible_slugs())
+    actual = api._find_mod_id_by_slug("", mod.get_possible_slugs())
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert expected == result
+    assert expected == actual
+
+
+def test_search_mod(api: ModrinthApi, search_result):
+    when(api.http).get(...).thenReturn(search_result)
+    expected = [
+        Site(Sites.modrinth, "P7dR8mSH", "fabric-api"),
+        Site(Sites.modrinth, "720sJXM2", "bineclaims"),
+        Site(Sites.modrinth, "iA9GjB4v", "BoxOfPlaceholders"),
+        Site(Sites.modrinth, "ZfVQ3Rjs", "mealapi"),
+        Site(Sites.modrinth, "MLYQ9VGP", "cardboard"),
+        Site(Sites.modrinth, "meZK2DCX", "dawn"),
+        Site(Sites.modrinth, "ssUbhMkL", "gravestones"),
+        Site(Sites.modrinth, "BahnQObN", "chat-icon-api"),
+        Site(Sites.modrinth, "oq1VV8nB", "splashesAPI"),
+        Site(Sites.modrinth, "gno5mxtx", "grand-economy"),
+    ]
+
+    actual = api.search_mod("search string")
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
+
+    assert expected == actual
 
 
 def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, versions_result):
-    when(api.downloader).get(...).thenReturn(versions_result)
+    when(api.http).get(...).thenReturn(versions_result)
     expected = [
         VersionInfo(
             stability=Stabilities.beta,
@@ -137,16 +160,16 @@ def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, version
         ),
     ]
 
-    versions = api.get_all_versions(mod())
+    actual = api.get_all_versions(mod())
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert expected == versions
+    assert expected == actual
 
 
 def test_get_versions_without_files(api: ModrinthApi, versions_without_files):
-    when(api.downloader).get(...).thenReturn(versions_without_files)
+    when(api.http).get(...).thenReturn(versions_without_files)
     expected = [
         VersionInfo(
             stability=Stabilities.release,
@@ -170,9 +193,9 @@ def test_get_versions_without_files(api: ModrinthApi, versions_without_files):
         ),
     ]
 
-    versions = api.get_all_versions(mod())
+    actual = api.get_all_versions(mod())
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
-    assert expected == versions
+    assert expected == actual

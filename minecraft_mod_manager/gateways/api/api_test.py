@@ -4,13 +4,13 @@ from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 from ...core.entities.mod import Mod
 from ...core.entities.sites import Site, Sites
 from ...core.errors.mod_not_found_exception import ModNotFoundException
-from ...gateways.downloader import Downloader
+from ..http import Http
 from .api import Api
 
 
 @pytest.fixture
 def downloader():
-    mocked = mock(Downloader)
+    mocked = mock(Http)
     yield mocked
     unstub()
 
