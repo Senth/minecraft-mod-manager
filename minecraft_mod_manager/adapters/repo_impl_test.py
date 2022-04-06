@@ -9,7 +9,7 @@ from ..core.entities.mod_loaders import ModLoaders
 from ..core.entities.sites import Site, Sites
 from ..core.entities.version_info import Stabilities, VersionInfo
 from ..core.errors.mod_not_found_exception import ModNotFoundException
-from ..gateways.downloader import Downloader
+from ..gateways.http import Http
 from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
 
@@ -31,7 +31,7 @@ def sqlite():
 
 @pytest.fixture
 def downloader():
-    return mock(Downloader)
+    return mock(Http)
 
 
 @pytest.fixture

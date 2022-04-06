@@ -6,12 +6,12 @@ from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
-from ...gateways.downloader import Downloader
+from ..http import Http
 
 
 class Api:
-    def __init__(self, downloader: Downloader, site_name: Sites) -> None:
-        self.downloader = downloader
+    def __init__(self, http: Http, site_name: Sites) -> None:
+        self.http = http
         self.site_name = site_name
 
     def get_all_versions(self, mod: Mod) -> List[VersionInfo]:
@@ -36,6 +36,9 @@ class Api:
                     return Site(self.site_name, id, slug)
 
         raise ModNotFoundException(mod)
+
+    def search_mod(self, search: str) -> List[Site]:
+        raise NotImplementedError()
 
     def _find_mod_id_by_slug(self, search: str, possible_slugs: Set[str]) -> Union[Tuple[str, str], None]:
         raise NotImplementedError()
