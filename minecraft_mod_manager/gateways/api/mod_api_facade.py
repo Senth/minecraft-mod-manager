@@ -1,5 +1,7 @@
 from typing import Dict, List
 
+from tealprint import TealPrint
+
 from ...core.entities.mod import Mod
 from ...core.entities.sites import Site, Sites
 from ...core.errors.mod_not_found_exception import ModNotFoundException
@@ -19,6 +21,8 @@ class ModApiFacade:
         It will also try with various search string until it finds a match.
         Throws an exception if no match is found."""
 
+        TealPrint.info("🔍 Searching for mod", push_indent=True)
+
         found_sites: Dict[Sites, Site] = {}
 
         # Already specified a site slug
@@ -26,34 +30,52 @@ class ModApiFacade:
             if mod.sites and api.site_name in mod.sites:
                 existing_site = mod.sites[api.site_name]
                 if existing_site.slug:
+                    TealPrint.verbose(f"🔍 Searching for {existing_site.slug} on {api.site_name}")
                     infos = api.search_mod(existing_site.slug)
                     for info in infos:
                         if info.slug == existing_site.slug:
+                            TealPrint.verbose(f"🟢 Found {existing_site.slug} on {api.site_name}")
                             found_sites[api.site_name] = info
                             break
 
         if len(found_sites) > 0:
+            TealPrint.pop_indent()
             return found_sites
 
         # Search by various possible slug names
         possible_names = mod.get_possible_slugs()
         for api in self.apis:
+            TealPrint.verbose(f"🔍 Searching on {api.site_name}", push_indent=True)
             for possible_name in possible_names:
+                TealPrint.debug(f"🔍 Search string: {possible_name}")
                 infos = api.search_mod(possible_name)
                 for info in infos:
                     if info.slug in possible_names:
+                        TealPrint.debug(f"🟢 Found with slug: {info.slug}")
                         found_sites[api.site_name] = info
                         break
                 if api.site_name in found_sites:
                     break
+            TealPrint.pop_indent()
+
+        if len(found_sites) > 0:
+            TealPrint.pop_indent()
+            return found_sites
 
         # Split search word and try again
         split_word = self.word_splitter.split_words(mod.id)
-        for api in self.apis:
-            infos = api.search_mod(split_word)
-            for info in infos:
-                if info.slug in possible_names:
-                    found_sites[api.site_name] = info
-                    break
+        if split_word != mod.id:
+            for api in self.apis:
+                TealPrint.verbose(f"🔍 Searching on {api.site_name} by splitting word: {split_word}")
+                infos = api.search_mod(split_word)
+                for info in infos:
+                    if info.slug in possible_names:
+                        TealPrint.debug(f"🟢 Found with slug: {info.slug}")
+                        found_sites[api.site_name] = info
+                        break
+
+        TealPrint.pop_indent()
+        if len(found_sites) > 0:
+            return found_sites
 
         raise ModNotFoundException(mod)
