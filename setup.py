@@ -27,7 +27,7 @@ setup(
     install_requires=[
         "latest-user-agents",
         "requests",
-        "tealprint",
+        "tealprint>=0.3.0",
         "toml",
     ],
     classifiers=[
