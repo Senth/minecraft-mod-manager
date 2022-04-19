@@ -9,7 +9,7 @@ from .api import Api
 
 
 @pytest.fixture
-def downloader():
+def http():
     mocked = mock(Http)
     yield mocked
     unstub()

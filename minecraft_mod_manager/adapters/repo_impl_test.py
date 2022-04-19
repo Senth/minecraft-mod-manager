@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Union
+from typing import Any, List, Union
 
 import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
@@ -30,98 +30,17 @@ def sqlite():
 
 
 @pytest.fixture
-def downloader():
+def http():
     return mock(Http)
 
 
 @pytest.fixture
-def repo_impl(jar_parser, sqlite, downloader):
-    return RepoImpl(jar_parser, sqlite, downloader)
+def repo_impl(jar_parser, sqlite, http):
+    return RepoImpl(jar_parser, sqlite, http)
 
 
 def mod() -> Mod:
     return Mod("", "")
-
-
-class TestSearchForMod:
-    def __init__(
-        self,
-        name: str,
-        mod: Mod,
-        expected: Union[Dict[Sites, Site], type],
-        curse_api_returns: Union[Site, ModNotFoundException, None] = None,
-        modrinth_api_returns: Union[Site, ModNotFoundException, None] = None,
-    ):
-        self.name = name
-        self.mod = mod
-        self.expected = expected
-
-        self.curse_api_returns = curse_api_returns
-        self.modrinth_api_returns = modrinth_api_returns
-
-
-@pytest.mark.parametrize(
-    "test",
-    [
-        TestSearchForMod(
-            name="Returns ModNotFoundException when not found anywhere",
-            mod=mod(),
-            expected=ModNotFoundException,
-            curse_api_returns=ModNotFoundException(mod()),
-            modrinth_api_returns=ModNotFoundException(mod()),
-        ),
-        TestSearchForMod(
-            name="Returns site for Curse when found there",
-            mod=mod(),
-            expected={Sites.curse: Site(Sites.curse)},
-            curse_api_returns=Site(Sites.curse),
-            modrinth_api_returns=ModNotFoundException(mod()),
-        ),
-        TestSearchForMod(
-            name="Returns site for Modrinth when found",
-            mod=mod(),
-            expected={Sites.modrinth: Site(Sites.modrinth)},
-            curse_api_returns=ModNotFoundException(mod()),
-            modrinth_api_returns=Site(Sites.modrinth),
-        ),
-        TestSearchForMod(
-            name="Returns all sites when none is specified",
-            mod=mod(),
-            expected={Sites.curse: Site(Sites.curse), Sites.modrinth: Site(Sites.modrinth)},
-            curse_api_returns=Site(Sites.curse),
-            modrinth_api_returns=Site(Sites.modrinth),
-        ),
-        TestSearchForMod(
-            name="Returns all sites when both are specified",
-            mod=Mod("", "", sites={Sites.curse: Site(Sites.curse), Sites.modrinth: Site(Sites.modrinth)}),
-            expected={Sites.curse: Site(Sites.curse), Sites.modrinth: Site(Sites.modrinth)},
-            curse_api_returns=Site(Sites.curse),
-            modrinth_api_returns=Site(Sites.modrinth),
-        ),
-        TestSearchForMod(
-            name="Only calls api for the sites that have been specified",
-            mod=Mod("", "", sites={Sites.curse: Site(Sites.curse)}),
-            expected={Sites.curse: Site(Sites.curse)},
-            curse_api_returns=Site(Sites.curse),
-        ),
-    ],
-)
-def test_search_for_mod(test: TestSearchForMod, repo_impl: RepoImpl):
-    print(test.name)
-
-    mock_find_mod_id(repo_impl.apis[0], test.curse_api_returns)
-    mock_find_mod_id(repo_impl.apis[1], test.modrinth_api_returns)
-
-    if test.expected == ModNotFoundException:
-        with pytest.raises(ModNotFoundException) as e:
-            repo_impl.search_for_mod(test.mod)
-        assert test.expected == e.type
-    else:
-        result = repo_impl.search_for_mod(test.mod)
-        assert test.expected == result
-
-    verifyStubbedInvocationsAreUsed()
-    unstub()
 
 
 def mock_find_mod_id(api: Any, result: Any):

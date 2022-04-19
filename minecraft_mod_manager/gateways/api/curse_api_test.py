@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Optional, Union
+from typing import Optional
 
 import pytest
 from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
@@ -30,21 +30,21 @@ def carpet_files():
 
 
 @pytest.fixture
-def downloader():
+def http():
     mocked = mock(Http)
     yield mocked
     unstub()
 
 
 @pytest.fixture
-def api(downloader):
-    return CurseApi(downloader)
+def api(http):
+    return CurseApi(http)
 
 
 site_id = "349239"
 
 
-def mod(id="carpet", name="Carpet", site_slug="carpet", site_id=site_id, file: Union[str, None] = None):
+def mod(id="carpet", name="Carpet", site_slug="carpet", site_id=site_id, file: Optional[str] = None):
     return Mod(id=id, name=name, sites={Sites.curse: Site(Sites.curse, site_id, site_slug)}, file=file)
 
 
