@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Dict, List
 
 from tealprint import TealPrint
@@ -5,12 +7,22 @@ from tealprint import TealPrint
 from ...core.entities.mod import Mod
 from ...core.entities.sites import Site, Sites
 from ...core.errors.mod_not_found_exception import ModNotFoundException
+from ..http import Http
 from .api import Api
+from .curse_api import CurseApi
+from .modrinth_api import ModrinthApi
 from .word_splitter_api import WordSplitterApi
 
 
-class ModApiFacade:
+class ModFinder:
     """Search and find mods on various sites"""
+
+    @staticmethod
+    def create(http: Http) -> ModFinder:
+        return ModFinder(
+            mod_apis=[CurseApi(http), ModrinthApi(http)],
+            word_splitter_api=WordSplitterApi(http),
+        )
 
     def __init__(self, mod_apis: List[Api], word_splitter_api: WordSplitterApi) -> None:
         self.apis = mod_apis

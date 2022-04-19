@@ -1,4 +1,4 @@
-from typing import Sequence, Union
+from typing import Optional, Sequence
 
 from ...core.entities.mod import Mod
 from ...core.entities.version_info import VersionInfo
@@ -12,5 +12,5 @@ class UpdateRepo(DownloadRepo):
     def get_all_mods(self) -> Sequence[Mod]:
         raise NotImplementedError()
 
-    def get_mod(self, id: str) -> Union[Mod, None]:
+    def get_mod(self, id: str) -> Optional[Mod]:
         raise NotImplementedError()

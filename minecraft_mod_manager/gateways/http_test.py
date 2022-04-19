@@ -33,24 +33,24 @@ def mock_file():
 
 
 @pytest.fixture
-def downloader():
+def http():
     return Http()
 
 
-def test_use_filename_when_it_exists(downloader, mock_response, mock_file):
+def test_use_filename_when_it_exists(http, mock_response, mock_file):
     filename = "some-file.jar"
     expected = path.join(config.dir, filename)
 
     when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
 
-    result = downloader.download("", filename)
+    result = http.download("", filename)
 
     unstub()
     assert expected == result
 
 
-def test_use_downloaded_filename_when_no_filename_specified(downloader, mock_response, mock_file):
+def test_use_downloaded_filename_when_no_filename_specified(http, mock_response, mock_file):
     mock_headers = mock(CaseInsensitiveDict)
     mock_response.headers = mock_headers
     filename = "downloaded.jar"
@@ -60,13 +60,13 @@ def test_use_downloaded_filename_when_no_filename_specified(downloader, mock_res
     when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
 
-    result = downloader.download("", "")
+    result = http.download("", "")
 
     unstub()
     assert expected == result
 
 
-def test_use_downloaded_filename_add_jar_when_no_filename_specified(downloader, mock_response, mock_file):
+def test_use_downloaded_filename_add_jar_when_no_filename_specified(http, mock_response, mock_file):
     mock_headers = mock(CaseInsensitiveDict)
     mock_response.headers = mock_headers
     filename = "downloaded"
@@ -76,13 +76,13 @@ def test_use_downloaded_filename_add_jar_when_no_filename_specified(downloader, 
     when(requests).get(...).thenReturn(mock_response)
     when(builtins).open(...).thenReturn(mock_file)
 
-    result = downloader.download("", "")
+    result = http.download("", "")
 
     unstub()
     assert expected == result
 
 
-def test_no_mock_interactions_when_pretending(downloader):
+def test_no_mock_interactions_when_pretending(http):
     filename = "file.jar"
     expected = filename
     config.pretend = True
@@ -90,7 +90,7 @@ def test_no_mock_interactions_when_pretending(downloader):
     when(builtins).open(...).thenRaise(NotImplementedError())
 
     try:
-        result = downloader.download("", filename)
+        result = http.download("", filename)
         assert expected == result
     except Exception as e:
         assert e is None
@@ -99,7 +99,7 @@ def test_no_mock_interactions_when_pretending(downloader):
         unstub()
 
 
-def test_get_when_non_strict_json(downloader):
+def test_get_when_non_strict_json(http):
     response = Response()
     response.encoding = "UTF-8"
     response.status_code = 200
@@ -107,26 +107,26 @@ def test_get_when_non_strict_json(downloader):
     expected = {"text": "This is\nmy text"}
     when(requests).get(...).thenReturn(response)
 
-    result = downloader.get("https://test.com")
+    result = http.get("https://test.com")
 
     assert expected == result
 
     unstub()
 
 
-def test_download_failed(downloader, mock_response):
+def test_download_failed(http, mock_response):
     mock_response.status_code = 404  # type:ignore
     mock_response.reason = "Not found"  # type:ignore
     mock_response.content = "404 not found"  # type:ignore
     when(requests).get(...).thenReturn(mock_response)
 
     with pytest.raises(DownloadFailed):
-        downloader.download("", "")
+        http.download("", "")
 
     unstub()
 
 
-def test_download_retry(downloader, mock_response):
+def test_download_retry(http, mock_response):
     mock_response.status_code = 524  # type:ignore
     mock_response.reason = "Timed out"  # type:ignore
     mock_response.content = "524 Timed out"  # type:ignore
@@ -135,6 +135,6 @@ def test_download_retry(downloader, mock_response):
     when(requests).get(...).thenReturn(mock_response)
 
     with pytest.raises(MaxRetriesExceeded):
-        downloader.download("", "")
+        http.download("", "")
 
     unstub()
