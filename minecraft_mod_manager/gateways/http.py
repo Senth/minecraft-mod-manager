@@ -38,9 +38,13 @@ class Http:
             return self.cache[url]
 
         with Http._get_with_retries(url) as response:
-            obj = response.json(strict=False)
-            self.cache[url] = obj
-            return obj
+            content_type = response.headers.get("Content-Type", "plain/text")
+            # Check if headers is json
+            if content_type.startswith("application/json"):
+                self.cache[url] = response.json(strict=False)
+            else:
+                self.cache[url] = response.text
+            return self.cache[url]
 
     def download(self, url: str, filename: str) -> str:
         """Download the specified mod
