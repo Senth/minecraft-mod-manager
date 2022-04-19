@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, List, Sequence, Union
+from typing import List, Optional, Sequence
 
 from tealprint import TealPrint
 
@@ -9,9 +9,7 @@ from ..app.show.show_repo import ShowRepo
 from ..app.update.update_repo import UpdateRepo
 from ..config import config
 from ..core.entities.mod import Mod
-from ..core.entities.sites import Site, Sites
 from ..core.entities.version_info import VersionInfo
-from ..core.errors.mod_not_found_exception import ModNotFoundException
 from ..gateways.api.curse_api import CurseApi
 from ..gateways.api.modrinth_api import ModrinthApi
 from ..gateways.http import Http
@@ -33,7 +31,7 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
             ModrinthApi(http),
         )
 
-    def get_mod(self, id: str) -> Union[Mod, None]:
+    def get_mod(self, id: str) -> Optional[Mod]:
         for installed_mod in self.mods:
             if installed_mod.id == id:
                 return installed_mod
@@ -59,36 +57,12 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
     def get_all_mods(self) -> Sequence[Mod]:
         return self.mods
 
-    def get_mod_from_file(self, filepath: str) -> Union[Mod, None]:
+    def get_mod_from_file(self, filepath: str) -> Optional[Mod]:
         return self.jar_parser.get_mod(filepath)
 
     def remove_mod_file(self, filename: str) -> None:
         path = Path(config.dir).joinpath(filename)
         path.unlink(missing_ok=True)
-
-    def search_for_mod(self, mod: Mod) -> Dict[Sites, Site]:
-        sites: Dict[Sites, Site] = {}
-
-        for api in self.apis:
-            if mod.matches_site(api.site_name):
-                # Already has an id
-                if mod.sites and api.site_name in mod.sites and mod.sites[api.site_name].id:
-                    TealPrint.verbose(f"🔍 Previously found on {api.site_name.value}")
-                    return mod.sites
-                try:
-                    TealPrint.verbose(f"🔍 Searching on {api.site_name.value}...", push_indent=True)
-                    site = api.find_mod_id(mod)
-                    sites[site.name] = site
-                    RepoImpl._print_found()
-                except ModNotFoundException:
-                    RepoImpl._print_not_found()
-                finally:
-                    TealPrint.pop_indent()
-
-        if len(sites) == 0:
-            raise ModNotFoundException(mod)
-
-        return sites
 
     def get_versions(self, mod: Mod) -> List[VersionInfo]:
         versions: List[VersionInfo] = []

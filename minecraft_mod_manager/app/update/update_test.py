@@ -7,6 +7,7 @@ from ...config import config
 from ...core.entities.mod import Mod
 from ...core.entities.sites import Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
+from ...gateways.api.mod_finder import ModFinder
 from .update import Update
 from .update_repo import UpdateRepo
 
@@ -16,10 +17,15 @@ def mock_repo():
     return mock(UpdateRepo)
 
 
-def test_use_all_installed_mods_when_no_mods_are_specified(mock_repo):
+@pytest.fixture
+def mock_finder():
+    return mock(ModFinder)
+
+
+def test_use_all_installed_mods_when_no_mods_are_specified(mock_repo, mock_finder):
     mods: List[Mod] = [Mod("1", "one"), Mod("2", "two")]
-    update = Update(mock_repo)
-    when(mock_repo).get_all_mods().thenReturn(mods)
+    update = Update(mock_repo, mock_finder)
+    when(mock_repo, mock_finder).get_all_mods().thenReturn(mods)
     when(update).find_download_and_install(...)
 
     update.execute([])
@@ -28,9 +34,9 @@ def test_use_all_installed_mods_when_no_mods_are_specified(mock_repo):
     unstub()
 
 
-def test_call_find_download_and_install(mock_repo):
-    when(mock_repo).get_all_mods().thenReturn([])
-    update = Update(mock_repo)
+def test_call_find_download_and_install(mock_repo, mock_finder):
+    when(mock_repo, mock_finder).get_all_mods().thenReturn([])
+    update = Update(mock_repo, mock_finder)
     when(update).find_download_and_install(...)
 
     update.execute([])
@@ -99,7 +105,7 @@ def version_info(filename: str) -> VersionInfo:
     ],
 )
 def test_on_version_found(
-    name: str, old: Union[str, None], new: Union[str, None], pretend: bool, expected: bool, mock_repo
+    name: str, old: Union[str, None], new: Union[str, None], pretend: bool, expected: bool, mock_repo, mock_finder
 ):
     print(name)
 
@@ -107,7 +113,7 @@ def test_on_version_found(
     if expected:
         when(mock_repo).remove_mod_file(old)
 
-    update = Update(mock_repo)
+    update = Update(mock_repo, mock_finder)
     old_mod = Mod("", "", file=old)
     new_mod = Mod("", "", file=new)
     update.on_version_found(old_mod, new_mod)

@@ -3,6 +3,7 @@ from mockito import mock, unstub, verifyStubbedInvocationsAreUsed, when
 
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.mod_loaders import ModLoaders
+from ...gateways.api.mod_finder import ModFinder
 from .install import Install
 from .install_repo import InstallRepo
 
@@ -12,20 +13,25 @@ def mock_repo():
     return mock(InstallRepo)
 
 
-def test_mod_not_installed_when_already_installed(mock_repo):
+@pytest.fixture
+def mock_finder():
+    return mock(ModFinder)
+
+
+def test_mod_not_installed_when_already_installed(mock_repo, mock_finder):
     when(mock_repo).is_installed(...).thenReturn(True)
     when(mock_repo).get_all_mods(...).thenReturn([])
 
     input = [ModArg("")]
-    install = Install(mock_repo)
+    install = Install(mock_repo, mock_finder)
     install.execute(input)
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
 
-def test_call_find_download_and_install(mock_repo):
-    install = Install(mock_repo)
+def test_call_find_download_and_install(mock_repo, mock_finder):
+    install = Install(mock_repo, mock_finder)
     when(mock_repo).get_all_mods(...).thenReturn([])
     when(install).find_download_and_install(...)
     install.execute([])
@@ -34,8 +40,8 @@ def test_call_find_download_and_install(mock_repo):
     unstub()
 
 
-def test_set_mod_loader_by_majority(mock_repo):
-    install = Install(mock_repo)
+def test_set_mod_loader_by_majority(mock_repo, mock_finder):
+    install = Install(mock_repo, mock_finder)
     installed_mods = [
         Mod("", "", mod_loader=ModLoaders.fabric),
         Mod("", "", mod_loader=ModLoaders.fabric),
@@ -57,8 +63,8 @@ def test_set_mod_loader_by_majority(mock_repo):
     unstub()
 
 
-def test_dont_set_mod_loader(mock_repo):
-    install = Install(mock_repo)
+def test_dont_set_mod_loader(mock_repo, mock_finder):
+    install = Install(mock_repo, mock_finder)
     installed_mods = []
 
     input = ModArg("")
@@ -73,8 +79,8 @@ def test_dont_set_mod_loader(mock_repo):
     unstub()
 
 
-def test_dont_set_mod_loader_when_no_majority(mock_repo):
-    install = Install(mock_repo)
+def test_dont_set_mod_loader_when_no_majority(mock_repo, mock_finder):
+    install = Install(mock_repo, mock_finder)
     installed_mods = [
         Mod("", "", mod_loader=ModLoaders.fabric),
         Mod("", "", mod_loader=ModLoaders.forge),

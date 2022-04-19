@@ -10,6 +10,7 @@ from .app.show.show import Show
 from .app.update.update import Update
 from .config import config
 from .core.entities.actions import Actions
+from .gateways.api.mod_finder import ModFinder
 from .gateways.arg_parser import parse_args
 from .gateways.http import Http
 from .gateways.jar_parser import JarParser
@@ -28,15 +29,16 @@ def main():
 
     sqlite = Sqlite()
     jar_parser = JarParser(config.dir)
-    downloader = Http()
-    repo = RepoImpl(jar_parser, sqlite, downloader)
+    http = Http()
+    repo = RepoImpl(jar_parser, sqlite, http)
+    finder = ModFinder.create(http)
     try:
         if config.action == Actions.update:
-            update = Update(repo)
+            update = Update(repo, finder)
             update.execute(config.arg_mods)
 
         elif config.action == Actions.install:
-            install = Install(repo)
+            install = Install(repo, finder)
             install.execute(config.arg_mods)
 
         elif config.action == Actions.configure:

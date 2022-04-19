@@ -5,7 +5,7 @@ from ...core.entities.mod import Mod
 from ...core.entities.sites import Site, Sites
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from .api import Api
-from .mod_api_facade import ModApiFacade
+from .mod_finder import ModFinder
 from .word_splitter_api import WordSplitterApi
 
 
@@ -125,7 +125,7 @@ def test_find_mod(
     name, mod, curse_results, modrinth_results, word_splitter_result, expected, curse, modrinth, word_splitter
 ):
     print(name)
-    facade = ModApiFacade([curse, modrinth], word_splitter)
+    finder = ModFinder([curse, modrinth], word_splitter)
 
     # Stub curse
     for search_term, result in curse_results.items():
@@ -141,9 +141,9 @@ def test_find_mod(
 
     if expected == ModNotFoundException:
         with pytest.raises(ModNotFoundException):
-            facade.find_mod(mod)
+            finder.find_mod(mod)
     else:
-        actual = facade.find_mod(mod)
+        actual = finder.find_mod(mod)
         assert expected == actual
 
     unstub()
