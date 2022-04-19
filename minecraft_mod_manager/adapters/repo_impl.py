@@ -45,7 +45,14 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         self.db.update_mod(mod)
 
     def is_installed(self, id: str) -> bool:
-        return self.db.exists(id)
+        for mod in self.mods:
+            if mod.id == id:
+                return True
+            elif mod.sites:
+                for site in mod.sites.values():
+                    if site.slug == id:
+                        return True
+        return False
 
     def get_all_mods(self) -> Sequence[Mod]:
         return self.mods
