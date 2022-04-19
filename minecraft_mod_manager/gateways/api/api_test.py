@@ -16,8 +16,8 @@ def http():
 
 
 @pytest.fixture
-def api(downloader):
-    return Api(downloader, Sites.modrinth)
+def api(http):
+    return Api(http, Sites.modrinth)
 
 
 def test_find_mod_id_use_slug_directly_when_available(api: Api):
