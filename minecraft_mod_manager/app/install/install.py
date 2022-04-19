@@ -8,14 +8,15 @@ from ...core.entities.mod import Mod, ModArg
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.version_info import VersionInfo
 from ...core.utils.latest_version_finder import LatestVersionFinder
+from ...gateways.api.mod_finder import ModFinder
 from ...utils.log_colors import LogColors
 from ..download.download import Download
 from .install_repo import InstallRepo
 
 
 class Install(Download):
-    def __init__(self, repo: InstallRepo) -> None:
-        super().__init__(repo)
+    def __init__(self, repo: InstallRepo, finder: ModFinder) -> None:
+        super().__init__(repo, finder)
         self._install_repo = repo
 
     def execute(self, mods: Sequence[ModArg]) -> None:

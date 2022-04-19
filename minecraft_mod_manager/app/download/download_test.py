@@ -8,6 +8,7 @@ from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
 from ...core.errors.mod_file_invalid import ModFileInvalid
+from ...gateways.api.mod_finder import ModFinder
 from .download import Download
 from .download_repo import DownloadRepo
 
@@ -17,7 +18,12 @@ def mock_repo():
     return mock(DownloadRepo)
 
 
-def test_download_and_install_when_found(mock_repo):
+@pytest.fixture
+def mock_finder():
+    return mock(ModFinder)
+
+
+def test_download_and_install_when_found(mock_repo, mock_finder):
     input = [Mod("found", "")]
     version_info = VersionInfo(
         stability=Stabilities.release,
@@ -27,13 +33,13 @@ def test_download_and_install_when_found(mock_repo):
         minecraft_versions=[],
         download_url="",
     )
-    when(mock_repo).search_for_mod(...).thenReturn({Sites.curse: Site(Sites.curse, "", "")})
+    when(mock_finder).find_mod(...).thenReturn({Sites.curse: Site(Sites.curse, "", "")})
     when(mock_repo).get_versions(...).thenReturn([version_info])
     when(mock_repo).download(...).thenReturn(Path("mod.jar"))
     when(mock_repo).get_mod_from_file(...).thenReturn(Mod("found", ""))
     when(mock_repo).update_mod(...)
 
-    download = Download(mock_repo)
+    download = Download(mock_repo, mock_finder)
     when(download).on_version_found(...)
     download.find_download_and_install(input)
 
@@ -41,7 +47,7 @@ def test_download_and_install_when_found(mock_repo):
     unstub()
 
 
-def test_download_and_install_remove_downloaded_file_when_invalid_mod_file(mock_repo):
+def test_download_and_install_remove_downloaded_file_when_invalid_mod_file(mock_repo, mock_finder):
     input = [Mod("found", "")]
     version_info = VersionInfo(
         stability=Stabilities.release,
@@ -51,21 +57,21 @@ def test_download_and_install_remove_downloaded_file_when_invalid_mod_file(mock_
         minecraft_versions=[],
         download_url="",
     )
-    when(mock_repo).search_for_mod(...).thenReturn({Sites.curse: Site(Sites.curse, "", "")})
+    when(mock_finder).find_mod(...).thenReturn({Sites.curse: Site(Sites.curse, "", "")})
     when(mock_repo).get_versions(...).thenReturn([version_info])
     when(mock_repo).download(...).thenReturn(Path("mod.jar"))
     when(mock_repo).get_mod_from_file(...).thenRaise(ModFileInvalid(Path("mod.jar")))
     when(mock_repo).remove_mod_file(...)
 
-    download = Download(mock_repo)
+    download = Download(mock_repo, mock_finder)
     download.find_download_and_install(input)
 
     verifyStubbedInvocationsAreUsed()
     unstub()
 
 
-def test_update_mod_id_after_download(mock_repo):
-    download = Download(mock_repo)
+def test_update_mod_id_after_download(mock_repo, mock_finder):
+    download = Download(mock_repo, mock_finder)
 
     mod_arg = Mod("dummy", "name")
     installed_mod = Mod("validid", "name", version="1.0.0")
@@ -84,7 +90,7 @@ def test_update_mod_id_after_download(mock_repo):
         minecraft_versions=[],
         download_url="",
     )
-    when(mock_repo).search_for_mod(...).thenReturn({Sites.curse: Site(Sites.curse, "", "")})
+    when(mock_finder).find_mod(...).thenReturn({Sites.curse: Site(Sites.curse, "", "")})
     when(mock_repo).get_versions(...).thenReturn([version_info])
     when(mock_repo).download(...).thenReturn(Path("mod.jar"))
     when(mock_repo).update_mod(expected_mod)

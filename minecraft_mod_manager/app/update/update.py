@@ -5,14 +5,15 @@ from tealprint import TealPrint
 from ...config import config
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
+from ...gateways.api.mod_finder import ModFinder
 from ...utils.log_colors import LogColors
 from ..download.download import Download
 from .update_repo import UpdateRepo
 
 
 class Update(Download):
-    def __init__(self, repo: UpdateRepo) -> None:
-        super().__init__(repo)
+    def __init__(self, repo: UpdateRepo, finder: ModFinder) -> None:
+        super().__init__(repo, finder)
         self._update_repo = repo
 
     def execute(self, mods: Sequence[ModArg]) -> None:

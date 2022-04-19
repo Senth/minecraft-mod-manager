@@ -1,6 +1,5 @@
 from typing import List, Sequence
 
-from minecraft_mod_manager.gateways.http import MaxRetriesExceeded
 from tealprint import TealPrint
 
 from ...core.entities.mod import Mod, ModArg
@@ -9,13 +8,16 @@ from ...core.errors.download_failed import DownloadFailed
 from ...core.errors.mod_file_invalid import ModFileInvalid
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ...core.utils.latest_version_finder import LatestVersionFinder
+from ...gateways.api.mod_finder import ModFinder
+from ...gateways.http import MaxRetriesExceeded
 from ...utils.log_colors import LogColors
 from .download_repo import DownloadRepo
 
 
 class Download:
-    def __init__(self, repo: DownloadRepo):
+    def __init__(self, repo: DownloadRepo, finder: ModFinder):
         self._repo = repo
+        self._finder = finder
 
     def find_download_and_install(self, mods: Sequence[Mod]) -> None:
         mods_not_found: List[ModNotFoundException] = []
@@ -25,7 +27,7 @@ class Download:
         for mod in mods:
             try:
                 TealPrint.info(mod.id, color=LogColors.header, push_indent=True)
-                mod.sites = self._repo.search_for_mod(mod)
+                mod.sites = self._finder.find_mod(mod)
 
                 versions = self._repo.get_versions(mod)
                 latest_version = LatestVersionFinder.find_latest_version(mod, versions, filter=True)
