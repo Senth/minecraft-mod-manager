@@ -46,7 +46,18 @@ def test_remember_slug_for_installed_mod_if_mod_id_varies(helper: Helper):
 def test_install_from_modrinth(helper: Helper):
     code = helper.run("install", "lithium=modrinth:lithium")
     lithium_mod = helper.get_mod_in_dir_like("*lithium*.jar")
+
     assert lithium_mod is not None
     assert code == 0
 
-    lithium_mod.unlink()
+
+def test_install_entity_culling_when_using_word_splitter(helper: Helper):
+    """Tests to make sure that the word splitter is working correctly.
+    Some mods have names that makes them hard to search for on both Curse and
+    Modrinth. This test makes sure that we can search for those mods.
+    """
+    code = helper.run("install", "entityculling")
+    entity_culling = helper.get_mod_in_dir_like("*entityculling*.jar")
+
+    assert code == 0
+    assert entity_culling is not None
