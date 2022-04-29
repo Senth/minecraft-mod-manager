@@ -1,0 +1,41 @@
+{
+  "id": "aC3cM3Vq",
+  "slug": "mouse-tweaks",
+  "project_type": "mod",
+  "team": "Gn6mAc1d",
+  "title": "Mouse Tweaks",
+  "description": "Enhances inventory management by adding various functions to the mouse buttons. ",
+  "body": "Mouse Tweaks replaces the standard RMB dragging mechanic, adds two new LMB dragging mechanics and an ability to quickly move items with the scroll wheel.\n\n## Installation\n\n1.16.5 and later: install Minecraft Forge or Fabric.\n\n1.14.4 and later: install Minecraft Forge.\n\n1.12.2 and earlier: install either Minecraft Forge or LiteLoader (or both).\n\nPut the Mouse Tweaks jar-file into the mods folder in your .minecraft directory.\n\n<br>\n\n[**Mouse Tweaks API**](https://github.com/YaLTeR/MouseTweaks/tree/master/src/main/java/yalter/mousetweaks/api)\n\n<br>\n\nConfiguration file: `.minecraft/config/MouseTweaks.cfg`\n\n## Tweaks\n\n### RMB Tweak\n\nVery similar to the standard RMB dragging mechanic, with one difference: if you drag over a slot multiple times, an item will be put there multiple times. Replaces the standard mechanic if enabled.\n\n**Configuration setting:** `RMBTweak=1`\n\nHold your right mouse button:\n\n![](https://i.imgur.com/Uo7xF.png)\n\nDrag your mouse around the crafting grid:\n\n![](https://i.imgur.com/NCRED.png)\n\nYou can drag your mouse on top of existing items:\n\n![](https://i.imgur.com/6MQv6.png)\n\n### LMB Tweak (with item)\n\nLets you quickly pick up or move items of the same type.\n\n**Configuration setting:** `LMBTweakWithItem=1`\n\nHold your left mouse button to pick up an item:\n\n![](https://i.imgur.com/ziuGG.png?1)\n\nDrag your mouse across the inventory. Items of the same type will be picked up:\n\n![](https://i.imgur.com/JDjsE.png?2)\n\nHold shift and drag. Items of the same type will get \"shift-clicked\":\n\n![](https://i.imgur.com/YrvmT.png?2)\n\n### LMB Tweak (without item)\n\nQuickly move items into another inventory.\n\n**Configuration setting:** `LMBTweakWithoutItem=1`\n\nHold shift, then hold your left mouse button:\n\n*(Mouse cursor is not visible for some reason)*\n\n![](https://i.imgur.com/f9Ejp.png?1)\n\nDrag your mouse across the inventory. Items will get \"shift-clicked\":\n\n*(Mouse cursor is not visible for some reason)*\n\n![](https://i.imgur.com/qBu6k.png?2)\n\n### Wheel Tweak\n\nScroll to quickly move items between inventories. When you scroll down on an item stack, its items will be moved one by one. When you scroll up, items will be moved into it from another inventory.\n\n**Configuration setting:** `WheelTweak=1`\n\n**Configuration setting:** `WheelSearchOrder=1`\n\nWhen you scroll up, the mod will search for items from last to first (when this is set to 1) or from first to last (when this is set to 0).\n\n**Configuration setting:** `WheelScrollDirection=0`\n\nSet this to 1 to invert the default scroll actions. So, when set to 1, scrolling down will pull the items and scrolling up will push the items.\n\nSet this to 2 to enable the inventory position aware scrolling. Scrolling up will push the items into the other inventory if it's above the selected slot, or pull items from the other inventory if it's below the selected slot. Vice versa for scrolling down.\n\n### Obsolete / Removed Settings\n\nThese settings existed in older Mouse Tweaks versions but were removed since.\n\n**Configuration setting:** `OnTickMethodOrder=Forge, LiteLoader`\n\nMouse Tweaks can use multiple APIs for an OnTick method that it requires. You can use this setting to control the API it prefers. This shouldn't really matter at all. If a method isn't supported (for example, you don't have the API installed) the mod will proceed to check the next ones.\n\n**Configuration setting:** `ScrollHandling=0`\n\nToggles between \"smooth scrolling, minor issues\" (0) and \"non-smooth scrolling, no issues\" (1). When set to smooth scrolling, minor issues may be experienced such as scrolling \"through\" JEI or other mods. When set to non-smooth scrolling, those issues will not happen, but the scrolling will be a little non-smooth. Non-smooth scrolling works only with the Forge OnTick method.\n\nThis option is set to smooth scrolling by default because the aforementioned issues require rather specific conditions to trigger and aren't very impactful, while scrolling items is something you do all the time and want the experience to be as good as possible.\n\n## Compatibility\n\nMouse Tweaks is compatible with everything based on `GuiContainer` (as long as the behavior isn't changed too much).\n\nIf your GUI isn't based on `GuiContainer`, or if you want to improve compatibility (making Mouse Tweaks ignore some slot, for example), take a look at the [API documentation](https://github.com/YaLTeR/MouseTweaks/blob/2dc5bb108c2663f9a07b3a181483733a0274b41a/src/api/java/yalter/mousetweaks/api/IMTModGuiContainer3.java).\n\n## Modpacks\n\nFeel free to include Mouse Tweaks in modpacks.\n",
+  "body_url": null,
+  "published": "2021-03-20T15:55:49.895120Z",
+  "updated": "2022-01-13T07:39:57.976381Z",
+  "status": "approved",
+  "moderator_message": null,
+  "license": {
+    "id": "bsd-3-clause",
+    "name": "BSD 3-Clause",
+    "url": "https://cdn.modrinth.com/licenses/bsd-3-clause.txt"
+  },
+  "client_side": "required",
+  "server_side": "unsupported",
+  "downloads": 1000,
+  "followers": 45,
+  "categories": ["utility", "storage"],
+  "versions": [
+    "7F7mEY80",
+    "ILp7UQip",
+    "q0CGibTg",
+    "VmXwwpoa",
+    "RNWLd5dh",
+    "ZP9EDGxB",
+    "Q3YILuAe",
+    "EGSuwm1J"
+  ],
+  "icon_url": "https://cdn.modrinth.com/data/aC3cM3Vq/icon.jpg",
+  "issues_url": "https://github.com/YaLTeR/MouseTweaks/issues",
+  "source_url": "https://github.com/YaLTeR/MouseTweaks",
+  "wiki_url": null,
+  "discord_url": null,
+  "donation_urls": [],
+  "gallery": []
+}

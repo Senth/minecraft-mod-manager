@@ -9,6 +9,7 @@ from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
+from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..http import Http
 from .modrinth_api import ModrinthApi
 
@@ -16,6 +17,7 @@ testdata_dir = Path(__file__).parent.joinpath("testdata").joinpath("modrinth_api
 search_result_file = testdata_dir.joinpath("search_fabric-api.json")
 versions_result_file = testdata_dir.joinpath("versions_fabric-api.json")
 versions_without_files_file = testdata_dir.joinpath("versions-without-files.json")
+mod_info_file = testdata_dir.joinpath("mod_info.json")
 
 
 @pytest.fixture
@@ -33,6 +35,12 @@ def versions_result():
 @pytest.fixture
 def versions_without_files():
     with open(versions_without_files_file) as file:
+        return json.load(file)
+
+
+@pytest.fixture
+def mod_info():
+    with open(mod_info_file) as file:
         return json.load(file)
 
 
@@ -76,6 +84,32 @@ def test_search_mod(api: ModrinthApi, search_result):
     unstub()
 
     assert expected == actual
+
+
+def test_get_mod_info(api: ModrinthApi, mod_info):
+    when(api.http).get(...).thenReturn(mod_info)
+    expected = Mod(
+        id="",
+        name="Mouse Tweaks",
+        sites={Sites.modrinth: Site(Sites.modrinth, "aC3cM3Vq", "mouse-tweaks")},
+    )
+
+    actual = api.get_mod_info("123")
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
+
+    assert expected == actual
+
+
+def test_get_mod_info_not_found(api: ModrinthApi):
+    when(api.http).get(...).thenReturn({"error": "not found"})
+
+    with pytest.raises(ModNotFoundException):
+        api.get_mod_info("123")
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
 
 
 def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, versions_result):

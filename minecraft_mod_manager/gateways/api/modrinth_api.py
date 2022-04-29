@@ -1,10 +1,11 @@
 from typing import Any, List
 
 from ...config import config
-from ...core.entities.mod import Mod
+from ...core.entities.mod import Mod, ModArg
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
+from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..http import Http
 from .api import Api
 
@@ -29,6 +30,12 @@ class ModrinthApi(Api):
 
         return versions
 
+    @staticmethod
+    def _make_versions_url(mod: Mod) -> str:
+        if mod.sites:
+            return f"{_base_url}/mod/{mod.sites[Sites.modrinth].id}/version"
+        raise RuntimeError("No site id found")
+
     def search_mod(self, search: str) -> List[Site]:
         mods: List[Site] = []
         json = self.http.get(ModrinthApi._make_search_url(search))
@@ -51,9 +58,18 @@ class ModrinthApi(Api):
 
         return f"{_base_url}/mod?query={search}{filter}"
 
-    @staticmethod
-    def _make_versions_url(mod: Mod) -> str:
-        return f"{_base_url}/mod/{mod.sites[Sites.modrinth].id}/version"
+    def get_mod_info(self, site_id: str) -> Mod:
+        json = self.http.get(self._make_get_mod_url(site_id))
+        if json and "id" in json and "slug" in json and "title" in json:
+            return Mod(
+                id="",
+                name=json["title"],
+                sites={Sites.modrinth: Site(Sites.modrinth, str(json["id"]), json["slug"])},
+            )
+        raise ModNotFoundException(ModArg(site_id))
+
+    def _make_get_mod_url(self, site_id: str) -> str:
+        return f"{_base_url}/mod/{site_id}"
 
     @staticmethod
     def _json_to_version_info(data: Any) -> VersionInfo:
