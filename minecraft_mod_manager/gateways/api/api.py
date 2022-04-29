@@ -19,6 +19,12 @@ class Api:
     def search_mod(self, search: str) -> List[Site]:
         raise NotImplementedError()
 
+    def get_mod_info(self, site_id: str) -> Mod:
+        """Get mod info from the id.
+        Throws ModNotFoundException if it's not found.
+        """
+        raise NotImplementedError()
+
     @staticmethod
     def _to_epoch_time(date_string: str) -> int:
         # Has milliseconds
