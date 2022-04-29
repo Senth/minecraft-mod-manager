@@ -1,8 +1,9 @@
 from typing import Any, List
 
-from ...core.entities.mod import Mod
+from ...core.entities.mod import Mod, ModArg
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
+from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..http import Http
 from .api import Api
 
@@ -23,6 +24,12 @@ class CurseApi(Api):
 
         return versions
 
+    @staticmethod
+    def _make_files_url(mod: Mod) -> str:
+        if mod.sites:
+            return f"{_base_url}/{mod.sites[Sites.curse].id}/files"
+        raise RuntimeError("No site id found")
+
     def search_mod(self, search: str) -> List[Site]:
         mods: List[Site] = []
         json = self.http.get(CurseApi._make_search_url(search))
@@ -37,11 +44,19 @@ class CurseApi(Api):
     def _make_search_url(search: str) -> str:
         return f"{_base_url}/search?gameId=432&sectionId=6&searchFilter={search}"
 
+    def get_mod_info(self, site_id: str) -> Mod:
+        json = self.http.get(self._make_get_mod_url(site_id))
+        if json and "id" in json and "slug" in json and "name" in json:
+            return Mod(
+                id="",
+                name=json["name"],
+                sites={Sites.curse: Site(Sites.curse, str(json["id"]), json["slug"])},
+            )
+        raise ModNotFoundException(ModArg(site_id))
+
     @staticmethod
-    def _make_files_url(mod: Mod) -> str:
-        if mod.sites:
-            return f"{_base_url}/{mod.sites[Sites.curse].id}/files"
-        return ""
+    def _make_get_mod_url(site_id: str) -> str:
+        return f"{_base_url}/{site_id}"
 
     @staticmethod
     def _file_to_version_info(file_data: Any) -> VersionInfo:

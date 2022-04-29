@@ -9,12 +9,14 @@ from ...core.entities.mod import Mod
 from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
+from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..http import Http
 from .curse_api import CurseApi
 
 testdata_dir = Path(__file__).parent.joinpath("testdata").joinpath("curse_api")
 search_carpet_file = testdata_dir.joinpath("search_carpet.json")
 files_carpet_file = testdata_dir.joinpath("files_carpet.json")
+mod_info_file = testdata_dir.joinpath("mod_info.json")
 
 
 @pytest.fixture
@@ -26,6 +28,12 @@ def carpet_search():
 @pytest.fixture
 def carpet_files():
     with open(files_carpet_file) as file:
+        return json.load(file)
+
+
+@pytest.fixture
+def mod_info():
+    with open(mod_info_file) as file:
         return json.load(file)
 
 
@@ -71,6 +79,32 @@ def test_search_mod(api: CurseApi, carpet_search):
     unstub()
 
     assert expected == actual
+
+
+def test_get_mod_info(api: CurseApi, mod_info):
+    when(api.http).get(...).thenReturn(mod_info)
+    expected = Mod(
+        id="",
+        name="Litematica",
+        sites={Sites.curse: Site(Sites.curse, "308892", "litematica")},
+    )
+
+    actual = api.get_mod_info("123")
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
+
+    assert expected == actual
+
+
+def test_get_mod_info_not_found(api: CurseApi):
+    when(api.http).get(...).thenReturn({"error": "not found"})
+
+    with pytest.raises(ModNotFoundException):
+        api.get_mod_info("123")
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
 
 
 def test_get_all_versions_directly_when_we_have_mod_id(api: CurseApi, carpet_files):

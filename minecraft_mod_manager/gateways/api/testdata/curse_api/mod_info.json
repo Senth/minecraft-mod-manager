@@ -1,0 +1,672 @@
+{
+  "id": 308892,
+  "name": "Litematica",
+  "authors": [
+    {
+      "name": "masady",
+      "url": "https://www.curseforge.com/members/8604980-masady?username=masady",
+      "projectId": 308892,
+      "id": 210201,
+      "projectTitleId": null,
+      "projectTitleTitle": null,
+      "userId": 8604980,
+      "twitchId": 34113202
+    }
+  ],
+  "attachments": [
+    {
+      "id": 181712,
+      "projectId": 308892,
+      "description": "",
+      "isDefault": true,
+      "thumbnailUrl": "https://media.forgecdn.net/avatars/thumbnails/181/712/256/256/636802492918868562.jpeg",
+      "title": "636802492918868562.jpeg",
+      "url": "https://media.forgecdn.net/avatars/181/712/636802492918868562.jpeg",
+      "status": 1
+    },
+    {
+      "id": 274409,
+      "projectId": 308892,
+      "description": "The colored schematic overlay indicating the missing, extra and wrongly placed blocks",
+      "isDefault": false,
+      "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/274/409/310/172/2020-01-02_21.png",
+      "title": "Litematica - Schematic overlay",
+      "url": "https://media.forgecdn.net/attachments/274/409/2020-01-02_21.png",
+      "status": 1
+    },
+    {
+      "id": 274408,
+      "projectId": 308892,
+      "description": "Schematic rendering in the All Below rendering mode",
+      "isDefault": false,
+      "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/274/408/310/172/2020-01-02_22.png",
+      "title": "Litematica - All Below rendering mode",
+      "url": "https://media.forgecdn.net/attachments/274/408/2020-01-02_22.png",
+      "status": 1
+    },
+    {
+      "id": 274410,
+      "projectId": 308892,
+      "description": "The Material List GUI showing the total, still unplaced and available number of items",
+      "isDefault": false,
+      "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/274/410/310/172/2020-01-02_21.png",
+      "title": "Litematica - Material List GUI",
+      "url": "https://media.forgecdn.net/attachments/274/410/2020-01-02_21.png",
+      "status": 1
+    },
+    {
+      "id": 274407,
+      "projectId": 308892,
+      "description": "Schematic rendering in the Single Layer rendering mode",
+      "isDefault": false,
+      "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/274/407/310/172/2020-01-02_22.png",
+      "title": "Litematica - Single layer mode",
+      "url": "https://media.forgecdn.net/attachments/274/407/2020-01-02_22.png",
+      "status": 1
+    },
+    {
+      "id": 274411,
+      "projectId": 308892,
+      "description": "The Material List HUD, showing the still missing (from the player's inventory) items, reducing the need to re-open the Material List GUI all the time",
+      "isDefault": false,
+      "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/274/411/310/172/2020-01-02_21.png",
+      "title": "Litematica - Material List HUD",
+      "url": "https://media.forgecdn.net/attachments/274/411/2020-01-02_21.png",
+      "status": 1
+    },
+    {
+      "id": 274413,
+      "projectId": 308892,
+      "description": "The Schematic Verifier GUI, listing all the mismatches in the world compared to what the schematic expects.",
+      "isDefault": false,
+      "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/274/413/310/172/2020-01-02_21.png",
+      "title": "Litematica - Schematic Verifier GUI",
+      "url": "https://media.forgecdn.net/attachments/274/413/2020-01-02_21.png",
+      "status": 1
+    },
+    {
+      "id": 274415,
+      "projectId": 308892,
+      "description": "The Schematic Verifier overlay, highlighting the currently selected mismatches in-world, and showing the locations of the closest problems on the HUD",
+      "isDefault": false,
+      "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/274/415/310/172/2020-01-02_22.png",
+      "title": "Litematica - Schematic Verifier overlay",
+      "url": "https://media.forgecdn.net/attachments/274/415/2020-01-02_22.png",
+      "status": 1
+    },
+    {
+      "id": 274406,
+      "projectId": 308892,
+      "description": "Schematic rendering",
+      "isDefault": false,
+      "thumbnailUrl": "https://media.forgecdn.net/attachments/thumbnails/274/406/310/172/2020-01-02_21.png",
+      "title": "Litematica - Schematic rendering",
+      "url": "https://media.forgecdn.net/attachments/274/406/2020-01-02_21.png",
+      "status": 1
+    }
+  ],
+  "issueTrackerUrl": "https://github.com/maruohon/litematica/issues",
+  "wikiUrl": "",
+  "sourceUrl": "https://github.com/maruohon/litematica",
+  "websiteUrl": "https://www.curseforge.com/minecraft/mc-mods/litematica",
+  "gameId": 432,
+  "summary": "A modern schematic mod written for LiteLoader / Rift / Fabric, with some extra helper functionality for Creative mode",
+  "defaultFileId": 3751645,
+  "downloadCount": 2048239.0,
+  "latestFiles": [
+    {
+      "id": 2668783,
+      "displayName": "litematica-rift-1.13.2-0.0.0-dev.20190203.221737.jar",
+      "fileName": "litematica-rift-1.13.2-0.0.0-dev.20190203.221737.jar",
+      "fileDate": "2019-02-03T20:20:16.333Z",
+      "fileLength": 557583,
+      "releaseType": 3,
+      "fileStatus": 4,
+      "downloadUrl": "https://edge.forgecdn.net/files/2668/783/litematica-rift-1.13.2-0.0.0-dev.20190203.221737.jar",
+      "isAlternate": false,
+      "alternateFileId": 0,
+      "dependencies": [
+        {
+          "id": 28967388,
+          "addonId": 303119,
+          "type": 3,
+          "fileId": 2668783
+        }
+      ],
+      "isAvailable": true,
+      "modules": [
+        {
+          "foldername": "META-INF",
+          "fingerprint": 3523961319,
+          "type": 3
+        },
+        {
+          "foldername": "fi",
+          "fingerprint": 2977225645,
+          "type": 3
+        },
+        {
+          "foldername": "assets",
+          "fingerprint": 4116439176,
+          "type": 3
+        },
+        {
+          "foldername": "mcmod.info",
+          "fingerprint": 1471413712,
+          "type": 3
+        },
+        {
+          "foldername": "mixins.litematica.json",
+          "fingerprint": 4290543605,
+          "type": 3
+        },
+        {
+          "foldername": "pack.mcmeta",
+          "fingerprint": 527515230,
+          "type": 3
+        },
+        {
+          "foldername": "riftmod.json",
+          "fingerprint": 3352661740,
+          "type": 3
+        },
+        {
+          "foldername": "mixins.litematica.refmap.json",
+          "fingerprint": 2694535601,
+          "type": 3
+        }
+      ],
+      "packageFingerprint": 2416283449,
+      "gameVersion": ["Rift", "1.13.2"],
+      "sortableGameVersion": [
+        {
+          "gameVersionPadded": "0",
+          "gameVersion": "",
+          "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+          "gameVersionName": "Rift",
+          "gameVersionTypeId": 68441
+        },
+        {
+          "gameVersionPadded": "0000000001.0000000013.0000000002",
+          "gameVersion": "1.13.2",
+          "gameVersionReleaseDate": "2018-10-22T00:00:00Z",
+          "gameVersionName": "1.13.2",
+          "gameVersionTypeId": 55023
+        }
+      ],
+      "installMetadata": null,
+      "changelog": null,
+      "hasInstallScript": false,
+      "isCompatibleWithClient": true,
+      "categorySectionPackageType": 6,
+      "restrictProjectFileAccess": 1,
+      "projectStatus": 4,
+      "renderCacheId": 1509009,
+      "fileLegacyMappingId": null,
+      "projectId": 308892,
+      "parentProjectFileId": null,
+      "parentFileLegacyMappingId": null,
+      "fileTypeId": null,
+      "exposeAsAlternative": null,
+      "packageFingerprintId": 291226275,
+      "gameVersionDateReleased": "2018-10-22T00:00:00Z",
+      "gameVersionMappingId": 1746722,
+      "gameVersionId": 7132,
+      "gameId": 432,
+      "isServerPack": false,
+      "serverPackFileId": null,
+      "gameVersionFlavor": null,
+      "hashes": [
+        {
+          "algorithm": 1,
+          "value": "5bf7a9f9f1f3eca7180db9be20ca1b9e9a56331e"
+        },
+        {
+          "algorithm": 2,
+          "value": "f7eb3f5b032939ab21b53e3b2eab14af"
+        }
+      ],
+      "downloadCount": 22382
+    },
+    {
+      "id": 2942273,
+      "displayName": "litematica-fabric-1.15.2-0.0.0-dev.20200424.222747.jar",
+      "fileName": "litematica-fabric-1.15.2-0.0.0-dev.20200424.222747.jar",
+      "fileDate": "2020-04-27T22:03:30.603Z",
+      "fileLength": 800700,
+      "releaseType": 2,
+      "fileStatus": 4,
+      "downloadUrl": "https://edge.forgecdn.net/files/2942/273/litematica-fabric-1.15.2-0.0.0-dev.20200424.222747.jar",
+      "isAlternate": false,
+      "alternateFileId": 0,
+      "dependencies": [
+        {
+          "id": 40888826,
+          "addonId": 303119,
+          "type": 3,
+          "fileId": 2942273
+        }
+      ],
+      "isAvailable": true,
+      "modules": [
+        {
+          "foldername": "pack.mcmeta",
+          "fingerprint": 527515230,
+          "type": 3
+        },
+        {
+          "foldername": "mixins.litematica.json",
+          "fingerprint": 3523198277,
+          "type": 3
+        },
+        {
+          "foldername": "fabric.mod.json",
+          "fingerprint": 2149872603,
+          "type": 3
+        },
+        {
+          "foldername": "assets",
+          "fingerprint": 1484466121,
+          "type": 3
+        },
+        {
+          "foldername": "litematica-fabric-1.15.2-refmap.json",
+          "fingerprint": 3839110807,
+          "type": 3
+        },
+        {
+          "foldername": "META-INF",
+          "fingerprint": 2464251221,
+          "type": 3
+        },
+        {
+          "foldername": "fi",
+          "fingerprint": 2963597348,
+          "type": 3
+        }
+      ],
+      "packageFingerprint": 2076958925,
+      "gameVersion": ["1.15.2"],
+      "sortableGameVersion": [
+        {
+          "gameVersionPadded": "0000000001.0000000015.0000000002",
+          "gameVersion": "1.15.2",
+          "gameVersionReleaseDate": "2020-01-22T00:00:00Z",
+          "gameVersionName": "1.15.2",
+          "gameVersionTypeId": 68722
+        }
+      ],
+      "installMetadata": null,
+      "changelog": null,
+      "hasInstallScript": false,
+      "isCompatibleWithClient": true,
+      "categorySectionPackageType": 6,
+      "restrictProjectFileAccess": 1,
+      "projectStatus": 4,
+      "renderCacheId": 1844258,
+      "fileLegacyMappingId": null,
+      "projectId": 308892,
+      "parentProjectFileId": null,
+      "parentFileLegacyMappingId": null,
+      "fileTypeId": null,
+      "exposeAsAlternative": null,
+      "packageFingerprintId": 448513853,
+      "gameVersionDateReleased": "2020-01-22T00:00:00Z",
+      "gameVersionMappingId": 2200028,
+      "gameVersionId": 7722,
+      "gameId": 432,
+      "isServerPack": false,
+      "serverPackFileId": null,
+      "gameVersionFlavor": null,
+      "hashes": [
+        {
+          "algorithm": 1,
+          "value": "f8487e23a112afa770ac793e433c4ac264e38223"
+        },
+        {
+          "algorithm": 2,
+          "value": "3166d3540a2dc4c2b70c35af1fe2b78a"
+        }
+      ],
+      "downloadCount": 5110
+    },
+    {
+      "id": 3751645,
+      "displayName": "litematica-fabric-1.18.2-0.11.2.jar",
+      "fileName": "litematica-fabric-1.18.2-0.11.2.jar",
+      "fileDate": "2022-04-14T18:31:58.317Z",
+      "fileLength": 896532,
+      "releaseType": 2,
+      "fileStatus": 4,
+      "downloadUrl": "https://edge.forgecdn.net/files/3751/645/litematica-fabric-1.18.2-0.11.2.jar",
+      "isAlternate": false,
+      "alternateFileId": 0,
+      "dependencies": [
+        {
+          "id": 91739219,
+          "addonId": 303119,
+          "type": 3,
+          "fileId": 3751645
+        }
+      ],
+      "isAvailable": true,
+      "modules": [
+        {
+          "foldername": "META-INF",
+          "fingerprint": 3025729417,
+          "type": 3
+        },
+        {
+          "foldername": "pack.mcmeta",
+          "fingerprint": 1624760147,
+          "type": 3
+        },
+        {
+          "foldername": "assets",
+          "fingerprint": 626048824,
+          "type": 3
+        },
+        {
+          "foldername": "mixins.litematica.json",
+          "fingerprint": 2651954919,
+          "type": 3
+        },
+        {
+          "foldername": "fabric.mod.json",
+          "fingerprint": 2946321216,
+          "type": 3
+        },
+        {
+          "foldername": "litematica-fabric-1.18.2-refmap.json",
+          "fingerprint": 3260343933,
+          "type": 3
+        },
+        {
+          "foldername": "fi",
+          "fingerprint": 3058978766,
+          "type": 3
+        }
+      ],
+      "packageFingerprint": 968735047,
+      "gameVersion": ["Fabric", "1.18.2"],
+      "sortableGameVersion": [
+        {
+          "gameVersionPadded": "0",
+          "gameVersion": "",
+          "gameVersionReleaseDate": "2019-08-01T00:00:00Z",
+          "gameVersionName": "Fabric",
+          "gameVersionTypeId": 68441
+        },
+        {
+          "gameVersionPadded": "0000000001.0000000018.0000000002",
+          "gameVersion": "1.18.2",
+          "gameVersionReleaseDate": "2022-02-28T14:23:37.723Z",
+          "gameVersionName": "1.18.2",
+          "gameVersionTypeId": 73250
+        }
+      ],
+      "installMetadata": null,
+      "changelog": null,
+      "hasInstallScript": false,
+      "isCompatibleWithClient": true,
+      "categorySectionPackageType": 6,
+      "restrictProjectFileAccess": 1,
+      "projectStatus": 4,
+      "renderCacheId": 2858345,
+      "fileLegacyMappingId": null,
+      "projectId": 308892,
+      "parentProjectFileId": null,
+      "parentFileLegacyMappingId": null,
+      "fileTypeId": null,
+      "exposeAsAlternative": null,
+      "packageFingerprintId": 903126198,
+      "gameVersionDateReleased": "2019-08-01T00:00:00Z",
+      "gameVersionMappingId": 3990515,
+      "gameVersionId": 7499,
+      "gameId": 432,
+      "isServerPack": false,
+      "serverPackFileId": null,
+      "gameVersionFlavor": null,
+      "hashes": [
+        {
+          "algorithm": 1,
+          "value": "8d3faf150dd06a5955a9f81637871716a983d4b3"
+        },
+        {
+          "algorithm": 2,
+          "value": "bf504b2df55ca97733d93a4445acbb14"
+        }
+      ],
+      "downloadCount": 0
+    }
+  ],
+  "categories": [
+    {
+      "categoryId": 423,
+      "name": "Map and Information",
+      "url": "https://www.curseforge.com/minecraft/mc-mods/map-information",
+      "avatarUrl": "https://media.forgecdn.net/avatars/6/38/635351497437388438.png",
+      "parentId": 6,
+      "rootId": 6,
+      "projectId": 308892,
+      "avatarId": 6038,
+      "gameId": 432,
+      "slug": "map-information",
+      "dateModified": "2014-05-08T17:42:23.74Z"
+    },
+    {
+      "categoryId": 424,
+      "name": "Cosmetic",
+      "url": "https://www.curseforge.com/minecraft/mc-mods/cosmetic",
+      "avatarUrl": "https://media.forgecdn.net/avatars/6/39/635351497555976928.png",
+      "parentId": 6,
+      "rootId": 6,
+      "projectId": 308892,
+      "avatarId": 6039,
+      "gameId": 432,
+      "slug": "cosmetic",
+      "dateModified": "2014-05-08T17:42:35.597Z"
+    },
+    {
+      "categoryId": 409,
+      "name": "Structures",
+      "url": "https://www.curseforge.com/minecraft/mc-mods/world-gen/world-structures",
+      "avatarUrl": "https://media.forgecdn.net/avatars/6/24/635351494371736208.png",
+      "parentId": 406,
+      "rootId": 6,
+      "projectId": 308892,
+      "avatarId": 6024,
+      "gameId": 432,
+      "slug": "world-structures",
+      "dateModified": "2014-05-08T17:37:17.173Z"
+    }
+  ],
+  "status": 4,
+  "primaryCategoryId": 424,
+  "categorySection": {
+    "id": 8,
+    "gameId": 432,
+    "name": "Mods",
+    "packageType": 6,
+    "path": "mods",
+    "initialInclusionPattern": ".",
+    "extraIncludePattern": null,
+    "gameCategoryId": 6
+  },
+  "slug": "litematica",
+  "gameVersionLatestFiles": [
+    {
+      "gameVersion": "1.18.2",
+      "projectFileId": 3751645,
+      "projectFileName": "litematica-fabric-1.18.2-0.11.2.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 73250,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.18.1",
+      "projectFileId": 3671382,
+      "projectFileName": "litematica-fabric-1.18.1-0.10.4.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 73250,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.18",
+      "projectFileId": 3671382,
+      "projectFileName": "litematica-fabric-1.18.1-0.10.4.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 73250,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.17.1",
+      "projectFileId": 3580241,
+      "projectFileName": "litematica-fabric-1.17.1-0.9.0.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 73242,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.16.3",
+      "projectFileId": 3542567,
+      "projectFileName": "litematica-fabric-1.16.5-0.0.0-dev.20210917.192300.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 70886,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.16.5",
+      "projectFileId": 3542567,
+      "projectFileName": "litematica-fabric-1.16.5-0.0.0-dev.20210917.192300.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 70886,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.16.4",
+      "projectFileId": 3542567,
+      "projectFileName": "litematica-fabric-1.16.5-0.0.0-dev.20210917.192300.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 70886,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.16.2",
+      "projectFileId": 3542567,
+      "projectFileName": "litematica-fabric-1.16.5-0.0.0-dev.20210917.192300.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 70886,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.17",
+      "projectFileId": 3353497,
+      "projectFileName": "litematica-fabric-1.17.0-0.0.0-dev.20210616.033538.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 73242,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.16.1",
+      "projectFileId": 3002065,
+      "projectFileName": "litematica-fabric-1.16.1-0.0.0-dev.20200711.162756.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 70886,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.16",
+      "projectFileId": 3002065,
+      "projectFileName": "litematica-fabric-1.16.1-0.0.0-dev.20200711.162756.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 70886,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.15.2",
+      "projectFileId": 2957593,
+      "projectFileName": "litematica-fabric-1.15.2-0.0.0-dev.20200515.184506.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 68722,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.15.2",
+      "projectFileId": 2942273,
+      "projectFileName": "litematica-fabric-1.15.2-0.0.0-dev.20200424.222747.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 68722
+    },
+    {
+      "gameVersion": "1.14.4",
+      "projectFileId": 2846571,
+      "projectFileName": "litematica-fabric-1.14.4-0.0.0-dev.20191222.014040.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 64806,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.14.3",
+      "projectFileId": 2736014,
+      "projectFileName": "litematica-fabric-1.14.3-0.0.0-dev.20190630.024955.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 64806,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.14.2",
+      "projectFileId": 2736014,
+      "projectFileName": "litematica-fabric-1.14.3-0.0.0-dev.20190630.024955.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 64806,
+      "modLoader": 4
+    },
+    {
+      "gameVersion": "1.13.2",
+      "projectFileId": 2723388,
+      "projectFileName": "litematica-rift-1.13.2-0.0.0-dev.20190611.200317.jar",
+      "fileType": 2,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 55023
+    },
+    {
+      "gameVersion": "1.13.2",
+      "projectFileId": 2668783,
+      "projectFileName": "litematica-rift-1.13.2-0.0.0-dev.20190203.221737.jar",
+      "fileType": 3,
+      "gameVersionFlavor": null,
+      "gameVersionTypeId": 55023
+    }
+  ],
+  "isFeatured": false,
+  "popularityScore": 18694.21484375,
+  "gamePopularityRank": 1457,
+  "primaryLanguage": "enUS",
+  "gameSlug": "minecraft",
+  "modLoaders": ["Fabric"],
+  "gameName": "Minecraft",
+  "portalName": "www.curseforge.com",
+  "dateModified": "2022-04-14T18:37:24.753Z",
+  "dateCreated": "2018-12-12T22:08:11.84Z",
+  "dateReleased": "2022-04-14T18:31:58.317Z",
+  "isAvailable": true,
+  "isExperiemental": false,
+  "allowModDistribution": true
+}
