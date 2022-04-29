@@ -55,43 +55,6 @@ def mod(id="fabric-api", name="Fabric API", site_slug="fabric-api", site_id=site
     return Mod(id=id, name=name, sites={Sites.modrinth: Site(Sites.modrinth, site_id, site_slug)}, file=file)
 
 
-@pytest.mark.parametrize(
-    "name,mod,expected",
-    [
-        (
-            "Find site id by slug",
-            mod(),
-            (site_id, "fabric-api"),
-        ),
-        (
-            "Find site id by id",
-            mod(site_id=""),
-            (site_id, "fabric-api"),
-        ),
-        (
-            "Find site id from filename",
-            mod(id="invalid", site_slug="", file="fabric-api-1.14.4-1.2.0+v191024.jar"),
-            (site_id, "fabric-api"),
-        ),
-        (
-            "Site id not found",
-            mod(id="invalid", site_slug=""),
-            None,
-        ),
-    ],
-)
-def test_find_mod_id_by_slug(name, mod: Mod, expected, api: ModrinthApi, search_result):
-    print(name)
-    when(api.http).get(...).thenReturn(search_result)
-
-    actual = api._find_mod_id_by_slug("", mod.get_possible_slugs())
-
-    verifyStubbedInvocationsAreUsed()
-    unstub()
-
-    assert expected == actual
-
-
 def test_search_mod(api: ModrinthApi, search_result):
     when(api.http).get(...).thenReturn(search_result)
     expected = [
