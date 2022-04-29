@@ -1,4 +1,4 @@
-from typing import Any, List, Set, Tuple, Union
+from typing import Any, List
 
 from ...core.entities.mod import Mod
 from ...core.entities.sites import Site, Sites
@@ -22,16 +22,6 @@ class CurseApi(Api):
             versions.append(version)
 
         return versions
-
-    def _find_mod_id_by_slug(self, search: str, possible_slugs: Set[str]) -> Union[Tuple[str, str], None]:
-        json = self.http.get(CurseApi._make_search_url(search))
-        for curse_mod in json:
-            if "slug" in curse_mod and "id" in curse_mod:
-                slug = curse_mod["slug"]
-                for possible_slug in possible_slugs:
-                    if slug == possible_slug:
-                        return str(curse_mod["id"]), slug
-        return None
 
     def search_mod(self, search: str) -> List[Site]:
         mods: List[Site] = []

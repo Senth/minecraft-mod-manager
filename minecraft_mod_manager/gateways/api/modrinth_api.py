@@ -1,4 +1,4 @@
-from typing import Any, List, Set, Tuple, Union
+from typing import Any, List
 
 from ...config import config
 from ...core.entities.mod import Mod
@@ -28,21 +28,6 @@ class ModrinthApi(Api):
                 pass
 
         return versions
-
-    def _find_mod_id_by_slug(self, search: str, possible_slugs: Set[str]) -> Union[Tuple[str, str], None]:
-        json = self.http.get(ModrinthApi._make_search_url(search))
-        if "hits" not in json:
-            return None
-
-        for mod_info in json["hits"]:
-            if "slug" in mod_info and "mod_id" in mod_info:
-                slug = mod_info["slug"]
-                for possible_slug in possible_slugs:
-                    if slug == possible_slug:
-                        site_id = str(mod_info["mod_id"])
-                        site_id = site_id.replace("local-", "")
-                        return site_id, slug
-        return None
 
     def search_mod(self, search: str) -> List[Site]:
         mods: List[Site] = []

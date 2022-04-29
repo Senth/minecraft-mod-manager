@@ -48,43 +48,6 @@ def mod(id="carpet", name="Carpet", site_slug="carpet", site_id=site_id, file: O
     return Mod(id=id, name=name, sites={Sites.curse: Site(Sites.curse, site_id, site_slug)}, file=file)
 
 
-@pytest.mark.parametrize(
-    "name,mod,expected",
-    [
-        (
-            "Find site id by slug",
-            mod(),
-            (site_id, "carpet"),
-        ),
-        (
-            "Find site id by id",
-            mod(site_id=""),
-            (site_id, "carpet"),
-        ),
-        (
-            "Find site id from filename",
-            mod(id="carput-fail", site_slug="", file="fabric-carpet-1.14.4-1.2.0+v191024.jar"),
-            (site_id, "carpet"),
-        ),
-        (
-            "Site id not found",
-            mod(id="crash", site_slug=""),
-            None,
-        ),
-    ],
-)
-def test_find_mod_id_by_slug(name, mod: Mod, expected, api: CurseApi, carpet_search):
-    print(name)
-    when(api.http).get(...).thenReturn(carpet_search)
-
-    actual = api._find_mod_id_by_slug("", mod.get_possible_slugs())
-
-    verifyStubbedInvocationsAreUsed()
-    unstub()
-
-    assert expected == actual
-
-
 def test_search_mod(api: CurseApi, carpet_search):
     when(api.http).get(...).thenReturn(carpet_search)
     expected = [
