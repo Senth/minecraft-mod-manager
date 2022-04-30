@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Set
+from typing import Dict, List, Set
 
 from .mod_loaders import ModLoaders
 from .sites import Sites
@@ -32,6 +32,7 @@ class VersionInfo:
         download_url: str,
         filename: str = "",
         name: str = "",
+        dependencies: Dict[Sites, List[str]] = {},
     ) -> None:
         self.stability = stability
         self.mod_loaders = mod_loaders
@@ -41,6 +42,7 @@ class VersionInfo:
         self.download_url = download_url
         self.filename = filename
         self.name = name
+        self.dependencies = dependencies
 
     def __str__(self) -> str:
         return f"{self.minecraft_versions}; uploaded {self.upload_time}"
@@ -58,6 +60,7 @@ class VersionInfo:
             self.download_url,
             self.filename,
             self.name,
+            self.dependencies,
         )
 
     def __eq__(self, other) -> bool:

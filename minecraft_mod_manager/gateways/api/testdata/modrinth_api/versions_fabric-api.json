@@ -22,7 +22,33 @@
         "primary": false
       }
     ],
-    "dependencies": [],
+    "dependencies": [
+      {
+        "version_id": "UWMXoG0K",
+        "project_id": null,
+        "dependency_type": "required"
+      },
+      {
+        "version_id": null,
+        "project_id": null,
+        "dependency_type": "required"
+      },
+      {
+        "version_id": "abc",
+        "project_id": null,
+        "dependency_type": "optional"
+      },
+      {
+        "version_id": "aoeu",
+        "project_id": null,
+        "dependency_type": "incompatible"
+      },
+      {
+        "version_id": null,
+        "project_id": "1338",
+        "dependency_type": "required"
+      }
+    ],
     "game_versions": ["21w16a"],
     "loaders": ["fabric"]
   },
