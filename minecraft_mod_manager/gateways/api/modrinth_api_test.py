@@ -15,6 +15,7 @@ from .modrinth_api import ModrinthApi
 
 testdata_dir = Path(__file__).parent.joinpath("testdata").joinpath("modrinth_api")
 search_result_file = testdata_dir.joinpath("search_fabric-api.json")
+version_result_file = testdata_dir.joinpath("version.json")
 versions_result_file = testdata_dir.joinpath("versions_fabric-api.json")
 versions_without_files_file = testdata_dir.joinpath("versions-without-files.json")
 mod_info_file = testdata_dir.joinpath("mod_info.json")
@@ -23,6 +24,12 @@ mod_info_file = testdata_dir.joinpath("mod_info.json")
 @pytest.fixture
 def search_result():
     with open(search_result_file) as file:
+        return json.load(file)
+
+
+@pytest.fixture
+def version_result():
+    with open(version_result_file) as file:
         return json.load(file)
 
 
@@ -112,8 +119,9 @@ def test_get_mod_info_not_found(api: ModrinthApi):
     unstub()
 
 
-def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, versions_result):
-    when(api.http).get(...).thenReturn(versions_result)
+def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, versions_result, version_result):
+    when(api.http).get(f"https://api.modrinth.com/api/v1/mod/{site_id}/version").thenReturn(versions_result)
+    when(api.http).get("https://api.modrinth.com/api/v1/version/UWMXoG0K").thenReturn(version_result)
     expected = [
         VersionInfo(
             stability=Stabilities.beta,
@@ -124,6 +132,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, version
             minecraft_versions=["21w16a"],
             download_url="https://cdn.modrinth.com/data/P7dR8mSH/versions/0.33.0+1.17/fabric-api-0.33.0+1.17.jar",
             filename="fabric-api-0.33.0+1.17.jar",
+            dependencies={Sites.modrinth: ["1338", "1337"]},
         ),
         VersionInfo(
             stability=Stabilities.release,

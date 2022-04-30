@@ -10,7 +10,20 @@
     "downloadUrl": "https://edge.forgecdn.net/files/2918/924/fabric-carpet-20w13b-1.3.17+v200401.jar",
     "isAlternate": false,
     "alternateFileId": 0,
-    "dependencies": [],
+    "dependencies": [
+      {
+        "addonId": 1337,
+        "type": 3
+      },
+      {
+        "addonId": 1338,
+        "type": 3
+      },
+      {
+        "addonId": 1339,
+        "type": 1
+      }
+    ],
     "isAvailable": true,
     "modules": [
       {
@@ -61,7 +74,12 @@
     "downloadUrl": "https://edge.forgecdn.net/files/2815/968/fabric-carpet-1.14.4-1.2.0+v191024.jar",
     "isAlternate": false,
     "alternateFileId": 0,
-    "dependencies": [],
+    "dependencies": [
+      {
+        "addonId": 123456,
+        "type": 1
+      }
+    ],
     "isAvailable": true,
     "modules": [
       {

@@ -1,4 +1,7 @@
-from typing import Any, List
+from enum import Enum
+from typing import Any, Dict, List, Optional
+
+from tealprint import TealPrint
 
 from ...config import config
 from ...core.entities.mod import Mod, ModArg
@@ -12,6 +15,12 @@ from .api import Api
 _base_url = "https://api.modrinth.com/api/v1"
 
 
+class DependencyTypes(Enum):
+    required = "required"
+    optional = "optional"
+    incompatible = "incompatible"
+
+
 class ModrinthApi(Api):
     def __init__(self, http: Http) -> None:
         super().__init__(http, Sites.modrinth)
@@ -22,6 +31,7 @@ class ModrinthApi(Api):
         for json_version in json:
             try:
                 version = ModrinthApi._json_to_version_info(json_version)
+                version.dependencies = self._find_dependencies_for_version(json_version)
                 version.name = mod.name
                 versions.append(version)
             except IndexError:
@@ -59,7 +69,7 @@ class ModrinthApi(Api):
         return f"{_base_url}/mod?query={search}{filter}"
 
     def get_mod_info(self, site_id: str) -> Mod:
-        json = self.http.get(self._make_get_mod_url(site_id))
+        json = self.http.get(f"{_base_url}/mod/{site_id}")
         if json and "id" in json and "slug" in json and "title" in json:
             return Mod(
                 id="",
@@ -68,12 +78,8 @@ class ModrinthApi(Api):
             )
         raise ModNotFoundException(ModArg(site_id))
 
-    def _make_get_mod_url(self, site_id: str) -> str:
-        return f"{_base_url}/mod/{site_id}"
-
     @staticmethod
     def _json_to_version_info(data: Any) -> VersionInfo:
-
         return VersionInfo(
             stability=Stabilities.from_name(data["version_type"]),
             mod_loaders=Api._to_mod_loaders(data["loaders"]),
@@ -83,3 +89,36 @@ class ModrinthApi(Api):
             download_url=data["files"][0]["url"],
             filename=data["files"][0]["filename"],
         )
+
+    def _find_dependencies_for_version(self, json_version: Any) -> Dict[Sites, List[str]]:
+        dependencyVersions: List[str] = []
+        dependencyProjects: List[str] = []
+
+        for dependency in json_version["dependencies"]:
+            if dependency["dependency_type"] == DependencyTypes.required.value:
+                project_id = dependency["project_id"]
+                version_id = dependency["version_id"]
+                if project_id:
+                    dependencyProjects.append(project_id)
+                elif version_id:
+                    dependencyVersions.append(version_id)
+                else:
+                    TealPrint.debug(f"No project or version id found for dependency, {dependency}")
+
+        # Get the actual project id from the version id
+        for version_id in dependencyVersions:
+            project_id = self._version_id_to_mod_id(version_id)
+            if project_id:
+                dependencyProjects.append(project_id)
+
+        dependencyMap: Dict[Sites, List[str]] = {}
+        if dependencyProjects:
+            dependencyMap[Sites.modrinth] = dependencyProjects
+
+        return dependencyMap
+
+    def _version_id_to_mod_id(self, version_id: str) -> Optional[str]:
+        json = self.http.get(f"{_base_url}/version/{version_id}")
+        if json and "mod_id" in json:
+            return str(json["mod_id"])
+        return ""
