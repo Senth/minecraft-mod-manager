@@ -1,4 +1,5 @@
-from typing import Any, List
+from enum import Enum
+from typing import Any, Dict, List
 
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.sites import Site, Sites
@@ -8,6 +9,10 @@ from ..http import Http
 from .api import Api
 
 _base_url = "https://addons-ecs.forgesvc.net/api/v2/addon"
+
+
+class DependencyTypes(Enum):
+    required = 3
 
 
 class CurseApi(Api):
@@ -60,6 +65,19 @@ class CurseApi(Api):
 
     @staticmethod
     def _file_to_version_info(file_data: Any) -> VersionInfo:
+        # Find required dependencies
+        dependencyList: List[str] = []
+        for dependency in file_data["dependencies"]:
+            if "addonId" in dependency and "type" in dependency:
+                t = dependency["type"]
+                if t == DependencyTypes.required.value:
+                    dependencyList.append(str(dependency["addonId"]))
+
+        dependencyMap: Dict[Sites, List[str]] = {}
+        if dependencyList:
+            dependencyMap[Sites.curse] = dependencyList
+
+        # Create VersionInfo
         return VersionInfo(
             stability=CurseApi._to_release_type(file_data["releaseType"]),
             mod_loaders=Api._to_mod_loaders(file_data["gameVersion"]),
@@ -68,6 +86,7 @@ class CurseApi(Api):
             minecraft_versions=file_data["gameVersion"],
             download_url=file_data["downloadUrl"],
             filename=file_data["fileName"],
+            dependencies=dependencyMap,
         )
 
     @staticmethod

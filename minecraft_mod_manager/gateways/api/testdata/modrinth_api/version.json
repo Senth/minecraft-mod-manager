@@ -1,0 +1,27 @@
+{
+  "id": "UWMXoG0K",
+  "mod_id": "1337",
+  "author_id": "JZA4dW8o",
+  "featured": false,
+  "name": "[22w16b] Fabric API 0.51.2+1.19",
+  "version_number": "0.51.2+1.19",
+  "changelog": "- 22w16b (modmuss50, Player)\n",
+  "changelog_url": null,
+  "date_published": "2022-04-20T21:37:40.666022Z",
+  "downloads": 262,
+  "version_type": "beta",
+  "files": [
+    {
+      "hashes": {
+        "sha1": "294d89214e1c5107316438b944da7e2db690638e",
+        "sha512": "9aef659f62c4d2d377ffa7872139edb3dd7f19c88b677121e11643e8ce265fbfba8803981ff7d721e92c9aae111603858f0a40affb588158e3644014e588f011"
+      },
+      "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/0.51.2+1.19/fabric-api-0.51.2%2B1.19.jar",
+      "filename": "fabric-api-0.51.2+1.19.jar",
+      "primary": false
+    }
+  ],
+  "dependencies": [],
+  "game_versions": ["22w16b"],
+  "loaders": ["fabric"]
+}

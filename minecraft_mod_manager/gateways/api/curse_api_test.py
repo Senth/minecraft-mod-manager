@@ -107,7 +107,7 @@ def test_get_mod_info_not_found(api: CurseApi):
     unstub()
 
 
-def test_get_all_versions_directly_when_we_have_mod_id(api: CurseApi, carpet_files):
+def test_get_all_versions(api: CurseApi, carpet_files):
     when(api.http).get(...).thenReturn(carpet_files)
     expected = [
         VersionInfo(
@@ -119,6 +119,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(api: CurseApi, carpet_fil
             minecraft_versions=["1.16-Snapshot", "Forge"],
             download_url="https://edge.forgecdn.net/files/2918/924/fabric-carpet-20w13b-1.3.17+v200401.jar",
             filename="fabric-carpet-20w13b-1.3.17+v200401.jar",
+            dependencies={Sites.curse: ["1337", "1338"]},
         ),
         VersionInfo(
             stability=Stabilities.alpha,
