@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from tealprint import TealPrint
 
@@ -91,3 +91,10 @@ class ModFinder:
             return found_sites
 
         raise ModNotFoundException(mod)
+
+    def get_mod_info(self, site: Sites, site_id: str) -> Optional[Mod]:
+        for api in self.apis:
+            if api.site_name == site:
+                return api.get_mod_info(site_id)
+
+        return None
