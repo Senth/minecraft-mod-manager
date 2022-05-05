@@ -61,3 +61,14 @@ def test_install_entity_culling_when_using_word_splitter(helper: Helper):
 
     assert code == 0
     assert entity_culling is not None
+
+
+def test_install_dependencies(helper: Helper):
+    """Tests that dependencies are installed correctly."""
+    code = helper.run("install", "lambdabettergrass")
+    lamba_better_crass = helper.get_mod_in_dir_like("lambdabettergrass*.jar")
+    dependency_fabric_api = helper.get_mod_in_dir_like("fabric-api*.jar")
+
+    assert code == 0
+    assert lamba_better_crass is not None
+    assert dependency_fabric_api is not None
