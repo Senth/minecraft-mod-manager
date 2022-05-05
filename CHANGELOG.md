@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Dependencies are now installed automatically 🎉
 - `--no-color` option to disable color output [#141](https://github.com/Senth/minecraft-mod-manager/issues/141)
 - Runtime cache to save on requests to Curse/Modrinth APIs
 
