@@ -23,8 +23,12 @@ class Download:
         mods_not_found: List[ModNotFoundException] = []
         corrupt_mods: List[Mod] = []
 
+        download_queue: List[Mod] = []
+        download_queue.extend(mods)
+
         # Find latest version of mod
-        for mod in mods:
+        while len(download_queue) > 0:
+            mod = download_queue.pop()
             try:
                 TealPrint.info(mod.id, color=LogColors.header, push_indent=True)
                 mod.sites = self._finder.find_mod(mod)
@@ -33,35 +37,68 @@ class Download:
                 latest_version = LatestVersionFinder.find_latest_version(mod, versions, filter=True)
 
                 if latest_version:
-                    TealPrint.verbose("⬇ Downloading...")
-                    try:
-                        downloaded_mod = self._download(mod, latest_version)
-                        self._update_mod_from_file(downloaded_mod)
-                        self._repo.update_mod(downloaded_mod)
-                        self.on_version_found(mod, downloaded_mod)
-                    except (DownloadFailed, MaxRetriesExceeded) as e:
-                        TealPrint.error(
-                            f"🔺 Download failed from {latest_version.site_name}",
-                        )
-                        TealPrint.error(str(e))
-                    except ModFileInvalid:
-                        # Remove temporary downloaded file
-                        self._repo.remove_mod_file(latest_version.filename)
-                        TealPrint.error("❌ Corrupted file.")
-                        corrupt_mods.append(mod)
+                    ok = self._download_latest_version(mod, latest_version)
+
+                    # Add possible dependencies to download queue
+                    if ok:
+                        download_queue.extend(self._get_dependencies(latest_version))
                 else:
                     self.on_version_not_found(mod, versions)
 
-            except ModNotFoundException as exception:
+            except ModNotFoundException as e:
                 TealPrint.warning("🔺 Mod not found on any site...")
-                mods_not_found.append(exception)
+                mods_not_found.append(e)
             except MaxRetriesExceeded:
                 TealPrint.warning("🔺 Max retries exceeded. Skipping...")
                 mods_not_found.append(ModNotFoundException(mod))
+            except ModFileInvalid:
+                TealPrint.error("❌ Corrupted file.")
+                corrupt_mods.append(mod)
+            finally:
+                TealPrint.pop_indent()
 
+        self._print_errors(mods_not_found, corrupt_mods)
+
+    def _download_latest_version(self, mod: Mod, latest_version: VersionInfo) -> bool:
+        """Downloads and saves the latest version of the mod."""
+        try:
+            TealPrint.verbose("⬇ Downloading...")
+            downloaded_mod = self._download(mod, latest_version)
+            self._update_mod_from_file(downloaded_mod)
+            self._repo.update_mod(downloaded_mod)
+            self.on_version_found(mod, downloaded_mod)
+            return True
+        except (DownloadFailed, MaxRetriesExceeded) as e:
+            TealPrint.error(
+                f"🔺 Download failed from {latest_version.site_name}",
+            )
+            TealPrint.error(str(e))
+            return False
+        except ModFileInvalid as e:
+            # Remove temporary downloaded file
+            self._repo.remove_mod_file(latest_version.filename)
+            raise e
+
+    def _get_dependencies(self, latest_version: VersionInfo) -> List[Mod]:
+        if latest_version.dependencies:
+            TealPrint.info("Add dependencies to download queue", push_indent=True)
+
+        mods: List[Mod] = []
+
+        for site, site_ids in latest_version.dependencies.items():
+            for site_id in site_ids:
+                mod = self._finder.get_mod_info(site, site_id)
+                if mod:
+                    TealPrint.info(f"➕ {mod.name}")
+                    mods.append(mod)
+                else:
+                    TealPrint.warning(f"Dependency with id '{site_id}' not found on {site.value}")
+
+        if latest_version.dependencies:
             TealPrint.pop_indent()
+        return mods
 
-        # Print errors
+    def _print_errors(self, mods_not_found, corrupt_mods) -> None:
         if len(mods_not_found) > 0:
             TealPrint.warning(
                 f"🔺 {len(mods_not_found)} mods not found",
