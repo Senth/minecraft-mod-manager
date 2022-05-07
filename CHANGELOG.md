@@ -28,6 +28,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   It can still break the program in an invalid state [#140](https://github.com/Senth/minecraft-mod-manager/issues/140)
 - Now retries to fetch/download file 5 times before skipping [#169](https://github.com/Senth/minecraft-mod-manager/issues/169)
 - Now identifies installed mods correctly by slug as well [#149](https://github.com/Senth/minecraft-mod-manager/issues/149)
+- Can now search by slug on Modrinth [[#135](https://github.com/Senth/minecraft-mod-manager/issues/135)].
+  When searching on Modrinth include on their site modrinth.com/mods, searching by slug can return an empty result,
+  so we now get the mod directly by slug.
 
 ## [1.2.7] - 2022-03-06
 

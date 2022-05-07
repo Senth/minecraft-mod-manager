@@ -42,20 +42,42 @@ class ModrinthApi(Api):
 
     @staticmethod
     def _make_versions_url(mod: Mod) -> str:
-        if mod.sites:
+        if Sites.modrinth in mod.sites:
             return f"{_base_url}/mod/{mod.sites[Sites.modrinth].id}/version"
         raise RuntimeError("No site id found")
 
     def search_mod(self, search: str) -> List[Site]:
-        mods: List[Site] = []
+        sites: List[Site] = []
+
+        # Search by query
+        mods = self._search_mod(search)
+
+        # Get by mod slug
+        try:
+            mod = self.get_mod_info(search)
+            mods.append(mod)
+        except ModNotFoundException:
+            # Not found by slug
+            pass
+
+        # Convert to site
+        for mod in mods:
+            sites.append(mod.sites[Sites.modrinth])
+
+        return sites
+
+    def _search_mod(self, search: str) -> List[Mod]:
+        mods: List[Mod] = []
         json = self.http.get(ModrinthApi._make_search_url(search))
 
         for mod_info in json["hits"]:
-            if "slug" in mod_info and "mod_id" in mod_info:
+            if {"slug", "mod_id", "title"}.issubset(mod_info):
                 slug = mod_info["slug"]
                 site_id = str(mod_info["mod_id"])
                 site_id = site_id.replace("local-", "")
-                mods.append(Site(Sites.modrinth, site_id, slug))
+                name = mod_info["title"]
+                mods.append(Mod(id="", name=name, sites={Sites.modrinth: Site(Sites.modrinth, site_id, slug)}))
+
         return mods
 
     @staticmethod
@@ -70,7 +92,7 @@ class ModrinthApi(Api):
 
     def get_mod_info(self, site_id: str) -> Mod:
         json = self.http.get(f"{_base_url}/mod/{site_id}")
-        if json and "id" in json and "slug" in json and "title" in json:
+        if {"id", "slug", "title"}.issubset(json):
             return Mod(
                 id="",
                 name=json["title"],

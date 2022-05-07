@@ -72,3 +72,11 @@ def test_install_dependencies(helper: Helper):
     assert code == 0
     assert lamba_better_crass is not None
     assert dependency_fabric_api is not None
+
+
+def test_install_dcch(helper: Helper):
+    code = helper.run("install", "dcch")
+    dcch = helper.get_mod_in_dir_like("dcch*.jar")
+
+    assert code == 0
+    assert dcch is not None
