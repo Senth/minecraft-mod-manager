@@ -30,7 +30,7 @@ class Configure:
                 )
                 return
 
-            if isinstance(mod_arg.sites, dict):
+            if len(mod_arg.sites) > 0:
                 Configure._update_sites(found_mod, mod_arg.sites)
 
             # Updating mod
@@ -53,7 +53,7 @@ class Configure:
         old_sites = mod.sites
         mod.sites = sites
 
-        if old_sites:
+        if len(old_sites) > 0:
             for old_site in old_sites.values():
                 if old_site.id:
                     if mod.sites and old_site.name in mod.sites:

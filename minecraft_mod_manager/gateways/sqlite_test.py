@@ -183,14 +183,13 @@ class SyncWithDirTest:
         self.expected = expected
         self.db_after = db_after
 
+    def __repr__(self) -> str:
+        return self.name
 
-def row(
-    id: str, sites: Union[str, Dict[Sites, Site], None] = "", upload_time=0, active=1
-) -> Tuple[str, str, int, int]:
+
+def row(id: str, sites: Union[str, Dict[Sites, Site]] = "", upload_time=0, active=1) -> Tuple[str, str, int, int]:
     if isinstance(sites, dict):
         sites = _Column.dict_sites_to_string(sites)
-    elif sites is None:
-        sites = ""
     return (id, sites, upload_time, active)
 
 
@@ -307,21 +306,21 @@ def row(
             ],
         ),
         SyncWithDirTest(
-            name="Replace dict when specified",
+            name="Replace dict when specified, but not empty",
             db_before=[
                 row("1", sites="curse:id:slug", upload_time=1337),
                 row("2", sites="curse::"),
             ],
             input=[
-                Mod("1", "name1", {}),
+                Mod("1", "name1", {Sites.curse: Site(Sites.curse, "id", "slug")}),
                 Mod("2", "name2", {Sites.modrinth: Site(Sites.modrinth)}),
             ],
             expected=[
-                Mod("1", "name1", {}, upload_time=1337),
+                Mod("1", "name1", {Sites.curse: Site(Sites.curse, "id", "slug")}, upload_time=1337),
                 Mod("2", "name2", {Sites.modrinth: Site(Sites.modrinth)}),
             ],
             db_after=[
-                row("1", upload_time=1337),
+                row("1", sites="curse:id:slug", upload_time=1337),
                 row("2", sites="modrinth::"),
             ],
         ),
@@ -354,14 +353,14 @@ def test_sync_with_dir(test: SyncWithDirTest, sqlite: Sqlite, db: sqlite3.Connec
     "name,input,expected",
     [
         (
-            "None when no input",
+            "Empty dict when no input",
             "",
-            None,
+            {},
         ),
         (
-            "None when only colons",
+            "Empty dict when only colons",
             "::",
-            None,
+            {},
         ),
         (
             "Set site name when specified",
@@ -399,11 +398,6 @@ def test_string_sites_to_dict(name, input, expected):
         (
             "Empty string when empty dict",
             {},
-            "",
-        ),
-        (
-            "Empty string when no dict",
-            None,
             "",
         ),
         (

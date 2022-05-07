@@ -52,7 +52,7 @@ _[(News Archive)](./NEWS.md)_
 | `update -v "1.16.5"`                            | Updates to latest mod version which works with specified MC version.                                |
 | `update -v "1.16.1"`                            | If you upgraded the mods, to a higher version (e.g. snapshot), you can easily downgrade them again. |
 | `configure sodium=modrinth`                     | Change the download site for a mod.                                                                 |
-| `configure sodium=`                             | Reset download sites (downloads from all sites again)                                               |
+| `configure sodium=`                             | Doesn't work, known bug! Reset download sites (downloads from all sites again)                                               |
 | `configure carpet=curse:fabric-carpet`          | Change site slug for a mod.                                                                         |
 | `configure carpet=curse`                        | If you don't define a slug, you will reset the slug for that mod.                                   |
 | `configure sodium=modrinth carpet=curse`        | Easily configure multiple mods at the same time.                                                    |
