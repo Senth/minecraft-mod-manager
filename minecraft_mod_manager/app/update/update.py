@@ -30,13 +30,16 @@ class Update(Download):
 
         self.find_download_and_install(mods_to_update)
 
-    def on_version_found(self, old: Mod, new: Mod) -> None:
+    def on_new_version_downloaded(self, old: Mod, new: Mod) -> None:
         if new.file:
             if Update._has_downloaded_new_file(old, new):
                 if not config.pretend and old.file:
                     self._update_repo.remove_mod_file(old.file)
 
                 TealPrint.info(f"🟢 Updated {old.version} -> {new.version}", color=LogColors.updated)
+
+    def on_no_change(self, mod: Mod) -> None:
+        TealPrint.verbose("🔵 Already up-to-date")
 
     def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:
         TealPrint.verbose("🟨 No new version found", color=LogColors.skip)

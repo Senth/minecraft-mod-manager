@@ -116,7 +116,7 @@ def test_on_version_found(
     update = Update(mock_repo, mock_finder)
     old_mod = Mod("", "", file=old)
     new_mod = Mod("", "", file=new)
-    update.on_version_found(old_mod, new_mod)
+    update.on_new_version_downloaded(old_mod, new_mod)
 
     config.pretend = False
     verifyStubbedInvocationsAreUsed()

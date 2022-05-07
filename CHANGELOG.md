@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Now uses tealprint library which will automatically disable color and unicode
   when trying to output Unicode characters [#141](https://github.com/Senth/minecraft-mod-manager/issues/141)
 - Improved the searching algorithm where the search term `entityculling` would previously return 0 results [#56](https://github.com/Senth/minecraft-mod-manager/issues/56)
+- `update` now skips downloading files if we already have the latest version [#139](https://github.com/Senth/minecraft-mod-manager/issues/139)
 
 ### Fixed
 
