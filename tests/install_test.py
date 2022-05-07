@@ -76,7 +76,7 @@ def test_install_dependencies(helper: Helper):
 
 def test_install_dcch(helper: Helper):
     code = helper.run("install", "dcch")
-    dcch = helper.get_mod_in_dir_like("dcch*.jar")
+    dcch = helper.get_mod_in_dir_like("DCCH*.jar")
 
     assert code == 0
     assert dcch is not None
