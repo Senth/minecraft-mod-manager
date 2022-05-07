@@ -11,7 +11,7 @@ from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..http import Http
-from .modrinth_api import ModrinthApi
+from .modrinth_api import ModrinthApi, _base_url
 
 testdata_dir = Path(__file__).parent.joinpath("testdata").joinpath("modrinth_api")
 search_result_file = testdata_dir.joinpath("search_fabric-api.json")
@@ -70,8 +70,34 @@ def mod(id="fabric-api", name="Fabric API", site_slug="fabric-api", site_id=site
     return Mod(id=id, name=name, sites={Sites.modrinth: Site(Sites.modrinth, site_id, site_slug)}, file=file)
 
 
-def test_search_mod(api: ModrinthApi, search_result):
-    when(api.http).get(...).thenReturn(search_result)
+def test_search_mod(api: ModrinthApi, search_result, mod_info):
+    when(api.http).get(ModrinthApi._make_search_url("search-slug")).thenReturn(search_result)
+    when(api.http).get(_base_url + "/mod/search-slug").thenReturn(mod_info)
+    expected = [
+        Site(Sites.modrinth, "P7dR8mSH", "fabric-api"),
+        Site(Sites.modrinth, "720sJXM2", "bineclaims"),
+        Site(Sites.modrinth, "iA9GjB4v", "BoxOfPlaceholders"),
+        Site(Sites.modrinth, "ZfVQ3Rjs", "mealapi"),
+        Site(Sites.modrinth, "MLYQ9VGP", "cardboard"),
+        Site(Sites.modrinth, "meZK2DCX", "dawn"),
+        Site(Sites.modrinth, "ssUbhMkL", "gravestones"),
+        Site(Sites.modrinth, "BahnQObN", "chat-icon-api"),
+        Site(Sites.modrinth, "oq1VV8nB", "splashesAPI"),
+        Site(Sites.modrinth, "gno5mxtx", "grand-economy"),
+        Site(Sites.modrinth, "aC3cM3Vq", "mouse-tweaks"),
+    ]
+
+    actual = api.search_mod("search-slug")
+
+    verifyStubbedInvocationsAreUsed()
+    unstub()
+
+    assert expected == actual
+
+
+def test_search_mod_with_get_mod_info_for_slug(api: ModrinthApi, search_result):
+    when(api.http).get(ModrinthApi._make_search_url("search-slug")).thenReturn(search_result)
+    when(api.http).get(_base_url + "/mod/search-slug").thenReturn("")
     expected = [
         Site(Sites.modrinth, "P7dR8mSH", "fabric-api"),
         Site(Sites.modrinth, "720sJXM2", "bineclaims"),
@@ -85,7 +111,7 @@ def test_search_mod(api: ModrinthApi, search_result):
         Site(Sites.modrinth, "gno5mxtx", "grand-economy"),
     ]
 
-    actual = api.search_mod("search string")
+    actual = api.search_mod("search-slug")
 
     verifyStubbedInvocationsAreUsed()
     unstub()

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from typing import Dict, Set, Union
+from typing import Dict, Optional, Set
 
 from .mod_loaders import ModLoaders
 from .sites import Site, Sites
@@ -10,7 +10,7 @@ from .sites import Site, Sites
 class ModArg:
     """Mod argument from the CLI"""
 
-    def __init__(self, id: str, sites: Union[Dict[Sites, Site], None] = None) -> None:
+    def __init__(self, id: str, sites: Dict[Sites, Site] = {}) -> None:
         self.sites = sites
         """Where the mod is downloaded from"""
         self.id = id
@@ -70,9 +70,9 @@ class Mod(ModArg):
         self,
         id: str,
         name: str,
-        sites: Union[Dict[Sites, Site], None] = None,
-        version: Union[str, None] = None,
-        file: Union[str, None] = None,
+        sites: Dict[Sites, Site] = {},
+        version: Optional[str] = None,
+        file: Optional[str] = None,
         upload_time: int = 0,
         mod_loader: ModLoaders = ModLoaders.unknown,
     ):
