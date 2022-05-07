@@ -28,6 +28,7 @@ class T:
         upload_time=100,
         minecraft_versions=[],
         download_url="",
+        number="1.0.0",
     )
 
     @staticmethod
@@ -93,6 +94,7 @@ class T:
                             download_url="",
                             dependencies={Sites.curse: ["123", "456"]},
                             filename="parent.jar",
+                            number="1.0.1",
                         )
                     ]
                 ),

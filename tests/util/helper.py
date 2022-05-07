@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 from subprocess import run
-from typing import List, Union
+from typing import List, Optional
 
 
 class Helper:
@@ -19,7 +19,7 @@ class Helper:
         output = run(cmd)
         return output.returncode
 
-    def get_mod_in_dir_like(self, glob: str) -> Union[Path, None]:
+    def get_mod_in_dir_like(self, glob: str) -> Optional[Path]:
         for file in self.dir.glob(glob):
             return file
         return None

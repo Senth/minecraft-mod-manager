@@ -11,14 +11,17 @@ def helper():
 
 
 def test_update_does_not_remove_mods(helper: Helper):
-    helper.run("install", "carpet", "-v", "1.16.2")
+    code = helper.run("install", "carpet", "-v", "1.16.2")
     carpet_mod = helper.get_mod_in_dir_like("*carpet*.jar")
+    assert code == 0
     assert carpet_mod is not None
 
-    helper.run("update")
+    code = helper.run("update")
     carpet_mod = helper.get_mod_in_dir_like("*carpet*.jar")
+    assert code == 0
     assert carpet_mod is not None
 
-    helper.run("update")
+    code = helper.run("update")
     carpet_mod = helper.get_mod_in_dir_like("*carpet*.jar")
+    assert code == 0
     assert carpet_mod is not None

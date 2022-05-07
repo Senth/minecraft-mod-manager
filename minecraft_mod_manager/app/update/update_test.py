@@ -54,6 +54,7 @@ def version_info(filename: str) -> VersionInfo:
         minecraft_versions=[],
         download_url="",
         filename=filename,
+        number="1.0.0",
     )
 
 

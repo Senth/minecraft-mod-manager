@@ -44,6 +44,7 @@ def version_info(
         minecraft_versions=versions,
         upload_time=uploaded,
         download_url="",
+        number="",
     )
 
 

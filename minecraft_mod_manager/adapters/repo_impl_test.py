@@ -74,6 +74,7 @@ def version(site: Sites) -> VersionInfo:
         minecraft_versions=[],
         upload_time=0,
         download_url="",
+        number="",
     )
 
 

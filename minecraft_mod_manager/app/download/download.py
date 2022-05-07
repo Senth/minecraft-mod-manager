@@ -2,6 +2,7 @@ from typing import List, Sequence
 
 from tealprint import TealPrint
 
+from ...config import config
 from ...core.entities.mod import Mod, ModArg
 from ...core.entities.version_info import VersionInfo
 from ...core.errors.download_failed import DownloadFailed
@@ -133,7 +134,7 @@ class Download:
         raise NotImplementedError("Not implemented in subclass")
 
     def _update_mod_from_file(self, mod: Mod) -> None:
-        if mod.file:
+        if not config.pretend and mod.file:
             installed_mod = self._repo.get_mod_from_file(mod.file)
             if installed_mod:
                 mod.id = installed_mod.id
@@ -152,6 +153,7 @@ class Download:
             sites=sites,
             file=downloaded_file.name,
             upload_time=latest_version.upload_time,
+            version=latest_version.number,
         )
 
         return add_mod

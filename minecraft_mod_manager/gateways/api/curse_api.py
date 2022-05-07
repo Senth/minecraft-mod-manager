@@ -1,3 +1,4 @@
+import re
 from enum import Enum
 from typing import Any, Dict, List
 
@@ -16,6 +17,8 @@ class DependencyTypes(Enum):
 
 
 class CurseApi(Api):
+    _filename_to_version_regex = re.compile(r"((\d{2}w\d{2}[a-f]-)?\d+\.\d+(\.\d+)?.*).*\.jar")
+
     def __init__(self, http: Http) -> None:
         super().__init__(http, Sites.curse)
 
@@ -68,7 +71,7 @@ class CurseApi(Api):
         # Find required dependencies
         dependencyList: List[str] = []
         for dependency in file_data["dependencies"]:
-            if "addonId" in dependency and "type" in dependency:
+            if {"addonId", "type"}.issubset(dependency):
                 t = dependency["type"]
                 if t == DependencyTypes.required.value:
                     dependencyList.append(str(dependency["addonId"]))
@@ -85,6 +88,7 @@ class CurseApi(Api):
             upload_time=Api._to_epoch_time(file_data["fileDate"]),
             minecraft_versions=file_data["gameVersion"],
             download_url=file_data["downloadUrl"],
+            number=CurseApi._get_version_from_filename(file_data["fileName"]),
             filename=file_data["fileName"],
             dependencies=dependencyMap,
         )
@@ -98,3 +102,10 @@ class CurseApi(Api):
         elif value == 3:
             return Stabilities.alpha
         return Stabilities.unknown
+
+    @staticmethod
+    def _get_version_from_filename(filename: str) -> str:
+        match = CurseApi._filename_to_version_regex.search(filename)
+        if match:
+            return match.group(1)
+        return "Unknown"

@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Upcoming
+## [1.3.0] - 2022-05-07: Installation Improvements
 
 ### Added
 
@@ -15,10 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- `update` now skips downloading files if we already have the latest version [#139](https://github.com/Senth/minecraft-mod-manager/issues/139)
+- Improved the searching algorithm where the search term `entityculling` would previously return 0 results [#56](https://github.com/Senth/minecraft-mod-manager/issues/56)
 - Now uses tealprint library which will automatically disable color and unicode
   when trying to output Unicode characters [#141](https://github.com/Senth/minecraft-mod-manager/issues/141)
-- Improved the searching algorithm where the search term `entityculling` would previously return 0 results [#56](https://github.com/Senth/minecraft-mod-manager/issues/56)
-- `update` now skips downloading files if we already have the latest version [#139](https://github.com/Senth/minecraft-mod-manager/issues/139)
 
 ### Fixed
 
@@ -29,9 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   It can still break the program in an invalid state [#140](https://github.com/Senth/minecraft-mod-manager/issues/140)
 - Now retries to fetch/download file 5 times before skipping [#169](https://github.com/Senth/minecraft-mod-manager/issues/169)
 - Now identifies installed mods correctly by slug as well [#149](https://github.com/Senth/minecraft-mod-manager/issues/149)
-- Can now search by slug on Modrinth [[#135](https://github.com/Senth/minecraft-mod-manager/issues/135)].
+- Can now search by slug on Modrinth [#135](https://github.com/Senth/minecraft-mod-manager/issues/135).
   When searching on Modrinth include on their site modrinth.com/mods, searching by slug can return an empty result,
   so we now get the mod directly by slug.
+- Fixed `--pretend` not printing error and actually showing a version number the mod would upgrade to [#93](https://github.com/Senth/minecraft-mod-manager/issues/93)
 
 ## [1.2.7] - 2022-03-06
 
