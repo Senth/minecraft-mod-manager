@@ -61,10 +61,10 @@ def test_abort_before_configuring_when_later_mod_not_found(mock_repo):
             Mod("carpet", "", {Sites.curse: Site(Sites.curse)}),
         ),
         (
-            "Mod sites remove when no is specified",
+            "Mod sites keep when no is specified",
             Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth)}),
             [ModArg("carpet", {})],
-            Mod("carpet", "", {}),
+            Mod("carpet", "", {Sites.modrinth: Site(Sites.modrinth)}),
         ),
         (
             "Keep old info if no site is specified",

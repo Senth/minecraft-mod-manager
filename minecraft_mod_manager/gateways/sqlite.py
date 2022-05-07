@@ -31,7 +31,7 @@ class _Column:
         self.active = bool(active)
 
     @staticmethod
-    def string_sites_to_dict(full_str: str) -> Union[Dict[Sites, Site], None]:
+    def string_sites_to_dict(full_str: str) -> Dict[Sites, Site]:
         if "," in full_str:
             sites_strings = full_str.split(",")
         else:
@@ -56,9 +56,6 @@ class _Column:
                 sites[name] = Site(name, id, slug)
             except KeyError:
                 TealPrint.error(f"DB site {site_str} not a valid site, full: '{full_str}'")
-
-        if not sites:
-            return None
 
         return sites
 
@@ -145,7 +142,7 @@ class Sqlite:
                 mod.upload_time = db_mod.upload_time
 
                 # Update new mod sites info
-                if isinstance(mod.sites, dict):
+                if len(mod.sites) > 0:
                     self.update_mod(mod)
                 else:
                     mod.sites = db_mod.sites
