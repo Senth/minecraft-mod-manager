@@ -37,11 +37,15 @@ class Download:
                 latest_version = LatestVersionFinder.find_latest_version(mod, versions, filter=True)
 
                 if latest_version:
-                    ok = self._download_latest_version(mod, latest_version)
+                    # Different version
+                    if latest_version.upload_time != mod.upload_time:
+                        ok = self._download_latest_version(mod, latest_version)
 
-                    # Add possible dependencies to download queue
-                    if ok:
-                        download_queue.extend(self._get_dependencies(latest_version))
+                        # Add possible dependencies to download queue
+                        if ok:
+                            download_queue.extend(self._get_dependencies(latest_version))
+                    else:
+                        self.on_no_change(mod)
                 else:
                     self.on_version_not_found(mod, versions)
 
@@ -66,7 +70,7 @@ class Download:
             downloaded_mod = self._download(mod, latest_version)
             self._update_mod_from_file(downloaded_mod)
             self._repo.update_mod(downloaded_mod)
-            self.on_version_found(mod, downloaded_mod)
+            self.on_new_version_downloaded(mod, downloaded_mod)
             return True
         except (DownloadFailed, MaxRetriesExceeded) as e:
             TealPrint.error(
@@ -119,7 +123,10 @@ class Download:
                 TealPrint.info(f"{mod.name}")
             TealPrint.pop_indent()
 
-    def on_version_found(self, old: Mod, new: Mod) -> None:
+    def on_new_version_downloaded(self, old: Mod, new: Mod) -> None:
+        raise NotImplementedError("Not implemented in subclass")
+
+    def on_no_change(self, mod: Mod) -> None:
         raise NotImplementedError("Not implemented in subclass")
 
     def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:

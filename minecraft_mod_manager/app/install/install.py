@@ -70,11 +70,14 @@ class Install(Download):
 
         return loader_max
 
-    def on_version_found(self, old: Mod, new: Mod) -> None:
+    def on_new_version_downloaded(self, old: Mod, new: Mod) -> None:
         TealPrint.info(
             f"🟢 Installed version {new.version}",
             color=LogColors.add,
         )
+
+    def on_no_change(self, mod: Mod) -> None:
+        TealPrint.verbose("🔵 Already installed and up-to-date")
 
     def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:
         TealPrint.info("🟨 All versions were filtered out", color=LogColors.skip, push_indent=True)
