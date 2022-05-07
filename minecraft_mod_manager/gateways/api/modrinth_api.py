@@ -108,6 +108,7 @@ class ModrinthApi(Api):
             site=Sites.modrinth,
             upload_time=Api._to_epoch_time(data["date_published"]),
             minecraft_versions=data["game_versions"],
+            number=data["version_number"],
             download_url=data["files"][0]["url"],
             filename=data["files"][0]["filename"],
         )

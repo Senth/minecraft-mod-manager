@@ -30,8 +30,9 @@ class VersionInfo:
         upload_time: int,
         minecraft_versions: List[str],
         download_url: str,
+        number: str,
         filename: str = "",
-        name: str = "",
+        mod_name: str = "",
         dependencies: Dict[Sites, List[str]] = {},
     ) -> None:
         self.stability = stability
@@ -40,8 +41,9 @@ class VersionInfo:
         self.upload_time = upload_time
         self.minecraft_versions = minecraft_versions
         self.download_url = download_url
+        self.number = number
         self.filename = filename
-        self.name = name
+        self.name = mod_name
         self.dependencies = dependencies
 
     def __str__(self) -> str:
@@ -58,6 +60,7 @@ class VersionInfo:
             self.upload_time,
             self.minecraft_versions,
             self.download_url,
+            self.number,
             self.filename,
             self.name,
             self.dependencies,
