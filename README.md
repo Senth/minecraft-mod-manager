@@ -1,21 +1,43 @@
-# minecraft-mod-manager
+# mcman/mmm (minecraft-mod-manager)
 
 [![python](https://img.shields.io/pypi/pyversions/minecraft-mod-manager.svg)](https://pypi.python.org/pypi/minecraft-mod-manager)
 [![Latest PyPI version](https://img.shields.io/pypi/v/minecraft-mod-manager.svg)](https://pypi.python.org/pypi/minecraft-mod-manager)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Senth/minecraft-mod-manager.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Senth/minecraft-mod-manager/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Senth/minecraft-mod-manager.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Senth/minecraft-mod-manager/context:python)
 
-Install and update mods from CurseForge and Modrinth through a simple command.
+Install and update mods from ~~CurseForge~~ and Modrinth through a simple command.
 
-## News — No GUI Update, focus on CLI improvements (2022-03-19)
+## News — CurseForge support disabled (hopefully only for now) (2022-05-08)
 
-After some pondering, I've decided to shelve the actual GUI update and instead continue working on the CLI python version.
+Hi everyone!
 
-There were a lot of reasons against a GUI update.
-But mainly, it would require a lot of time and energy to do a GUI and rewrite the entire application.
-I'd rather spend time fixing existing bugs, improving the CLI and installation process, and making it more user-friendly.
+I'm not sure if you're aware, Overwolf will tomorrow disable the old API for CurseForge which is used by mcman.
 
-Now to the fun part, what's to come in the next releases... _[read full story](./NEWS.md)_
+The old API that mcman used is sort of in a gray area legally.
+But on a positive note, Overwolf has decided to open up the new API.
+Albeit it comes with some limitations; not all mods can be downloaded from 3rd party apps.
+
+I just applied for an API key for the new API, so hopefully it gets accepted.
+For the mods that can't be downloaded I plan to link directly to the CurseForge page for easier manual download.
+
+The Overwolf client has also become a lot better with more support, but still lacks official linux and OSX support.
+
+As a server owner though, it requires a bit of changes to how you update the mods.
+A tip is to sync your mods folder with Dropbox, that makes it a lot easier.
+
+This will mean that CurseForge mods will be unavailable for some time.
+The change in mcman will only take ~4 hours with updating tests.
+The issue is keeping the API key safe.
+I have some ideas but it will take time to develop and I also need to check with the
+Overwolf team that it's legally possible.
+
+Anyway, thanks for all the support!
+Hopefully we can get mcman up and running again with CurseForge support 🙂
+
+If it's not accepted, thank you for all the support so far!
+
+Cheers,
+Senth
 
 _[(News Archive)](./NEWS.md)_
 
@@ -52,7 +74,7 @@ _[(News Archive)](./NEWS.md)_
 | `update -v "1.16.5"`                            | Updates to latest mod version which works with specified MC version.                                |
 | `update -v "1.16.1"`                            | If you upgraded the mods, to a higher version (e.g. snapshot), you can easily downgrade them again. |
 | `configure sodium=modrinth`                     | Change the download site for a mod.                                                                 |
-| `configure sodium=`                             | Doesn't work, known bug! Reset download sites (downloads from all sites again)                                               |
+| `configure sodium=`                             | Doesn't work, known bug! Reset download sites (downloads from all sites again)                      |
 | `configure carpet=curse:fabric-carpet`          | Change site slug for a mod.                                                                         |
 | `configure carpet=curse`                        | If you don't define a slug, you will reset the slug for that mod.                                   |
 | `configure sodium=modrinth carpet=curse`        | Easily configure multiple mods at the same time.                                                    |
@@ -94,15 +116,11 @@ logging & help:
   --no-color            Disable color output
 ```
 
-## Planned features
-
-- Automatically install dependencies
-- Executable for Windows
-
 ## Alternatives
 
 ### GUI
 
+- [Overwolf](https://www.overwolf.com/)
 - [kaniol-lck/modmanager](https://github.com/kaniol-lck/modmanager)
 - [ReviversMC/modget-minecraft](https://github.com/ReviversMC/modget-minecraft)
 - [4JX/mCubed](https://github.com/4JX/mCubed)

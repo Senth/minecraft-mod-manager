@@ -9,7 +9,6 @@ from ...core.entities.sites import Site, Sites
 from ...core.errors.mod_not_found_exception import ModNotFoundException
 from ..http import Http
 from .api import Api
-from .curse_api import CurseApi
 from .modrinth_api import ModrinthApi
 from .word_splitter_api import WordSplitterApi
 
@@ -20,7 +19,7 @@ class ModFinder:
     @staticmethod
     def create(http: Http) -> ModFinder:
         return ModFinder(
-            mod_apis=[CurseApi(http), ModrinthApi(http)],
+            mod_apis=[ModrinthApi(http)],
             word_splitter_api=WordSplitterApi(http),
         )
 

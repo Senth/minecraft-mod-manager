@@ -10,7 +10,7 @@ from ..app.update.update_repo import UpdateRepo
 from ..config import config
 from ..core.entities.mod import Mod
 from ..core.entities.version_info import VersionInfo
-from ..gateways.api.curse_api import CurseApi
+from ..gateways.api.api import Api
 from ..gateways.api.modrinth_api import ModrinthApi
 from ..gateways.http import Http
 from ..gateways.jar_parser import JarParser
@@ -26,10 +26,9 @@ class RepoImpl(ConfigureRepo, UpdateRepo, InstallRepo, ShowRepo):
         self.jar_parser = jar_parser
         self.mods = self.db.sync_with_dir(jar_parser.mods)
         self.http = http
-        self.apis = (
-            CurseApi(http),
+        self.apis: List[Api] = [
             ModrinthApi(http),
-        )
+        ]
 
     def get_mod(self, id: str) -> Optional[Mod]:
         for installed_mod in self.mods:
