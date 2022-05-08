@@ -24,6 +24,10 @@ def signal_handler(signal, frame):
 def main():
     signal.signal(signal.SIGINT, signal_handler)
 
+    TealPrint.warning(
+        "CurseForge has been disabled! See https://github.com/Senth/minecraft_mod_manager for more information."
+    )
+
     args = parse_args()
     config.add_arg_settings(args)
 
