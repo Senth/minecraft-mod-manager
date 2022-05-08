@@ -9,6 +9,8 @@ from ..core.entities.mod_loaders import ModLoaders
 from ..core.entities.sites import Site, Sites
 from ..core.entities.version_info import Stabilities, VersionInfo
 from ..core.errors.mod_not_found_exception import ModNotFoundException
+from ..gateways.api.curse_api import CurseApi
+from ..gateways.api.modrinth_api import ModrinthApi
 from ..gateways.http import Http
 from ..gateways.jar_parser import JarParser
 from ..gateways.sqlite import Sqlite
@@ -36,7 +38,9 @@ def http():
 
 @pytest.fixture
 def repo_impl(jar_parser, sqlite, http):
-    return RepoImpl(jar_parser, sqlite, http)
+    repo_impl = RepoImpl(jar_parser, sqlite, http)
+    repo_impl.apis = [CurseApi(http), ModrinthApi(http)]
+    return repo_impl
 
 
 def mod() -> Mod:

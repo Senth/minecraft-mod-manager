@@ -1,5 +1,37 @@
 # News
 
+## 2022-05-08 — CurseForge support disabled (hopefully only for now)
+
+Hi everyone!
+
+I'm not sure if you're aware, Overwolf will tomorrow disable the old API for CurseForge which is used by mcman.
+
+The old API that mcman used is sort of in a gray area legally.
+But on a positive note, Overwolf has decided to open up the new API.
+Albeit it comes with some limitations; not all mods can be downloaded from 3rd party apps.
+
+I just applied for an API key for the new API, so hopefully it gets accepted.
+For the mods that can't be downloaded I plan to link directly to the CurseForge page for easier manual download.
+
+The Overwolf client has also become a lot better with more support, but still lacks official linux and OSX support.
+
+As a server owner though, it requires a bit of changes to how you update the mods.
+A tip is to sync your mods folder with Dropbox, that makes it a lot easier.
+
+This will mean that CurseForge mods will be unavailable for some time.
+The change in mcman will only take ~4 hours with updating tests.
+The issue is keeping the API key safe.
+I have some ideas but it will take time to develop and I also need to check with the
+Overwolf team that it's legally possible.
+
+Anyway, thanks for all the support!
+Hopefully we can get mcman up and running again with CurseForge support 🙂
+
+If it's not accepted, thank you for all the support so far!
+
+Cheers,
+Senth
+
 ## 2022-03-19 — No GUI Update, focus on CLI improvements
 
 After some pondering, I've decided to shelve the actual GUI update and instead continue working on the CLI python version.
