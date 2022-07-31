@@ -39,8 +39,7 @@ def mod_info():
 
 @pytest.fixture
 def http():
-    mocked = mock(Http)
-    yield mocked
+    yield mock(Http)
     unstub()
 
 
@@ -112,7 +111,7 @@ def test_get_all_versions(api: CurseApi, carpet_files):
     expected = [
         VersionInfo(
             stability=Stabilities.beta,
-            mod_loaders=set([ModLoaders.forge]),
+            mod_loaders={ModLoaders.forge},
             site=Sites.curse,
             mod_name="Carpet",
             upload_time=1585794423,
@@ -135,7 +134,7 @@ def test_get_all_versions(api: CurseApi, carpet_files):
         ),
         VersionInfo(
             stability=Stabilities.release,
-            mod_loaders=set([ModLoaders.fabric]),
+            mod_loaders={ModLoaders.fabric},
             site=Sites.curse,
             mod_name="Carpet",
             upload_time=1618425238,
@@ -146,7 +145,7 @@ def test_get_all_versions(api: CurseApi, carpet_files):
         ),
         VersionInfo(
             stability=Stabilities.release,
-            mod_loaders=set([ModLoaders.fabric, ModLoaders.forge]),
+            mod_loaders={ModLoaders.fabric, ModLoaders.forge},
             site=Sites.curse,
             mod_name="Carpet",
             upload_time=1618425279,
@@ -156,6 +155,7 @@ def test_get_all_versions(api: CurseApi, carpet_files):
             number="21w15a-1.4.32+v210414",
         ),
     ]
+
 
     actual = api.get_all_versions(mod())
 

@@ -27,8 +27,7 @@ def modrinth():
 
 @pytest.fixture
 def word_splitter():
-    mocked = mock(WordSplitterApi)
-    yield mocked
+    yield mock(WordSplitterApi)
     unstub()
 
 

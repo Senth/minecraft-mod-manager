@@ -17,9 +17,7 @@ class ModArg:
         """String identifier of the mod, often case the same as mod name"""
 
     def matches_site(self, site: Sites) -> bool:
-        if self.sites:
-            return site in self.sites
-        return True
+        return site in self.sites if self.sites else True
 
     def get_site_slug_string(self) -> str:
         sites = ""
@@ -95,10 +93,7 @@ class Mod(ModArg):
         return str(self.__members())
 
     def get_possible_slugs(self) -> Set[str]:
-        possible_names: Set[str] = set()
-
-        # Add from id
-        possible_names.add(self.id.replace("_", "-"))
+        possible_names: Set[str] = {self.id.replace("_", "-")}
 
         # Get mod name from filename
         if self.file:
@@ -106,7 +101,7 @@ class Mod(ModArg):
 
             if match and match.lastindex == 1:
                 # Add basic name
-                filename = match.group(1).lower().replace("_", "-")
+                filename = match[1].lower().replace("_", "-")
                 possible_names.add(filename)
 
                 # Remove possible 'fabric' from the name

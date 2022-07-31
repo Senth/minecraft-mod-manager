@@ -31,8 +31,7 @@ class JarParser:
         for file in self._dir.glob("*.jar"):
             TealPrint.debug(f"Found file {file}")
             try:
-                mod = JarParser._get_mod_info(file)
-                if mod:
+                if mod := JarParser._get_mod_info(file):
                     JarParser._log_found_mod(mod)
                     self._mods.append(mod)
             except ModFileInvalid as e:
@@ -131,10 +130,7 @@ class JarParser:
                 literal_active = False
 
             new += line
-            if basic_active or literal_active:
-                new += " "
-            else:
-                new += "\n"
+            new += " " if basic_active or literal_active else "\n"
         return new
 
     @staticmethod

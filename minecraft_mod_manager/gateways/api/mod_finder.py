@@ -49,7 +49,7 @@ class ModFinder:
                             found_sites[api.site_name] = info
                             break
 
-        if len(found_sites) > 0:
+        if found_sites:
             TealPrint.pop_indent()
             return found_sites
 
@@ -69,7 +69,7 @@ class ModFinder:
                     break
             TealPrint.pop_indent()
 
-        if len(found_sites) > 0:
+        if found_sites:
             TealPrint.pop_indent()
             return found_sites
 
@@ -86,14 +86,17 @@ class ModFinder:
                         break
 
         TealPrint.pop_indent()
-        if len(found_sites) > 0:
+        if found_sites:
             return found_sites
 
         raise ModNotFoundException(mod)
 
     def get_mod_info(self, site: Sites, site_id: str) -> Optional[Mod]:
-        for api in self.apis:
-            if api.site_name == site:
-                return api.get_mod_info(site_id)
-
-        return None
+        return next(
+            (
+                api.get_mod_info(site_id)
+                for api in self.apis
+                if api.site_name == site
+            ),
+            None,
+        )
