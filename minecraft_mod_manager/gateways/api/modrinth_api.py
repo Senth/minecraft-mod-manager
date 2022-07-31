@@ -69,14 +69,14 @@ class ModrinthApi(Api):
     def _search_mod(self, search: str) -> List[Mod]:
         mods: List[Mod] = []
         json = self.http.get(ModrinthApi._make_search_url(search))
-
-        for mod_info in json["hits"]:
-            if {"slug", "mod_id", "title"}.issubset(mod_info):
-                slug = mod_info["slug"]
-                site_id = str(mod_info["mod_id"])
-                site_id = site_id.replace("local-", "")
-                name = mod_info["title"]
-                mods.append(Mod(id="", name=name, sites={Sites.modrinth: Site(Sites.modrinth, site_id, slug)}))
+        if "hits" in json:
+            for mod_info in json["hits"]:
+                if {"slug", "mod_id", "title"}.issubset(mod_info):
+                    slug = mod_info["slug"]
+                    site_id = str(mod_info["mod_id"])
+                    site_id = site_id.replace("local-", "")
+                    name = mod_info["title"]
+                    mods.append(Mod(id="", name=name, sites={Sites.modrinth: Site(Sites.modrinth, site_id, slug)}))
 
         return mods
 
