@@ -10,7 +10,11 @@ class ModLoaders(Enum):
 
     @staticmethod
     def from_name(name: str) -> ModLoaders:
-        for mod_loader in ModLoaders:
-            if mod_loader.value == name.lower():
-                return mod_loader
-        return ModLoaders.unknown
+        return next(
+            (
+                mod_loader
+                for mod_loader in ModLoaders
+                if mod_loader.value == name.lower()
+            ),
+            ModLoaders.unknown,
+        )

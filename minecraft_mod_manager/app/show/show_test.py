@@ -12,7 +12,7 @@ from .show_repo import ShowRepo
 
 @pytest.fixture
 def installed_mods():
-    mods: List[Mod] = [
+    return [
         Mod(
             id="carpet",
             name="Carpet",
@@ -33,7 +33,6 @@ def installed_mods():
             upload_time=int(datetime(2021, 3, 16).timestamp()),
         ),
     ]
-    return mods
 
 
 @pytest.fixture

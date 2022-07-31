@@ -61,9 +61,7 @@ class ModrinthApi(Api):
             pass
 
         # Convert to site
-        for mod in mods:
-            sites.append(mod.sites[Sites.modrinth])
-
+        sites.extend(mod.sites[Sites.modrinth] for mod in mods)
         return sites
 
     def _search_mod(self, search: str) -> List[Mod]:
@@ -130,8 +128,7 @@ class ModrinthApi(Api):
 
         # Get the actual project id from the version id
         for version_id in dependencyVersions:
-            project_id = self._version_id_to_mod_id(version_id)
-            if project_id:
+            if project_id := self._version_id_to_mod_id(version_id):
                 dependencyProjects.append(project_id)
 
         dependencyMap: Dict[Sites, List[str]] = {}
@@ -142,6 +139,4 @@ class ModrinthApi(Api):
 
     def _version_id_to_mod_id(self, version_id: str) -> Optional[str]:
         json = self.http.get(f"{_base_url}/version/{version_id}")
-        if json and "mod_id" in json:
-            return str(json["mod_id"])
-        return ""
+        return str(json["mod_id"]) if json and "mod_id" in json else ""

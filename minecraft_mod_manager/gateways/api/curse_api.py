@@ -105,7 +105,6 @@ class CurseApi(Api):
 
     @staticmethod
     def _get_version_from_filename(filename: str) -> str:
-        match = CurseApi._filename_to_version_regex.search(filename)
-        if match:
+        if match := CurseApi._filename_to_version_regex.search(filename):
             return match.group(1)
         return "Unknown"

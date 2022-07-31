@@ -12,9 +12,13 @@ class LatestVersionFinder:
         latest_version: Union[VersionInfo, None] = None
 
         for version in versions:
-            if not filter or not LatestVersionFinder.is_filtered(mod, version):
-                if not latest_version or version.upload_time > latest_version.upload_time:
-                    latest_version = version
+            if (
+                not filter or not LatestVersionFinder.is_filtered(mod, version)
+            ) and (
+                not latest_version
+                or version.upload_time > latest_version.upload_time
+            ):
+                latest_version = version
 
         return latest_version
 
@@ -24,9 +28,9 @@ class LatestVersionFinder:
             return True
         if LatestVersionFinder.is_filtered_by_mc_version(version):
             return True
-        if LatestVersionFinder.is_filtered_by_mod_loader(mod.mod_loader, version):
-            return True
-        return False
+        return bool(
+            LatestVersionFinder.is_filtered_by_mod_loader(mod.mod_loader, version)
+        )
 
     @staticmethod
     def is_filtered_by_stability(version: VersionInfo) -> bool:
@@ -35,7 +39,7 @@ class LatestVersionFinder:
         elif config.filter.stability == Stabilities.beta:
             return version.stability == Stabilities.alpha
         elif config.filter.stability == Stabilities.release:
-            return version.stability == Stabilities.beta or version.stability == Stabilities.alpha
+            return version.stability in [Stabilities.beta, Stabilities.alpha]
         return False
 
     @staticmethod

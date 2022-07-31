@@ -12,14 +12,10 @@ class Actions(Enum):
 
     @staticmethod
     def from_name(name: str) -> Union[Actions, None]:
-        for action in Actions:
-            if action.value == name.lower():
-                return action
-        return None
+        return next(
+            (action for action in Actions if action.value == name.lower()), None
+        )
 
     @staticmethod
     def get_all_names_as_list() -> List[str]:
-        names: List[str] = []
-        for action in Actions:
-            names.append(action.value)
-        return names
+        return [action.value for action in Actions]

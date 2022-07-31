@@ -61,7 +61,7 @@ class Http:
             if response.status_code != 200:
                 raise DownloadFailed(response.status_code, response.reason, str(response.content))
 
-            if len(filename) == 0:
+            if not filename:
                 filename = Http._get_filename(response)
 
             if not filename.endswith(".jar"):
@@ -98,7 +98,4 @@ class Http:
             return ""
 
         filename = re.search(r"filename=(.+)", content_disposition)
-        if not filename:
-            return ""
-
-        return filename.group(1)
+        return filename[1] if filename else ""

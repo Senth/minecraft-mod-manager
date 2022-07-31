@@ -24,19 +24,17 @@ class Update(Download):
             mods_to_update = list(self._update_repo.get_all_mods())
         else:
             for mod_arg in mods:
-                mod = self._update_repo.get_mod(mod_arg.id)
-                if mod:
+                if mod := self._update_repo.get_mod(mod_arg.id):
                     mods_to_update.append(mod)
 
         self.find_download_and_install(mods_to_update)
 
     def on_new_version_downloaded(self, old: Mod, new: Mod) -> None:
-        if new.file:
-            if Update._has_downloaded_new_file(old, new):
-                if not config.pretend and old.file:
-                    self._update_repo.remove_mod_file(old.file)
+        if new.file and Update._has_downloaded_new_file(old, new):
+            if not config.pretend and old.file:
+                self._update_repo.remove_mod_file(old.file)
 
-                TealPrint.info(f"🟢 Updated {old.version} -> {new.version}", color=LogColors.updated)
+            TealPrint.info(f"🟢 Updated {old.version} -> {new.version}", color=LogColors.updated)
 
     def on_no_change(self, mod: Mod) -> None:
         TealPrint.verbose("🔵 Already up-to-date")
@@ -46,8 +44,4 @@ class Update(Download):
 
     @staticmethod
     def _has_downloaded_new_file(old: Mod, new: Mod) -> bool:
-        if new.file and len(new.file) > 0:
-            if old.file != new.file:
-                return True
-
-        return False
+        return bool(new.file and len(new.file) > 0 and old.file != new.file)

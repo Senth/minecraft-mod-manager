@@ -28,25 +28,21 @@ class Download:
         download_queue.extend(mods)
 
         # Find latest version of mod
-        while len(download_queue) > 0:
+        while download_queue:
             mod = download_queue.pop()
             try:
                 TealPrint.info(mod.id, color=LogColors.header, push_indent=True)
                 mod.sites = self._finder.find_mod(mod)
 
                 versions = self._repo.get_versions(mod)
-                latest_version = LatestVersionFinder.find_latest_version(mod, versions, filter=True)
-
-                if latest_version:
+                if latest_version := LatestVersionFinder.find_latest_version(
+                    mod, versions, filter=True
+                ):
                     # Different version
-                    if latest_version.upload_time != mod.upload_time:
-                        ok = self._download_latest_version(mod, latest_version)
-
-                        # Add possible dependencies to download queue
-                        if ok:
-                            download_queue.extend(self._get_dependencies(latest_version))
-                    else:
+                    if latest_version.upload_time == mod.upload_time:
                         self.on_no_change(mod)
+                    elif ok := self._download_latest_version(mod, latest_version):
+                        download_queue.extend(self._get_dependencies(latest_version))
                 else:
                     self.on_version_not_found(mod, versions)
 
@@ -92,8 +88,7 @@ class Download:
 
         for site, site_ids in latest_version.dependencies.items():
             for site_id in site_ids:
-                mod = self._finder.get_mod_info(site, site_id)
-                if mod:
+                if mod := self._finder.get_mod_info(site, site_id):
                     TealPrint.info(f"➕ {mod.name}")
                     mods.append(mod)
                 else:
@@ -135,8 +130,7 @@ class Download:
 
     def _update_mod_from_file(self, mod: Mod) -> None:
         if not config.pretend and mod.file:
-            installed_mod = self._repo.get_mod_from_file(mod.file)
-            if installed_mod:
+            if installed_mod := self._repo.get_mod_from_file(mod.file):
                 mod.id = installed_mod.id
                 mod.name = installed_mod.name
                 mod.version = installed_mod.version
@@ -147,7 +141,7 @@ class Download:
         if not sites:
             sites = {}
 
-        add_mod = Mod(
+        return Mod(
             id=mod.id,
             name=mod.id,
             sites=sites,
@@ -155,5 +149,3 @@ class Download:
             upload_time=latest_version.upload_time,
             version=latest_version.number,
         )
-
-        return add_mod
