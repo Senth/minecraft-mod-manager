@@ -32,11 +32,7 @@ class _Column:
 
     @staticmethod
     def string_sites_to_dict(full_str: str) -> Dict[Sites, Site]:
-        if "," in full_str:
-            sites_strings = full_str.split(",")
-        else:
-            sites_strings = [full_str]
-
+        sites_strings = full_str.split(",") if "," in full_str else [full_str]
         sites: Dict[Sites, Site] = {}
         for site_str in sites_strings:
             if len(site_str) == 0:
@@ -171,9 +167,7 @@ class Sqlite:
         return mods
 
     def exists(self, id: str, filter_active: bool = True) -> bool:
-        extra_filter = ""
-        if filter_active:
-            extra_filter = f"AND {_Column.c_active}=1"
+        extra_filter = f"AND {_Column.c_active}=1" if filter_active else ""
         self._cursor.execute(f"SELECT 1 FROM mod WHERE {_Column.c_id}=? {extra_filter}", [id])
         return bool(self._cursor.fetchone())
 

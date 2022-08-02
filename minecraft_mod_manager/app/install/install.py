@@ -82,8 +82,9 @@ class Install(Download):
     def on_version_not_found(self, mod: Mod, versions: List[VersionInfo]) -> None:
         TealPrint.info("🟨 All versions were filtered out", color=LogColors.skip, push_indent=True)
 
-        latest_unfiltered = LatestVersionFinder.find_latest_version(mod, versions, filter=False)
-        if latest_unfiltered:
+        if latest_unfiltered := LatestVersionFinder.find_latest_version(
+            mod, versions, filter=False
+        ):
             Install._print_latest_unfiltered(mod, latest_unfiltered)
         TealPrint.pop_indent()
 

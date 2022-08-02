@@ -36,10 +36,7 @@ class T:
         T.input = input
 
 
-@pytest.mark.parametrize(
-    "name,prepare_function",
-    [
-        (
+@pytest.mark.parametrize("name,prepare_function", [(
             "Call on_new_version_downloaded() when found",
             lambda: (
                 when(T.mock_repo).download(...).thenReturn(Path("mod.jar")),
@@ -48,8 +45,7 @@ class T:
                 when(T.mock_repo).update_mod(...),
                 when(T.download).on_new_version_downloaded(...),
             ),
-        ),
-        (
+        ), (
             "Remove downloaded file when invalid mod file",
             lambda: (
                 when(T.mock_repo).download(...).thenReturn(Path("mod.jar")),
@@ -57,8 +53,7 @@ class T:
                 when(T.mock_repo).get_mod_from_file(...).thenRaise(ModFileInvalid(Path("mod.jar"))),
                 when(T.mock_repo).remove_mod_file(...),
             ),
-        ),
-        (
+        ), (
             "Update mod_id after download",
             lambda: (
                 when(T.mock_repo).download(...).thenReturn(Path("mod.jar")),
@@ -76,49 +71,18 @@ class T:
                 when(T.mock_repo).get_mod_from_file("mod.jar").thenReturn(Mod("validid", "name", version="1.0.0")),
                 when(T.download).on_new_version_downloaded(...),
             ),
-        ),
-        (
-            "Download dependency",
-            lambda: (
-                when(T.mock_repo).download(...).thenReturn(Path("mod.jar")),
-                when(T.mock_repo)
+        ), ("Download dependency", lambda: (when(T.mock_repo).download(...).thenReturn(Path("mod.jar")), when(T.mock_repo)
                 .get_versions(T.input[0])
-                .thenReturn(
-                    [
-                        VersionInfo(
-                            stability=Stabilities.release,
-                            mod_loaders=set([ModLoaders.fabric]),
-                            site=Sites.curse,
-                            upload_time=100,
-                            minecraft_versions=[],
-                            download_url="",
-                            dependencies={Sites.curse: ["123", "456"]},
-                            filename="parent.jar",
-                            number="1.0.1",
-                        )
-                    ]
-                ),
-                when(T.mock_repo)
+                .thenReturn([VersionInfo(stability=Stabilities.release, mod_loaders={ModLoaders.fabric}, site=Sites.curse, upload_time=100, minecraft_versions=[], download_url="", dependencies={Sites.curse: ["123", "456"]}, filename="parent.jar", number="1.0.1")]), when(T.mock_repo)
                 .get_versions(Mod("123", "123 Name", {Sites.curse: Site(Sites.curse, "", "")}))
-                .thenReturn([T.version_info]),
-                when(T.mock_finder).get_mod_info(Sites.curse, "123").thenReturn(Mod("123", "123 Name")),
-                when(T.mock_finder).get_mod_info(Sites.curse, "456").thenReturn(None),
-                when(T.mock_repo).download("", "parent.jar").thenReturn(Path("parent.jar")),
-                when(T.mock_repo).get_mod_from_file("mod.jar").thenReturn(Mod("123", "123 Name")),
-                when(T.mock_repo).get_mod_from_file("parent.jar").thenReturn(T.input[0]),
-                when(T.mock_repo).update_mod(...),
-                when(T.download).on_new_version_downloaded(...),
-            ),
-        ),
-        (
+                .thenReturn([T.version_info]), when(T.mock_finder).get_mod_info(Sites.curse, "123").thenReturn(Mod("123", "123 Name")), when(T.mock_finder).get_mod_info(Sites.curse, "456").thenReturn(None), when(T.mock_repo).download("", "parent.jar").thenReturn(Path("parent.jar")), when(T.mock_repo).get_mod_from_file("mod.jar").thenReturn(Mod("123", "123 Name")), when(T.mock_repo).get_mod_from_file("parent.jar").thenReturn(T.input[0]), when(T.mock_repo).update_mod(...), when(T.download).on_new_version_downloaded(...))), (
             "Skip downloading if the upload date is same as the current version",
             lambda: (
                 T.set_input([Mod("123", "", upload_time=100)]),
                 when(T.mock_repo).get_versions(...).thenReturn([T.version_info]),
                 when(T.download).on_no_change(...),
             ),
-        ),
-        (
+        ), (
             "Downloading if the upload date older than the current version",
             lambda: (
                 T.set_input([Mod("123", "", upload_time=200)]),
@@ -128,9 +92,7 @@ class T:
                 when(T.mock_repo).update_mod(...),
                 when(T.download).on_new_version_downloaded(...),
             ),
-        ),
-    ],
-)
+        )])
 def test_find_download_and_install(name, prepare_function):
     print(name)
 

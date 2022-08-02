@@ -73,7 +73,7 @@ class TestGetVersions:
 def version(site: Sites) -> VersionInfo:
     return VersionInfo(
         stability=Stabilities.release,
-        mod_loaders=set([ModLoaders.fabric]),
+        mod_loaders={ModLoaders.fabric},
         site=site,
         minecraft_versions=[],
         upload_time=0,

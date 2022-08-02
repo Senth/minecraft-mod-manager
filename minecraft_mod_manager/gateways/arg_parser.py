@@ -109,21 +109,16 @@ def _parse_mods(args_mod: Any) -> List[ModArg]:
 
 
 def _parse_sites(mod_arg, sites: str) -> Dict[Sites, Site]:
-    if "," in sites:
-        sites_str = sites.split(",")
-    else:
-        sites_str = [sites]
-
+    sites_str = sites.split(",") if "," in sites else [sites]
     sites_dict: Dict[Sites, Site] = {}
     for site_str in sites_str:
-        site = _parse_site(mod_arg, site_str)
-        if site:
+        if site := _parse_site(mod_arg, site_str):
             sites_dict[site.name] = site
     return sites_dict
 
 
 def _parse_site(mod_arg: str, site_str: str) -> Union[Site, None]:
-    if len(site_str) == 0:
+    if not site_str:
         return None
 
     slug: Union[str, None] = None

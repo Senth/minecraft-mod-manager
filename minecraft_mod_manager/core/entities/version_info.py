@@ -15,10 +15,14 @@ class Stabilities(Enum):
 
     @staticmethod
     def from_name(name: str) -> Stabilities:
-        for stability in Stabilities:
-            if stability.value.lower() == name.lower():
-                return stability
-        return Stabilities.unknown
+        return next(
+            (
+                stability
+                for stability in Stabilities
+                if stability.value.lower() == name.lower()
+            ),
+            Stabilities.unknown,
+        )
 
 
 class VersionInfo:
@@ -79,18 +83,14 @@ class VersionInfo:
             return True
         if self.name < other.name:
             return True
-        if self.site_name.value < other.site_name.value:
-            return True
-        return False
+        return self.site_name.value < other.site_name.value
 
     def __le__(self, other: VersionInfo) -> bool:
         if self.upload_time <= other.upload_time:
             return True
         if self.name <= other.name:
             return True
-        if self.site_name.value <= other.site_name.value:
-            return True
-        return False
+        return self.site_name.value <= other.site_name.value
 
     def __gt__(self, other: VersionInfo) -> bool:
         return not self.__le__(other)

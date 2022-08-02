@@ -11,9 +11,7 @@ class Site:
         self.slug = slug
 
     def get_configure_string(self) -> str:
-        slug = ""
-        if self.slug:
-            slug = f":{self.slug}"
+        slug = f":{self.slug}" if self.slug else ""
         return f"{self.name.value}{slug}"
 
     def __str__(self) -> str:

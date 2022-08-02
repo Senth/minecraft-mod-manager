@@ -55,6 +55,5 @@ class Configure:
 
         if len(old_sites) > 0:
             for old_site in old_sites.values():
-                if old_site.id:
-                    if mod.sites and old_site.name in mod.sites:
-                        mod.sites[old_site.name].id = old_site.id
+                if old_site.id and mod.sites and old_site.name in mod.sites:
+                    mod.sites[old_site.name].id = old_site.id

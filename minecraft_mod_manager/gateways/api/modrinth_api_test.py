@@ -53,8 +53,7 @@ def mod_info():
 
 @pytest.fixture
 def http():
-    mocked = mock(Http)
-    yield mocked
+    yield mock(Http)
     unstub()
 
 
@@ -72,7 +71,7 @@ def mod(id="fabric-api", name="Fabric API", site_slug="fabric-api", site_id=site
 
 def test_search_mod(api: ModrinthApi, search_result, mod_info):
     when(api.http).get(ModrinthApi._make_search_url("search-slug")).thenReturn(search_result)
-    when(api.http).get(_base_url + "/mod/search-slug").thenReturn(mod_info)
+    when(api.http).get(f"{_base_url}/mod/search-slug").thenReturn(mod_info)
     expected = [
         Site(Sites.modrinth, "P7dR8mSH", "fabric-api"),
         Site(Sites.modrinth, "720sJXM2", "bineclaims"),
@@ -97,7 +96,7 @@ def test_search_mod(api: ModrinthApi, search_result, mod_info):
 
 def test_search_mod_with_get_mod_info_for_slug(api: ModrinthApi, search_result):
     when(api.http).get(ModrinthApi._make_search_url("search-slug")).thenReturn(search_result)
-    when(api.http).get(_base_url + "/mod/search-slug").thenReturn("")
+    when(api.http).get(f"{_base_url}/mod/search-slug").thenReturn("")
     expected = [
         Site(Sites.modrinth, "P7dR8mSH", "fabric-api"),
         Site(Sites.modrinth, "720sJXM2", "bineclaims"),
@@ -151,7 +150,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, version
     expected = [
         VersionInfo(
             stability=Stabilities.beta,
-            mod_loaders=set([ModLoaders.fabric]),
+            mod_loaders={ModLoaders.fabric},
             site=Sites.modrinth,
             mod_name="Fabric API",
             upload_time=1618769767,
@@ -174,7 +173,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, version
         ),
         VersionInfo(
             stability=Stabilities.alpha,
-            mod_loaders=set([ModLoaders.forge]),
+            mod_loaders={ModLoaders.forge},
             site=Sites.modrinth,
             mod_name="Fabric API",
             upload_time=1618429021,
@@ -185,7 +184,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, version
         ),
         VersionInfo(
             stability=Stabilities.release,
-            mod_loaders=set([ModLoaders.fabric, ModLoaders.forge]),
+            mod_loaders={ModLoaders.fabric, ModLoaders.forge},
             site=Sites.modrinth,
             mod_name="Fabric API",
             upload_time=1618427403,
@@ -195,6 +194,7 @@ def test_get_all_versions_directly_when_we_have_mod_id(api: ModrinthApi, version
             number="0.32.9+1.16",
         ),
     ]
+
 
     actual = api.get_all_versions(mod())
 
@@ -209,7 +209,7 @@ def test_get_versions_without_files(api: ModrinthApi, versions_without_files):
     expected = [
         VersionInfo(
             stability=Stabilities.release,
-            mod_loaders=set([ModLoaders.fabric]),
+            mod_loaders={ModLoaders.fabric},
             site=Sites.modrinth,
             mod_name="Fabric API",
             upload_time=1638379386,
@@ -220,7 +220,7 @@ def test_get_versions_without_files(api: ModrinthApi, versions_without_files):
         ),
         VersionInfo(
             stability=Stabilities.release,
-            mod_loaders=set([ModLoaders.fabric]),
+            mod_loaders={ModLoaders.fabric},
             site=Sites.modrinth,
             mod_name="Fabric API",
             upload_time=1638297554,
@@ -230,6 +230,7 @@ def test_get_versions_without_files(api: ModrinthApi, versions_without_files):
             number="0.2.3",
         ),
     ]
+
 
     actual = api.get_all_versions(mod())
 
