@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## `1.4.1` - 2022-08-02: Fix modrinth bug
+
+### Fixed
+
+- Modrinth bug when searching for some mods [#196](https://github.com/Senth/minecraft-mod-manager/issues/196)
+- Correct link to GitHub Project page [#191](https://github.com/Senth/minecraft-mod-manager/issues/191)
+
+## `1.4.0` - 2022-06-14: Disabling CurseForge
+
+### Removed
+
+- CurseForge support, will be added again in v2.0. In the meantime, checkout [Ferium](https://github.com/gorilla-devs/ferium)
+  for another minecraft mod manager.
+
 ## [1.3.0] - 2022-05-07: Installation Improvements
 
 ### Added
