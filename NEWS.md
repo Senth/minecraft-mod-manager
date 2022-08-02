@@ -1,5 +1,20 @@
 # News
 
+## 2022-08-02 — Slow progress and an Alternative CLI
+
+Hi everyone!
+
+I have acquired a CurseForge API key, but still want to make it easy to install mods from CurseForge
+without applying for a key.
+
+Maybe that's not possible, but I have some ideas at least for improving `mcman`.
+This includes downloading mods from CurseForge.
+
+For now though, I can point you to an awesome and in my opinion, better alternative: [ferium](https://github.com/gorilla-devs/ferium).
+
+Cheers,
+Senth
+
 ## 2022-05-08 — CurseForge support disabled (hopefully only for now)
 
 Hi everyone!

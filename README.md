@@ -7,34 +7,17 @@
 
 Install and update mods from ~~CurseForge~~ and Modrinth through a simple command.
 
-## News — CurseForge support disabled (hopefully only for now) (2022-05-08)
+## News — Slow progress and an Alternative CLI (2022-08-02)
 
 Hi everyone!
 
-I'm not sure if you're aware, Overwolf will tomorrow disable the old API for CurseForge which is used by mcman.
+I have acquired a CurseForge API key, but still want to make it easy to install mods from CurseForge
+without applying for a key.
 
-The old API that mcman used is sort of in a gray area legally.
-But on a positive note, Overwolf has decided to open up the new API.
-Albeit it comes with some limitations; not all mods can be downloaded from 3rd party apps.
+Maybe that's not possible, but I have some ideas at least for improving `mcman`.
+This includes downloading mods from CurseForge.
 
-I just applied for an API key for the new API, so hopefully it gets accepted.
-For the mods that can't be downloaded I plan to link directly to the CurseForge page for easier manual download.
-
-The Overwolf client has also become a lot better with more support, but still lacks official linux and OSX support.
-
-As a server owner though, it requires a bit of changes to how you update the mods.
-A tip is to sync your mods folder with Dropbox, that makes it a lot easier.
-
-This will mean that CurseForge mods will be unavailable for some time.
-The change in mcman will only take ~4 hours with updating tests.
-The issue is keeping the API key safe.
-I have some ideas but it will take time to develop and I also need to check with the
-Overwolf team that it's legally possible.
-
-Anyway, thanks for all the support!
-Hopefully we can get mcman up and running again with CurseForge support 🙂
-
-If it's not accepted, thank you for all the support so far!
+For now though, I can point you to an awesome and in my opinion, better alternative: [ferium](https://github.com/gorilla-devs/ferium).
 
 Cheers,
 Senth
@@ -127,6 +110,7 @@ logging & help:
 
 ### CLI
 
+- [gorilla-devs/ferium](https://github.com/gorilla-devs/ferium)
 - [sargunv/modsman](https://github.com/sargunv/modsman)
 - [tyra314/modweaver](https://github.com/tyra314/modweaver)
 
