@@ -82,3 +82,11 @@ def test_install_dcch(helper: Helper):
 
     assert code == 0
     assert dcch is not None
+
+
+def test_install_fabric_version(helper: Helper):
+    code = helper.run("-v", "1.16.5", "--mod-loader", "fabric", "--alpha", "install", "simple-voice-chat")
+    smc = helper.get_mod_in_dir_like("voicechat*.jar")
+
+    assert code == 0
+    assert smc is None

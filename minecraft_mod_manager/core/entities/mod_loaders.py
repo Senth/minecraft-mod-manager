@@ -7,6 +7,11 @@ class ModLoaders(Enum):
     unknown = "unknown"
     fabric = "fabric"
     forge = "forge"
+    quilt = "quilt"
+    bukkit = "bukkit"
+    paper = "paper"
+    purpur = "purpur"
+    spigot = "spigot"
 
     @staticmethod
     def from_name(name: str) -> ModLoaders:
