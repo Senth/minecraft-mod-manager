@@ -1,8 +1,9 @@
 import re
 from enum import Enum
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Set
 
 from ...core.entities.mod import Mod, ModArg
+from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import Stabilities, VersionInfo
 from ...core.errors.mod_not_found_exception import ModNotFoundException
@@ -18,6 +19,7 @@ class DependencyTypes(Enum):
 
 class CurseApi(Api):
     _filename_to_version_regex = re.compile(r"((\d{2}w\d{2}[a-f]-)?\d+\.\d+(\.\d+)?.*).*\.jar")
+    _starts_with_number_regex = re.compile(r"^\d+.*")
 
     def __init__(self, http: Http) -> None:
         super().__init__(http, Sites.curse)
@@ -83,7 +85,7 @@ class CurseApi(Api):
         # Create VersionInfo
         return VersionInfo(
             stability=CurseApi._to_release_type(file_data["releaseType"]),
-            mod_loaders=Api._to_mod_loaders(file_data["gameVersion"]),
+            mod_loaders=CurseApi._to_mod_loaders(file_data["gameVersion"]),
             site=Sites.curse,
             upload_time=Api._to_epoch_time(file_data["fileDate"]),
             minecraft_versions=file_data["gameVersion"],
@@ -109,3 +111,13 @@ class CurseApi(Api):
         if match:
             return match.group(1)
         return "Unknown"
+
+    @staticmethod
+    def _to_mod_loaders(loaders: List[str]) -> Set[ModLoaders]:
+        mod_loaders: Set[ModLoaders] = set()
+
+        for loader in loaders:
+            if not CurseApi._starts_with_number_regex.match(loader):
+                mod_loaders.add(ModLoaders.from_name(loader))
+
+        return mod_loaders
