@@ -41,10 +41,6 @@ class Api:
         mod_loaders: Set[ModLoaders] = set()
 
         for loader in loaders:
-            loader = loader.lower()
-            if loader == "fabric":
-                mod_loaders.add(ModLoaders.fabric)
-            elif loader == "forge":
-                mod_loaders.add(ModLoaders.forge)
+            mod_loaders.add(ModLoaders.from_name(loader))
 
         return mod_loaders

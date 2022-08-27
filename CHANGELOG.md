@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## `1.4.2` - 2022-08-27: Download correct modloader
+
+### Fixed
+
+- Downloading correct mod loader.
+  When downloading from Modrinth, mod loaders like quilt and bukkit were removed instead of registered as unknown. [#202](https://github.com/Senth/minecraft-mod-manager/issues/202)
+
 ## `1.4.1` - 2022-08-02: Fix modrinth bug
 
 ### Fixed
