@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set
 
 from tealprint import TealPrint
 
@@ -104,7 +104,7 @@ class ModrinthApi(Api):
     def _json_to_version_info(data: Any) -> VersionInfo:
         return VersionInfo(
             stability=Stabilities.from_name(data["version_type"]),
-            mod_loaders=Api._to_mod_loaders(data["loaders"]),
+            mod_loaders=ModrinthApi._to_mod_loaders(data["loaders"]),
             site=Sites.modrinth,
             upload_time=Api._to_epoch_time(data["date_published"]),
             minecraft_versions=data["game_versions"],
@@ -145,3 +145,12 @@ class ModrinthApi(Api):
         if json and "mod_id" in json:
             return str(json["mod_id"])
         return ""
+
+    @staticmethod
+    def _to_mod_loaders(loaders: List[str]) -> Set[ModLoaders]:
+        mod_loaders: Set[ModLoaders] = set()
+
+        for loader in loaders:
+            mod_loaders.add(ModLoaders.from_name(loader))
+
+        return mod_loaders

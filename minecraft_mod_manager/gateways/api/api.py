@@ -1,8 +1,7 @@
 from datetime import datetime
-from typing import List, Set
+from typing import List
 
 from ...core.entities.mod import Mod
-from ...core.entities.mod_loaders import ModLoaders
 from ...core.entities.sites import Site, Sites
 from ...core.entities.version_info import VersionInfo
 from ..http import Http
@@ -35,12 +34,3 @@ class Api:
             date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S%z")
 
         return round(date.timestamp())
-
-    @staticmethod
-    def _to_mod_loaders(loaders: List[str]) -> Set[ModLoaders]:
-        mod_loaders: Set[ModLoaders] = set()
-
-        for loader in loaders:
-            mod_loaders.add(ModLoaders.from_name(loader))
-
-        return mod_loaders
