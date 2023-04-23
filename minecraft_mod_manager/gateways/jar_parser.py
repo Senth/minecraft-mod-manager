@@ -79,7 +79,7 @@ class JarParser:
                 name=object["name"],
                 version=object["version"],
                 mod_loader=ModLoaders.fabric,
-                mc_version=object["depends"]["minecraft"] if "minecraft" in object["depends"] else None
+                mc_version=object["depends"]["minecraft"] if "depends" in object and "minecraft" in object["depends"] else None
             )
 
     @staticmethod
@@ -97,7 +97,7 @@ class JarParser:
                 mods["displayName"],
                 mod_loader=ModLoaders.forge,
                 version=mods["version"],
-                loader_version=mods["loaderVersion"]
+                mc_version=mods["loaderVersion"]
             )
 
     @staticmethod
