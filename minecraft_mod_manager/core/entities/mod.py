@@ -75,8 +75,8 @@ class Mod(ModArg):
         file: Optional[str] = None,
         upload_time: int = 0,
         mod_loader: ModLoaders = ModLoaders.unknown,
-        mc_version: Optional[str] = None,
-        loader_version: Optional[str] = None
+        loader_version: Optional[str] = None,
+        mc_version: Optional[str] = None
     ):
         super().__init__(id, sites)
         self.name = name
@@ -84,6 +84,8 @@ class Mod(ModArg):
         self.file = file
         self.mod_loader = mod_loader
         self.upload_time = upload_time
+        self.loader_version = loader_version
+        self.mc_version = mc_version
         """When this version of the mod was uploaded to the repository"""
 
     @staticmethod
@@ -91,7 +93,7 @@ class Mod(ModArg):
         return Mod(mod_arg.id, mod_arg.id, mod_arg.sites)
 
     def __str__(self) -> str:
-        return f"{self.id}-{self.version} ({self.name}) [{self.mod_loader.value}]"
+        return f"\"{self.name}\" v{self.version} ({self.id}) for {self.mod_loader.value} v{self.loader_version} for {self.mc_version}"
 
     def __repr__(self) -> str:
         return str(self.__members())
@@ -132,6 +134,8 @@ class Mod(ModArg):
             self.file,
             self.upload_time,
             self.mod_loader,
+            self.loader_version,
+            self.mc_version
         )
 
     def __eq__(self, other) -> bool:
