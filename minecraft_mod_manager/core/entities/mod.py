@@ -75,6 +75,8 @@ class Mod(ModArg):
         file: Optional[str] = None,
         upload_time: int = 0,
         mod_loader: ModLoaders = ModLoaders.unknown,
+        mc_version: Optional[str] = None,
+        loader_version: Optional[str] = None
     ):
         super().__init__(id, sites)
         self.name = name
