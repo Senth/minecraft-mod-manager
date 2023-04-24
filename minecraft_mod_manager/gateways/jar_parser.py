@@ -75,10 +75,11 @@ class JarParser:
             full_doc = json_file.read().decode("utf-8", "ignore")
             object = json.loads(full_doc, strict=False)
             return Mod(
-                id=object["id"],
-                name=object["name"],
-                version=object["version"],
+                id=object["id"] if "id" in object else None,
+                name=object["name"] if "name" in object else None,
+                version=object["version"] if "version" in object else None,
                 mod_loader=ModLoaders.fabric,
+                mc_version=object["depends"]["minecraft"] if "depends" in object and "minecraft" in object["depends"] else None
             )
 
     @staticmethod
@@ -96,6 +97,7 @@ class JarParser:
                 mods["displayName"],
                 mod_loader=ModLoaders.forge,
                 version=mods["version"],
+                loader_version=mods["loaderVersion"] if "loaderVersion" in mods else None
             )
 
     @staticmethod
